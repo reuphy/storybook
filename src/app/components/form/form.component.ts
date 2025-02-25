@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormFieldComponent } from '../form-field/form-field.component';
 import { AddressFormComponent } from '../address-form/address-form.component';
+import { DatePickerComponent } from '../date-picker/date-picker.component';
 
 @Component({
   selector: 'app-form',
@@ -19,6 +20,7 @@ import { AddressFormComponent } from '../address-form/address-form.component';
     ReactiveFormsModule,
     FormFieldComponent,
     AddressFormComponent,
+    DatePickerComponent,
   ],
 })
 export class FormComponent implements OnInit {

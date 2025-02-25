@@ -1,0 +1,23 @@
+<div [formGroup]="form" class="form-group">
+  <label [for]="controlName">{{ label }}</label>
+  <div class="input-group">
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [formControlName]="controlName"
+      [id]="controlName"
+      class="form-control"
+      (focus)="picker.open()"
+      (click)="picker.open()"
+    />
+  </div>
+  <mat-datepicker #picker>
+    <mat-datepicker-actions>
+      <button mat-button matDatepickerCancel>Cancel</button>
+      <button mat-raised-button matDatepickerApply>Apply</button>
+    </mat-datepicker-actions>
+  </mat-datepicker>
+  <div *ngIf="form.get(controlName)?.invalid && form.get(controlName)?.touched">
+    <small class="text-danger">{{ label }} is required</small>
+  </div>
+</div>

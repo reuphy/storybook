@@ -1,0 +1,22 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input-group-append {
+  display: flex;
+  align-items: center;
+}
+
+.mat-datepicker-toggle {
+  margin-left: -1px;
+}
+
+.mat-datepicker-toggle button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
