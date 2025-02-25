@@ -1,0 +1,33 @@
+<div
+  (click)="toggle(item)"
+  class="divider"
+  *ngFor="let item of items; let i = index"
+  [class.active]="item.isOpen"
+>
+  <div class="item">
+    <h3 data-testid="accordion-header">{{ item.title }}</h3>
+    <span
+      data-testid="icon"
+      [class.rotate-down]="item.isOpen"
+      [class.rotate-up]="!item.isOpen"
+    >
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g>
+          <polygon
+            fill="currentColor"
+            points="17.3033009 19.7781746 15.8890873 21.1923882 6.69669914 12 15.8890873 2.80761184 17.3033009 4.22182541 9.52512627 12"
+          ></polygon>
+        </g>
+      </svg>
+    </span>
+  </div>
+  <div class="pb-2">
+    <p>{{ item.content }}</p>
+  </div>
+</div>

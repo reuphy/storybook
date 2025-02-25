@@ -1,0 +1,2440 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "AccordionItem",
+            "id": "interface-AccordionItem-ebd3fafdd9897022596ebdfb39fc50198b6e35590a3388f55cc32d90f07d3e0eb08d7f2364dc27d66bab8033de68c202cb8ab857d3333486e526e43c9077311c",
+            "file": "src/app/components/accordion/models/accordion.interface.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface AccordionItem {\r\n    title: string;\r\n    content: string;\r\n    isOpen: boolean;\r\n}",
+            "properties": [
+                {
+                    "name": "content",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "isOpen",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "StyleConfig",
+            "id": "interface-StyleConfig-8a755d09c4b5481619e070b30fdbe71e8c6d1015aa46491c4ab45270355ee04fcc61ee6b8c5fb62eaf5bdcb1a63750ef019804720e9e746f023caac2aeff219e",
+            "file": "src/app/directives/text-input-style.directives.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {\r\n  Directive,\r\n  ElementRef,\r\n  Renderer2,\r\n  HostListener,\r\n  Input,\r\n  OnChanges,\r\n  SimpleChanges,\r\n} from '@angular/core';\r\n\r\ninterface StyleConfig {\r\n  borderColor?: string;\r\n  focusBorderColor?: string;\r\n  padding?: string;\r\n  borderRadius?: string;\r\n}\r\n\r\n@Directive({\r\n  selector: '[appCustomInputStyle]',\r\n})\r\nexport class CustomInputStyleDirective implements OnChanges {\r\n  @Input('appCustomInputStyle') styleConfig: StyleConfig = {\r\n    borderColor: '#ccc',\r\n    focusBorderColor: '#007bff',\r\n    padding: '10px',\r\n    borderRadius: '4px',\r\n  };\r\n\r\n  constructor(private el: ElementRef, private renderer: Renderer2) {\r\n    this.setStyle();\r\n  }\r\n\r\n  ngOnChanges(changes: SimpleChanges) {\r\n    if (changes) {\r\n      this.setStyle();\r\n    }\r\n  }\r\n\r\n  private setStyle() {\r\n    const { borderColor, padding, borderRadius } = this.styleConfig;\r\n    this.renderer.setStyle(\r\n      this.el.nativeElement,\r\n      'border',\r\n      `1px solid ${borderColor}`\r\n    );\r\n    this.renderer.setStyle(this.el.nativeElement, 'padding', padding);\r\n    this.renderer.setStyle(this.el.nativeElement, 'borderRadius', borderRadius);\r\n    this.renderer.setStyle(this.el.nativeElement, 'outline', 'none');\r\n    this.renderer.setStyle(\r\n      this.el.nativeElement,\r\n      'transition',\r\n      'border-color 0.3s'\r\n    );\r\n  }\r\n\r\n  @HostListener('focus') onFocus() {\r\n    this.renderer.setStyle(\r\n      this.el.nativeElement,\r\n      'borderColor',\r\n      this.styleConfig.focusBorderColor\r\n    );\r\n  }\r\n\r\n  @HostListener('blur') onBlur() {\r\n    this.renderer.setStyle(\r\n      this.el.nativeElement,\r\n      'borderColor',\r\n      this.styleConfig.borderColor\r\n    );\r\n  }\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "borderColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "borderRadius",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "focusBorderColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "padding",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 14
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "Task",
+            "id": "interface-Task-8ff60bd7d3ecbb5aa8efccc7fb6337f67dfc955c373dbddc9acacb8b849212756c7f7013057b1fbb90340c0e854017c622fc799af461c332cf1ce3be183dff9e",
+            "file": "src/app/models/task.model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface Task {\r\n    id?: string;\r\n    title?: string;\r\n    state?: string;\r\n  }",
+            "properties": [
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "state",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 3
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        }
+    ],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [
+        {
+            "name": "CustomInputStyleDirective",
+            "id": "directive-CustomInputStyleDirective-8a755d09c4b5481619e070b30fdbe71e8c6d1015aa46491c4ab45270355ee04fcc61ee6b8c5fb62eaf5bdcb1a63750ef019804720e9e746f023caac2aeff219e",
+            "file": "src/app/directives/text-input-style.directives.ts",
+            "type": "directive",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import {\r\n  Directive,\r\n  ElementRef,\r\n  Renderer2,\r\n  HostListener,\r\n  Input,\r\n  OnChanges,\r\n  SimpleChanges,\r\n} from '@angular/core';\r\n\r\ninterface StyleConfig {\r\n  borderColor?: string;\r\n  focusBorderColor?: string;\r\n  padding?: string;\r\n  borderRadius?: string;\r\n}\r\n\r\n@Directive({\r\n  selector: '[appCustomInputStyle]',\r\n})\r\nexport class CustomInputStyleDirective implements OnChanges {\r\n  @Input('appCustomInputStyle') styleConfig: StyleConfig = {\r\n    borderColor: '#ccc',\r\n    focusBorderColor: '#007bff',\r\n    padding: '10px',\r\n    borderRadius: '4px',\r\n  };\r\n\r\n  constructor(private el: ElementRef, private renderer: Renderer2) {\r\n    this.setStyle();\r\n  }\r\n\r\n  ngOnChanges(changes: SimpleChanges) {\r\n    if (changes) {\r\n      this.setStyle();\r\n    }\r\n  }\r\n\r\n  private setStyle() {\r\n    const { borderColor, padding, borderRadius } = this.styleConfig;\r\n    this.renderer.setStyle(\r\n      this.el.nativeElement,\r\n      'border',\r\n      `1px solid ${borderColor}`\r\n    );\r\n    this.renderer.setStyle(this.el.nativeElement, 'padding', padding);\r\n    this.renderer.setStyle(this.el.nativeElement, 'borderRadius', borderRadius);\r\n    this.renderer.setStyle(this.el.nativeElement, 'outline', 'none');\r\n    this.renderer.setStyle(\r\n      this.el.nativeElement,\r\n      'transition',\r\n      'border-color 0.3s'\r\n    );\r\n  }\r\n\r\n  @HostListener('focus') onFocus() {\r\n    this.renderer.setStyle(\r\n      this.el.nativeElement,\r\n      'borderColor',\r\n      this.styleConfig.focusBorderColor\r\n    );\r\n  }\r\n\r\n  @HostListener('blur') onBlur() {\r\n    this.renderer.setStyle(\r\n      this.el.nativeElement,\r\n      'borderColor',\r\n      this.styleConfig.borderColor\r\n    );\r\n  }\r\n}\r\n",
+            "selector": "[appCustomInputStyle]",
+            "providers": [],
+            "hostDirectives": [],
+            "standalone": false,
+            "inputsClass": [
+                {
+                    "name": "appCustomInputStyle",
+                    "defaultValue": "{\r\n    borderColor: '#ccc',\r\n    focusBorderColor: '#007bff',\r\n    padding: '10px',\r\n    borderRadius: '4px',\r\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "StyleConfig",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "blur",
+                    "args": [],
+                    "argsDecorator": [],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 64
+                },
+                {
+                    "name": "focus",
+                    "args": [],
+                    "argsDecorator": [],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 56
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnChanges",
+                    "args": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 33,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 64,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'blur'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "onFocus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 56,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'focus'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "setStyle",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "extends": [],
+            "implements": [
+                "OnChanges"
+            ],
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 27,
+                "jsdoctags": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "DynamicClassDirective",
+            "id": "directive-DynamicClassDirective-8649d48ef5b550a2f31ed5555c0de99772e0b230cf056e6048ed697d86d7ef611880a7e19076a109185db3d73af24aaee0a39ce241ecbfb9676681c6b509b070",
+            "file": "src/app/directives/dynamic-class.directive.ts",
+            "type": "directive",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import {\r\n  Directive,\r\n  ElementRef,\r\n  Renderer2,\r\n  Input,\r\n  OnChanges,\r\n  SimpleChanges,\r\n} from '@angular/core';\r\n\r\n@Directive({\r\n  selector: '[appDynamicClass]',\r\n})\r\nexport class DynamicClassDirective implements OnChanges {\r\n  @Input('appDynamicClass') classNames: string = '';\r\n\r\n  constructor(private el: ElementRef, private renderer: Renderer2) {}\r\n\r\n  ngOnChanges(changes: SimpleChanges) {\r\n    if (changes['classNames']) {\r\n      this.setClass();\r\n    }\r\n  }\r\n\r\n  private setClass() {\r\n    const classList = this.classNames.split(' ');\r\n    classList.forEach((className) => {\r\n      this.renderer.addClass(this.el.nativeElement, className);\r\n    });\r\n  }\r\n}\r\n",
+            "selector": "[appDynamicClass]",
+            "providers": [],
+            "hostDirectives": [],
+            "standalone": false,
+            "inputsClass": [
+                {
+                    "name": "appDynamicClass",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnChanges",
+                    "args": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setClass",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "extends": [],
+            "implements": [
+                "OnChanges"
+            ],
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "DynamicStyleDirective",
+            "id": "directive-DynamicStyleDirective-eb406e3f099e106b86d1f03a3d247d14766fbe256388be41977caa0d82a519f67e183eabd880a5e135bb8945c8fa84c3219a62e0018608d1126f9526778ff18a",
+            "file": "src/app/directives/dynamic-style.directive.ts",
+            "type": "directive",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import {\r\n  Directive,\r\n  ElementRef,\r\n  Renderer2,\r\n  Input,\r\n  OnChanges,\r\n  SimpleChanges,\r\n} from '@angular/core';\r\n\r\n@Directive({\r\n  selector: '[appDynamicStyle]',\r\n})\r\nexport class DynamicStyleDirective implements OnChanges {\r\n  @Input('appDynamicStyle') styleConfig: { [key: string]: string } = {};\r\n\r\n  constructor(private el: ElementRef, private renderer: Renderer2) {}\r\n\r\n  ngOnChanges(changes: SimpleChanges) {\r\n    if (changes['styleConfig']) {\r\n      this.setStyle();\r\n    }\r\n  }\r\n\r\n  private setStyle() {\r\n    for (const [key, value] of Object.entries(this.styleConfig)) {\r\n      this.renderer.setStyle(\r\n        this.el.nativeElement,\r\n        this.toKebabCase(key),\r\n        value\r\n      );\r\n    }\r\n  }\r\n\r\n  private toKebabCase(str: string): string {\r\n    return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();\r\n  }\r\n}\r\n",
+            "selector": "[appDynamicStyle]",
+            "providers": [],
+            "hostDirectives": [],
+            "standalone": false,
+            "inputsClass": [
+                {
+                    "name": "appDynamicStyle",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "literal type",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnChanges",
+                    "args": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setStyle",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "toKebabCase",
+                    "args": [
+                        {
+                            "name": "str",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 34,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "str",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "extends": [],
+            "implements": [
+                "OnChanges"
+            ],
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "components": [
+        {
+            "name": "AccordionComponent",
+            "id": "component-AccordionComponent-942f02e8ce4c5f7814253f20f05809097085bff22f7a453fdfaf358e19e08e03c8b5bb62a6125444758eb1ea1bba776f075d96e1d28bc134582144e36d5467b7",
+            "file": "src/app/components/accordion/accordion.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-accordion",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./accordion.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "items",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "AccordionItem[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onToggle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "required": false
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "onToggle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "required": false
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "toggle",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "AccordionItem",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "item",
+                            "type": "AccordionItem",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, Input, output, Output } from '@angular/core';\r\nimport { AccordionItem } from './models/accordion.interface';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'app-accordion',\r\n  standalone: true,\r\n  templateUrl: './accordion.component.html',\r\n  styleUrl: './accordion.component.css',\r\n  imports: [CommonModule],\r\n})\r\nexport class AccordionComponent {\r\n  @Input() items: AccordionItem[] = [];\r\n\r\n  onToggle = output<AccordionItem>();\r\n\r\n  toggle(item: AccordionItem) {\r\n    item.isOpen = !item.isOpen;\r\n    this.onToggle.emit(item);\r\n  }\r\n}\r\n",
+            "styleUrl": "./accordion.component.css",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div\r\n  (click)=\"toggle(item)\"\r\n  class=\"divider\"\r\n  *ngFor=\"let item of items; let i = index\"\r\n  [class.active]=\"item.isOpen\"\r\n>\r\n  <div class=\"item\">\r\n    <h3 data-testid=\"accordion-header\">{{ item.title }}</h3>\r\n    <span\r\n      data-testid=\"icon\"\r\n      [class.rotate-down]=\"item.isOpen\"\r\n      [class.rotate-up]=\"!item.isOpen\"\r\n    >\r\n      <svg\r\n        width=\"16\"\r\n        height=\"16\"\r\n        viewBox=\"0 0 24 24\"\r\n        version=\"1.1\"\r\n        xmlns=\"http://www.w3.org/2000/svg\"\r\n      >\r\n        <g>\r\n          <polygon\r\n            fill=\"currentColor\"\r\n            points=\"17.3033009 19.7781746 15.8890873 21.1923882 6.69669914 12 15.8890873 2.80761184 17.3033009 4.22182541 9.52512627 12\"\r\n          ></polygon>\r\n        </g>\r\n      </svg>\r\n    </span>\r\n  </div>\r\n  <div class=\"pb-2\">\r\n    <p>{{ item.content }}</p>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "AlertComponent",
+            "id": "component-AlertComponent-967e9a6c16f36273a43639644f4a8e131bdc6c358744292ec57e23a69d32e54cc0c2583098197df0755b9e233524f75169f6cf3003eda8ed166c2eb201b3baf6",
+            "file": "src/app/components/alert/alert.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-alert",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<div class=\"alert alert-{{ type }}\" role=\"alert\">\n  @if (icon) {\n  <i class=\"bi {{ icon }}\"></i>\n  } {{ title }}\n</div>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "icon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "\"bi-airplane-fill\" | \"bi-arrow-left\" | \"bi-brightness-high\" | \"bi-cake2-fill\"",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "'title input'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\ninput title\n",
+                    "description": "<p>input title</p>\n",
+                    "line": 18,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'primary'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "\"primary\" | \"secondary\" | \"success\" | \"danger\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-alert',\r\n  standalone: true,\r\n  template: `\r\n    <div class=\"alert alert-{{ type }}\" role=\"alert\">\r\n      @if (icon) {\r\n      <i class=\"bi {{ icon }}\"></i>\r\n      } {{ title }}\r\n    </div>\r\n  `,\r\n})\r\nexport default class AlertComponent {\r\n  /**\r\n   * input title\r\n   */\r\n  @Input() title: string = 'title input';\r\n\r\n  @Input() icon!:\r\n    | 'bi-airplane-fill'\r\n    | 'bi-arrow-left'\r\n    | 'bi-brightness-high'\r\n    | 'bi-cake2-fill';\r\n\r\n  @Input() type: 'primary' | 'secondary' | 'success' | 'danger' = 'primary';\r\n\r\n  @Output()\r\n  onClick = new EventEmitter<Event>();\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-46f0c71d4ba228ee6f286250e5009a743ccfe5b0c37094f1c86d730aef800b689ee7d07e056129151ef27995ae66f22a8aef0c0fa1d71d3dc5735d62b4dad829",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [
+                "./app.component.css"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "title",
+                    "defaultValue": "'taskbox'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n    selector: 'app-root',\n    templateUrl: './app.component.html',\n    styleUrls: ['./app.component.css'],\n    standalone: false\n})\nexport class AppComponent {\n  title = 'taskbox';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./app.component.css"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->\n<!-- * * * * * * * to get started with your project! * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n\n<style>\n  :host {\n    --bright-blue: oklch(51.01% 0.274 263.83);\n    --electric-violet: oklch(53.18% 0.28 296.97);\n    --french-violet: oklch(47.66% 0.246 305.88);\n    --vivid-pink: oklch(69.02% 0.277 332.77);\n    --hot-red: oklch(61.42% 0.238 15.34);\n    --orange-red: oklch(63.32% 0.24 31.68);\n\n    --gray-900: oklch(19.37% 0.006 300.98);\n    --gray-700: oklch(36.98% 0.014 302.71);\n    --gray-400: oklch(70.9% 0.015 304.04);\n\n    --red-to-pink-to-purple-vertical-gradient: linear-gradient(\n      180deg,\n      var(--orange-red) 0%,\n      var(--vivid-pink) 50%,\n      var(--electric-violet) 100%\n    );\n\n    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(\n      90deg,\n      var(--orange-red) 0%,\n      var(--vivid-pink) 50%,\n      var(--electric-violet) 100%\n    );\n\n    --pill-accent: var(--bright-blue);\n\n    font-family: \"Inter\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto,\n      Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\",\n      \"Segoe UI Symbol\";\n    box-sizing: border-box;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  }\n\n  h1 {\n    font-size: 3.125rem;\n    color: var(--gray-900);\n    font-weight: 500;\n    line-height: 100%;\n    letter-spacing: -0.125rem;\n    margin: 0;\n    font-family: \"Inter Tight\", -apple-system, BlinkMacSystemFont, \"Segoe UI\",\n      Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\",\n      \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n  }\n\n  p {\n    margin: 0;\n    color: var(--gray-700);\n  }\n\n  main {\n    width: 100%;\n    min-height: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    padding: 1rem;\n    box-sizing: inherit;\n    position: relative;\n  }\n\n  .angular-logo {\n    max-width: 9.2rem;\n  }\n\n  .content {\n    display: flex;\n    justify-content: space-around;\n    width: 100%;\n    max-width: 700px;\n    margin-bottom: 3rem;\n  }\n\n  .content h1 {\n    margin-top: 1.75rem;\n  }\n\n  .content p {\n    margin-top: 1.5rem;\n  }\n\n  .divider {\n    width: 1px;\n    background: var(--red-to-pink-to-purple-vertical-gradient);\n    margin-inline: 0.5rem;\n  }\n\n  .pill-group {\n    display: flex;\n    flex-direction: column;\n    align-items: start;\n    flex-wrap: wrap;\n    gap: 1.25rem;\n  }\n\n  .pill {\n    display: flex;\n    align-items: center;\n    --pill-accent: var(--bright-blue);\n    background: color-mix(in srgb, var(--pill-accent) 5%, transparent);\n    color: var(--pill-accent);\n    padding-inline: 0.75rem;\n    padding-block: 0.375rem;\n    border-radius: 2.75rem;\n    border: 0;\n    transition: background 0.3s ease;\n    font-family: var(--inter-font);\n    font-size: 0.875rem;\n    font-style: normal;\n    font-weight: 500;\n    line-height: 1.4rem;\n    letter-spacing: -0.00875rem;\n    text-decoration: none;\n  }\n\n  .pill:hover {\n    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);\n  }\n\n  .pill-group .pill:nth-child(6n + 1) {\n    --pill-accent: var(--bright-blue);\n  }\n  .pill-group .pill:nth-child(6n + 2) {\n    --pill-accent: var(--french-violet);\n  }\n  .pill-group .pill:nth-child(6n + 3),\n  .pill-group .pill:nth-child(6n + 4),\n  .pill-group .pill:nth-child(6n + 5) {\n    --pill-accent: var(--hot-red);\n  }\n\n  .pill-group svg {\n    margin-inline-start: 0.25rem;\n  }\n\n  .social-links {\n    display: flex;\n    align-items: center;\n    gap: 0.73rem;\n    margin-top: 1.5rem;\n  }\n\n  .social-links path {\n    transition: fill 0.3s ease;\n    fill: var(--gray-400);\n  }\n\n  .social-links a:hover svg path {\n    fill: var(--gray-900);\n  }\n\n  @media screen and (max-width: 650px) {\n    .content {\n      flex-direction: column;\n      width: max-content;\n    }\n\n    .divider {\n      height: 1px;\n      width: 100%;\n      background: var(--red-to-pink-to-purple-horizontal-gradient);\n      margin-block: 1.5rem;\n    }\n  }\n</style>\n\n<main class=\"main\">\n  <div class=\"content\">\n    <div class=\"left-side\">\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        viewBox=\"0 0 982 239\"\n        fill=\"none\"\n        class=\"angular-logo\"\n      >\n        <g clip-path=\"url(#a)\">\n          <path\n            fill=\"url(#b)\"\n            d=\"M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z\"\n          />\n          <path\n            fill=\"url(#c)\"\n            d=\"M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z\"\n          />\n        </g>\n        <defs>\n          <radialGradient\n            id=\"c\"\n            cx=\"0\"\n            cy=\"0\"\n            r=\"1\"\n            gradientTransform=\"rotate(118.122 171.182 60.81) scale(205.794)\"\n            gradientUnits=\"userSpaceOnUse\"\n          >\n            <stop stop-color=\"#FF41F8\" />\n            <stop offset=\".707\" stop-color=\"#FF41F8\" stop-opacity=\".5\" />\n            <stop offset=\"1\" stop-color=\"#FF41F8\" stop-opacity=\"0\" />\n          </radialGradient>\n          <linearGradient\n            id=\"b\"\n            x1=\"0\"\n            x2=\"982\"\n            y1=\"192\"\n            y2=\"192\"\n            gradientUnits=\"userSpaceOnUse\"\n          >\n            <stop stop-color=\"#F0060B\" />\n            <stop offset=\"0\" stop-color=\"#F0070C\" />\n            <stop offset=\".526\" stop-color=\"#CC26D5\" />\n            <stop offset=\"1\" stop-color=\"#7702FF\" />\n          </linearGradient>\n          <clipPath id=\"a\"><path fill=\"#fff\" d=\"M0 0h982v239H0z\" /></clipPath>\n        </defs>\n      </svg>\n      <h1>Hello, {{ title }}</h1>\n      <p>Congratulations! Your app is running. 🎉</p>\n    </div>\n    <div class=\"divider\" role=\"separator\" aria-label=\"Divider\"></div>\n    <div class=\"right-side\">\n      <div class=\"pill-group\">\n        @for (item of [ { title: 'Explore the Docs', link: 'https://angular.dev'\n        }, { title: 'Learn with Tutorials', link:\n        'https://angular.dev/tutorials' }, { title: 'CLI Docs', link:\n        'https://angular.dev/tools/cli' }, { title: 'Angular Language Service',\n        link: 'https://angular.dev/tools/language-service' }, { title: 'Angular\n        DevTools', link: 'https://angular.dev/tools/devtools' }, ]; track\n        item.title) {\n        <a class=\"pill\" [href]=\"item.link\" target=\"_blank\" rel=\"noopener\">\n          <span>{{ item.title }}</span>\n          <svg\n            xmlns=\"http://www.w3.org/2000/svg\"\n            height=\"14\"\n            viewBox=\"0 -960 960 960\"\n            width=\"14\"\n            fill=\"currentColor\"\n          >\n            <path\n              d=\"M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z\"\n            />\n          </svg>\n        </a>\n        }\n      </div>\n      <div class=\"social-links\">\n        <a\n          href=\"https://github.com/angular/angular\"\n          aria-label=\"Github\"\n          target=\"_blank\"\n          rel=\"noopener\"\n        >\n          <svg\n            width=\"25\"\n            height=\"24\"\n            viewBox=\"0 0 25 24\"\n            fill=\"none\"\n            xmlns=\"http://www.w3.org/2000/svg\"\n            alt=\"Github\"\n          >\n            <path\n              d=\"M12.3047 0C5.50634 0 0 5.50942 0 12.3047C0 17.7423 3.52529 22.3535 8.41332 23.9787C9.02856 24.0946 9.25414 23.7142 9.25414 23.3871C9.25414 23.0949 9.24389 22.3207 9.23876 21.2953C5.81601 22.0377 5.09414 19.6444 5.09414 19.6444C4.53427 18.2243 3.72524 17.8449 3.72524 17.8449C2.61064 17.082 3.81137 17.0973 3.81137 17.0973C5.04697 17.1835 5.69604 18.3647 5.69604 18.3647C6.79321 20.2463 8.57636 19.7029 9.27978 19.3881C9.39052 18.5924 9.70736 18.0499 10.0591 17.7423C7.32641 17.4347 4.45429 16.3765 4.45429 11.6618C4.45429 10.3185 4.9311 9.22133 5.72065 8.36C5.58222 8.04931 5.16694 6.79833 5.82831 5.10337C5.82831 5.10337 6.85883 4.77319 9.2121 6.36459C10.1965 6.09082 11.2424 5.95546 12.2883 5.94931C13.3342 5.95546 14.3801 6.09082 15.3644 6.36459C17.7023 4.77319 18.7328 5.10337 18.7328 5.10337C19.3942 6.79833 18.9789 8.04931 18.8559 8.36C19.6403 9.22133 20.1171 10.3185 20.1171 11.6618C20.1171 16.3888 17.2409 17.4296 14.5031 17.7321C14.9338 18.1012 15.3337 18.8559 15.3337 20.0084C15.3337 21.6552 15.3183 22.978 15.3183 23.3779C15.3183 23.7009 15.5336 24.0854 16.1642 23.9623C21.0871 22.3484 24.6094 17.7341 24.6094 12.3047C24.6094 5.50942 19.0999 0 12.3047 0Z\"\n            />\n          </svg>\n        </a>\n        <a\n          href=\"https://twitter.com/angular\"\n          aria-label=\"Twitter\"\n          target=\"_blank\"\n          rel=\"noopener\"\n        >\n          <svg\n            width=\"25\"\n            height=\"20\"\n            viewBox=\"0 0 25 20\"\n            fill=\"none\"\n            xmlns=\"http://www.w3.org/2000/svg\"\n            alt=\"Twitter\"\n          >\n            <path\n              d=\"M8.04524 20C17.3335 20 22.4138 12.3047 22.4138 5.63144C22.4138 5.41287 22.4138 5.19529 22.399 4.97869C23.3874 4.26381 24.2405 3.37867 24.9185 2.3647C23.9969 2.77329 23.0192 3.04112 22.018 3.15923C23.0723 2.52818 23.8613 1.53552 24.2382 0.366057C23.2469 0.954335 22.1624 1.36889 21.0315 1.59182C20.2701 0.782212 19.2631 0.246107 18.1663 0.0664704C17.0695 -0.113166 15.9441 0.0736804 14.9642 0.598096C13.9843 1.12251 13.2046 1.95526 12.7457 2.96748C12.2868 3.9797 12.1742 5.11495 12.4255 6.19756C10.4178 6.09685 8.45366 5.57507 6.66064 4.66609C4.86763 3.75712 3.28579 2.48127 2.01781 0.921344C1.37203 2.03306 1.17424 3.34911 1.46472 4.60154C1.75519 5.85397 2.51208 6.9486 3.58128 7.66257C2.77759 7.63903 1.9914 7.42221 1.28924 7.03049V7.09449C1.28956 8.26041 1.69316 9.39034 2.4316 10.2926C3.17003 11.1949 4.19783 11.8139 5.34067 12.0448C4.59721 12.2476 3.81715 12.2772 3.06045 12.1315C3.38327 13.1348 4.01156 14.0122 4.85746 14.641C5.70337 15.2698 6.72461 15.6185 7.77842 15.6384C6.73139 16.4614 5.53237 17.0699 4.24995 17.4291C2.96753 17.7882 1.62687 17.891 0.304688 17.7316C2.61411 19.2136 5.30121 19.9997 8.04524 19.9961\"\n            />\n          </svg>\n        </a>\n        <a\n          href=\"https://www.youtube.com/channel/UCbn1OgGei-DV7aSRo_HaAiw\"\n          aria-label=\"Youtube\"\n          target=\"_blank\"\n          rel=\"noopener\"\n        >\n          <svg\n            width=\"29\"\n            height=\"20\"\n            viewBox=\"0 0 29 20\"\n            fill=\"none\"\n            xmlns=\"http://www.w3.org/2000/svg\"\n            alt=\"Youtube\"\n          >\n            <path\n              fill-rule=\"evenodd\"\n              clip-rule=\"evenodd\"\n              d=\"M27.4896 1.52422C27.9301 1.96749 28.2463 2.51866 28.4068 3.12258C29.0004 5.35161 29.0004 10 29.0004 10C29.0004 10 29.0004 14.6484 28.4068 16.8774C28.2463 17.4813 27.9301 18.0325 27.4896 18.4758C27.0492 18.9191 26.5 19.2389 25.8972 19.4032C23.6778 20 14.8068 20 14.8068 20C14.8068 20 5.93586 20 3.71651 19.4032C3.11363 19.2389 2.56449 18.9191 2.12405 18.4758C1.68361 18.0325 1.36732 17.4813 1.20683 16.8774C0.613281 14.6484 0.613281 10 0.613281 10C0.613281 10 0.613281 5.35161 1.20683 3.12258C1.36732 2.51866 1.68361 1.96749 2.12405 1.52422C2.56449 1.08095 3.11363 0.76113 3.71651 0.596774C5.93586 0 14.8068 0 14.8068 0C14.8068 0 23.6778 0 25.8972 0.596774C26.5 0.76113 27.0492 1.08095 27.4896 1.52422ZM19.3229 10L11.9036 5.77905V14.221L19.3229 10Z\"\n            />\n          </svg>\n        </a>\n      </div>\n    </div>\n  </div>\n</main>\n\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n"
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-60061ee1a375f38274238523bc4654eac3671a7efb979731f945f5e25f90c2351929e4bf5c906f32882bb325d9bf8bd7c0c4e3faa6f3c06acab121aefa43f955",
+            "file": "src/app/components/button/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-button",
+            "styleUrls": [
+                "./button.css"
+            ],
+            "styles": [],
+            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "backgroundColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nWhat background color to use\n",
+                    "description": "<p>What background color to use</p>\n",
+                    "line": 29,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Button'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "pos": 806,
+                            "end": 819,
+                            "kind": 327,
+                            "id": 0,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "tagName": {
+                                "pos": 807,
+                                "end": 815,
+                                "kind": 80,
+                                "id": 0,
+                                "flags": 16842752,
+                                "transformFlags": 0,
+                                "escapedText": "required"
+                            },
+                            "comment": ""
+                        }
+                    ],
+                    "rawdescription": "\n\nButton contents\n\n",
+                    "description": "<p>Button contents</p>\n",
+                    "line": 43,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "primary",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nIs this the principal call to action on the page?\n",
+                    "description": "<p>Is this the principal call to action on the page?</p>\n",
+                    "line": 23,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nHow large should the button be?\n",
+                    "description": "<p>How large should the button be?</p>\n",
+                    "line": 35,
+                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nOptional click handler\n",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 49,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  imports: [CommonModule],\n  standalone: true,\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary\n      ? 'storybook-button--primary'\n      : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".storybook-button {\n  font-family: \"Nunito Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-weight: 700;\n  border: 0;\n  border-radius: 3em;\n  cursor: pointer;\n  display: inline-block;\n  line-height: 1;\n}\n.storybook-button--primary {\n  color: white;\n  background-color: #1ea7fd;\n}\n.storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n}\n.storybook-button--large {\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
+                    "styleUrl": "./button.css"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 51
+                    }
+                }
+            }
+        },
+        {
+            "name": "CardComponent",
+            "id": "component-CardComponent-14a0a15cc49e6f3e6b4a1bd2e467c010d08828fd12014b7602f1479a0066e06cb6744d825735c17003fbc60178a848974236351f77c52971de98aaf72850aa22",
+            "file": "src/app/components/card/card.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-card",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./card.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "classNames",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-card',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './card.component.html',\r\n  styleUrl: './card.component.scss',\r\n})\r\nexport class CardComponent {\r\n  @Input()\r\n  classNames!: string;\r\n}\r\n",
+            "styleUrl": "./card.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div data-testid=\"card\" class=\"card {{classNames}}\">\r\n  <div class=\"card-body\">\r\n    <ng-content></ng-content>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "CheckboxComponent",
+            "id": "component-CheckboxComponent-af2c32f9df73125b3d620e6b07e4ac43955a867e2de439d5bf56256c8d273172b2fd8ff62d45b918dc2a23eef614000e5773d1f7f844baeff3d8a4cd5a771de6",
+            "file": "src/app/components/checkbox/checkbox.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-checkbox",
+            "styleUrls": [
+                "./checkbox.component.scss"
+            ],
+            "styles": [],
+            "template": "<label>\n  <input\n    data-testid=\"checkbox\"\n    type=\"checkbox\"\n    [checked]=\"checked\"\n    (click)=\"onCheckboxChange($event)\"\n  />\n  {{ label }}\n</label>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "checked",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "checkedChange",
+                    "defaultValue": "new EventEmitter<boolean>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "onCheckboxChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-checkbox',\r\n  standalone: true,\r\n  template: `\r\n    <label>\r\n      <input\r\n        data-testid=\"checkbox\"\r\n        type=\"checkbox\"\r\n        [checked]=\"checked\"\r\n        (click)=\"onCheckboxChange($event)\"\r\n      />\r\n      {{ label }}\r\n    </label>\r\n  `,\r\n  styleUrls: ['./checkbox.component.scss'],\r\n})\r\nexport class CheckboxComponent {\r\n  @Input() checked = false;\r\n  @Input() label = '';\r\n  @Output() checkedChange = new EventEmitter<boolean>();\r\n\r\n  onCheckboxChange(event: Event): void {\r\n    const input = event.target as HTMLInputElement;\r\n    this.checkedChange.emit(input.checked);\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "label {\r\n  display: flex;\r\n  align-items: center;\r\n  cursor: pointer;\r\n  font-size: 16px;\r\n  color: #333;\r\n}\r\n\r\ninput[type=\"checkbox\"] {\r\n  margin-right: 8px;\r\n  width: 20px;\r\n  height: 20px;\r\n  cursor: pointer;\r\n  accent-color: #5AA454;\r\n}\r\n\r\ninput[type=\"checkbox\"]:checked {\r\n  background-color: #5AA454;\r\n  border-color: #5AA454;\r\n}\r\n\r\ninput[type=\"checkbox\"]:focus {\r\n  outline: none;\r\n  box-shadow: 0 0 0 2px rgba(90, 164, 84, 0.5);\r\n}\r\n\r\n\r\n\r\n",
+                    "styleUrl": "./checkbox.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "FormComponent",
+            "id": "component-FormComponent-ff95b52ba9709ba981069c5854ba0804a4e6b7c39262430f60ea3ca92b6d088a36f9d2db43656125d67b1ccb3e957e37f473d1a6581e0366aa5c572bc43510ea",
+            "file": "src/app/components/form/form.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-form",
+            "styleUrls": [
+                "./form.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./form.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "formSubmit",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "form",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormGroup",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 39
+                },
+                {
+                    "name": "formConfig",
+                    "defaultValue": "[\r\n    {\r\n      name: 'name',\r\n      label: 'Name',\r\n      type: 'text',\r\n      value: '',\r\n      validators: [Validators.required],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n    {\r\n      name: 'email',\r\n      label: 'Email',\r\n      type: 'email',\r\n      value: '',\r\n      validators: [Validators.required, Validators.email],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "submit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 54,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FormFieldComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';\r\nimport {\r\n  FormBuilder,\r\n  FormGroup,\r\n  Validators,\r\n  ReactiveFormsModule,\r\n} from '@angular/forms';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormFieldComponent } from '../form-field/form-field.component';\r\n\r\n@Component({\r\n  selector: 'app-form',\r\n  templateUrl: './form.component.html',\r\n  styleUrls: ['./form.component.scss'],\r\n  standalone: true,\r\n  imports: [CommonModule, ReactiveFormsModule, FormFieldComponent],\r\n})\r\nexport class FormComponent implements OnInit {\r\n  formConfig = [\r\n    {\r\n      name: 'name',\r\n      label: 'Name',\r\n      type: 'text',\r\n      value: '',\r\n      validators: [Validators.required],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n    {\r\n      name: 'email',\r\n      label: 'Email',\r\n      type: 'email',\r\n      value: '',\r\n      validators: [Validators.required, Validators.email],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n  ];\r\n  @Output() formSubmit = new EventEmitter<any>();\r\n\r\n  form: FormGroup;\r\n\r\n  constructor(private fb: FormBuilder) {\r\n    this.form = this.fb.group({});\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.formConfig.forEach((control) => {\r\n      this.form.addControl(\r\n        control.name,\r\n        this.fb.control(control.value, control.validators)\r\n      );\r\n    });\r\n  }\r\n\r\n  submit() {\r\n    this.formSubmit.emit(this.form.value);\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "form {\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\nlabel {\r\n  margin-top: 10px;\r\n}\r\n\r\ninput, textarea {\r\n  margin-bottom: 10px;\r\n}\r\n\r\nbutton {\r\n  margin-top: 20px;\r\n}",
+                    "styleUrl": "./form.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "fb",
+                        "type": "FormBuilder",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 39,
+                "jsdoctags": [
+                    {
+                        "name": "fb",
+                        "type": "FormBuilder",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<form [formGroup]=\"form\" (ngSubmit)=\"submit()\">\r\n  <app-form-field [inputOneConfig]=\"formConfig[0]\"></app-form-field>\r\n  <app-form-field [inputOneConfig]=\"formConfig[1]\"></app-form-field>\r\n  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"form.invalid\">\r\n    Submit\r\n  </button>\r\n</form>\r\n\r\n<pre>\r\n  {{ form.value | json }}\r\n</pre>\r\n"
+        },
+        {
+            "name": "FormFieldComponent",
+            "id": "component-FormFieldComponent-39ca25ff608c8ed3cd7523a3c80be522ef4d2b6e0e204f4e301a3fac2c33889e50f394468b2d8aa64384fdf8a2866321773ee6ebaa71ac356e102c528d6aa253",
+            "file": "src/app/components/form-field/form-field.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-form-field",
+            "styleUrls": [
+                "./form-field.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./form-field.component.html"
+            ],
+            "viewProviders": [
+                {
+                    "name": "{ provide: ControlContainer, useExisting: ControlContainer }"
+                }
+            ],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "inputOneConfig",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "any",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "form",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormGroup",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 22
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "DynamicClassDirective",
+                    "type": "directive"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit, Optional, SkipSelf } from '@angular/core';\r\nimport {\r\n  FormGroup,\r\n  FormBuilder,\r\n  Validators,\r\n  ReactiveFormsModule,\r\n  ControlContainer,\r\n} from '@angular/forms';\r\nimport { CommonModule } from '@angular/common';\r\nimport { DynamicClassDirective } from 'src/app/directives/dynamic-class.directive';\r\n\r\n@Component({\r\n  selector: 'app-form-field',\r\n  templateUrl: './form-field.component.html',\r\n  styleUrls: ['./form-field.component.scss'],\r\n  standalone: true,\r\n  imports: [CommonModule, ReactiveFormsModule, DynamicClassDirective],\r\n  viewProviders: [{ provide: ControlContainer, useExisting: ControlContainer }],\r\n})\r\nexport class FormFieldComponent implements OnInit {\r\n  @Input() inputOneConfig: any;\r\n  form!: FormGroup;\r\n\r\n  constructor(\r\n    private fb: FormBuilder,\r\n    @Optional() @SkipSelf() private controlContainer: ControlContainer\r\n  ) {}\r\n\r\n  ngOnInit() {\r\n    this.form = this.controlContainer?.control as FormGroup;\r\n    if (this.inputOneConfig && this.form) {\r\n      this.form.addControl(\r\n        this.inputOneConfig.name,\r\n        this.fb.control(\r\n          this.inputOneConfig.value,\r\n          this.inputOneConfig.validators\r\n        )\r\n      );\r\n    }\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./form-field.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "fb",
+                        "type": "FormBuilder",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "controlContainer",
+                        "type": "ControlContainer",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 22,
+                "jsdoctags": [
+                    {
+                        "name": "fb",
+                        "type": "FormBuilder",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "controlContainer",
+                        "type": "ControlContainer",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div [formGroup]=\"form\" class=\"form-group\">\r\n  <label [for]=\"inputOneConfig.name\">{{ inputOneConfig.label }}</label>\r\n  <input\r\n    *ngIf=\"inputOneConfig.type !== 'textarea'\"\r\n    [type]=\"inputOneConfig.type\"\r\n    [formControlName]=\"inputOneConfig.name\"\r\n    [id]=\"inputOneConfig.name\"\r\n    [appDynamicClass]=\"inputOneConfig.classConfig\"\r\n  />\r\n  <textarea\r\n    *ngIf=\"inputOneConfig.type === 'textarea'\"\r\n    [formControlName]=\"inputOneConfig.name\"\r\n    [id]=\"inputOneConfig.name\"\r\n    [appDynamicClass]=\"inputOneConfig.classConfig\"\r\n  ></textarea>\r\n  <div\r\n    *ngIf=\"\r\n      form.get(inputOneConfig.name)?.invalid &&\r\n      form.get(inputOneConfig.name)?.touched\r\n    \"\r\n  >\r\n    <small *ngIf=\"form.get(inputOneConfig.name).errors.required\"\r\n      >{{ inputOneConfig.label }} is required</small\r\n    >\r\n    <small *ngIf=\"form.get(inputOneConfig.name).errors.email\"\r\n      >Invalid email format</small\r\n    >\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "HistogramComponent",
+            "id": "component-HistogramComponent-537294adf7d559e40b5917f709bdefcacfe65cac720f7daf1fa7581f908d00a3d412b618e8e577fa0d345906e28d5a696a34ccf329e1f6e625adde5136b17cca",
+            "file": "src/app/components/histogram/histogram.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-histogram",
+            "styleUrls": [
+                "./histogram.component.css"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./histogram.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "colorScheme",
+                    "defaultValue": "{\r\n    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],\r\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "{ domain: {}; }",
+                    "decorators": []
+                },
+                {
+                    "name": "gradient",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "showLegend",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "showXAxis",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "showXAxisLabel",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "showYAxis",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "showYAxisLabel",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "single",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "any[]",
+                    "decorators": []
+                },
+                {
+                    "name": "view",
+                    "defaultValue": "[700, 400]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "any[]",
+                    "decorators": []
+                },
+                {
+                    "name": "xAxisLabel",
+                    "defaultValue": "'Country'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "yAxisLabel",
+                    "defaultValue": "'Population'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 30,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "NgxChartsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { NgxChartsModule } from '@swimlane/ngx-charts';\r\n\r\n@Component({\r\n  selector: 'app-histogram',\r\n  standalone: true,\r\n  templateUrl: './histogram.component.html',\r\n  styleUrls: ['./histogram.component.css'],\r\n  // providedAnimation async\r\n\r\n  imports: [NgxChartsModule],\r\n})\r\nexport class HistogramComponent implements OnInit {\r\n  @Input() single: any[] = [];\r\n  @Input() view: any[] = [700, 400];\r\n  @Input() showXAxis: boolean = true;\r\n  @Input() showYAxis: boolean = true;\r\n  @Input() gradient: boolean = false;\r\n  @Input() showLegend: boolean = true;\r\n  @Input() showXAxisLabel: boolean = true;\r\n  @Input() xAxisLabel: string = 'Country';\r\n  @Input() showYAxisLabel: boolean = true;\r\n  @Input() yAxisLabel: string = 'Population';\r\n  @Input() colorScheme = {\r\n    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],\r\n  };\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./histogram.component.css"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 26
+            },
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<ngx-charts-bar-vertical\r\n  [view]=\"view\"\r\n  [scheme]=\"colorScheme\"\r\n  [results]=\"single\"\r\n  [gradient]=\"gradient\"\r\n  [xAxis]=\"showXAxis\"\r\n  [yAxis]=\"showYAxis\"\r\n  [legend]=\"showLegend\"\r\n  [showXAxisLabel]=\"showXAxisLabel\"\r\n  [showYAxisLabel]=\"showYAxisLabel\"\r\n  [xAxisLabel]=\"xAxisLabel\"\r\n  [yAxisLabel]=\"yAxisLabel\">\r\n</ngx-charts-bar-vertical>\r\n"
+        },
+        {
+            "name": "PlaygroundComponent",
+            "id": "component-PlaygroundComponent-95d2798779cb75315af29ba81f08cccedd4045b52f590b310179a6f0601a6bdfeea71d18f5c3b5beeb9ca7bcc3d827b28ff5ea5d0d91ecb8ae0828dcc00674d9",
+            "file": "src/app/components/playground/playground.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-playground",
+            "styleUrls": [
+                "./playground.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./playground.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "checkboxState",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 40
+                },
+                {
+                    "name": "histogramData",
+                    "defaultValue": "[\r\n    { name: 'A', value: 100 },\r\n    { name: 'B', value: 200 },\r\n    { name: 'C', value: 300 },\r\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 57
+                },
+                {
+                    "name": "items",
+                    "defaultValue": "[\r\n    { title: 'Item 1', content: 'Content 1', isOpen: false },\r\n    { title: 'Item 2', content: 'Content 2', isOpen: false },\r\n    { title: 'Item 3', content: 'Content 3', isOpen: false },\r\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 51
+                },
+                {
+                    "name": "progress",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 41
+                },
+                {
+                    "name": "simpletableData",
+                    "defaultValue": "[\r\n    {\r\n      Name: 'John',\r\n      Age: 30,\r\n      Occupation: 'Developer',\r\n      lastName: 'Doe',\r\n      link: 'https://www.google.com',\r\n      className: 'text-success',\r\n    },\r\n    {\r\n      Name: 'Jane',\r\n      Age: 25,\r\n      Occupation: 'Designer',\r\n      lastName: 'Bishop',\r\n      link: 'https://www.google.com',\r\n      className: 'text-danger',\r\n    },\r\n    {\r\n      Name: 'Jim',\r\n      Age: 35,\r\n      Occupation: 'Product Manager',\r\n      lastName: 'Doe',\r\n      link: 'https://amazone.com',\r\n      className: 'text-warning',\r\n    },\r\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 63
+                },
+                {
+                    "name": "toggleState",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 39
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "onCheckboxChange",
+                    "args": [
+                        {
+                            "name": "state",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 46,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "state",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onFormSubmit",
+                    "args": [
+                        {
+                            "name": "formData",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 97,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "formData",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onToggleChange",
+                    "args": [
+                        {
+                            "name": "state",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "state",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "PlTitleComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "ToggleComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "CardComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "CheckboxComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "AccordionComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "HistogramComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "AlertComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "ProgressBarComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "SimpleTableComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "FormComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "DynamicClassDirective",
+                    "type": "directive"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, signal } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ToggleComponent } from '../toggle/toggle.component';\r\nimport { CardComponent } from '../card/card.component';\r\nimport { CheckboxComponent } from '../checkbox/checkbox.component';\r\nimport { PlTitleComponent } from './components/plg-title/plg-title.component';\r\nimport { AccordionComponent } from '../accordion/accordion.component';\r\nimport { HistogramComponent } from '../histogram/histogram.component';\r\nimport AlertComponent from '../alert/alert.component';\r\nimport { ProgressBarComponent } from '../progress-bar/progress-bar.component';\r\nimport { SimpleTableComponent } from '../simple-table/simple-table.component';\r\nimport { FormComponent } from '../form/form.component';\r\nimport { Validators } from '@angular/forms';\r\nimport { CustomInputStyleDirective } from 'src/app/directives/text-input-style.directives';\r\nimport { style } from 'd3-selection';\r\nimport { DynamicClassDirective } from 'src/app/directives/dynamic-class.directive';\r\n\r\n@Component({\r\n  selector: 'app-playground',\r\n  templateUrl: './playground.component.html',\r\n  styleUrls: ['./playground.component.scss'],\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    PlTitleComponent,\r\n    ToggleComponent,\r\n    CardComponent,\r\n    CheckboxComponent,\r\n    AccordionComponent,\r\n    HistogramComponent,\r\n    AlertComponent,\r\n    ProgressBarComponent,\r\n    SimpleTableComponent,\r\n    FormComponent,\r\n    DynamicClassDirective,\r\n  ],\r\n})\r\nexport class PlaygroundComponent {\r\n  toggleState = false;\r\n  checkboxState = true;\r\n  progress = 0;\r\n\r\n  onToggleChange(state: boolean): void {\r\n    this.toggleState = state;\r\n  }\r\n  onCheckboxChange(state: boolean): void {\r\n    this.checkboxState = state;\r\n  }\r\n\r\n  // accordion\r\n  items = [\r\n    { title: 'Item 1', content: 'Content 1', isOpen: false },\r\n    { title: 'Item 2', content: 'Content 2', isOpen: false },\r\n    { title: 'Item 3', content: 'Content 3', isOpen: false },\r\n  ];\r\n  // histogram\r\n  histogramData = [\r\n    { name: 'A', value: 100 },\r\n    { name: 'B', value: 200 },\r\n    { name: 'C', value: 300 },\r\n  ];\r\n\r\n  simpletableData: {\r\n    Name: string;\r\n    Age: number;\r\n    Occupation: string;\r\n    lastName: string;\r\n    link: string;\r\n    className?: string;\r\n  }[] = [\r\n    {\r\n      Name: 'John',\r\n      Age: 30,\r\n      Occupation: 'Developer',\r\n      lastName: 'Doe',\r\n      link: 'https://www.google.com',\r\n      className: 'text-success',\r\n    },\r\n    {\r\n      Name: 'Jane',\r\n      Age: 25,\r\n      Occupation: 'Designer',\r\n      lastName: 'Bishop',\r\n      link: 'https://www.google.com',\r\n      className: 'text-danger',\r\n    },\r\n    {\r\n      Name: 'Jim',\r\n      Age: 35,\r\n      Occupation: 'Product Manager',\r\n      lastName: 'Doe',\r\n      link: 'https://amazone.com',\r\n      className: 'text-warning',\r\n    },\r\n  ];\r\n\r\n  onFormSubmit(formData: any): void {\r\n    console.log('Form Data:', formData);\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".playground {\r\n  padding: 20px;\r\n}\r\n\r\n.component-example {\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.border-bottom-black {\r\n  border-bottom: 1px solid black;\r\n}\r\n\r\n// .border-bottom-gray {\r\n//   border-bottom: 1px solid gray;\r\n// }\r\n\r\n.hover-bg-gray:hover {\r\n  background-color: lightgray;\r\n  cursor: pointer;\r\n}",
+                    "styleUrl": "./playground.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bg-light p-3\">\r\n  <h2>Component Playground</h2>\r\n  <div class=\"component-example\">\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-accordion--docs\"\r\n        >Accordion Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-accordion [items]=\"items\"></app-accordion>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-alert--docs\"\r\n        >Alert Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-alert [title]=\"'hello world'\"> </app-alert>\r\n      <app-alert [title]=\"'hello danger'\" [type]=\"'danger'\"> </app-alert>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-alert--docs\"\r\n        >checkbox</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-checkbox\r\n        [checked]=\"checkboxState\"\r\n        (checkedChange)=\"onCheckboxChange($event)\"\r\n      ></app-checkbox>\r\n      <p>Checkbox State: {{ checkboxState }}</p>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-histogram--countries\"\r\n        >Histogram Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-histogram [single]=\"histogramData\"></app-histogram>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-toggler--docs\"\r\n        >Toggler Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-toggle\r\n        [isChecked]=\"toggleState\"\r\n        (toggleChange)=\"onToggleChange($event)\"\r\n      ></app-toggle>\r\n      <p>Toggle State: {{ toggleState }}</p>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-progressbar--docs\"\r\n        >Progress Bar Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-progress-bar [progress]=\"progress\"></app-progress-bar>\r\n      <p>Progress: {{ progress }}%</p>\r\n      <button class=\"btn btn-primary\" (click)=\"progress = 90\">go to 90%</button>\r\n    </app-card>\r\n\r\n    <plg-title> simple tables </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-simple-table [tableData]=\"simpletableData\"> </app-simple-table>\r\n    </app-card>\r\n\r\n    <plg-title>Dynamic Class Directive</plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <p>\r\n        This directive is used to add classes to the input element based on the\r\n        object passed to it.\r\n      </p>\r\n      <div>\r\n        <input type=\"text\" [appDynamicClass]=\"'form-control'\" />\r\n      </div>\r\n      <div>\r\n        <input type=\"text\" [appDynamicClass]=\"'form-control is-invalid mt-2'\" />\r\n      </div>\r\n    </app-card>\r\n\r\n    <plg-title>Reusable Reactive Form</plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-form (formSubmit)=\"onFormSubmit($event)\"></app-form>\r\n    </app-card>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "PlTitleComponent",
+            "id": "component-PlTitleComponent-d573187f0773ff5d0d60342c57e659fe273f6fc4601d8788b8d67ee43d127febc735222f817ac2e3f9664c6612e7aefb647158e148a9c2306e2c7b04873687f4",
+            "file": "src/app/components/playground/components/plg-title/plg-title.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "plg-title",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./plg-title.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'plg-title',\r\n  templateUrl: './plg-title.component.html',\r\n  standalone: true,\r\n})\r\nexport class PlTitleComponent {}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<h4 class=\"bg-primary mb-0 p-2 text-white rounded\">\r\n  <ng-content></ng-content>\r\n</h4>\r\n"
+        },
+        {
+            "name": "ProgressBarComponent",
+            "id": "component-ProgressBarComponent-511e41fa7668e4f6025417835f08bd8d37ff33b8dc3666277a70a5a36aad371f86ab81cc16498632a0660b8dee0b021cf9520041c4aeca9922b1f3a3e684afa5",
+            "file": "src/app/components/progress-bar/progress-bar.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-progress-bar",
+            "styleUrls": [
+                "./progress-bar.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./progress-bar.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "progress",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "number",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-progress-bar',\r\n  templateUrl: './progress-bar.component.html',\r\n  styleUrls: ['./progress-bar.component.scss'],\r\n  standalone: true,\r\n})\r\nexport class ProgressBarComponent {\r\n  @Input() progress = 0;\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".progress-bar {\r\n  width: 100%;\r\n  background-color: #e0e0e0;\r\n  border-radius: 4px;\r\n  overflow: hidden;\r\n}\r\n\r\n.progress-bar-fill {\r\n  height: 20px;\r\n  background-color: #76c7c0;\r\n  width: 0;\r\n  transition: width 5s ease-in-out;\r\n}",
+                    "styleUrl": "./progress-bar.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"progress-bar\">\r\n  <div class=\"progress-bar-fill\" [style.width.%]=\"progress\"></div>\r\n</div>\r\n"
+        },
+        {
+            "name": "SimpleTableComponent",
+            "id": "component-SimpleTableComponent-9870004ffdc4104224a689249ee9dd81480f36247700034963ab3c11d7b135ba04c00c052d59709910ef7291ce1758d1a7d757cb29641708de77167879dd99a3",
+            "file": "src/app/components/simple-table/simple-table.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-simple-table",
+            "styleUrls": [
+                "./simple-table.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./simple-table.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "tableData",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "any[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, Input, OnChanges, SimpleChanges } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-simple-table',\r\n  templateUrl: './simple-table.component.html',\r\n  styleUrls: ['./simple-table.component.scss'],\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n})\r\nexport class SimpleTableComponent {\r\n  @Input() public tableData: any[] = [];\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./simple-table.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<table class=\"table\" *ngIf=\"tableData && tableData.length\">\r\n  <thead>\r\n    <tr>\r\n      <ng-container *ngFor=\"let header of tableData[0] | keyvalue\">\r\n        <th\r\n          *ngIf=\"header.key !== 'className'\"\r\n          (click)=\"headerSelection(header.key, header.value)\"\r\n        >\r\n          <span>{{ header.key }}</span>\r\n        </th>\r\n      </ng-container>\r\n    </tr>\r\n  </thead>\r\n\r\n  <tbody>\r\n    <tr *ngFor=\"let row of tableData; let i = index\">\r\n      <ng-container *ngFor=\"let data of row | keyvalue\">\r\n        <td *ngIf=\"data.key !== 'className'\">\r\n          <span *ngIf=\"data.key !== 'link'\" [ngClass]=\"row?.className\">{{\r\n            data.value\r\n          }}</span>\r\n          <a *ngIf=\"data.key === 'link'\" [href]=\"data.value\">{{\r\n            data.value\r\n          }}</a>\r\n        </td>\r\n      </ng-container>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n"
+        },
+        {
+            "name": "TaskComponent",
+            "id": "component-TaskComponent-35d659ccb3660292168421882d1d80e22ac90d1fe456a030a1b073b2ba21bdc1d4fc312d3dfe9f2efafcf2d57417145e34b0c1973a3b6b578af026ec4fe4c87b",
+            "file": "src/app/components/task/task.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-task",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<div class=\"list-item\">\n  <label [attr.aria-label]=\"task.title + ''\" for=\"title\">\n    <input\n      type=\"text\"\n      [value]=\"task.title\"\n      readonly=\"true\"\n      id=\"title\"\n      name=\"title\"\n    />\n  </label>\n</div>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "task",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nThe shape of the task object\n",
+                    "description": "<p>The shape of the task object</p>\n",
+                    "line": 25,
+                    "type": "any",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onArchiveTask",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onPinTask",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-task',\r\n  standalone: false,\r\n  template: `\r\n    <div class=\"list-item\">\r\n      <label [attr.aria-label]=\"task.title + ''\" for=\"title\">\r\n        <input\r\n          type=\"text\"\r\n          [value]=\"task.title\"\r\n          readonly=\"true\"\r\n          id=\"title\"\r\n          name=\"title\"\r\n        />\r\n      </label>\r\n    </div>\r\n  `,\r\n})\r\nexport default class TaskComponent {\r\n  /**\r\n   * The shape of the task object\r\n  */\r\n  @Input() task: any;\r\n\r\n  // tslint:disable-next-line: no-output-on-prefix\r\n  @Output()\r\n  onPinTask = new EventEmitter<Event>();\r\n\r\n  // tslint:disable-next-line: no-output-on-prefix\r\n  @Output()\r\n  onArchiveTask = new EventEmitter<Event>();\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "ToggleComponent",
+            "id": "component-ToggleComponent-03822ab886baad4d7a34592aeda8409aae11849c657e778210f2d90263fc7c86c41551339fb004c539cf30b37eda5dba0519751fa6e786acb32fa97eedca1891",
+            "file": "src/app/components/toggle/toggle.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-toggle",
+            "styleUrls": [
+                "./toggle.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./toggle.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "isChecked",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "toggleChange",
+                    "defaultValue": "new EventEmitter<boolean>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "onToggleChange",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-toggle',\r\n  templateUrl: './toggle.component.html',\r\n  styleUrls: ['./toggle.component.scss'],\r\n  standalone: true\r\n})\r\nexport class ToggleComponent {\r\n  @Input() isChecked = false;\r\n  @Output() toggleChange = new EventEmitter<boolean>();\r\n\r\n  onToggleChange(): void {\r\n    this.isChecked = !this.isChecked;\r\n    this.toggleChange.emit(this.isChecked);\r\n  }\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".switch {\r\n  position: relative;\r\n  display: inline-block;\r\n  width: 60px;\r\n  height: 34px;\r\n}\r\n\r\n.switch input {\r\n  opacity: 0;\r\n  width: 0;\r\n  height: 0;\r\n}\r\n\r\n.slider {\r\n  position: absolute;\r\n  cursor: pointer;\r\n  top: 0;\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  background-color: #ccc;\r\n  transition: 0.4s;\r\n  border-radius: 34px;\r\n}\r\n\r\n.slider:before {\r\n  position: absolute;\r\n  content: \"\";\r\n  height: 26px;\r\n  width: 26px;\r\n  left: 4px;\r\n  bottom: 4px;\r\n  background-color: white;\r\n  transition: 0.4s;\r\n  border-radius: 50%;\r\n}\r\n\r\ninput:checked + .slider {\r\n  background-color: #2196F3;\r\n}\r\n\r\ninput:checked + .slider:before {\r\n  transform: translateX(26px);\r\n}",
+                    "styleUrl": "./toggle.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<label class=\"switch\">\r\n  <input type=\"checkbox\" [checked]=\"isChecked\" (change)=\"onToggleChange()\" />\r\n  <span class=\"slider round\"></span>\r\n</label>\r\n"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "id": "module-AppModule-6b98c3c06f4088d367b67db6b8ca962f2166437258de481afb8e3f7b2d921004abf7396765acbf24f818ef7402b10a733f82ea94f88a50173678500d4deb9259",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppComponent } from './app.component';\n\n@NgModule({\n  declarations: [AppComponent],\n  imports: [BrowserModule],\n  providers: [],\n  bootstrap: [AppComponent],\n})\nexport class AppModule {}\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: true,\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: false,\n}"
+            },
+            {
+                "name": "single",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/histogram/data.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "[]",
+                "defaultValue": "[\r\n  {\r\n    name: 'Germany',\r\n    value: 8940000,\r\n  },\r\n  {\r\n    name: 'USA',\r\n    value: 5000000,\r\n  },\r\n  {\r\n    name: 'France',\r\n    value: 7200000,\r\n  },\r\n  {\r\n    name: 'UK',\r\n    value: 6200000,\r\n  },\r\n]"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true,\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false,\n}"
+                }
+            ],
+            "src/app/components/histogram/data.ts": [
+                {
+                    "name": "single",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/histogram/data.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "defaultValue": "[\r\n  {\r\n    name: 'Germany',\r\n    value: 8940000,\r\n  },\r\n  {\r\n    name: 'USA',\r\n    value: 5000000,\r\n  },\r\n  {\r\n    name: 'France',\r\n    value: 7200000,\r\n  },\r\n  {\r\n    name: 'UK',\r\n    value: 6200000,\r\n  },\r\n]"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    },
+    "routes": [],
+    "coverage": {
+        "count": 5,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/accordion/accordion.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AccordionComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/accordion/models/accordion.interface.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "AccordionItem",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/alert/alert.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AlertComponent",
+                "coveragePercent": 20,
+                "coverageCount": "1/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/button/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 83,
+                "coverageCount": "5/6",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/components/card/card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CardComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/checkbox/checkbox.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CheckboxComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/form-field/form-field.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "FormFieldComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/form/form.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "FormComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/histogram/data.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "single",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/histogram/histogram.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HistogramComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/14",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/playground/components/plg-title/plg-title.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PlTitleComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/playground/playground.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PlaygroundComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/progress-bar/progress-bar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ProgressBarComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/simple-table/simple-table.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SimpleTableComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/task/task.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TaskComponent",
+                "coveragePercent": 25,
+                "coverageCount": "1/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/toggle/toggle.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ToggleComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/directives/dynamic-class.directive.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "DynamicClassDirective",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/directives/dynamic-style.directive.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "DynamicStyleDirective",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/directives/text-input-style.directives.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "CustomInputStyleDirective",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/directives/text-input-style.directives.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "StyleConfig",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/models/task.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Task",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}

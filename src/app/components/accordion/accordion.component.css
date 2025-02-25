@@ -1,0 +1,47 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+  .divider {
+    border-bottom: 1px solid rgb(204, 204, 204);
+    cursor: pointer;
+  }
+  
+  h3 {
+    display: inline-block;
+    text-decoration: inherit;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 8px 0;
+  }
+  
+  p {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+  
+  div.active p {
+    max-height: 45px;
+  }
+
+  .rotate-down {
+    align-self: center;
+    display: inline-flex;
+    transform: rotate(-90deg);
+    transition: transform 0.3s;
+    transform-origin: center center;
+  }
+
+  .rotate-up {
+    align-self: center;
+    display: inline-flex;
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+    transform-origin: center center;
+  }
+  

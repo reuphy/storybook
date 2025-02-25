@@ -1,0 +1,29 @@
+<table class="table" *ngIf="tableData && tableData.length">
+  <thead>
+    <tr>
+      <ng-container *ngFor="let header of tableData[0] | keyvalue">
+        <th
+          *ngIf="header.key !== 'className'"
+          (click)="headerSelection(header.key, header.value)"
+        >
+          <span>{{ header.key }}</span>
+        </th>
+      </ng-container>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let row of tableData; let i = index">
+      <ng-container *ngFor="let data of row | keyvalue">
+        <td *ngIf="data.key !== 'className'">
+          <span *ngIf="data.key !== 'link'" [ngClass]="row?.className">{{
+            data.value
+          }}</span>
+          <a *ngIf="data.key === 'link'" [href]="data.value">{{
+            data.value
+          }}</a>
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,29 @@
+<div [formGroup]="form" class="form-group">
+  <label [for]="inputOneConfig.name">{{ inputOneConfig.label }}</label>
+  <input
+    *ngIf="inputOneConfig.type !== 'textarea'"
+    [type]="inputOneConfig.type"
+    [formControlName]="inputOneConfig.name"
+    [id]="inputOneConfig.name"
+    [appDynamicClass]="inputOneConfig.classConfig"
+  />
+  <textarea
+    *ngIf="inputOneConfig.type === 'textarea'"
+    [formControlName]="inputOneConfig.name"
+    [id]="inputOneConfig.name"
+    [appDynamicClass]="inputOneConfig.classConfig"
+  ></textarea>
+  <div
+    *ngIf="
+      form.get(inputOneConfig.name)?.invalid &&
+      form.get(inputOneConfig.name)?.touched
+    "
+  >
+    <small *ngIf="form.get(inputOneConfig.name).errors.required"
+      >{{ inputOneConfig.label }} is required</small
+    >
+    <small *ngIf="form.get(inputOneConfig.name).errors.email"
+      >Invalid email format</small
+    >
+  </div>
+</div>

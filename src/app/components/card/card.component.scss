@@ -1,0 +1,41 @@
+.color-item {
+    padding: 2px 0px 2px 0px;
+    .square {
+        height: 20px;
+        width: 20px;
+        margin-right: 10px;
+    }
+    .square-donugth-exaple {
+        width: 96px;
+        height: 96px;
+    }
+    &::after {
+        margin-left: 10px;
+    }
+}
+
+// Primary colors
+.tk-color-primary-black {
+    .square {
+        background-color: black;
+    }
+    .square-donugth-exaple {
+        background-color: black;
+    }
+}
+
+.tk-color-secondary-turquoise-dark {
+    .square {
+        background-color: turquoise;
+    }
+}
+
+.tk-color-secondary-turquoise-mid {
+    .square {
+        background-color:turquoise;
+    }
+}
+
+.card-box-shadow {
+    box-shadow: 0 3px 20px 10px rgba(0,0,0,0.05);
+} 

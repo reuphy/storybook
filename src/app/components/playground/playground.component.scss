@@ -1,0 +1,20 @@
+.playground {
+  padding: 20px;
+}
+
+.component-example {
+  margin-bottom: 20px;
+}
+
+.border-bottom-black {
+  border-bottom: 1px solid black;
+}
+
+// .border-bottom-gray {
+//   border-bottom: 1px solid gray;
+// }
+
+.hover-bg-gray:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}

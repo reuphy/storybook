@@ -1,0 +1,93 @@
+<div class="bg-light p-3">
+  <h2>Component Playground</h2>
+  <div class="component-example">
+    <plg-title>
+      <a class="text-white" href="/?path=/docs/components-accordion--docs"
+        >Accordion Component</a
+      >
+    </plg-title>
+    <app-card [classNames]="'shadow-lg'">
+      <app-accordion [items]="items"></app-accordion>
+    </app-card>
+
+    <plg-title>
+      <a class="text-white" href="/?path=/docs/components-alert--docs"
+        >Alert Component</a
+      >
+    </plg-title>
+    <app-card [classNames]="'shadow-lg'">
+      <app-alert [title]="'hello world'"> </app-alert>
+      <app-alert [title]="'hello danger'" [type]="'danger'"> </app-alert>
+    </app-card>
+
+    <plg-title>
+      <a class="text-white" href="/?path=/docs/components-alert--docs"
+        >checkbox</a
+      >
+    </plg-title>
+    <app-card [classNames]="'shadow-lg'">
+      <app-checkbox
+        [checked]="checkboxState"
+        (checkedChange)="onCheckboxChange($event)"
+      ></app-checkbox>
+      <p>Checkbox State: {{ checkboxState }}</p>
+    </app-card>
+
+    <plg-title>
+      <a class="text-white" href="/?path=/docs/components-histogram--countries"
+        >Histogram Component</a
+      >
+    </plg-title>
+    <app-card [classNames]="'shadow-lg'">
+      <app-histogram [single]="histogramData"></app-histogram>
+    </app-card>
+
+    <plg-title>
+      <a class="text-white" href="/?path=/docs/components-toggler--docs"
+        >Toggler Component</a
+      >
+    </plg-title>
+    <app-card [classNames]="'shadow-lg'">
+      <app-toggle
+        [isChecked]="toggleState"
+        (toggleChange)="onToggleChange($event)"
+      ></app-toggle>
+      <p>Toggle State: {{ toggleState }}</p>
+    </app-card>
+
+    <plg-title>
+      <a class="text-white" href="/?path=/docs/components-progressbar--docs"
+        >Progress Bar Component</a
+      >
+    </plg-title>
+    <app-card [classNames]="'shadow-lg'">
+      <app-progress-bar [progress]="progress"></app-progress-bar>
+      <p>Progress: {{ progress }}%</p>
+      <button class="btn btn-primary" (click)="progress = 90">go to 90%</button>
+    </app-card>
+
+    <plg-title> simple tables </plg-title>
+    <app-card [classNames]="'shadow-lg'">
+      <app-simple-table [tableData]="simpletableData"> </app-simple-table>
+    </app-card>
+
+    <plg-title>Dynamic Class Directive</plg-title>
+    <app-card [classNames]="'shadow-lg'">
+      <p>
+        This directive is used to add classes to the input element based on the
+        object passed to it.
+      </p>
+      <div>
+        <input type="text" [appDynamicClass]="'form-control'" />
+      </div>
+      <div>
+        <input type="text" [appDynamicClass]="'form-control is-invalid mt-2'" />
+      </div>
+    </app-card>
+
+    <plg-title>Reusable Reactive Form</plg-title>
+    <app-card [classNames]="'shadow-lg'">
+      <app-form (formSubmit)="onFormSubmit($event)"></app-form>
+    </app-card>
+  </div>
+</div>
