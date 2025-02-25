@@ -1111,7 +1111,7 @@
         },
         {
             "name": "FormComponent",
-            "id": "component-FormComponent-ff95b52ba9709ba981069c5854ba0804a4e6b7c39262430f60ea3ca92b6d088a36f9d2db43656125d67b1ccb3e957e37f473d1a6581e0366aa5c572bc43510ea",
+            "id": "component-FormComponent-82f3724dd90c85a7b465af5c6bb0f6fe9118cb40bc8751bb71d13292cb46ce132ada3a25fbb31cd3b35722ae0fc0acb9af651d87384b4774a90ba8cf63aea2aa",
             "file": "src/app/components/form/form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1148,7 +1148,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 39
+                    "line": 38
                 },
                 {
                     "name": "formConfig",
@@ -1169,7 +1169,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45,
+                    "line": 44,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1179,7 +1179,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 54,
+                    "line": 53,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1206,7 +1206,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';\r\nimport {\r\n  FormBuilder,\r\n  FormGroup,\r\n  Validators,\r\n  ReactiveFormsModule,\r\n} from '@angular/forms';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormFieldComponent } from '../form-field/form-field.component';\r\n\r\n@Component({\r\n  selector: 'app-form',\r\n  templateUrl: './form.component.html',\r\n  styleUrls: ['./form.component.scss'],\r\n  standalone: true,\r\n  imports: [CommonModule, ReactiveFormsModule, FormFieldComponent],\r\n})\r\nexport class FormComponent implements OnInit {\r\n  formConfig = [\r\n    {\r\n      name: 'name',\r\n      label: 'Name',\r\n      type: 'text',\r\n      value: '',\r\n      validators: [Validators.required],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n    {\r\n      name: 'email',\r\n      label: 'Email',\r\n      type: 'email',\r\n      value: '',\r\n      validators: [Validators.required, Validators.email],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n  ];\r\n  @Output() formSubmit = new EventEmitter<any>();\r\n\r\n  form: FormGroup;\r\n\r\n  constructor(private fb: FormBuilder) {\r\n    this.form = this.fb.group({});\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.formConfig.forEach((control) => {\r\n      this.form.addControl(\r\n        control.name,\r\n        this.fb.control(control.value, control.validators)\r\n      );\r\n    });\r\n  }\r\n\r\n  submit() {\r\n    this.formSubmit.emit(this.form.value);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';\r\nimport {\r\n  FormBuilder,\r\n  FormGroup,\r\n  Validators,\r\n  ReactiveFormsModule,\r\n} from '@angular/forms';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormFieldComponent } from '../form-field/form-field.component';\r\n\r\n@Component({\r\n  selector: 'app-form',\r\n  templateUrl: './form.component.html',\r\n  styleUrls: ['./form.component.scss'],\r\n  standalone: true,\r\n  imports: [CommonModule, ReactiveFormsModule, FormFieldComponent],\r\n})\r\nexport class FormComponent implements OnInit {\r\n  formConfig = [\r\n    {\r\n      name: 'name',\r\n      label: 'Name',\r\n      type: 'text',\r\n      value: '',\r\n      validators: [Validators.required],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n    {\r\n      name: 'email',\r\n      label: 'Email',\r\n      type: 'email',\r\n      value: '',\r\n      validators: [Validators.required, Validators.email],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n  ];\r\n  @Output() formSubmit = new EventEmitter<any>();\r\n  form: FormGroup;\r\n\r\n  constructor(private fb: FormBuilder) {\r\n    this.form = this.fb.group({});\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.formConfig.forEach((control) => {\r\n      this.form.addControl(\r\n        control.name,\r\n        this.fb.control(control.value, control.validators)\r\n      );\r\n    });\r\n  }\r\n\r\n  submit() {\r\n    this.formSubmit.emit(this.form.value);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1228,7 +1228,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 39,
+                "line": 38,
                 "jsdoctags": [
                     {
                         "name": "fb",
@@ -1245,7 +1245,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<form [formGroup]=\"form\" (ngSubmit)=\"submit()\">\r\n  <app-form-field [inputOneConfig]=\"formConfig[0]\"></app-form-field>\r\n  <app-form-field [inputOneConfig]=\"formConfig[1]\"></app-form-field>\r\n  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"form.invalid\">\r\n    Submit\r\n  </button>\r\n</form>\r\n\r\n<pre>\r\n  {{ form.value | json }}\r\n</pre>\r\n"
+            "templateData": "<form [formGroup]=\"form\" (ngSubmit)=\"submit()\">\r\n  <app-form-field [inputOneConfig]=\"formConfig[0]\"></app-form-field>\r\n  <app-form-field [inputOneConfig]=\"formConfig[1]\"></app-form-field>\r\n  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"form.invalid\">\r\n    Submit\r\n  </button>\r\n</form>\r\n"
         },
         {
             "name": "FormFieldComponent",

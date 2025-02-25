@@ -7,13 +7,19 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormFieldComponent } from '../form-field/form-field.component';
+import { AddressFormComponent } from '../address-form/address-form.component';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormFieldComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormFieldComponent,
+    AddressFormComponent,
+  ],
 })
 export class FormComponent implements OnInit {
   formConfig = [
@@ -35,7 +41,6 @@ export class FormComponent implements OnInit {
     },
   ];
   @Output() formSubmit = new EventEmitter<any>();
-
   form: FormGroup;
 
   constructor(private fb: FormBuilder) {

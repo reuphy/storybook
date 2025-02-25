@@ -21,6 +21,7 @@ export default {
 <form [formGroup]="form" (ngSubmit)="submit()">
   <app-form-field [inputOneConfig]="formConfig[0]"></app-form-field>
   <app-form-field [inputOneConfig]="formConfig[1]"></app-form-field>
+  <app-address-form [form]="form"></app-address-form>
   <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
     Submit
   </button>

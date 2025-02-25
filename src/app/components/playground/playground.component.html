@@ -87,6 +87,13 @@
 
     <plg-title>Reusable Reactive Form</plg-title>
     <app-card [classNames]="'shadow-lg'">
+      <p>
+        The `FormComponent` is a reusable component that includes a sub-form for
+        addresses (`app-address-form`), which is also reusable. It allows for
+        dynamically creating form fields via configurable sub-components
+        (`app-form-field`). The form is reactive and can be submitted via the
+        `submit` method.
+      </p>
       <app-form (formSubmit)="onFormSubmit($event)"></app-form>
     </app-card>
   </div>
