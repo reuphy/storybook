@@ -41,6 +41,14 @@ export class FormComponent implements OnInit {
       validators: [Validators.required, Validators.email],
       classConfig: 'form-control mt-2',
     },
+    {
+      name: 'dob',
+      label: 'Date of Birth',
+      type: 'date',
+      value: '',
+      validators: [Validators.required],
+      classConfig: 'mt-3',
+    },
   ];
   @Output() formSubmit = new EventEmitter<any>();
   form: FormGroup;

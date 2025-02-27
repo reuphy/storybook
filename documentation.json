@@ -47,6 +47,96 @@
             "extends": []
         },
         {
+            "name": "HttpResponse",
+            "id": "interface-HttpResponse-806e155c6839d18dcec4127ab7bfc9990f0e94db330290f80c5eb1606f040f726c09b5e4b91f1515ab717eb3e3cf802c354613908fa754d213f6861bf045bdd8",
+            "file": "src/app/components/fetch-data/fetch-data.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, computed, OnInit, Signal, signal } from '@angular/core';\r\nimport { Observable, forkJoin } from 'rxjs';\r\nimport { catchError, delay, map, mergeMap } from 'rxjs/operators';\r\nimport { ajax } from 'rxjs/ajax';\r\nimport { CommonModule } from '@angular/common';\r\nimport { toSignal } from '@angular/core/rxjs-interop';\r\n\r\ninterface Pokemon {\r\n  name: string;\r\n  sprites?: {\r\n    front_default: string;\r\n  };\r\n  image: string;\r\n  id: number;\r\n}\r\n\r\ninterface HttpResponse<T> {\r\n  results: T;\r\n  error: string | undefined;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-fetch-data',\r\n  templateUrl: './fetch-data.component.html',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n})\r\nexport class FetchDataComponent {\r\n  url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5';\r\n  loading = computed(\r\n    () => this.pokemons().results.length === 0 && !this.pokemons().error\r\n  );\r\n\r\n  pokemons: Signal<HttpResponse<Pokemon[]>> = toSignal(\r\n    this.getPokemonData().pipe(\r\n      map((pokemons) => {\r\n        return {\r\n          results: pokemons,\r\n          error: undefined,\r\n        };\r\n      }),\r\n      catchError((error) => {\r\n        return [{ results: [], error: '' + error.message }];\r\n      })\r\n    ),\r\n    { initialValue: { results: [], error: undefined } }\r\n  );\r\n\r\n  selectedPokemon = signal<Pokemon | null>(null);\r\n  error = signal<string | null>(null);\r\n\r\n  fetchData<T>(url: string): Observable<T> {\r\n    return ajax.getJSON<T>(url);\r\n  }\r\n\r\n  mapPokemons(pokemons: Pokemon[]): Pokemon[] {\r\n    return pokemons.map((pokemon) => ({\r\n      name: pokemon.name,\r\n      image: pokemon.sprites?.front_default ?? '',\r\n      id: pokemon.id,\r\n    }));\r\n  }\r\n\r\n  getPokemonData(): Observable<Pokemon[]> {\r\n    return this.fetchData<HttpResponse<Pokemon[]>>(this.url).pipe(\r\n      mergeMap((data) =>\r\n        forkJoin(\r\n          data.results.map((_, index) =>\r\n            this.fetchData<Pokemon>(\r\n              `https://pokeapi.co/api/v2/pokemon/${index + 1}/`\r\n            )\r\n          )\r\n        )\r\n      ),\r\n      map((pokemons) => this.mapPokemons(pokemons)),\r\n      delay(2000)\r\n    );\r\n  }\r\n\r\n  selectPokemon(pokemon: Pokemon) {\r\n    this.fetchData<Pokemon>(\r\n      `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`\r\n    ).subscribe({\r\n      next: (data) => {\r\n        this.selectedPokemon.set({\r\n          name: data.name,\r\n          image: data.sprites?.front_default ?? '',\r\n          id: data.id,\r\n        });\r\n        this.error.set(null); // Clear any previous error\r\n      },\r\n      error: (err) => {\r\n        console.error('Error fetching Pokémon details:', err);\r\n        this.error.set('Failed to fetch Pokémon details');\r\n      },\r\n    });\r\n  }\r\n\r\n  clearSelection() {\r\n    this.selectedPokemon.set(null);\r\n  }\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "error",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string | undefined",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "results",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "T",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "Pokemon",
+            "id": "interface-Pokemon-806e155c6839d18dcec4127ab7bfc9990f0e94db330290f80c5eb1606f040f726c09b5e4b91f1515ab717eb3e3cf802c354613908fa754d213f6861bf045bdd8",
+            "file": "src/app/components/fetch-data/fetch-data.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, computed, OnInit, Signal, signal } from '@angular/core';\r\nimport { Observable, forkJoin } from 'rxjs';\r\nimport { catchError, delay, map, mergeMap } from 'rxjs/operators';\r\nimport { ajax } from 'rxjs/ajax';\r\nimport { CommonModule } from '@angular/common';\r\nimport { toSignal } from '@angular/core/rxjs-interop';\r\n\r\ninterface Pokemon {\r\n  name: string;\r\n  sprites?: {\r\n    front_default: string;\r\n  };\r\n  image: string;\r\n  id: number;\r\n}\r\n\r\ninterface HttpResponse<T> {\r\n  results: T;\r\n  error: string | undefined;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-fetch-data',\r\n  templateUrl: './fetch-data.component.html',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n})\r\nexport class FetchDataComponent {\r\n  url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5';\r\n  loading = computed(\r\n    () => this.pokemons().results.length === 0 && !this.pokemons().error\r\n  );\r\n\r\n  pokemons: Signal<HttpResponse<Pokemon[]>> = toSignal(\r\n    this.getPokemonData().pipe(\r\n      map((pokemons) => {\r\n        return {\r\n          results: pokemons,\r\n          error: undefined,\r\n        };\r\n      }),\r\n      catchError((error) => {\r\n        return [{ results: [], error: '' + error.message }];\r\n      })\r\n    ),\r\n    { initialValue: { results: [], error: undefined } }\r\n  );\r\n\r\n  selectedPokemon = signal<Pokemon | null>(null);\r\n  error = signal<string | null>(null);\r\n\r\n  fetchData<T>(url: string): Observable<T> {\r\n    return ajax.getJSON<T>(url);\r\n  }\r\n\r\n  mapPokemons(pokemons: Pokemon[]): Pokemon[] {\r\n    return pokemons.map((pokemon) => ({\r\n      name: pokemon.name,\r\n      image: pokemon.sprites?.front_default ?? '',\r\n      id: pokemon.id,\r\n    }));\r\n  }\r\n\r\n  getPokemonData(): Observable<Pokemon[]> {\r\n    return this.fetchData<HttpResponse<Pokemon[]>>(this.url).pipe(\r\n      mergeMap((data) =>\r\n        forkJoin(\r\n          data.results.map((_, index) =>\r\n            this.fetchData<Pokemon>(\r\n              `https://pokeapi.co/api/v2/pokemon/${index + 1}/`\r\n            )\r\n          )\r\n        )\r\n      ),\r\n      map((pokemons) => this.mapPokemons(pokemons)),\r\n      delay(2000)\r\n    );\r\n  }\r\n\r\n  selectPokemon(pokemon: Pokemon) {\r\n    this.fetchData<Pokemon>(\r\n      `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`\r\n    ).subscribe({\r\n      next: (data) => {\r\n        this.selectedPokemon.set({\r\n          name: data.name,\r\n          image: data.sprites?.front_default ?? '',\r\n          id: data.id,\r\n        });\r\n        this.error.set(null); // Clear any previous error\r\n      },\r\n      error: (err) => {\r\n        console.error('Error fetching Pokémon details:', err);\r\n        this.error.set('Failed to fetch Pokémon details');\r\n      },\r\n    });\r\n  }\r\n\r\n  clearSelection() {\r\n    this.selectedPokemon.set(null);\r\n  }\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "image",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "sprites",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "StyleConfig",
             "id": "interface-StyleConfig-8a755d09c4b5481619e070b30fdbe71e8c6d1015aa46491c4ab45270355ee04fcc61ee6b8c5fb62eaf5bdcb1a63750ef019804720e9e746f023caac2aeff219e",
             "file": "src/app/directives/text-input-style.directives.ts",
@@ -793,7 +883,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div [formGroup]=\"form\" class=\"form-group\">\r\n  <label for=\"address\">Address</label>\r\n  <input\r\n    type=\"text\"\r\n    formControlName=\"address\"\r\n    id=\"address\"\r\n    class=\"form-control\"\r\n  />\r\n  <div *ngIf=\"form.get('address')?.invalid && form.get('address')?.touched\">\r\n    <small *ngIf=\"form.get('address').errors.required\"\r\n      >Address is required</small\r\n    >\r\n  </div>\r\n\r\n  <label for=\"state\">State</label>\r\n  <input type=\"text\" formControlName=\"state\" id=\"state\" class=\"form-control\" />\r\n  <div *ngIf=\"form.get('state')?.invalid && form.get('state')?.touched\">\r\n    <small *ngIf=\"form.get('state').errors.required\">State is required</small>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div [formGroup]=\"form\" class=\"form-group\">\r\n  <label for=\"address\">Address</label>\r\n  <input\r\n    type=\"text\"\r\n    formControlName=\"address\"\r\n    id=\"address\"\r\n    class=\"form-control\"\r\n  />\r\n  <div *ngIf=\"form.get('address')?.invalid && form.get('address')?.touched\">\r\n    <small *ngIf=\"form.get('address').errors.required\"\r\n      >Address is required</small\r\n    >\r\n  </div>\r\n\r\n  <label for=\"state\">State</label>\r\n  <input type=\"text\" formControlName=\"state\" id=\"state\" class=\"form-control\" />\r\n  <div *ngIf=\"form.get('state')?.invalid && form.get('state')?.touched\">\r\n    <small class=\"text-danger\" *ngIf=\"form.get('state').errors.required\"\r\n      >State is required</small\r\n    >\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "AlertComponent",
@@ -1325,11 +1415,216 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div [formGroup]=\"form\" class=\"form-group\">\r\n  ccccc\r\n  <label [for]=\"controlName\">{{ label }}</label>\r\n  <input\r\n    matInput\r\n    [matDatepicker]=\"picker\"\r\n    [formControlName]=\"controlName\"\r\n    [id]=\"controlName\"\r\n    class=\"form-control\"\r\n  />\r\n  <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n  <mat-datepicker #picker></mat-datepicker>\r\n  <div *ngIf=\"form.get(controlName)?.invalid && form.get(controlName)?.touched\">\r\n    <small *ngIf=\"form.get(controlName).errors.required\"\r\n      >{{ label }} is required</small\r\n    >\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div [formGroup]=\"form\" class=\"form-group\">\r\n  <!-- <label [for]=\"controlName\">{{ label }}</label> -->\r\n  <div class=\"input-group mt-2\">\r\n    <input\r\n      matInput\r\n      [matDatepicker]=\"picker\"\r\n      [formControlName]=\"controlName\"\r\n      [id]=\"controlName\"\r\n      class=\"form-control\"\r\n      (focus)=\"picker.open()\"\r\n      (click)=\"picker.open()\"\r\n    />\r\n  </div>\r\n  <mat-datepicker #picker>\r\n    <mat-datepicker-actions>\r\n      <button mat-button matDatepickerCancel>Cancel</button>\r\n      <button mat-raised-button matDatepickerApply>Apply</button>\r\n    </mat-datepicker-actions>\r\n  </mat-datepicker>\r\n  <div\r\n    *ngIf=\"\r\n      form && form.get(controlName)?.invalid && form.get(controlName)?.touched\r\n    \"\r\n  >\r\n    <small class=\"text-danger\">{{ label || controlName }} is required</small>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "FetchDataComponent",
+            "id": "component-FetchDataComponent-806e155c6839d18dcec4127ab7bfc9990f0e94db330290f80c5eb1606f040f726c09b5e4b91f1515ab717eb3e3cf802c354613908fa754d213f6861bf045bdd8",
+            "file": "src/app/components/fetch-data/fetch-data.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-fetch-data",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./fetch-data.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "error",
+                    "defaultValue": "signal<string | null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 50
+                },
+                {
+                    "name": "loading",
+                    "defaultValue": "computed(\r\n    () => this.pokemons().results.length === 0 && !this.pokemons().error\r\n  )",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 30
+                },
+                {
+                    "name": "pokemons",
+                    "defaultValue": "toSignal(\r\n    this.getPokemonData().pipe(\r\n      map((pokemons) => {\r\n        return {\r\n          results: pokemons,\r\n          error: undefined,\r\n        };\r\n      }),\r\n      catchError((error) => {\r\n        return [{ results: [], error: '' + error.message }];\r\n      })\r\n    ),\r\n    { initialValue: { results: [], error: undefined } }\r\n  )",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Signal<HttpResponse<Pokemon[]>>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 34
+                },
+                {
+                    "name": "selectedPokemon",
+                    "defaultValue": "signal<Pokemon | null>(null)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 49
+                },
+                {
+                    "name": "url",
+                    "defaultValue": "'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "clearSelection",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 99,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "fetchData",
+                    "args": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<T>",
+                    "typeParameters": [
+                        "T"
+                    ],
+                    "line": 52,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getPokemonData",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<Pokemon[]>",
+                    "typeParameters": [],
+                    "line": 64,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "mapPokemons",
+                    "args": [
+                        {
+                            "name": "pokemons",
+                            "type": "Pokemon[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Pokemon[]",
+                    "typeParameters": [],
+                    "line": 56,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "pokemons",
+                            "type": "Pokemon[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "selectPokemon",
+                    "args": [
+                        {
+                            "name": "pokemon",
+                            "type": "Pokemon",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 80,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "pokemon",
+                            "type": "Pokemon",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, computed, OnInit, Signal, signal } from '@angular/core';\r\nimport { Observable, forkJoin } from 'rxjs';\r\nimport { catchError, delay, map, mergeMap } from 'rxjs/operators';\r\nimport { ajax } from 'rxjs/ajax';\r\nimport { CommonModule } from '@angular/common';\r\nimport { toSignal } from '@angular/core/rxjs-interop';\r\n\r\ninterface Pokemon {\r\n  name: string;\r\n  sprites?: {\r\n    front_default: string;\r\n  };\r\n  image: string;\r\n  id: number;\r\n}\r\n\r\ninterface HttpResponse<T> {\r\n  results: T;\r\n  error: string | undefined;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-fetch-data',\r\n  templateUrl: './fetch-data.component.html',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n})\r\nexport class FetchDataComponent {\r\n  url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5';\r\n  loading = computed(\r\n    () => this.pokemons().results.length === 0 && !this.pokemons().error\r\n  );\r\n\r\n  pokemons: Signal<HttpResponse<Pokemon[]>> = toSignal(\r\n    this.getPokemonData().pipe(\r\n      map((pokemons) => {\r\n        return {\r\n          results: pokemons,\r\n          error: undefined,\r\n        };\r\n      }),\r\n      catchError((error) => {\r\n        return [{ results: [], error: '' + error.message }];\r\n      })\r\n    ),\r\n    { initialValue: { results: [], error: undefined } }\r\n  );\r\n\r\n  selectedPokemon = signal<Pokemon | null>(null);\r\n  error = signal<string | null>(null);\r\n\r\n  fetchData<T>(url: string): Observable<T> {\r\n    return ajax.getJSON<T>(url);\r\n  }\r\n\r\n  mapPokemons(pokemons: Pokemon[]): Pokemon[] {\r\n    return pokemons.map((pokemon) => ({\r\n      name: pokemon.name,\r\n      image: pokemon.sprites?.front_default ?? '',\r\n      id: pokemon.id,\r\n    }));\r\n  }\r\n\r\n  getPokemonData(): Observable<Pokemon[]> {\r\n    return this.fetchData<HttpResponse<Pokemon[]>>(this.url).pipe(\r\n      mergeMap((data) =>\r\n        forkJoin(\r\n          data.results.map((_, index) =>\r\n            this.fetchData<Pokemon>(\r\n              `https://pokeapi.co/api/v2/pokemon/${index + 1}/`\r\n            )\r\n          )\r\n        )\r\n      ),\r\n      map((pokemons) => this.mapPokemons(pokemons)),\r\n      delay(2000)\r\n    );\r\n  }\r\n\r\n  selectPokemon(pokemon: Pokemon) {\r\n    this.fetchData<Pokemon>(\r\n      `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`\r\n    ).subscribe({\r\n      next: (data) => {\r\n        this.selectedPokemon.set({\r\n          name: data.name,\r\n          image: data.sprites?.front_default ?? '',\r\n          id: data.id,\r\n        });\r\n        this.error.set(null); // Clear any previous error\r\n      },\r\n      error: (err) => {\r\n        console.error('Error fetching Pokémon details:', err);\r\n        this.error.set('Failed to fetch Pokémon details');\r\n      },\r\n    });\r\n  }\r\n\r\n  clearSelection() {\r\n    this.selectedPokemon.set(null);\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"container mt-4\">\r\n  <h5 class=\"mb-4\">\r\n    This example fetches a list of Pokémons and their details, then displays\r\n    their names and images.\r\n  </h5>\r\n  @if(loading()) {\r\n  <div class=\"spinner-border text-primary\" role=\"status\">\r\n    <span class=\"sr-only\">Loading...</span>\r\n  </div>\r\n  }\r\n\r\n  <div *ngIf=\"!selectedPokemon() && !error()\">\r\n    <div class=\"row\">\r\n      @for (pokemon of pokemons().results; track pokemon; let index = $index) {\r\n      <div class=\"col-md-4\">\r\n        <div\r\n          class=\"card cursor-pointer mb-4 shadow-sm\"\r\n          (click)=\"selectPokemon(pokemon)\"\r\n        >\r\n          <img\r\n            [src]=\"pokemon.image\"\r\n            class=\"card-img-top\"\r\n            alt=\"{{ pokemon.name }}\"\r\n          />\r\n          <div class=\"card-body\">\r\n            <h5 class=\"card-title\">{{ pokemon.name }}</h5>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      }\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col-md-4\" *ngIf=\"selectedPokemon()\">\r\n    <button class=\"btn btn-primary mb-4\" (click)=\"clearSelection()\">\r\n      Back to List\r\n    </button>\r\n    <div class=\"card mb-4 shadow-sm\">\r\n      <img\r\n        [src]=\"selectedPokemon().image\"\r\n        class=\"card-img-top\"\r\n        alt=\"{{ selectedPokemon().name }}\"\r\n      />\r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title\">{{ selectedPokemon().name }}</h5>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div *ngIf=\"pokemons()?.error || error()\">\r\n    <div class=\"alert alert-danger\" role=\"alert\">\r\n      {{ pokemons()?.error || error }}\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "FormComponent",
-            "id": "component-FormComponent-6bb0fff809d99f34d08384e595016ad112a412232beba6859072d6be4622c36a75f74557b97a414390d6b7d1364ee1b1bf72565bd6d80ada2a138a0c0c71f849",
+            "id": "component-FormComponent-34f7b59f0156be292c29d34272583843c62a89a41d42a78462937a33bcaffc7d464bf8c7a5a0a3f0896f039906c4e7517713e4ff78a541402e8fce0171ecc78e",
             "file": "src/app/components/form/form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1353,7 +1648,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 45,
+                    "line": 53,
                     "type": "EventEmitter"
                 }
             ],
@@ -1366,11 +1661,11 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 46
+                    "line": 54
                 },
                 {
                     "name": "formConfig",
-                    "defaultValue": "[\r\n    {\r\n      name: 'name',\r\n      label: 'Name',\r\n      type: 'text',\r\n      value: '',\r\n      validators: [Validators.required],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n    {\r\n      name: 'email',\r\n      label: 'Email',\r\n      type: 'email',\r\n      value: '',\r\n      validators: [Validators.required, Validators.email],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n  ]",
+                    "defaultValue": "[\r\n    {\r\n      name: 'name',\r\n      label: 'Name',\r\n      type: 'text',\r\n      value: '',\r\n      validators: [Validators.required],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n    {\r\n      name: 'email',\r\n      label: 'Email',\r\n      type: 'email',\r\n      value: '',\r\n      validators: [Validators.required, Validators.email],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n    {\r\n      name: 'dob',\r\n      label: 'Date of Birth',\r\n      type: 'date',\r\n      value: '',\r\n      validators: [Validators.required],\r\n      classConfig: 'mt-3',\r\n    },\r\n  ]",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "[]",
@@ -1387,7 +1682,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 52,
+                    "line": 60,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1397,7 +1692,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 61,
+                    "line": 69,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1432,7 +1727,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';\r\nimport {\r\n  FormBuilder,\r\n  FormGroup,\r\n  Validators,\r\n  ReactiveFormsModule,\r\n} from '@angular/forms';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormFieldComponent } from '../form-field/form-field.component';\r\nimport { AddressFormComponent } from '../address-form/address-form.component';\r\nimport { DatePickerComponent } from '../date-picker/date-picker.component';\r\n\r\n@Component({\r\n  selector: 'app-form',\r\n  templateUrl: './form.component.html',\r\n  styleUrls: ['./form.component.scss'],\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    ReactiveFormsModule,\r\n    FormFieldComponent,\r\n    AddressFormComponent,\r\n    DatePickerComponent,\r\n  ],\r\n})\r\nexport class FormComponent implements OnInit {\r\n  formConfig = [\r\n    {\r\n      name: 'name',\r\n      label: 'Name',\r\n      type: 'text',\r\n      value: '',\r\n      validators: [Validators.required],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n    {\r\n      name: 'email',\r\n      label: 'Email',\r\n      type: 'email',\r\n      value: '',\r\n      validators: [Validators.required, Validators.email],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n  ];\r\n  @Output() formSubmit = new EventEmitter<any>();\r\n  form: FormGroup;\r\n\r\n  constructor(private fb: FormBuilder) {\r\n    this.form = this.fb.group({});\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.formConfig.forEach((control) => {\r\n      this.form.addControl(\r\n        control.name,\r\n        this.fb.control(control.value, control.validators)\r\n      );\r\n    });\r\n  }\r\n\r\n  submit() {\r\n    this.formSubmit.emit(this.form.value);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';\r\nimport {\r\n  FormBuilder,\r\n  FormGroup,\r\n  Validators,\r\n  ReactiveFormsModule,\r\n} from '@angular/forms';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormFieldComponent } from '../form-field/form-field.component';\r\nimport { AddressFormComponent } from '../address-form/address-form.component';\r\nimport { DatePickerComponent } from '../date-picker/date-picker.component';\r\n\r\n@Component({\r\n  selector: 'app-form',\r\n  templateUrl: './form.component.html',\r\n  styleUrls: ['./form.component.scss'],\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    ReactiveFormsModule,\r\n    FormFieldComponent,\r\n    AddressFormComponent,\r\n    DatePickerComponent,\r\n  ],\r\n})\r\nexport class FormComponent implements OnInit {\r\n  formConfig = [\r\n    {\r\n      name: 'name',\r\n      label: 'Name',\r\n      type: 'text',\r\n      value: '',\r\n      validators: [Validators.required],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n    {\r\n      name: 'email',\r\n      label: 'Email',\r\n      type: 'email',\r\n      value: '',\r\n      validators: [Validators.required, Validators.email],\r\n      classConfig: 'form-control mt-2',\r\n    },\r\n    {\r\n      name: 'dob',\r\n      label: 'Date of Birth',\r\n      type: 'date',\r\n      value: '',\r\n      validators: [Validators.required],\r\n      classConfig: 'mt-3',\r\n    },\r\n  ];\r\n  @Output() formSubmit = new EventEmitter<any>();\r\n  form: FormGroup;\r\n\r\n  constructor(private fb: FormBuilder) {\r\n    this.form = this.fb.group({});\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.formConfig.forEach((control) => {\r\n      this.form.addControl(\r\n        control.name,\r\n        this.fb.control(control.value, control.validators)\r\n      );\r\n    });\r\n  }\r\n\r\n  submit() {\r\n    this.formSubmit.emit(this.form.value);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1454,7 +1749,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 46,
+                "line": 54,
                 "jsdoctags": [
                     {
                         "name": "fb",
@@ -1471,11 +1766,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<form [formGroup]=\"form\" (ngSubmit)=\"submit()\">\r\n  <app-form-field [inputOneConfig]=\"formConfig[0]\"></app-form-field>\r\n  <app-form-field [inputOneConfig]=\"formConfig[1]\"></app-form-field>\r\n  <app-address-form [form]=\"form\"></app-address-form>\r\n  <app-date-picker [form]=\"form\" controlName=\"dateOfBirth\" label=\"Date of Birth\"></app-date-picker>\r\n  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"form.invalid\">\r\n    Submit\r\n  </button>\r\n</form>\r\n"
+            "templateData": "<form [formGroup]=\"form\" (ngSubmit)=\"submit()\">\r\n  <app-form-field [inputOneConfig]=\"formConfig[0]\"></app-form-field>\r\n  <app-form-field [inputOneConfig]=\"formConfig[1]\"></app-form-field>\r\n  <app-form-field [inputOneConfig]=\"formConfig[2]\"></app-form-field>\r\n  <app-address-form [form]=\"form\"></app-address-form>\r\n  <!-- <app-date-picker [form]=\"form\" controlName=\"dateOfBirth\" label=\"Date of Birth\"></app-date-picker> -->\r\n  <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"form.invalid\">\r\n    Submit\r\n  </button>\r\n</form>\r\n"
         },
         {
             "name": "FormFieldComponent",
-            "id": "component-FormFieldComponent-39ca25ff608c8ed3cd7523a3c80be522ef4d2b6e0e204f4e301a3fac2c33889e50f394468b2d8aa64384fdf8a2866321773ee6ebaa71ac356e102c528d6aa253",
+            "id": "component-FormFieldComponent-1d6d4fed975d229a95d176b2361b2956a95e50edfacb47a3da9e2ac66c427171fdad089889553185fa325a005c32e9e209e7c130b630da6e83c6aa1a735de411",
             "file": "src/app/components/form-field/form-field.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1501,7 +1796,7 @@
                     "name": "inputOneConfig",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 21,
+                    "line": 33,
                     "type": "any",
                     "decorators": []
                 }
@@ -1516,7 +1811,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 22
+                    "line": 34
                 }
             ],
             "methodsClass": [
@@ -1526,7 +1821,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 29,
+                    "line": 41,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1548,12 +1843,16 @@
                 {
                     "name": "DynamicClassDirective",
                     "type": "directive"
+                },
+                {
+                    "name": "DatePickerComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit, Optional, SkipSelf } from '@angular/core';\r\nimport {\r\n  FormGroup,\r\n  FormBuilder,\r\n  Validators,\r\n  ReactiveFormsModule,\r\n  ControlContainer,\r\n} from '@angular/forms';\r\nimport { CommonModule } from '@angular/common';\r\nimport { DynamicClassDirective } from 'src/app/directives/dynamic-class.directive';\r\n\r\n@Component({\r\n  selector: 'app-form-field',\r\n  templateUrl: './form-field.component.html',\r\n  styleUrls: ['./form-field.component.scss'],\r\n  standalone: true,\r\n  imports: [CommonModule, ReactiveFormsModule, DynamicClassDirective],\r\n  viewProviders: [{ provide: ControlContainer, useExisting: ControlContainer }],\r\n})\r\nexport class FormFieldComponent implements OnInit {\r\n  @Input() inputOneConfig: any;\r\n  form!: FormGroup;\r\n\r\n  constructor(\r\n    private fb: FormBuilder,\r\n    @Optional() @SkipSelf() private controlContainer: ControlContainer\r\n  ) {}\r\n\r\n  ngOnInit() {\r\n    this.form = this.controlContainer?.control as FormGroup;\r\n    if (this.inputOneConfig && this.form) {\r\n      this.form.addControl(\r\n        this.inputOneConfig.name,\r\n        this.fb.control(\r\n          this.inputOneConfig.value,\r\n          this.inputOneConfig.validators\r\n        )\r\n      );\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input, OnInit, Optional, SkipSelf } from '@angular/core';\r\nimport {\r\n  FormGroup,\r\n  FormBuilder,\r\n  Validators,\r\n  ReactiveFormsModule,\r\n  ControlContainer,\r\n} from '@angular/forms';\r\nimport { CommonModule } from '@angular/common';\r\nimport { DynamicClassDirective } from 'src/app/directives/dynamic-class.directive';\r\nimport { MatDatepickerModule } from '@angular/material/datepicker';\r\nimport { MatNativeDateModule } from '@angular/material/core';\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { MatFormFieldModule } from '@angular/material/form-field';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { DatePickerComponent } from '../date-picker/date-picker.component';\r\n\r\n@Component({\r\n  selector: 'app-form-field',\r\n  templateUrl: './form-field.component.html',\r\n  styleUrls: ['./form-field.component.scss'],\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    ReactiveFormsModule,\r\n    DynamicClassDirective,\r\n    DatePickerComponent,\r\n  ],\r\n  viewProviders: [{ provide: ControlContainer, useExisting: ControlContainer }],\r\n})\r\nexport class FormFieldComponent implements OnInit {\r\n  @Input() inputOneConfig: any;\r\n  form!: FormGroup;\r\n\r\n  constructor(\r\n    private fb: FormBuilder,\r\n    @Optional() @SkipSelf() private controlContainer: ControlContainer\r\n  ) {}\r\n\r\n  ngOnInit() {\r\n    this.form = this.controlContainer?.control as FormGroup;\r\n    if (this.inputOneConfig && this.form) {\r\n      if (this.inputOneConfig.type === 'daterange') {\r\n        this.form.addControl(\r\n          this.inputOneConfig.name,\r\n          this.fb.group({\r\n            start: [\r\n              this.inputOneConfig.value.start,\r\n              this.inputOneConfig.validators,\r\n            ],\r\n            end: [\r\n              this.inputOneConfig.value.end,\r\n              this.inputOneConfig.validators,\r\n            ],\r\n          })\r\n        );\r\n      } else {\r\n        this.form.addControl(\r\n          this.inputOneConfig.name,\r\n          this.fb.control(\r\n            this.inputOneConfig.value,\r\n            this.inputOneConfig.validators\r\n          )\r\n        );\r\n      }\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1581,7 +1880,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 22,
+                "line": 34,
                 "jsdoctags": [
                     {
                         "name": "fb",
@@ -1607,7 +1906,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div [formGroup]=\"form\" class=\"form-group\">\r\n  <label [for]=\"inputOneConfig.name\">{{ inputOneConfig.label }}</label>\r\n  <input\r\n    *ngIf=\"inputOneConfig.type !== 'textarea'\"\r\n    [type]=\"inputOneConfig.type\"\r\n    [formControlName]=\"inputOneConfig.name\"\r\n    [id]=\"inputOneConfig.name\"\r\n    [appDynamicClass]=\"inputOneConfig.classConfig\"\r\n  />\r\n  <textarea\r\n    *ngIf=\"inputOneConfig.type === 'textarea'\"\r\n    [formControlName]=\"inputOneConfig.name\"\r\n    [id]=\"inputOneConfig.name\"\r\n    [appDynamicClass]=\"inputOneConfig.classConfig\"\r\n  ></textarea>\r\n  <div\r\n    *ngIf=\"\r\n      form.get(inputOneConfig.name)?.invalid &&\r\n      form.get(inputOneConfig.name)?.touched\r\n    \"\r\n  >\r\n    <small *ngIf=\"form.get(inputOneConfig.name).errors.required\"\r\n      >{{ inputOneConfig.label }} is required</small\r\n    >\r\n    <small *ngIf=\"form.get(inputOneConfig.name).errors.email\"\r\n      >Invalid email format</small\r\n    >\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div [formGroup]=\"form\" class=\"form-group\">\r\n  <label [for]=\"inputOneConfig.name\">{{ inputOneConfig.label }}</label>\r\n  <input\r\n    *ngIf=\"inputOneConfig.type !== 'textarea' && inputOneConfig.type !== 'date'\"\r\n    [type]=\"inputOneConfig.type\"\r\n    [formControlName]=\"inputOneConfig.name\"\r\n    [id]=\"inputOneConfig.name\"\r\n    [appDynamicClass]=\"inputOneConfig.classConfig\"\r\n  />\r\n  <textarea\r\n    *ngIf=\"inputOneConfig.type === 'textarea'\"\r\n    [formControlName]=\"inputOneConfig.name\"\r\n    [id]=\"inputOneConfig.name\"\r\n    [appDynamicClass]=\"inputOneConfig.classConfig\"\r\n  ></textarea>\r\n  <app-date-picker\r\n    *ngIf=\"inputOneConfig.type === 'date'\"\r\n    [form]=\"form\"\r\n    [controlName]=\"inputOneConfig.name\"\r\n    [appDynamicClass]=\"inputOneConfig.classConfig\"\r\n  ></app-date-picker>\r\n  <div\r\n    *ngIf=\"\r\n      form.get(inputOneConfig.name)?.invalid &&\r\n      form.get(inputOneConfig.name)?.touched\r\n    \"\r\n  >\r\n    <small *ngIf=\"form.get(inputOneConfig.name).errors.required\"\r\n      >{{ inputOneConfig.label }} is required</small\r\n    >\r\n    <small *ngIf=\"form.get(inputOneConfig.name).errors.email\"\r\n      >Invalid email format</small\r\n    >\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "HistogramComponent",
@@ -1782,7 +2081,7 @@
         },
         {
             "name": "PlaygroundComponent",
-            "id": "component-PlaygroundComponent-95d2798779cb75315af29ba81f08cccedd4045b52f590b310179a6f0601a6bdfeea71d18f5c3b5beeb9ca7bcc3d827b28ff5ea5d0d91ecb8ae0828dcc00674d9",
+            "id": "component-PlaygroundComponent-4aa435ca5805528f35b9a355c051aa9b3ace95dfeec3eea29ce2135a072f2912a0619db9e9795164c59b44dc8a403c46bc29cf7bf1604bfd6d18c8625aa82c8b",
             "file": "src/app/components/playground/playground.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1811,7 +2110,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 40
+                    "line": 44
                 },
                 {
                     "name": "histogramData",
@@ -1822,7 +2121,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 57
+                    "line": 61
                 },
                 {
                     "name": "items",
@@ -1833,7 +2132,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 51
+                    "line": 55
                 },
                 {
                     "name": "progress",
@@ -1844,7 +2143,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 41
+                    "line": 45
                 },
                 {
                     "name": "simpletableData",
@@ -1855,7 +2154,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 63
+                    "line": 67
                 },
                 {
                     "name": "toggleState",
@@ -1866,7 +2165,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 39
+                    "line": 43
                 }
             ],
             "methodsClass": [
@@ -1883,7 +2182,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 46,
+                    "line": 50,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1911,7 +2210,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 97,
+                    "line": 101,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1939,7 +2238,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 43,
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2008,12 +2307,20 @@
                 {
                     "name": "DynamicClassDirective",
                     "type": "directive"
+                },
+                {
+                    "name": "DatePickerComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "FetchDataComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, signal } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ToggleComponent } from '../toggle/toggle.component';\r\nimport { CardComponent } from '../card/card.component';\r\nimport { CheckboxComponent } from '../checkbox/checkbox.component';\r\nimport { PlTitleComponent } from './components/plg-title/plg-title.component';\r\nimport { AccordionComponent } from '../accordion/accordion.component';\r\nimport { HistogramComponent } from '../histogram/histogram.component';\r\nimport AlertComponent from '../alert/alert.component';\r\nimport { ProgressBarComponent } from '../progress-bar/progress-bar.component';\r\nimport { SimpleTableComponent } from '../simple-table/simple-table.component';\r\nimport { FormComponent } from '../form/form.component';\r\nimport { Validators } from '@angular/forms';\r\nimport { CustomInputStyleDirective } from 'src/app/directives/text-input-style.directives';\r\nimport { style } from 'd3-selection';\r\nimport { DynamicClassDirective } from 'src/app/directives/dynamic-class.directive';\r\n\r\n@Component({\r\n  selector: 'app-playground',\r\n  templateUrl: './playground.component.html',\r\n  styleUrls: ['./playground.component.scss'],\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    PlTitleComponent,\r\n    ToggleComponent,\r\n    CardComponent,\r\n    CheckboxComponent,\r\n    AccordionComponent,\r\n    HistogramComponent,\r\n    AlertComponent,\r\n    ProgressBarComponent,\r\n    SimpleTableComponent,\r\n    FormComponent,\r\n    DynamicClassDirective,\r\n  ],\r\n})\r\nexport class PlaygroundComponent {\r\n  toggleState = false;\r\n  checkboxState = true;\r\n  progress = 0;\r\n\r\n  onToggleChange(state: boolean): void {\r\n    this.toggleState = state;\r\n  }\r\n  onCheckboxChange(state: boolean): void {\r\n    this.checkboxState = state;\r\n  }\r\n\r\n  // accordion\r\n  items = [\r\n    { title: 'Item 1', content: 'Content 1', isOpen: false },\r\n    { title: 'Item 2', content: 'Content 2', isOpen: false },\r\n    { title: 'Item 3', content: 'Content 3', isOpen: false },\r\n  ];\r\n  // histogram\r\n  histogramData = [\r\n    { name: 'A', value: 100 },\r\n    { name: 'B', value: 200 },\r\n    { name: 'C', value: 300 },\r\n  ];\r\n\r\n  simpletableData: {\r\n    Name: string;\r\n    Age: number;\r\n    Occupation: string;\r\n    lastName: string;\r\n    link: string;\r\n    className?: string;\r\n  }[] = [\r\n    {\r\n      Name: 'John',\r\n      Age: 30,\r\n      Occupation: 'Developer',\r\n      lastName: 'Doe',\r\n      link: 'https://www.google.com',\r\n      className: 'text-success',\r\n    },\r\n    {\r\n      Name: 'Jane',\r\n      Age: 25,\r\n      Occupation: 'Designer',\r\n      lastName: 'Bishop',\r\n      link: 'https://www.google.com',\r\n      className: 'text-danger',\r\n    },\r\n    {\r\n      Name: 'Jim',\r\n      Age: 35,\r\n      Occupation: 'Product Manager',\r\n      lastName: 'Doe',\r\n      link: 'https://amazone.com',\r\n      className: 'text-warning',\r\n    },\r\n  ];\r\n\r\n  onFormSubmit(formData: any): void {\r\n    console.log('Form Data:', formData);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, signal } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ToggleComponent } from '../toggle/toggle.component';\r\nimport { CardComponent } from '../card/card.component';\r\nimport { CheckboxComponent } from '../checkbox/checkbox.component';\r\nimport { PlTitleComponent } from './components/plg-title/plg-title.component';\r\nimport { AccordionComponent } from '../accordion/accordion.component';\r\nimport { HistogramComponent } from '../histogram/histogram.component';\r\nimport AlertComponent from '../alert/alert.component';\r\nimport { ProgressBarComponent } from '../progress-bar/progress-bar.component';\r\nimport { SimpleTableComponent } from '../simple-table/simple-table.component';\r\nimport { FormComponent } from '../form/form.component';\r\nimport { Validators } from '@angular/forms';\r\nimport { CustomInputStyleDirective } from 'src/app/directives/text-input-style.directives';\r\nimport { style } from 'd3-selection';\r\nimport { DynamicClassDirective } from 'src/app/directives/dynamic-class.directive';\r\nimport { DatePickerComponent } from '../date-picker/date-picker.component';\r\nimport { FetchDataComponent } from '../fetch-data/fetch-data.component';\r\n\r\n@Component({\r\n  selector: 'app-playground',\r\n  templateUrl: './playground.component.html',\r\n  styleUrls: ['./playground.component.scss'],\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    PlTitleComponent,\r\n    ToggleComponent,\r\n    CardComponent,\r\n    CheckboxComponent,\r\n    AccordionComponent,\r\n    HistogramComponent,\r\n    AlertComponent,\r\n    ProgressBarComponent,\r\n    SimpleTableComponent,\r\n    FormComponent,\r\n    DynamicClassDirective,\r\n    DatePickerComponent,\r\n    FetchDataComponent,\r\n  ],\r\n})\r\nexport class PlaygroundComponent {\r\n  toggleState = false;\r\n  checkboxState = true;\r\n  progress = 0;\r\n\r\n  onToggleChange(state: boolean): void {\r\n    this.toggleState = state;\r\n  }\r\n  onCheckboxChange(state: boolean): void {\r\n    this.checkboxState = state;\r\n  }\r\n\r\n  // accordion\r\n  items = [\r\n    { title: 'Item 1', content: 'Content 1', isOpen: false },\r\n    { title: 'Item 2', content: 'Content 2', isOpen: false },\r\n    { title: 'Item 3', content: 'Content 3', isOpen: false },\r\n  ];\r\n  // histogram\r\n  histogramData = [\r\n    { name: 'A', value: 100 },\r\n    { name: 'B', value: 200 },\r\n    { name: 'C', value: 300 },\r\n  ];\r\n\r\n  simpletableData: {\r\n    Name: string;\r\n    Age: number;\r\n    Occupation: string;\r\n    lastName: string;\r\n    link: string;\r\n    className?: string;\r\n  }[] = [\r\n    {\r\n      Name: 'John',\r\n      Age: 30,\r\n      Occupation: 'Developer',\r\n      lastName: 'Doe',\r\n      link: 'https://www.google.com',\r\n      className: 'text-success',\r\n    },\r\n    {\r\n      Name: 'Jane',\r\n      Age: 25,\r\n      Occupation: 'Designer',\r\n      lastName: 'Bishop',\r\n      link: 'https://www.google.com',\r\n      className: 'text-danger',\r\n    },\r\n    {\r\n      Name: 'Jim',\r\n      Age: 35,\r\n      Occupation: 'Product Manager',\r\n      lastName: 'Doe',\r\n      link: 'https://amazone.com',\r\n      className: 'text-warning',\r\n    },\r\n  ];\r\n\r\n  onFormSubmit(formData: any): void {\r\n    console.log('Form Data:', formData);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2023,7 +2330,7 @@
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"bg-light p-3\">\r\n  <h2>Component Playground</h2>\r\n  <div class=\"component-example\">\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-accordion--docs\"\r\n        >Accordion Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-accordion [items]=\"items\"></app-accordion>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-alert--docs\"\r\n        >Alert Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-alert [title]=\"'hello world'\"> </app-alert>\r\n      <app-alert [title]=\"'hello danger'\" [type]=\"'danger'\"> </app-alert>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-alert--docs\"\r\n        >checkbox</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-checkbox\r\n        [checked]=\"checkboxState\"\r\n        (checkedChange)=\"onCheckboxChange($event)\"\r\n      ></app-checkbox>\r\n      <p>Checkbox State: {{ checkboxState }}</p>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-histogram--countries\"\r\n        >Histogram Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-histogram [single]=\"histogramData\"></app-histogram>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-toggler--docs\"\r\n        >Toggler Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-toggle\r\n        [isChecked]=\"toggleState\"\r\n        (toggleChange)=\"onToggleChange($event)\"\r\n      ></app-toggle>\r\n      <p>Toggle State: {{ toggleState }}</p>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-progressbar--docs\"\r\n        >Progress Bar Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-progress-bar [progress]=\"progress\"></app-progress-bar>\r\n      <p>Progress: {{ progress }}%</p>\r\n      <button class=\"btn btn-primary\" (click)=\"progress = 90\">go to 90%</button>\r\n    </app-card>\r\n\r\n    <plg-title> simple tables </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-simple-table [tableData]=\"simpletableData\"> </app-simple-table>\r\n    </app-card>\r\n\r\n    <plg-title>Dynamic Class Directive</plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <p>\r\n        This directive is used to add classes to the input element based on the\r\n        object passed to it.\r\n      </p>\r\n      <div>\r\n        <input type=\"text\" [appDynamicClass]=\"'form-control'\" />\r\n      </div>\r\n      <div>\r\n        <input type=\"text\" [appDynamicClass]=\"'form-control is-invalid mt-2'\" />\r\n      </div>\r\n    </app-card>\r\n\r\n    <plg-title>Reusable Reactive Form</plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <p>\r\n        The `FormComponent` is a reusable component that includes a sub-form for\r\n        addresses (`app-address-form`), which is also reusable. It allows for\r\n        dynamically creating form fields via configurable sub-components\r\n        (`app-form-field`). The form is reactive and can be submitted via the\r\n        `submit` method.\r\n      </p>\r\n      <app-form (formSubmit)=\"onFormSubmit($event)\"></app-form>\r\n    </app-card>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"bg-light p-3\">\r\n  <h2>Component Playground</h2>\r\n  <div class=\"component-example\">\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-accordion--docs\"\r\n        >Accordion Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-accordion [items]=\"items\"></app-accordion>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-alert--docs\"\r\n        >Alert Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-alert [title]=\"'hello world'\"> </app-alert>\r\n      <app-alert [title]=\"'hello danger'\" [type]=\"'danger'\"> </app-alert>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-alert--docs\"\r\n        >checkbox</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-checkbox\r\n        [checked]=\"checkboxState\"\r\n        (checkedChange)=\"onCheckboxChange($event)\"\r\n      ></app-checkbox>\r\n      <p>Checkbox State: {{ checkboxState }}</p>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-histogram--countries\"\r\n        >Histogram Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-histogram [single]=\"histogramData\"></app-histogram>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-toggler--docs\"\r\n        >Toggler Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-toggle\r\n        [isChecked]=\"toggleState\"\r\n        (toggleChange)=\"onToggleChange($event)\"\r\n      ></app-toggle>\r\n      <p>Toggle State: {{ toggleState }}</p>\r\n    </app-card>\r\n\r\n    <plg-title>\r\n      <a class=\"text-white\" href=\"/?path=/docs/components-progressbar--docs\"\r\n        >Progress Bar Component</a\r\n      >\r\n    </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-progress-bar [progress]=\"progress\"></app-progress-bar>\r\n      <p>Progress: {{ progress }}%</p>\r\n      <button class=\"btn btn-primary\" (click)=\"progress = 90\">go to 90%</button>\r\n    </app-card>\r\n\r\n    <plg-title> simple tables </plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-simple-table [tableData]=\"simpletableData\"> </app-simple-table>\r\n    </app-card>\r\n\r\n    <plg-title>Dynamic Class Directive</plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <p>\r\n        This directive is used to add classes to the input element based on the\r\n        object passed to it.\r\n      </p>\r\n      <div>\r\n        <input type=\"text\" [appDynamicClass]=\"'form-control'\" />\r\n      </div>\r\n      <div>\r\n        <input type=\"text\" [appDynamicClass]=\"'form-control is-invalid mt-2'\" />\r\n      </div>\r\n    </app-card>\r\n\r\n    <!-- <plg-title>Date Picker</plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <app-date-picker label=\"Date test\"></app-date-picker>\r\n    </app-card> -->\r\n\r\n    <plg-title>Reusable Reactive Form</plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <p>\r\n        The `FormComponent` is a reusable component that includes a sub-form for\r\n        addresses (`app-address-form`), which is also reusable. It allows for\r\n        dynamically creating form fields via configurable sub-components\r\n        (`app-form-field`). The form is reactive and can be submitted via the\r\n        `submit` method.\r\n      </p>\r\n      <app-form (formSubmit)=\"onFormSubmit($event)\"></app-form>\r\n    </app-card>\r\n\r\n    <plg-title>Get request</plg-title>\r\n    <app-card [classNames]=\"'shadow-lg'\">\r\n      <p>usage of ajax from rxjs/ajax to get data from api</p>\r\n      <app-fetch-data></app-fetch-data>\r\n    </app-card>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "PlTitleComponent",
@@ -2521,6 +2828,33 @@
                 "name": "DatePickerComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/fetch-data/fetch-data.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "FetchDataComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/fetch-data/fetch-data.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "HttpResponse",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/fetch-data/fetch-data.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Pokemon",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {

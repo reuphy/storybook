@@ -1,7 +1,7 @@
 <div [formGroup]="form" class="form-group">
   <label [for]="inputOneConfig.name">{{ inputOneConfig.label }}</label>
   <input
-    *ngIf="inputOneConfig.type !== 'textarea'"
+    *ngIf="inputOneConfig.type !== 'textarea' && inputOneConfig.type !== 'date'"
     [type]="inputOneConfig.type"
     [formControlName]="inputOneConfig.name"
     [id]="inputOneConfig.name"
@@ -13,6 +13,12 @@
     [id]="inputOneConfig.name"
     [appDynamicClass]="inputOneConfig.classConfig"
   ></textarea>
+  <app-date-picker
+    *ngIf="inputOneConfig.type === 'date'"
+    [form]="form"
+    [controlName]="inputOneConfig.name"
+    [appDynamicClass]="inputOneConfig.classConfig"
+  ></app-date-picker>
   <div
     *ngIf="
       form.get(inputOneConfig.name)?.invalid &&

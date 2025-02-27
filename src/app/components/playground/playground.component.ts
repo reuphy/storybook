@@ -14,6 +14,8 @@ import { Validators } from '@angular/forms';
 import { CustomInputStyleDirective } from 'src/app/directives/text-input-style.directives';
 import { style } from 'd3-selection';
 import { DynamicClassDirective } from 'src/app/directives/dynamic-class.directive';
+import { DatePickerComponent } from '../date-picker/date-picker.component';
+import { FetchDataComponent } from '../fetch-data/fetch-data.component';
 
 @Component({
   selector: 'app-playground',
@@ -33,6 +35,8 @@ import { DynamicClassDirective } from 'src/app/directives/dynamic-class.directiv
     SimpleTableComponent,
     FormComponent,
     DynamicClassDirective,
+    DatePickerComponent,
+    FetchDataComponent,
   ],
 })
 export class PlaygroundComponent {

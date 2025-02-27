@@ -1,6 +1,6 @@
 <div [formGroup]="form" class="form-group">
-  <label [for]="controlName">{{ label }}</label>
-  <div class="input-group">
+  <!-- <label [for]="controlName">{{ label }}</label> -->
+  <div class="input-group mt-2">
     <input
       matInput
       [matDatepicker]="picker"
@@ -17,7 +17,11 @@
       <button mat-raised-button matDatepickerApply>Apply</button>
     </mat-datepicker-actions>
   </mat-datepicker>
-  <div *ngIf="form.get(controlName)?.invalid && form.get(controlName)?.touched">
-    <small class="text-danger">{{ label }} is required</small>
+  <div
+    *ngIf="
+      form && form.get(controlName)?.invalid && form.get(controlName)?.touched
+    "
+  >
+    <small class="text-danger">{{ label || controlName }} is required</small>
   </div>
 </div>
