@@ -1,0 +1,42 @@
+stages:
+  - install
+  #  - test
+  - build
+  - deploy
+
+variables:
+  NODE_ENV: production
+  NETLIFY_AUTH_TOKEN: "nfp_t1pUXJcM2QmFFX2NiQ5Ww98kxHFMdvNo3c63"
+
+cache:
+  paths:
+    - node_modules/
+
+default:
+  image: node:20.11.1
+
+before_script:
+  - npm install -g npm@10.2.4
+  - npm install -g @angular/cli@19.0.6
+  - npm ci --include=dev
+
+#test:
+#  stage: test
+#  script:
+#    - npm run test
+
+build:
+  stage: build
+  script:
+    - npm run build-storybook
+  artifacts:
+    paths:
+      - storybook-static/
+
+deploy:
+  stage: deploy
+  script:
+    - npm install -g netlify-cli
+    - netlify deploy --dir=storybook-static --prod --site=storybook-raphael --auth=$NETLIFY_AUTH_TOKEN
+  only:
+    - main
