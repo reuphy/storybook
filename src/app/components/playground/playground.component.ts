@@ -16,6 +16,10 @@ import { style } from 'd3-selection';
 import { DynamicClassDirective } from 'src/app/directives/dynamic-class.directive';
 import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { FetchDataComponent } from '../fetch-data/fetch-data.component';
+import {
+  CsDatePickerComponent,
+  DateOptions,
+} from '../cs-date-picker/cs-date-picker.component';
 
 @Component({
   selector: 'app-playground',
@@ -36,6 +40,7 @@ import { FetchDataComponent } from '../fetch-data/fetch-data.component';
     FormComponent,
     DynamicClassDirective,
     DatePickerComponent,
+    CsDatePickerComponent,
     FetchDataComponent,
   ],
 })
@@ -100,5 +105,37 @@ export class PlaygroundComponent {
 
   onFormSubmit(formData: any): void {
     console.log('Form Data:', formData);
+  }
+
+  // date picker
+  dateOptions: DateOptions[] = [
+    {
+      disabledWeekends: false,
+      isStepperYearShown: true,
+      disableRangePciker: false,
+    },
+    // {
+    //   selectedEndDate: new Date(),
+    //   selectedStartDate: new Date(),
+    //   disabledWeekends: false,
+    // },
+    // {
+    //   dateFormat: 'dd MM yyyy',
+    //   disableRangePciker: true,
+    // },
+    // {
+    //   selectedEndDate: new Date(),
+    //   selectedStartDate: new Date(),
+    //   disabledWeekends: false,
+    //   isStepperYearShown: false,
+    // },
+  ];
+  startDate = '';
+  todate = '';
+  date: Object[] = [{}, {}, {}, {}];
+  dateObject(e: any, index: number) {
+    console.log('date', index, e);
+
+    this.date[index] = e;
   }
 }

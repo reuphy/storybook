@@ -47,6 +47,81 @@
             "extends": []
         },
         {
+            "name": "DateOptions",
+            "id": "interface-DateOptions-5dd85d0c2b46021f778a5cca20d43f5ce317d0862615d5c8c01d2531046fb5929efb0986d36159cdffe009ac41fd537f6c6458bc97710aa7867bbad3b52ea4ff",
+            "file": "src/app/components/cs-date-picker/cs-date-picker.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { CommonModule, DatePipe } from '@angular/common';\r\nimport { FormsModule } from '@angular/forms';\r\n\r\nexport interface DateOptions {\r\n  dateFormat?: string;\r\n  selectedEndDate?: Date;\r\n  selectedStartDate?: Date;\r\n  disabledWeekends?: boolean;\r\n  disableRangePciker?: boolean;\r\n  isStepperYearShown?: boolean;\r\n}\r\n\r\n@Component({\r\n  selector: 'cs-date-picker',\r\n  standalone: true,\r\n  templateUrl: './cs-date-picker.component.html',\r\n  styleUrl: './cs-date-picker.component.scss',\r\n  imports: [CommonModule, FormsModule],\r\n  providers: [DatePipe],\r\n})\r\nexport class CsDatePickerComponent {\r\n  @Output() dateObject = new EventEmitter<Object>();\r\n  isRightChervronEnable = false;\r\n\r\n  @Input()\r\n  set dateOptions(dateOptions: DateOptions) {\r\n    if (dateOptions) {\r\n      this.setDateOptions(dateOptions);\r\n    }\r\n  }\r\n\r\n  disabledWeekends = true;\r\n  disableRangePciker = false;\r\n  @Input() isStepperYearShown = true;\r\n  dateFormat = '';\r\n\r\n  showDropdownWithEmptyContent = false;\r\n  days: (Date | undefined)[] = [];\r\n  years: number[] = [];\r\n  months: Date[] = [];\r\n  @Input() offsetYearsMenu = 5;\r\n  @Input() isSelectionDayAfterCurrentDayEnable = true;\r\n  isDayselected = false;\r\n  isDatePickerClicked = false;\r\n  radioButtonDate = new Date();\r\n  dateTosubmit = '';\r\n  tabBtnActive: number = -1;\r\n\r\n  currentDate: Date = new Date();\r\n  endDate: Date = new Date();\r\n\r\n  selectedStartDate: Date | undefined;\r\n  selectedStartDateTMP: Date | undefined;\r\n  selectedEndDate: Date | undefined;\r\n\r\n  dateDisplayed: string = '';\r\n  today = new Date().toLocaleDateString();\r\n  currentDay = new Date();\r\n  toggleYearChoice = false;\r\n  toggleMonthChoice = false;\r\n  yearchose = 0;\r\n  toggleDate = new Date();\r\n  abbreviatedMonth: string[] = [];\r\n  ngOnInit(): void {\r\n    this.renderCalendar();\r\n    this.setYearsMenuToChoose();\r\n    this.getMonthAbreviated();\r\n  }\r\n\r\n  constructor(private datePipe: DatePipe) {}\r\n\r\n  //to populate the calendar\r\n  renderCalendar() {\r\n    this.days = [];\r\n    this.currentDate.setDate(1);\r\n    this.currentDate.setHours(0, 0, 0, 0);\r\n\r\n    this.endDate = new Date(this.currentDate);\r\n    this.endDate.setMonth(this.endDate.getMonth() + 1);\r\n    this.endDate.setDate(0);\r\n\r\n    let dayFromNextMonthToDisplay = this.endDate.getDay()\r\n      ? 7 - this.endDate.getDay()\r\n      : 0;\r\n\r\n    for (\r\n      let indexDay = this.currentDate.getDate();\r\n      indexDay <= this.endDate.getDate() + dayFromNextMonthToDisplay;\r\n      indexDay++\r\n    ) {\r\n      let dateAtIndex: Date = new Date(this.currentDate);\r\n      dateAtIndex.setDate(indexDay);\r\n\r\n      if (indexDay === this.currentDate.getDate()) {\r\n        let spliceNumberElement = this.currentDate.getDay() || 7;\r\n\r\n        for (let i = 1; i < spliceNumberElement; i++) {\r\n          this.days.splice(0, 0, undefined);\r\n        }\r\n      }\r\n      this.days.push(dateAtIndex);\r\n    }\r\n  }\r\n\r\n  setYearsMenuToChoose() {\r\n    // offset number of years before current year\r\n    // ex: this.offsetYearsMenu = 5\r\n\r\n    //get current year - offset\r\n    // ex: initialYearMenu = 2017\r\n    let initialYearMenu = this.currentDate.getFullYear() - this.offsetYearsMenu;\r\n\r\n    // for loop initialYearMenu untill current year\r\n    // initialYearMenu++\r\n    for (\r\n      let index = initialYearMenu;\r\n      index <= this.currentDate.getFullYear();\r\n      index++\r\n    ) {\r\n      this.years.push(index);\r\n    }\r\n  }\r\n\r\n  getMonthAbreviated() {\r\n    let locale = 'en-GB';\r\n    let objDate = new Date();\r\n    for (let index = 0; index <= 11; index++) {\r\n      this.abbreviatedMonth.push(\r\n        new Date(objDate.setMonth(index)).toLocaleString(locale, {\r\n          month: 'short',\r\n        })\r\n      );\r\n    }\r\n  }\r\n\r\n  setMonthMenuToChoose() {\r\n    this.toggleMonthChoice = true;\r\n\r\n    let res = [];\r\n    let yearChosen = this.toggleDate.getFullYear();\r\n    let monthChoice =\r\n      yearChosen === new Date().getFullYear() ? new Date().getMonth() : 11;\r\n    const endDate = new Date(yearChosen, monthChoice, 1);\r\n    const startDate = new Date(endDate.setFullYear(endDate.getFullYear()));\r\n    startDate.setDate(1);\r\n    startDate.setMonth(0);\r\n    for (let index = 0; index <= endDate.getMonth(); index++) {\r\n      let tempDate = new Date(startDate.setMonth(index));\r\n      res.push(tempDate);\r\n    }\r\n    this.months = res;\r\n  }\r\n\r\n  getSelectedMonth(month: Date): void {\r\n    this.currentDate = new Date(month);\r\n    this.toggleDate = this.currentDate;\r\n    this.toggleMonthChoice = false;\r\n    this.checkIsRightChervronEnable(0);\r\n    this.renderCalendar();\r\n  }\r\n\r\n  checkIsRightChervronEnable(offset: number) {\r\n    this.currentDate = new Date(\r\n      this.currentDate.setMonth(this.currentDate.getMonth() + offset)\r\n    );\r\n    let monthOffset = new Date();\r\n    monthOffset.setMonth(monthOffset.getMonth() - 1);\r\n    this.isRightChervronEnable = this.currentDate < monthOffset;\r\n  }\r\n\r\n  moveToMonthOffset(event: any, offset: number) {\r\n    event.stopPropagation();\r\n    this.checkIsRightChervronEnable(offset);\r\n\r\n    this.toggleDate = this.currentDate;\r\n    this.renderCalendar();\r\n  }\r\n\r\n  moveToYearOffset(event: any, offset: number) {\r\n    event.stopPropagation();\r\n    let calculateOffset = this.years.length - (offset + 1);\r\n    this.toggleDate = new Date(\r\n      this.toggleDate.setFullYear(\r\n        new Date().getFullYear() - calculateOffset,\r\n        this.toggleDate.getMonth()\r\n      )\r\n    );\r\n    this.currentDate = new Date(\r\n      this.currentDate.setFullYear(new Date().getFullYear() - calculateOffset)\r\n    );\r\n    this.checkIsRightChervronEnable(0);\r\n    this.setTabBtnActive(offset);\r\n    this.renderCalendar();\r\n    this.toggleYearChoice = false;\r\n    this.setMonthMenuToChoose();\r\n  }\r\n\r\n  getSelectedDay(day: Date | undefined, e: any): void {\r\n    if (day === undefined) return;\r\n\r\n    if (e.type === 'click' || e.type === 'change') {\r\n      e.stopPropagation();\r\n      this.setTabBtnActive(-1);\r\n\r\n      let weekendDay = new Date(day).getDay();\r\n      if (this.disabledWeekends && (weekendDay === 6 || weekendDay === 0))\r\n        return;\r\n\r\n      // disable current day + 1 selection if needed\r\n      this.currentDay = new Date();\r\n      if (day > this.currentDay && !this.isSelectionDayAfterCurrentDayEnable)\r\n        return;\r\n\r\n      if (this.disableRangePciker) {\r\n        this.selectedStartDate = new Date(day);\r\n        this.selectedEndDate = new Date(day);\r\n      } else {\r\n        if (\r\n          this.selectedStartDate === undefined ||\r\n          day < this.selectedStartDate ||\r\n          (day !== this.selectedStartDate && this.isDatePickerClicked === false)\r\n        ) {\r\n          this.selectedStartDate = new Date(day);\r\n          this.isDatePickerClicked = true;\r\n          // reseting endate to make sure it look like DD/MM/YYYY\r\n          this.selectedEndDate = undefined;\r\n        } else if (this.selectedStartDate && this.isDatePickerClicked) {\r\n          this.selectedEndDate = new Date(day);\r\n          this.isDatePickerClicked = false;\r\n        } else {\r\n          this.selectedStartDate = new Date(day);\r\n          this.selectedEndDate = undefined;\r\n          this.isDatePickerClicked = true;\r\n        }\r\n      }\r\n\r\n      this.updateDateDisplay();\r\n      if (\r\n        (this.selectedStartDate !== undefined &&\r\n          this.selectedEndDate !== undefined) ||\r\n        this.disableRangePciker\r\n      )\r\n        this.emitDateToParent();\r\n    }\r\n\r\n    if (\r\n      e.type === 'mouseenter' &&\r\n      this.isDatePickerClicked &&\r\n      !this.disableRangePciker\r\n    ) {\r\n      this.selectedEndDate = new Date(day);\r\n    }\r\n  }\r\n\r\n  leavePicker() {\r\n    if (this.isDatePickerClicked && this.selectedStartDate)\r\n      this.selectedEndDate = new Date(this.selectedStartDate);\r\n  }\r\n\r\n  setSelectionDate(numberOfDays: number, activeBtnIndex: number) {\r\n    let endDate = new Date();\r\n    endDate.setHours(0, 0, 0, 0);\r\n    this.selectedEndDate = new Date(endDate);\r\n    let startDate = new Date(this.selectedEndDate);\r\n    startDate.setDate(this.selectedEndDate.getDate() - numberOfDays);\r\n    this.selectedStartDate = new Date(startDate);\r\n    this.currentDate = new Date();\r\n    this.setTabBtnActive(activeBtnIndex);\r\n    this.updateDateDisplay();\r\n    this.renderCalendar();\r\n    this.emitDateToParent();\r\n  }\r\n\r\n  setDateOptions(dateOptions: DateOptions) {\r\n    this.disabledWeekends =\r\n      dateOptions.disabledWeekends !== undefined\r\n        ? dateOptions.disabledWeekends\r\n        : true;\r\n    this.disableRangePciker =\r\n      dateOptions.disableRangePciker !== undefined\r\n        ? dateOptions.disableRangePciker\r\n        : false;\r\n    this.isStepperYearShown =\r\n      dateOptions.isStepperYearShown !== undefined\r\n        ? dateOptions.isStepperYearShown\r\n        : true;\r\n\r\n    this.dateFormat = dateOptions.dateFormat || 'dd/MM/yyyy';\r\n\r\n    this.selectedEndDate = dateOptions.selectedEndDate\r\n      ? new Date(dateOptions.selectedEndDate)\r\n      : undefined;\r\n    this.selectedStartDate = dateOptions.selectedStartDate\r\n      ? new Date(dateOptions.selectedStartDate)\r\n      : undefined;\r\n    this.selectedStartDate = dateOptions.selectedStartDate\r\n      ? new Date(dateOptions.selectedStartDate)\r\n      : undefined;\r\n    this.currentDate = new Date();\r\n\r\n    if (this.selectedEndDate) {\r\n      this.selectedEndDate.setHours(0, 0, 0, 0);\r\n    }\r\n\r\n    if (this.selectedStartDate) {\r\n      this.selectedStartDate.setHours(0, 0, 0, 0);\r\n    }\r\n\r\n    this.updateDateDisplay();\r\n    this.renderCalendar();\r\n    this.emitDateToParent();\r\n  }\r\n\r\n  emitDateToParent() {\r\n    this.dateObject.emit({\r\n      startDate: this.selectedStartDate,\r\n      todate: this.selectedEndDate,\r\n    });\r\n  }\r\n\r\n  closeDropDown(e: any) {\r\n    e.stopPropagation();\r\n    // if (e.relatedTarget === null && e.type === 'blur') {\r\n    //   this.showDropdownWithEmptyContent = false;\r\n    // }\r\n    // if (e.relatedTarget === null && e.type === 'focusout') {\r\n    //   this.showDropdownWithEmptyContent = false;\r\n    // }\r\n\r\n    // if (\r\n    //   this.isDatePickerClicked &&\r\n    //   !this.toggleYearChoice &&\r\n    //   !this.toggleMonthChoice\r\n    // ) {\r\n    //   this.selectedEndDate = this.selectedStartDate;\r\n    //   // this.isDatePickerClicked = false;\r\n    //   console.log('ici');\r\n    // }\r\n  }\r\n\r\n  openDropDown() {\r\n    this.showDropdownWithEmptyContent = !this.showDropdownWithEmptyContent;\r\n  }\r\n\r\n  setTabBtnActive(index: number) {\r\n    this.tabBtnActive = index;\r\n  }\r\n\r\n  isSelectedStartOrEndDate(day: Date): boolean {\r\n    return (\r\n      (this.selectedStartDate !== undefined &&\r\n        this.selectedStartDate.getTime() === day.getTime()) ||\r\n      (this.selectedEndDate !== undefined &&\r\n        this.selectedEndDate.getTime() === day.getTime())\r\n    );\r\n  }\r\n\r\n  isSelectedStartDate(day: Date): boolean {\r\n    return (\r\n      this.selectedStartDate !== undefined &&\r\n      this.selectedStartDate.getTime() === day.getTime()\r\n    );\r\n  }\r\n\r\n  updateDateDisplay() {\r\n    if (this.selectedStartDate) {\r\n      this.dateDisplayed =\r\n        this.datePipe.transform(this.selectedStartDate, this.dateFormat) || '';\r\n      if (!this.disableRangePciker) {\r\n        this.dateDisplayed += this.selectedEndDate\r\n          ? ' - ' +\r\n            this.datePipe.transform(this.selectedEndDate, this.dateFormat)\r\n          : ' - ' + this.dateFormat.toUpperCase();\r\n      }\r\n    } else {\r\n      this.dateDisplayed = '';\r\n    }\r\n  }\r\n\r\n  getDaysOfWeekInAbreviateAndLocaleFormat() {\r\n    const weekdayDateMap: any = {\r\n      Mon: new Date('2020-01-06T00:00:00.000Z'),\r\n      Tue: new Date('2020-01-07T00:00:00.000Z'),\r\n      Wed: new Date('2020-01-08T00:00:00.000Z'),\r\n      Thu: new Date('2020-01-09T00:00:00.000Z'),\r\n      Fri: new Date('2020-01-10T00:00:00.000Z'),\r\n      Sat: new Date('2020-01-11T00:00:00.000Z'),\r\n      Sun: new Date('2020-01-12T00:00:00.000Z'),\r\n    };\r\n    const shortWeekdays = Object.keys(weekdayDateMap);\r\n\r\n    const getDayOfWeek = (shortName: any, locale = 'en-US', length = 'short') =>\r\n      new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(\r\n        weekdayDateMap[shortName]\r\n      );\r\n\r\n    const getDaysOfWeek = (locale = 'en-US', length = 'short') =>\r\n      shortWeekdays.map((shortName) => getDayOfWeek(shortName, locale, length));\r\n\r\n    return getDaysOfWeek(navigator.language);\r\n  }\r\n\r\n  createDateObject(value: any) {\r\n    const date = new Date(value.split('/').reverse().join('/'));\r\n    return date.toString() == 'Invalid Date' ? null : date;\r\n  }\r\n\r\n  // TODO in the future\r\n  dateDisplayedChange(event: any) {\r\n    // add in the input\r\n    // (change)=\"dateDisplayedChange($event.target.value)\"\r\n    let dateChangeArray = event.target.value.replace(/\\s/g, '').split('-');\r\n    console.log(event);\r\n\r\n    let startDate = this.createDateObject(dateChangeArray[0]);\r\n\r\n    let endDate = this.createDateObject(dateChangeArray[1]);\r\n\r\n    if (startDate && endDate && startDate <= endDate) {\r\n      this.getSelectedDay(startDate, event);\r\n      this.getSelectedDay(endDate, event);\r\n    }\r\n  }\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "dateFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "disabledWeekends",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "disableRangePciker",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "isStepperYearShown",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "selectedEndDate",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Date",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "selectedStartDate",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Date",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "HttpResponse",
             "id": "interface-HttpResponse-806e155c6839d18dcec4127ab7bfc9990f0e94db330290f80c5eb1606f040f726c09b5e4b91f1515ab717eb3e3cf802c354613908fa754d213f6861bf045bdd8",
             "file": "src/app/components/fetch-data/fetch-data.component.ts",
@@ -1293,6 +1368,970 @@
             ],
             "stylesData": "",
             "extends": []
+        },
+        {
+            "name": "CsDatePickerComponent",
+            "id": "component-CsDatePickerComponent-5dd85d0c2b46021f778a5cca20d43f5ce317d0862615d5c8c01d2531046fb5929efb0986d36159cdffe009ac41fd537f6c6458bc97710aa7867bbad3b52ea4ff",
+            "file": "src/app/components/cs-date-picker/cs-date-picker.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "DatePipe",
+                    "type": "pipe"
+                }
+            ],
+            "selector": "cs-date-picker",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./cs-date-picker.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "dateOptions",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "DateOptions",
+                    "decorators": []
+                },
+                {
+                    "name": "isSelectionDayAfterCurrentDayEnable",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 43,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "isStepperYearShown",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 35,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "offsetYearsMenu",
+                    "defaultValue": "5",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 42,
+                    "type": "number",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "dateObject",
+                    "defaultValue": "new EventEmitter<Object>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "abbreviatedMonth",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 64
+                },
+                {
+                    "name": "currentDate",
+                    "defaultValue": "new Date()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Date",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 50
+                },
+                {
+                    "name": "currentDay",
+                    "defaultValue": "new Date()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 59
+                },
+                {
+                    "name": "dateDisplayed",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 57
+                },
+                {
+                    "name": "dateFormat",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 36
+                },
+                {
+                    "name": "dateTosubmit",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 47
+                },
+                {
+                    "name": "days",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "(Date | undefined)[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 39
+                },
+                {
+                    "name": "disabledWeekends",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 33
+                },
+                {
+                    "name": "disableRangePciker",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 34
+                },
+                {
+                    "name": "endDate",
+                    "defaultValue": "new Date()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Date",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 51
+                },
+                {
+                    "name": "isDatePickerClicked",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 45
+                },
+                {
+                    "name": "isDayselected",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 44
+                },
+                {
+                    "name": "isRightChervronEnable",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 24
+                },
+                {
+                    "name": "months",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Date[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 41
+                },
+                {
+                    "name": "radioButtonDate",
+                    "defaultValue": "new Date()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 46
+                },
+                {
+                    "name": "selectedEndDate",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Date | undefined",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 55
+                },
+                {
+                    "name": "selectedStartDate",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Date | undefined",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 53
+                },
+                {
+                    "name": "selectedStartDateTMP",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Date | undefined",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 54
+                },
+                {
+                    "name": "showDropdownWithEmptyContent",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 38
+                },
+                {
+                    "name": "tabBtnActive",
+                    "defaultValue": "-1",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 48
+                },
+                {
+                    "name": "today",
+                    "defaultValue": "new Date().toLocaleDateString()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 58
+                },
+                {
+                    "name": "toggleDate",
+                    "defaultValue": "new Date()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 63
+                },
+                {
+                    "name": "toggleMonthChoice",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 61
+                },
+                {
+                    "name": "toggleYearChoice",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 60
+                },
+                {
+                    "name": "yearchose",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 62
+                },
+                {
+                    "name": "years",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 40
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "checkIsRightChervronEnable",
+                    "args": [
+                        {
+                            "name": "offset",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 163,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "offset",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "closeDropDown",
+                    "args": [
+                        {
+                            "name": "e",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 322,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "e",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "createDateObject",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 404,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "dateDisplayedChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 410,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "emitDateToParent",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 315,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getDaysOfWeekInAbreviateAndLocaleFormat",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 381,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getMonthAbreviated",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 125,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getSelectedDay",
+                    "args": [
+                        {
+                            "name": "day",
+                            "type": "Date | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "e",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 199,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "day",
+                            "type": "Date | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "e",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getSelectedMonth",
+                    "args": [
+                        {
+                            "name": "month",
+                            "type": "Date",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 155,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "month",
+                            "type": "Date",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isSelectedStartDate",
+                    "args": [
+                        {
+                            "name": "day",
+                            "type": "Date",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 359,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "day",
+                            "type": "Date",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isSelectedStartOrEndDate",
+                    "args": [
+                        {
+                            "name": "day",
+                            "type": "Date",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 350,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "day",
+                            "type": "Date",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "leavePicker",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 256,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "moveToMonthOffset",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "offset",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 172,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "offset",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "moveToYearOffset",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "offset",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 180,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "offset",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 65,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "openDropDown",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 342,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "renderCalendar",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 74,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "setDateOptions",
+                    "args": [
+                        {
+                            "name": "dateOptions",
+                            "type": "DateOptions",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 275,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "dateOptions",
+                            "type": "DateOptions",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setMonthMenuToChoose",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 137,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "setSelectionDate",
+                    "args": [
+                        {
+                            "name": "numberOfDays",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "activeBtnIndex",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 261,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "numberOfDays",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "activeBtnIndex",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setTabBtnActive",
+                    "args": [
+                        {
+                            "name": "index",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 346,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "index",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setYearsMenuToChoose",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 106,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "updateDateDisplay",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 366,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { CommonModule, DatePipe } from '@angular/common';\r\nimport { FormsModule } from '@angular/forms';\r\n\r\nexport interface DateOptions {\r\n  dateFormat?: string;\r\n  selectedEndDate?: Date;\r\n  selectedStartDate?: Date;\r\n  disabledWeekends?: boolean;\r\n  disableRangePciker?: boolean;\r\n  isStepperYearShown?: boolean;\r\n}\r\n\r\n@Component({\r\n  selector: 'cs-date-picker',\r\n  standalone: true,\r\n  templateUrl: './cs-date-picker.component.html',\r\n  styleUrl: './cs-date-picker.component.scss',\r\n  imports: [CommonModule, FormsModule],\r\n  providers: [DatePipe],\r\n})\r\nexport class CsDatePickerComponent {\r\n  @Output() dateObject = new EventEmitter<Object>();\r\n  isRightChervronEnable = false;\r\n\r\n  @Input()\r\n  set dateOptions(dateOptions: DateOptions) {\r\n    if (dateOptions) {\r\n      this.setDateOptions(dateOptions);\r\n    }\r\n  }\r\n\r\n  disabledWeekends = true;\r\n  disableRangePciker = false;\r\n  @Input() isStepperYearShown = true;\r\n  dateFormat = '';\r\n\r\n  showDropdownWithEmptyContent = false;\r\n  days: (Date | undefined)[] = [];\r\n  years: number[] = [];\r\n  months: Date[] = [];\r\n  @Input() offsetYearsMenu = 5;\r\n  @Input() isSelectionDayAfterCurrentDayEnable = true;\r\n  isDayselected = false;\r\n  isDatePickerClicked = false;\r\n  radioButtonDate = new Date();\r\n  dateTosubmit = '';\r\n  tabBtnActive: number = -1;\r\n\r\n  currentDate: Date = new Date();\r\n  endDate: Date = new Date();\r\n\r\n  selectedStartDate: Date | undefined;\r\n  selectedStartDateTMP: Date | undefined;\r\n  selectedEndDate: Date | undefined;\r\n\r\n  dateDisplayed: string = '';\r\n  today = new Date().toLocaleDateString();\r\n  currentDay = new Date();\r\n  toggleYearChoice = false;\r\n  toggleMonthChoice = false;\r\n  yearchose = 0;\r\n  toggleDate = new Date();\r\n  abbreviatedMonth: string[] = [];\r\n  ngOnInit(): void {\r\n    this.renderCalendar();\r\n    this.setYearsMenuToChoose();\r\n    this.getMonthAbreviated();\r\n  }\r\n\r\n  constructor(private datePipe: DatePipe) {}\r\n\r\n  //to populate the calendar\r\n  renderCalendar() {\r\n    this.days = [];\r\n    this.currentDate.setDate(1);\r\n    this.currentDate.setHours(0, 0, 0, 0);\r\n\r\n    this.endDate = new Date(this.currentDate);\r\n    this.endDate.setMonth(this.endDate.getMonth() + 1);\r\n    this.endDate.setDate(0);\r\n\r\n    let dayFromNextMonthToDisplay = this.endDate.getDay()\r\n      ? 7 - this.endDate.getDay()\r\n      : 0;\r\n\r\n    for (\r\n      let indexDay = this.currentDate.getDate();\r\n      indexDay <= this.endDate.getDate() + dayFromNextMonthToDisplay;\r\n      indexDay++\r\n    ) {\r\n      let dateAtIndex: Date = new Date(this.currentDate);\r\n      dateAtIndex.setDate(indexDay);\r\n\r\n      if (indexDay === this.currentDate.getDate()) {\r\n        let spliceNumberElement = this.currentDate.getDay() || 7;\r\n\r\n        for (let i = 1; i < spliceNumberElement; i++) {\r\n          this.days.splice(0, 0, undefined);\r\n        }\r\n      }\r\n      this.days.push(dateAtIndex);\r\n    }\r\n  }\r\n\r\n  setYearsMenuToChoose() {\r\n    // offset number of years before current year\r\n    // ex: this.offsetYearsMenu = 5\r\n\r\n    //get current year - offset\r\n    // ex: initialYearMenu = 2017\r\n    let initialYearMenu = this.currentDate.getFullYear() - this.offsetYearsMenu;\r\n\r\n    // for loop initialYearMenu untill current year\r\n    // initialYearMenu++\r\n    for (\r\n      let index = initialYearMenu;\r\n      index <= this.currentDate.getFullYear();\r\n      index++\r\n    ) {\r\n      this.years.push(index);\r\n    }\r\n  }\r\n\r\n  getMonthAbreviated() {\r\n    let locale = 'en-GB';\r\n    let objDate = new Date();\r\n    for (let index = 0; index <= 11; index++) {\r\n      this.abbreviatedMonth.push(\r\n        new Date(objDate.setMonth(index)).toLocaleString(locale, {\r\n          month: 'short',\r\n        })\r\n      );\r\n    }\r\n  }\r\n\r\n  setMonthMenuToChoose() {\r\n    this.toggleMonthChoice = true;\r\n\r\n    let res = [];\r\n    let yearChosen = this.toggleDate.getFullYear();\r\n    let monthChoice =\r\n      yearChosen === new Date().getFullYear() ? new Date().getMonth() : 11;\r\n    const endDate = new Date(yearChosen, monthChoice, 1);\r\n    const startDate = new Date(endDate.setFullYear(endDate.getFullYear()));\r\n    startDate.setDate(1);\r\n    startDate.setMonth(0);\r\n    for (let index = 0; index <= endDate.getMonth(); index++) {\r\n      let tempDate = new Date(startDate.setMonth(index));\r\n      res.push(tempDate);\r\n    }\r\n    this.months = res;\r\n  }\r\n\r\n  getSelectedMonth(month: Date): void {\r\n    this.currentDate = new Date(month);\r\n    this.toggleDate = this.currentDate;\r\n    this.toggleMonthChoice = false;\r\n    this.checkIsRightChervronEnable(0);\r\n    this.renderCalendar();\r\n  }\r\n\r\n  checkIsRightChervronEnable(offset: number) {\r\n    this.currentDate = new Date(\r\n      this.currentDate.setMonth(this.currentDate.getMonth() + offset)\r\n    );\r\n    let monthOffset = new Date();\r\n    monthOffset.setMonth(monthOffset.getMonth() - 1);\r\n    this.isRightChervronEnable = this.currentDate < monthOffset;\r\n  }\r\n\r\n  moveToMonthOffset(event: any, offset: number) {\r\n    event.stopPropagation();\r\n    this.checkIsRightChervronEnable(offset);\r\n\r\n    this.toggleDate = this.currentDate;\r\n    this.renderCalendar();\r\n  }\r\n\r\n  moveToYearOffset(event: any, offset: number) {\r\n    event.stopPropagation();\r\n    let calculateOffset = this.years.length - (offset + 1);\r\n    this.toggleDate = new Date(\r\n      this.toggleDate.setFullYear(\r\n        new Date().getFullYear() - calculateOffset,\r\n        this.toggleDate.getMonth()\r\n      )\r\n    );\r\n    this.currentDate = new Date(\r\n      this.currentDate.setFullYear(new Date().getFullYear() - calculateOffset)\r\n    );\r\n    this.checkIsRightChervronEnable(0);\r\n    this.setTabBtnActive(offset);\r\n    this.renderCalendar();\r\n    this.toggleYearChoice = false;\r\n    this.setMonthMenuToChoose();\r\n  }\r\n\r\n  getSelectedDay(day: Date | undefined, e: any): void {\r\n    if (day === undefined) return;\r\n\r\n    if (e.type === 'click' || e.type === 'change') {\r\n      e.stopPropagation();\r\n      this.setTabBtnActive(-1);\r\n\r\n      let weekendDay = new Date(day).getDay();\r\n      if (this.disabledWeekends && (weekendDay === 6 || weekendDay === 0))\r\n        return;\r\n\r\n      // disable current day + 1 selection if needed\r\n      this.currentDay = new Date();\r\n      if (day > this.currentDay && !this.isSelectionDayAfterCurrentDayEnable)\r\n        return;\r\n\r\n      if (this.disableRangePciker) {\r\n        this.selectedStartDate = new Date(day);\r\n        this.selectedEndDate = new Date(day);\r\n      } else {\r\n        if (\r\n          this.selectedStartDate === undefined ||\r\n          day < this.selectedStartDate ||\r\n          (day !== this.selectedStartDate && this.isDatePickerClicked === false)\r\n        ) {\r\n          this.selectedStartDate = new Date(day);\r\n          this.isDatePickerClicked = true;\r\n          // reseting endate to make sure it look like DD/MM/YYYY\r\n          this.selectedEndDate = undefined;\r\n        } else if (this.selectedStartDate && this.isDatePickerClicked) {\r\n          this.selectedEndDate = new Date(day);\r\n          this.isDatePickerClicked = false;\r\n        } else {\r\n          this.selectedStartDate = new Date(day);\r\n          this.selectedEndDate = undefined;\r\n          this.isDatePickerClicked = true;\r\n        }\r\n      }\r\n\r\n      this.updateDateDisplay();\r\n      if (\r\n        (this.selectedStartDate !== undefined &&\r\n          this.selectedEndDate !== undefined) ||\r\n        this.disableRangePciker\r\n      )\r\n        this.emitDateToParent();\r\n    }\r\n\r\n    if (\r\n      e.type === 'mouseenter' &&\r\n      this.isDatePickerClicked &&\r\n      !this.disableRangePciker\r\n    ) {\r\n      this.selectedEndDate = new Date(day);\r\n    }\r\n  }\r\n\r\n  leavePicker() {\r\n    if (this.isDatePickerClicked && this.selectedStartDate)\r\n      this.selectedEndDate = new Date(this.selectedStartDate);\r\n  }\r\n\r\n  setSelectionDate(numberOfDays: number, activeBtnIndex: number) {\r\n    let endDate = new Date();\r\n    endDate.setHours(0, 0, 0, 0);\r\n    this.selectedEndDate = new Date(endDate);\r\n    let startDate = new Date(this.selectedEndDate);\r\n    startDate.setDate(this.selectedEndDate.getDate() - numberOfDays);\r\n    this.selectedStartDate = new Date(startDate);\r\n    this.currentDate = new Date();\r\n    this.setTabBtnActive(activeBtnIndex);\r\n    this.updateDateDisplay();\r\n    this.renderCalendar();\r\n    this.emitDateToParent();\r\n  }\r\n\r\n  setDateOptions(dateOptions: DateOptions) {\r\n    this.disabledWeekends =\r\n      dateOptions.disabledWeekends !== undefined\r\n        ? dateOptions.disabledWeekends\r\n        : true;\r\n    this.disableRangePciker =\r\n      dateOptions.disableRangePciker !== undefined\r\n        ? dateOptions.disableRangePciker\r\n        : false;\r\n    this.isStepperYearShown =\r\n      dateOptions.isStepperYearShown !== undefined\r\n        ? dateOptions.isStepperYearShown\r\n        : true;\r\n\r\n    this.dateFormat = dateOptions.dateFormat || 'dd/MM/yyyy';\r\n\r\n    this.selectedEndDate = dateOptions.selectedEndDate\r\n      ? new Date(dateOptions.selectedEndDate)\r\n      : undefined;\r\n    this.selectedStartDate = dateOptions.selectedStartDate\r\n      ? new Date(dateOptions.selectedStartDate)\r\n      : undefined;\r\n    this.selectedStartDate = dateOptions.selectedStartDate\r\n      ? new Date(dateOptions.selectedStartDate)\r\n      : undefined;\r\n    this.currentDate = new Date();\r\n\r\n    if (this.selectedEndDate) {\r\n      this.selectedEndDate.setHours(0, 0, 0, 0);\r\n    }\r\n\r\n    if (this.selectedStartDate) {\r\n      this.selectedStartDate.setHours(0, 0, 0, 0);\r\n    }\r\n\r\n    this.updateDateDisplay();\r\n    this.renderCalendar();\r\n    this.emitDateToParent();\r\n  }\r\n\r\n  emitDateToParent() {\r\n    this.dateObject.emit({\r\n      startDate: this.selectedStartDate,\r\n      todate: this.selectedEndDate,\r\n    });\r\n  }\r\n\r\n  closeDropDown(e: any) {\r\n    e.stopPropagation();\r\n    // if (e.relatedTarget === null && e.type === 'blur') {\r\n    //   this.showDropdownWithEmptyContent = false;\r\n    // }\r\n    // if (e.relatedTarget === null && e.type === 'focusout') {\r\n    //   this.showDropdownWithEmptyContent = false;\r\n    // }\r\n\r\n    // if (\r\n    //   this.isDatePickerClicked &&\r\n    //   !this.toggleYearChoice &&\r\n    //   !this.toggleMonthChoice\r\n    // ) {\r\n    //   this.selectedEndDate = this.selectedStartDate;\r\n    //   // this.isDatePickerClicked = false;\r\n    //   console.log('ici');\r\n    // }\r\n  }\r\n\r\n  openDropDown() {\r\n    this.showDropdownWithEmptyContent = !this.showDropdownWithEmptyContent;\r\n  }\r\n\r\n  setTabBtnActive(index: number) {\r\n    this.tabBtnActive = index;\r\n  }\r\n\r\n  isSelectedStartOrEndDate(day: Date): boolean {\r\n    return (\r\n      (this.selectedStartDate !== undefined &&\r\n        this.selectedStartDate.getTime() === day.getTime()) ||\r\n      (this.selectedEndDate !== undefined &&\r\n        this.selectedEndDate.getTime() === day.getTime())\r\n    );\r\n  }\r\n\r\n  isSelectedStartDate(day: Date): boolean {\r\n    return (\r\n      this.selectedStartDate !== undefined &&\r\n      this.selectedStartDate.getTime() === day.getTime()\r\n    );\r\n  }\r\n\r\n  updateDateDisplay() {\r\n    if (this.selectedStartDate) {\r\n      this.dateDisplayed =\r\n        this.datePipe.transform(this.selectedStartDate, this.dateFormat) || '';\r\n      if (!this.disableRangePciker) {\r\n        this.dateDisplayed += this.selectedEndDate\r\n          ? ' - ' +\r\n            this.datePipe.transform(this.selectedEndDate, this.dateFormat)\r\n          : ' - ' + this.dateFormat.toUpperCase();\r\n      }\r\n    } else {\r\n      this.dateDisplayed = '';\r\n    }\r\n  }\r\n\r\n  getDaysOfWeekInAbreviateAndLocaleFormat() {\r\n    const weekdayDateMap: any = {\r\n      Mon: new Date('2020-01-06T00:00:00.000Z'),\r\n      Tue: new Date('2020-01-07T00:00:00.000Z'),\r\n      Wed: new Date('2020-01-08T00:00:00.000Z'),\r\n      Thu: new Date('2020-01-09T00:00:00.000Z'),\r\n      Fri: new Date('2020-01-10T00:00:00.000Z'),\r\n      Sat: new Date('2020-01-11T00:00:00.000Z'),\r\n      Sun: new Date('2020-01-12T00:00:00.000Z'),\r\n    };\r\n    const shortWeekdays = Object.keys(weekdayDateMap);\r\n\r\n    const getDayOfWeek = (shortName: any, locale = 'en-US', length = 'short') =>\r\n      new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(\r\n        weekdayDateMap[shortName]\r\n      );\r\n\r\n    const getDaysOfWeek = (locale = 'en-US', length = 'short') =>\r\n      shortWeekdays.map((shortName) => getDayOfWeek(shortName, locale, length));\r\n\r\n    return getDaysOfWeek(navigator.language);\r\n  }\r\n\r\n  createDateObject(value: any) {\r\n    const date = new Date(value.split('/').reverse().join('/'));\r\n    return date.toString() == 'Invalid Date' ? null : date;\r\n  }\r\n\r\n  // TODO in the future\r\n  dateDisplayedChange(event: any) {\r\n    // add in the input\r\n    // (change)=\"dateDisplayedChange($event.target.value)\"\r\n    let dateChangeArray = event.target.value.replace(/\\s/g, '').split('-');\r\n    console.log(event);\r\n\r\n    let startDate = this.createDateObject(dateChangeArray[0]);\r\n\r\n    let endDate = this.createDateObject(dateChangeArray[1]);\r\n\r\n    if (startDate && endDate && startDate <= endDate) {\r\n      this.getSelectedDay(startDate, event);\r\n      this.getSelectedDay(endDate, event);\r\n    }\r\n  }\r\n}\r\n",
+            "styleUrl": "./cs-date-picker.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "datePipe",
+                        "type": "DatePipe",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 69,
+                "jsdoctags": [
+                    {
+                        "name": "datePipe",
+                        "type": "DatePipe",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "accessors": {
+                "dateOptions": {
+                    "name": "dateOptions",
+                    "setSignature": {
+                        "name": "dateOptions",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "dateOptions",
+                                "type": "DateOptions",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 27,
+                        "jsdoctags": [
+                            {
+                                "name": "dateOptions",
+                                "type": "DateOptions",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "templateData": "<div class=\"date-picker-wrapper\">\r\n  <div class=\"pb-md-0 pb-2\">\r\n    <div class=\"tk-dropdown\">\r\n      <div\r\n        class=\"tk-form-control-icon rem\"\r\n        tabindex=\"0\"\r\n        (click)=\"openDropDown()\"\r\n        (focusout)=\"closeDropDown($event)\"\r\n      >\r\n        <input\r\n          type=\"text\"\r\n          data-e2e=\"regular-input-right-icon\"\r\n          name=\"regular-input-right-icon\"\r\n          class=\"tk-form-control cursor-pointer tk-date-picker-input pb-0\"\r\n          placeholder=\"{{\r\n            dateFormat.toUpperCase() +\r\n              (disableRangePciker ? '' : ' - ' + dateFormat.toUpperCase())\r\n          }}\"\r\n          [(ngModel)]=\"dateDisplayed\"\r\n          (change)=\"dateDisplayedChange($event)\"\r\n        />\r\n        <div class=\"tk-form-control-right-icon\">\r\n          <i\r\n            class=\"icon fa\"\r\n            aria-hidden=\"true\"\r\n            [class.fa-chevron-down]=\"!showDropdownWithEmptyContent\"\r\n            [class.fa-chevron-up]=\"showDropdownWithEmptyContent\"\r\n          >\r\n          </i>\r\n        </div>\r\n      </div>\r\n      <ul\r\n        tabindex=\"0\"\r\n        *ngIf=\"showDropdownWithEmptyContent\"\r\n        (click)=\"closeDropDown($event)\"\r\n        (focusout)=\"closeDropDown($event)\"\r\n        class=\"tk-dropdown-content mt-0 pl-0 shadow-md\"\r\n        style=\"z-index: 999999\"\r\n      >\r\n        <li>\r\n          <div class=\"\">\r\n            <div class=\"calendar p-3\">\r\n              <ng-content></ng-content>\r\n              <div\r\n                class=\"d-flex align-items-center justify-content-between my-3\"\r\n              >\r\n                <div\r\n                  class=\"d-flex align-items-center pointer hover-gray-5\"\r\n                  (click)=\"\r\n                    years.length > 1\r\n                      ? (toggleYearChoice = !toggleYearChoice)\r\n                      : toggleYearChoice;\r\n                    toggleMonthChoice = false\r\n                  \"\r\n                >\r\n                  <p class=\"font-family-csePRoman m-0\">\r\n                    {{ toggleDate | date : \"MMMM yyyy\" }}\r\n                  </p>\r\n                  <i\r\n                    aria-hidden=\"true\"\r\n                    class=\"fa ms-2\"\r\n                    [class.is-toggle]=\"toggleYearChoice\"\r\n                    [class.fa-chevron-down]=\"years.length > 1\"\r\n                  >\r\n                  </i>\r\n                </div>\r\n                <div\r\n                  *ngIf=\"!toggleYearChoice && !toggleMonthChoice\"\r\n                  class=\"px-0\"\r\n                >\r\n                  <i\r\n                    aria-hidden=\"true\"\r\n                    (click)=\"moveToMonthOffset($event, -1)\"\r\n                    class=\"fa fa-chevron-left hover-gray-5 pointer\"\r\n                  ></i>\r\n                  <i\r\n                    aria-hidden=\"true\"\r\n                    (click)=\"moveToMonthOffset($event, 1)\"\r\n                    [class.tk-picker-disabled]=\"!isRightChervronEnable\"\r\n                    [class.hover-gray-5]=\"isRightChervronEnable\"\r\n                    [class.pointer]=\"isRightChervronEnable\"\r\n                    class=\"fa fa-chevron-right ml-4 pointer\"\r\n                  ></i>\r\n                </div>\r\n              </div>\r\n              <div>\r\n                <div style=\"min-height: 261px\" *ngIf=\"toggleYearChoice\">\r\n                  <div\r\n                    *ngFor=\"let year of years; let i = index\"\r\n                    class=\"col-4 col-4 tk-btn border-0 h-auto py-2 tk-btn\"\r\n                    (click)=\"moveToYearOffset($event, i)\"\r\n                  >\r\n                    {{ year }}\r\n                  </div>\r\n                </div>\r\n                <div style=\"min-height: 261px\" *ngIf=\"toggleMonthChoice\">\r\n                  <div\r\n                    *ngFor=\"let month of months; let i = index\"\r\n                    class=\"col-4 col-4 tk-btn border-0 h-auto py-2 tk-btn\"\r\n                    (click)=\"getSelectedMonth(month)\"\r\n                  >\r\n                    {{ abbreviatedMonth[i] }}\r\n                  </div>\r\n                </div>\r\n                <div *ngIf=\"!toggleYearChoice && !toggleMonthChoice\">\r\n                  <div class=\"weekdays px-0\">\r\n                    <div\r\n                      *ngFor=\"\r\n                        let dayOfWeekAbreviate of getDaysOfWeekInAbreviateAndLocaleFormat()\r\n                      \"\r\n                    >\r\n                      {{ dayOfWeekAbreviate }}\r\n                    </div>\r\n                  </div>\r\n                  <div class=\"days px-0\" (mouseleave)=\"leavePicker()\">\r\n                    <div\r\n                      (mouseenter)=\"getSelectedDay(day, $event)\"\r\n                      (click)=\"getSelectedDay(day, $event)\"\r\n                      *ngFor=\"let day of days; let i = index\"\r\n                    >\r\n                      <div\r\n                        [ngClass]=\"{\r\n                          'outline-next-day':\r\n                            day > endDate ||\r\n                            (disabledWeekends &&\r\n                              (day.getDay() === 0 || day.getDay() === 6)) ||\r\n                            (day > currentDay &&\r\n                              !isSelectionDayAfterCurrentDayEnable)\r\n                        }\"\r\n                        [class.bg-gray-2]=\"\r\n                          day > selectedStartDate &&\r\n                          day < selectedEndDate &&\r\n                          !this.disableRangePciker\r\n                        \"\r\n                        [style.background-color]=\"\r\n                          isSelectedStartOrEndDate(day) ? 'black' : ''\r\n                        \"\r\n                        [style.color]=\"\r\n                          isSelectedStartOrEndDate(day) ? 'white' : ''\r\n                        \"\r\n                        [style.border-bottom]=\"\r\n                          isSelectedStartOrEndDate(day) ? '1px white solid' : ''\r\n                        \"\r\n                        class=\"position-relative\"\r\n                        *ngIf=\"day\"\r\n                      >\r\n                        <span>\r\n                          {{ day | date : \"d\" }}\r\n                        </span>\r\n                        <span\r\n                          [class.square-picker]=\"\r\n                            (day | date : 'M/d/yyyy') == today\r\n                          \"\r\n                          [style.background-color]=\"\r\n                            isSelectedStartOrEndDate(day) ? 'white' : 'black'\r\n                          \"\r\n                          [style.color]=\"\r\n                            isSelectedStartOrEndDate(day) ? 'white' : 'black'\r\n                          \"\r\n                        >\r\n                        </span>\r\n                      </div>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</div>\r\n-\r\n"
         },
         {
             "name": "DatePickerComponent",
@@ -2819,6 +3858,24 @@
                 "name": "CheckboxComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/cs-date-picker/cs-date-picker.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CsDatePickerComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/56",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/cs-date-picker/cs-date-picker.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "DateOptions",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {

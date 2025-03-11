@@ -102,6 +102,127 @@
       <app-form (formSubmit)="onFormSubmit($event)"></app-form>
     </app-card>
 
+    <plg-title>Custom date picker</plg-title>
+    <app-card [classNames]="'shadow-lg'">
+      <hr />
+      <h3>Date range picker</h3>
+      <div>
+        <h4>Available parameters</h4>
+        <table class="table table-striped">
+          <caption>
+            Datepicker parameter inputs
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Input name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Available options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>dateOptions</td>
+              <td>
+                Input JSON object containing the options related to the date
+                picker
+              </td>
+              <td>
+                <ul>
+                  <li>dateFormat:string (default 'dd/MM/yyyy')</li>
+                  <li>selectedEndDate:Date (default undefined)</li>
+                  <li>selectedStartDate:Date (default undefined)</li>
+                  <li>disabledWeekends:boolean (default true)</li>
+                  <li>disableRangePciker:boolean (default false)</li>
+                  <li>isStepperYearShown:boolean (default true)</li>
+                  <li>offsetYearsMenu:integer (default 5)</li>
+                  <li>
+                    isSelectionDayAfterCurrentDayEnable:boolean (default false)
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex">
+        <div class="ml-5">
+          <cs-date-picker
+            #datePickerTwo
+            (dateObject)="dateObject($event, 0)"
+            [dateOptions]="dateOptions[0]"
+            [offsetYearsMenu]="20"
+          >
+            <div class="date-picker-wrapper">
+              <div class="d-flex">
+                <button
+                  class="tk-btn tk-btn-sm col-3 font-family-csePBold p-0"
+                  style="font-size: 14px"
+                  [ngClass]="
+                    datePickerTwo.tabBtnActive === 0
+                      ? 'tk-btn-black'
+                      : 'tk-btn-secondary'
+                  "
+                  (click)="datePickerTwo.setSelectionDate(0, 0)"
+                >
+                  Today
+                </button>
+                <button
+                  class="tk-btn tk-btn-secondary tk-btn-sm col-5 font-family-csePBold p-0 ml-2"
+                  style="font-size: 14px"
+                  (click)="datePickerTwo.setSelectionDate(14, 1)"
+                  [ngClass]="
+                    datePickerTwo.tabBtnActive === 1
+                      ? 'tk-btn-black'
+                      : 'tk-btn-secondary'
+                  "
+                >
+                  Last 2 weeks
+                </button>
+              </div>
+              <div class="d-flex mt-2">
+                <button
+                  class="tk-btn tk-btn-secondary tk-btn-sm col-5 font-family-csePBold p-0"
+                  style="font-size: 14px"
+                  (click)="datePickerTwo.setSelectionDate(30, 2)"
+                  [ngClass]="
+                    datePickerTwo.tabBtnActive === 2
+                      ? 'tk-btn-black'
+                      : 'tk-btn-secondary'
+                  "
+                >
+                  Last month
+                </button>
+                <button
+                  class="tk-btn tk-btn-secondary tk-btn-sm col-5 font-family-csePBold p-0 ml-2"
+                  style="font-size: 14px"
+                  (click)="datePickerTwo.setSelectionDate(365, 3)"
+                  [ngClass]="
+                    datePickerTwo.tabBtnActive === 3
+                      ? 'tk-btn-black'
+                      : 'tk-btn-secondary'
+                  "
+                >
+                  Last year
+                </button>
+              </div>
+            </div>
+          </cs-date-picker>
+        </div>
+        <div class="d-flex flex-column">
+          <div class="d-flex ml-4" *ngIf="date[0]">
+            <div>Picker one</div>
+            <div>startDate</div>
+            <div>: {{ date[0].startDate }}</div>
+          </div>
+
+          <div class="d-flex ml-4" *ngIf="date[0]">
+            <div>todate</div>
+            <div>: {{ date[0].todate }}</div>
+          </div>
+        </div>
+      </div>
+    </app-card>
+
     <plg-title>Get request</plg-title>
     <app-card [classNames]="'shadow-lg'">
       <p>usage of ajax from rxjs/ajax to get data from api</p>
