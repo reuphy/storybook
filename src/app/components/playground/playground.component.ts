@@ -110,7 +110,7 @@ export class PlaygroundComponent {
   // date picker
   dateOptions: DateOptions[] = [
     {
-      disabledWeekends: false,
+      disabledWeekends: true,
       isStepperYearShown: true,
       disableRangePciker: false,
     },
