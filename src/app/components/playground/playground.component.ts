@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToggleComponent } from '../toggle/toggle.component';
 import { CardComponent } from '../card/card.component';
@@ -10,9 +10,6 @@ import AlertComponent from '../alert/alert.component';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { SimpleTableComponent } from '../simple-table/simple-table.component';
 import { FormComponent } from '../form/form.component';
-import { Validators } from '@angular/forms';
-import { CustomInputStyleDirective } from 'src/app/directives/text-input-style.directives';
-import { style } from 'd3-selection';
 import { DynamicClassDirective } from 'src/app/directives/dynamic-class.directive';
 import { DatePickerComponent } from '../date-picker/date-picker.component';
 import { FetchDataComponent } from '../fetch-data/fetch-data.component';
@@ -20,6 +17,8 @@ import {
   CsDatePickerComponent,
   DateOptions,
 } from '../cs-date-picker/cs-date-picker.component';
+import { NG2DatePickerComponent } from '../ng2-date-picker/date-picker.component';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-playground',
@@ -42,6 +41,7 @@ import {
     DatePickerComponent,
     CsDatePickerComponent,
     FetchDataComponent,
+    NG2DatePickerComponent,
   ],
 })
 export class PlaygroundComponent {
@@ -137,5 +137,19 @@ export class PlaygroundComponent {
     console.log('date', index, e);
 
     this.date[index] = e;
+  }
+  //////////////////////////
+  // ng2 date picker
+  selectedDate: Date | null = null;
+
+  extraDisabledDates: dayjs.Dayjs[] = [
+    this.toDayjs(2025, 2, 25),
+    this.toDayjs(2025, 2, 27),
+  ];
+
+  disabledWeekDays: number[] = [0, 6]; // 0 = Sunday, 6 = Saturday
+
+  toDayjs(year: number, month: number, day: number): dayjs.Dayjs {
+    return dayjs(new Date(year, month, day));
   }
 }

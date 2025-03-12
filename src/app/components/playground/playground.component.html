@@ -223,6 +223,16 @@
       </div>
     </app-card>
 
+    <plg-title>ng2 date picker</plg-title>
+    <app-card [classNames]="'shadow-lg'">
+      <app-ng2-date-picker
+        [selectedDate]="selectedDate"
+        [extraDisabledDates]="extraDisabledDates"
+        [disabledWeekDays]="disabledWeekDays"
+      >
+      </app-ng2-date-picker>
+    </app-card>
+
     <plg-title>Get request</plg-title>
     <app-card [classNames]="'shadow-lg'">
       <p>usage of ajax from rxjs/ajax to get data from api</p>
