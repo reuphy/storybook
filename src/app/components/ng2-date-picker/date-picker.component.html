@@ -2,5 +2,6 @@
   data-test-id="date-picker"
   [(ngModel)]="selectedDate"
   [config]="datePickerConfig"
+  (ngModelChange)="onDateChange($event)"
 >
 </dp-date-picker>

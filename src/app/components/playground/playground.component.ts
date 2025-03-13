@@ -152,4 +152,8 @@ export class PlaygroundComponent {
   toDayjs(year: number, month: number, day: number): dayjs.Dayjs {
     return dayjs(new Date(year, month, day));
   }
+
+  onSelectedDateChange(date: Date | null): void {
+    this.selectedDate = date;
+  }
 }

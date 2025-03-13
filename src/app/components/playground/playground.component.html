@@ -226,11 +226,12 @@
     <plg-title>ng2 date picker</plg-title>
     <app-card [classNames]="'shadow-lg'">
       <app-ng2-date-picker
-        [selectedDate]="selectedDate"
+        [(selectedDate)]="selectedDate"
         [extraDisabledDates]="extraDisabledDates"
-        [disabledWeekDays]="disabledWeekDays"
+        (selectedDateChange)="onSelectedDateChange($event)"
       >
       </app-ng2-date-picker>
+      <p>Date sélectionnée : {{ selectedDate | date : "dd/MM/yyyy" }}</p>
     </app-card>
 
     <plg-title>Get request</plg-title>

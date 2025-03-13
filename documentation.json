@@ -4002,13 +4002,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-c2c3f2ded81d4f208779c135d9b950ee6278e6126bfe98895fb9886c1a4f8ab2f365c19a5bc9a0b5bdd99f6948c1f19bdffc6f487fc8645899584327923760e9",
+            "id": "module-AppModule-0aaae7d2f20fd7cff044ae6f6d89d09c424b473311af4f2dc1b0c131342282a69f4dce6c67f77b920b647996262064e7d90793babd808130557dd8ee5302ad04",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\n\nimport { AppComponent } from './app.component';\n\n@NgModule({\n  declarations: [AppComponent],\n  imports: [],\n  providers: [],\n  bootstrap: [AppComponent],\n})\nexport class AppModule {}\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\n\r\nimport { AppComponent } from './app.component';\r\n\r\n@NgModule({\r\n  declarations: [AppComponent],\r\n  imports: [],\r\n  providers: [],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
             "children": [
                 {
                     "type": "providers",

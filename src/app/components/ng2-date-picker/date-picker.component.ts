@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import dayjs from 'dayjs';
@@ -14,6 +14,7 @@ export class NG2DatePickerComponent {
   @Input() selectedDate: Date | null = null;
   @Input() extraDisabledDates: dayjs.Dayjs[] = [];
   @Input() disabledWeekDays: number[] = [0, 6]; // 0 = Sunday, 6 = Saturday
+  @Output() selectedDateChange = new EventEmitter<Date | null>();
 
   datePickerConfig = {
     format: 'DD/MM/YYYY',
@@ -41,5 +42,10 @@ export class NG2DatePickerComponent {
 
   addExtraDisabledDate(date: Date): void {
     this.extraDisabledDates.push(dayjs(date));
+  }
+
+  onDateChange(date: Date | null): void {
+    this.selectedDate = date;
+    this.selectedDateChange.emit(this.selectedDate);
   }
 }
