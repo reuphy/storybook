@@ -35,7 +35,6 @@ export const Basic: Story = {
         const overlayContainer = document.querySelector(
           '.cdk-overlay-container'
         );
-        console.log('cdk-overlay-container:', overlayContainer);
 
         const todayElement = overlayContainer?.querySelector(
           `[data-date="${today}"]`
