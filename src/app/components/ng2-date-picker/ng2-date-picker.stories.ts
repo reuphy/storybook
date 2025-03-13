@@ -21,21 +21,17 @@ export const Basic: Story = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    await step('should open the date picker', async () => {
-      const datePickerInput = canvas.getByRole('textbox');
-      await userEvent.click(datePickerInput);
-    });
-
     await step(
       "should have a dot under the element that contains today's date",
       async () => {
+        const datePickerInput = canvas.getByRole('textbox');
+        await userEvent.click(datePickerInput);
+
         const today = dayjs().format('DD/MM/YYYY');
 
-        // Log the content of the cdk-overlay-container
         const overlayContainer = document.querySelector(
           '.cdk-overlay-container'
         );
-
         const todayElement = overlayContainer?.querySelector(
           `[data-date="${today}"]`
         );

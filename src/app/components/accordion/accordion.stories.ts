@@ -36,24 +36,30 @@ export const Basic: Story = {
   },
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
-    const accordionItem = canvas.getAllByTestId('accordion-header');
-    const icon = canvas.getAllByTestId('icon');
+    const accordionItems = canvas.getAllByTestId('accordion-header');
+    const icons = canvas.getAllByTestId('icon');
 
     await step('inital setup', async () => {
-      await expect(accordionItem[0].innerText).toContain('Accordion Item 1');
-      await expect(icon[0].className).toBe('rotate-up');
-      await expect(accordionItem.length).toBe(3);
+      // Ensure all accordion items are closed
+      for (let i = 0; i < accordionItems.length; i++) {
+        if (icons[i].className === 'rotate-down') {
+          await userEvent.click(accordionItems[i]);
+        }
+      }
+      await expect(accordionItems[0].innerText).toContain('Accordion Item 1');
+      await expect(icons[0].className).toBe('rotate-up');
+      await expect(accordionItems.length).toBe(3);
     });
 
     await step('should open the first tab', async () => {
-      await userEvent.click(accordionItem[0]);
-      await expect(icon[0].className).toBe('rotate-down');
+      await userEvent.click(accordionItems[0]);
+      await expect(icons[0].className).toBe('rotate-down');
     });
 
     await step('should open and close the last tab', async () => {
-      await userEvent.click(accordionItem[2]);
-      await userEvent.click(accordionItem[2]);
-      await expect(icon[0].className).toBe('rotate-down');
+      await userEvent.click(accordionItems[2]);
+      await userEvent.click(accordionItems[2]);
+      await expect(icons[0].className).toBe('rotate-down');
     });
   },
 };
