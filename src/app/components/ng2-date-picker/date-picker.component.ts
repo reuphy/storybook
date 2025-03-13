@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class NG2DatePickerComponent {
   @Input() selectedDate: Date | null = null;
   @Input() extraDisabledDates: dayjs.Dayjs[] = [];
-  @Input() disabledWeekDays: number[] = [0, 6]; // 0 = Sunday, 6 = Saturday
+  @Input() disabledWeekDays: number[] = [];
   @Output() selectedDateChange: EventEmitter<Date | null> =
     new EventEmitter<Date | null>();
 
