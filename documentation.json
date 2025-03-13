@@ -3120,7 +3120,7 @@
         },
         {
             "name": "NG2DatePickerComponent",
-            "id": "component-NG2DatePickerComponent-a89b491242bdfbb3f4f2e3d0df8b949bbc245125248a05e9c4498534a980e116b08676b416e686d7d6abb9f762f76036df183ac295d77c328ce09f7067b4d3b9",
+            "id": "component-NG2DatePickerComponent-6dda194d4b6af901c4ff2441f80090fda957857c8ca10b85394a67aff55152bda7b2eed659e18cb0439f23fc048b4bc5118ca1bf3af057c235118fd1f78eb58b",
             "file": "src/app/components/ng2-date-picker/date-picker.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3173,20 +3173,23 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 17,
-                    "type": "EventEmitter"
+                    "type": "EventEmitter<Date | null>"
                 }
             ],
             "propertiesClass": [
                 {
                     "name": "datePickerConfig",
-                    "defaultValue": "{\r\n    format: 'DD/MM/YYYY',\r\n    showNearMonthDays: true,\r\n    showAdjacentMonths: true,\r\n    disableKeypress: false,\r\n    isDayDisabledCallback: (date: dayjs.Dayjs) => this.isDateDisabled(date),\r\n    dayBtnCssClassCallback: (day: dayjs.Dayjs) => {\r\n      if (this.isDateDisabled(day)) {\r\n        return 'strikethrough-diagonal';\r\n      }\r\n      return day.isSame(dayjs(), 'day') ? 'date-picker-dot' : '';\r\n    },\r\n  }",
+                    "defaultValue": "{\r\n    format: 'DD/MM/YYYY',\r\n    showNearMonthDays: true,\r\n    disableKeypress: false,\r\n    isDayDisabledCallback: (date: dayjs.Dayjs) => this.isDateDisabled(date),\r\n    dayBtnCssClassCallback: (day: dayjs.Dayjs) => {\r\n      if (this.isDateDisabled(day)) {\r\n        return 'strikethrough-diagonal';\r\n      }\r\n      return day.isSame(dayjs(), 'day') ? 'date-picker-dot' : '';\r\n    },\r\n  }",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "object",
+                    "type": "Partial<IDatePickerConfig>",
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 19
+                    "line": 20,
+                    "modifierKind": [
+                        125
+                    ]
                 }
             ],
             "methodsClass": [
@@ -3206,6 +3209,9 @@
                     "line": 43,
                     "deprecated": false,
                     "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ],
                     "jsdoctags": [
                         {
                             "name": "date",
@@ -3234,6 +3240,9 @@
                     "line": 33,
                     "deprecated": false,
                     "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
                     "jsdoctags": [
                         {
                             "name": "date",
@@ -3262,6 +3271,9 @@
                     "line": 47,
                     "deprecated": false,
                     "deprecationMessage": "",
+                    "modifierKind": [
+                        125
+                    ],
                     "jsdoctags": [
                         {
                             "name": "date",
@@ -3297,7 +3309,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { DpDatePickerModule } from 'ng2-date-picker';\r\nimport dayjs from 'dayjs';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'app-ng2-date-picker',\r\n  imports: [FormsModule, DpDatePickerModule, CommonModule],\r\n  templateUrl: './date-picker.component.html',\r\n  styleUrls: ['./date-picker.component.scss'],\r\n})\r\nexport class NG2DatePickerComponent {\r\n  @Input() selectedDate: Date | null = null;\r\n  @Input() extraDisabledDates: dayjs.Dayjs[] = [];\r\n  @Input() disabledWeekDays: number[] = [0, 6]; // 0 = Sunday, 6 = Saturday\r\n  @Output() selectedDateChange = new EventEmitter<Date | null>();\r\n\r\n  datePickerConfig = {\r\n    format: 'DD/MM/YYYY',\r\n    showNearMonthDays: true,\r\n    showAdjacentMonths: true,\r\n    disableKeypress: false,\r\n    isDayDisabledCallback: (date: dayjs.Dayjs) => this.isDateDisabled(date),\r\n    dayBtnCssClassCallback: (day: dayjs.Dayjs) => {\r\n      if (this.isDateDisabled(day)) {\r\n        return 'strikethrough-diagonal';\r\n      }\r\n      return day.isSame(dayjs(), 'day') ? 'date-picker-dot' : '';\r\n    },\r\n  };\r\n\r\n  isDateDisabled(date: dayjs.Dayjs): boolean {\r\n    if (this.disabledWeekDays.includes(date.day())) {\r\n      return true;\r\n    }\r\n\r\n    return this.extraDisabledDates.some((disabledDate) =>\r\n      date.isSame(disabledDate, 'day')\r\n    );\r\n  }\r\n\r\n  addExtraDisabledDate(date: Date): void {\r\n    this.extraDisabledDates.push(dayjs(date));\r\n  }\r\n\r\n  onDateChange(date: Date | null): void {\r\n    this.selectedDate = date;\r\n    this.selectedDateChange.emit(this.selectedDate);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { DpDatePickerModule, IDatePickerConfig } from 'ng2-date-picker';\r\nimport dayjs from 'dayjs';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'app-ng2-date-picker',\r\n  imports: [FormsModule, DpDatePickerModule, CommonModule],\r\n  templateUrl: './date-picker.component.html',\r\n  styleUrls: ['./date-picker.component.scss'],\r\n})\r\nexport class NG2DatePickerComponent {\r\n  @Input() selectedDate: Date | null = null;\r\n  @Input() extraDisabledDates: dayjs.Dayjs[] = [];\r\n  @Input() disabledWeekDays: number[] = [0, 6]; // 0 = Sunday, 6 = Saturday\r\n  @Output() selectedDateChange: EventEmitter<Date | null> =\r\n    new EventEmitter<Date | null>();\r\n\r\n  public datePickerConfig: Partial<IDatePickerConfig> = {\r\n    format: 'DD/MM/YYYY',\r\n    showNearMonthDays: true,\r\n    disableKeypress: false,\r\n    isDayDisabledCallback: (date: dayjs.Dayjs) => this.isDateDisabled(date),\r\n    dayBtnCssClassCallback: (day: dayjs.Dayjs) => {\r\n      if (this.isDateDisabled(day)) {\r\n        return 'strikethrough-diagonal';\r\n      }\r\n      return day.isSame(dayjs(), 'day') ? 'date-picker-dot' : '';\r\n    },\r\n  };\r\n\r\n  private isDateDisabled(date: dayjs.Dayjs): boolean {\r\n    if (this.disabledWeekDays.includes(date.day())) {\r\n      return true;\r\n    }\r\n\r\n    return this.extraDisabledDates.some((disabledDate) =>\r\n      date.isSame(disabledDate, 'day')\r\n    );\r\n  }\r\n\r\n  public addExtraDisabledDate(date: Date): void {\r\n    this.extraDisabledDates.push(dayjs(date));\r\n  }\r\n\r\n  public onDateChange(date: Date | null): void {\r\n    this.selectedDate = date;\r\n    this.selectedDateChange.emit(this.selectedDate);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
