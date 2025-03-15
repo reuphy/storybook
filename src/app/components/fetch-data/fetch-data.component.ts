@@ -1,8 +1,6 @@
-import { Component, OnInit, Signal, signal } from '@angular/core';
-import { Observable, forkJoin } from 'rxjs';
-import { catchError, delay, map, mergeMap } from 'rxjs/operators';
-import { ajax } from 'rxjs/ajax';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PokemonService } from './pokemon.service';
 
 interface Pokemon {
   name: string;
@@ -13,12 +11,6 @@ interface Pokemon {
   id: number;
 }
 
-interface HttpResponse<T> {
-  results: T;
-  error: string | undefined;
-  isLoading: boolean;
-}
-
 @Component({
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html',
@@ -26,116 +18,47 @@ interface HttpResponse<T> {
   imports: [CommonModule],
 })
 export class FetchDataComponent implements OnInit {
-  url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5';
-
-  pokemons = signal<HttpResponse<Pokemon[]>>({
-    results: [],
-    error: undefined,
-    isLoading: true,
-  });
-
-  selectedPokemon = signal<HttpResponse<Pokemon | null>>({
-    results: null,
-    error: undefined,
-    isLoading: false,
-  });
+  pokemonService = inject(PokemonService);
 
   ngOnInit() {
     this.fetchPokemons();
   }
 
   fetchPokemons() {
-    this.pokemons.set({
-      results: [],
-      error: undefined,
-      isLoading: true,
-    });
+    this.pokemonService.setPokemonsLoadingState();
 
-    this.getPokemons().subscribe({
-      next: (pokemons) => {
-        this.pokemons.set({
-          results: pokemons,
-          error: undefined,
-          isLoading: false,
-        });
+    this.pokemonService.getPokemons().subscribe({
+      next: (response) => {
+        this.pokemonService.setPokemonsSuccessState(response.results);
       },
       error: (error) => {
-        this.pokemons.set({
-          results: [],
-          error: '' + error.message,
-          isLoading: false,
-        });
+        this.pokemonService.setPokemonsErrorState(error);
       },
     });
-  }
-
-  fetchData<T>(url: string): Observable<T> {
-    return ajax.getJSON<T>(url).pipe(delay(2000));
-  }
-
-  mapPokemons(pokemons: Pokemon[]): Pokemon[] {
-    return pokemons.map((pokemon) => ({
-      name: pokemon.name,
-      image: pokemon.sprites?.front_default ?? '',
-      id: pokemon.id,
-    }));
-  }
-
-  getPokemons(): Observable<Pokemon[]> {
-    return this.fetchData<HttpResponse<Pokemon[]>>(this.url).pipe(
-      mergeMap((data) =>
-        forkJoin(
-          data.results.map((_, index) =>
-            this.fetchData<Pokemon>(
-              `https://pokeapi.co/api/v2/pokemon/${index + 1}/`
-            )
-          )
-        )
-      ),
-      map((pokemons) => this.mapPokemons(pokemons))
-    );
   }
 
   getPokemonDetails(pokemon: Pokemon) {
-    this.pokemons.set({
-      results: [],
-      error: undefined,
-      isLoading: false,
-    });
+    this.pokemonService.setPokemonsSuccessState([]);
+    this.pokemonService.setPokemonDetailLoadingState();
 
-    this.selectedPokemon.set({
-      results: null,
-      error: undefined,
-      isLoading: true,
-    });
-
-    this.fetchData<Pokemon>(
-      `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`
-    ).subscribe({
-      next: (data) => {
-        this.selectedPokemon.set({
-          results: {
-            name: data.name,
-            image: data.sprites?.front_default ?? '',
-            id: data.id,
-          },
-          error: undefined,
-          isLoading: false,
-        });
+    this.pokemonService.getPokemonDetails(pokemon).subscribe({
+      next: (response) => {
+        if (response.results) {
+          this.pokemonService.setPokemonDetailSuccessState(response.results);
+        } else {
+          this.pokemonService.setPokemonDetailErrorState(
+            new Error('Pokemon details not found')
+          );
+        }
       },
       error: (err) => {
-        console.error('Error fetching Pokémon details:', err);
-        this.selectedPokemon.set({
-          results: null,
-          error: 'Failed to fetch Pokémon details',
-          isLoading: false,
-        });
+        this.pokemonService.setPokemonDetailErrorState(err);
       },
     });
   }
 
   goBackToPokemonsList() {
-    this.selectedPokemon.set({
+    this.pokemonService.pokemonDetail.set({
       results: null,
       error: undefined,
       isLoading: false,

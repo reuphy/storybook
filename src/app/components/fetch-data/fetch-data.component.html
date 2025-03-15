@@ -3,15 +3,16 @@
     This example fetches a list of Pokémons and their details, then displays
     their names and images.
   </h5>
-  <div *ngIf="pokemons().isLoading">Loading...</div>
-  <div *ngIf="pokemons().error">
+  <div *ngIf="pokemonService.pokemons().isLoading">Loading...</div>
+  <div *ngIf="pokemonService.pokemons().error">
     <div class="alert alert-danger" role="alert">
-      {{ pokemons()?.error || error }}
+      {{ pokemonService.pokemons()?.error || error }}
     </div>
   </div>
-  <div *ngIf="pokemons().results.length > 0">
+  <div *ngIf="pokemonService.pokemons().results.length > 0">
     <div class="row">
-      @for (pokemon of pokemons().results; track pokemon; let index = $index) {
+      @for (pokemon of pokemonService.pokemons().results; track pokemon; let
+      index = $index) {
       <div class="col-md-4">
         <div
           class="card cursor-pointer mb-4 shadow-sm"
@@ -31,24 +32,26 @@
     </div>
   </div>
 
-  <div *ngIf="selectedPokemon().isLoading">Loading...</div>
-  <div *ngIf="selectedPokemon().error">
+  <div *ngIf="pokemonService.pokemonDetail().isLoading">Loading...</div>
+  <div *ngIf="pokemonService.pokemonDetail().error">
     <div class="alert alert-danger" role="alert">
-      {{ selectedPokemon()?.error || error }}
+      {{ pokemonService.pokemonDetail()?.error || error }}
     </div>
   </div>
-  <div *ngIf="selectedPokemon().results" class="col-md-4">
+  <div *ngIf="pokemonService.pokemonDetail().results" class="col-md-4">
     <button class="btn btn-primary mb-4" (click)="goBackToPokemonsList()">
       Back to List
     </button>
     <div class="card mb-4 shadow-sm">
       <img
-        [src]="selectedPokemon().results.image"
+        [src]="pokemonService.pokemonDetail().results.image"
         class="card-img-top"
-        alt="{{ selectedPokemon().results.name }}"
+        alt="{{ pokemonService.pokemonDetail().results.name }}"
       />
       <div class="card-body">
-        <h5 class="card-title">{{ selectedPokemon().results.name }}</h5>
+        <h5 class="card-title">
+          {{ pokemonService.pokemonDetail().results.name }}
+        </h5>
       </div>
     </div>
   </div>
