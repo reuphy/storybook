@@ -1,9 +1,8 @@
-import { Component, computed, OnInit, Signal, signal } from '@angular/core';
+import { Component, OnInit, Signal, signal } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
 import { catchError, delay, map, mergeMap } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 import { CommonModule } from '@angular/common';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 interface Pokemon {
   name: string;
@@ -17,6 +16,7 @@ interface Pokemon {
 interface HttpResponse<T> {
   results: T;
   error: string | undefined;
+  isLoading: boolean;
 }
 
 @Component({
@@ -25,32 +25,52 @@ interface HttpResponse<T> {
   standalone: true,
   imports: [CommonModule],
 })
-export class FetchDataComponent {
+export class FetchDataComponent implements OnInit {
   url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5';
-  loading = computed(
-    () => this.pokemons().results.length === 0 && !this.pokemons().error
-  );
 
-  pokemons: Signal<HttpResponse<Pokemon[]>> = toSignal(
-    this.getPokemonData().pipe(
-      map((pokemons) => {
-        return {
+  pokemons = signal<HttpResponse<Pokemon[]>>({
+    results: [],
+    error: undefined,
+    isLoading: true,
+  });
+
+  selectedPokemon = signal<HttpResponse<Pokemon | null>>({
+    results: null,
+    error: undefined,
+    isLoading: false,
+  });
+
+  ngOnInit() {
+    this.fetchPokemons();
+  }
+
+  fetchPokemons() {
+    this.pokemons.set({
+      results: [],
+      error: undefined,
+      isLoading: true,
+    });
+
+    this.getPokemons().subscribe({
+      next: (pokemons) => {
+        this.pokemons.set({
           results: pokemons,
           error: undefined,
-        };
-      }),
-      catchError((error) => {
-        return [{ results: [], error: '' + error.message }];
-      })
-    ),
-    { initialValue: { results: [], error: undefined } }
-  );
-
-  selectedPokemon = signal<Pokemon | null>(null);
-  error = signal<string | null>(null);
+          isLoading: false,
+        });
+      },
+      error: (error) => {
+        this.pokemons.set({
+          results: [],
+          error: '' + error.message,
+          isLoading: false,
+        });
+      },
+    });
+  }
 
   fetchData<T>(url: string): Observable<T> {
-    return ajax.getJSON<T>(url);
+    return ajax.getJSON<T>(url).pipe(delay(2000));
   }
 
   mapPokemons(pokemons: Pokemon[]): Pokemon[] {
@@ -61,7 +81,7 @@ export class FetchDataComponent {
     }));
   }
 
-  getPokemonData(): Observable<Pokemon[]> {
+  getPokemons(): Observable<Pokemon[]> {
     return this.fetchData<HttpResponse<Pokemon[]>>(this.url).pipe(
       mergeMap((data) =>
         forkJoin(
@@ -72,31 +92,54 @@ export class FetchDataComponent {
           )
         )
       ),
-      map((pokemons) => this.mapPokemons(pokemons)),
-      delay(2000)
+      map((pokemons) => this.mapPokemons(pokemons))
     );
   }
 
-  selectPokemon(pokemon: Pokemon) {
+  getPokemonDetails(pokemon: Pokemon) {
+    this.pokemons.set({
+      results: [],
+      error: undefined,
+      isLoading: false,
+    });
+
+    this.selectedPokemon.set({
+      results: null,
+      error: undefined,
+      isLoading: true,
+    });
+
     this.fetchData<Pokemon>(
       `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`
     ).subscribe({
       next: (data) => {
         this.selectedPokemon.set({
-          name: data.name,
-          image: data.sprites?.front_default ?? '',
-          id: data.id,
+          results: {
+            name: data.name,
+            image: data.sprites?.front_default ?? '',
+            id: data.id,
+          },
+          error: undefined,
+          isLoading: false,
         });
-        this.error.set(null); // Clear any previous error
       },
       error: (err) => {
         console.error('Error fetching Pokémon details:', err);
-        this.error.set('Failed to fetch Pokémon details');
+        this.selectedPokemon.set({
+          results: null,
+          error: 'Failed to fetch Pokémon details',
+          isLoading: false,
+        });
       },
     });
   }
 
-  clearSelection() {
-    this.selectedPokemon.set(null);
+  goBackToPokemonsList() {
+    this.selectedPokemon.set({
+      results: null,
+      error: undefined,
+      isLoading: false,
+    });
+    this.fetchPokemons();
   }
 }

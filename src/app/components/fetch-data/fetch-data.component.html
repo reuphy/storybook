@@ -3,19 +3,19 @@
     This example fetches a list of Pokémons and their details, then displays
     their names and images.
   </h5>
-  @if(loading()) {
-  <div class="spinner-border text-primary" role="status">
-    <span class="sr-only">Loading...</span>
+  <div *ngIf="pokemons().isLoading">Loading...</div>
+  <div *ngIf="pokemons().error">
+    <div class="alert alert-danger" role="alert">
+      {{ pokemons()?.error || error }}
+    </div>
   </div>
-  }
-
-  <div *ngIf="!selectedPokemon() && !error()">
+  <div *ngIf="pokemons().results.length > 0">
     <div class="row">
       @for (pokemon of pokemons().results; track pokemon; let index = $index) {
       <div class="col-md-4">
         <div
           class="card cursor-pointer mb-4 shadow-sm"
-          (click)="selectPokemon(pokemon)"
+          (click)="getPokemonDetails(pokemon)"
         >
           <img
             [src]="pokemon.image"
@@ -31,25 +31,25 @@
     </div>
   </div>
 
-  <div class="col-md-4" *ngIf="selectedPokemon()">
-    <button class="btn btn-primary mb-4" (click)="clearSelection()">
+  <div *ngIf="selectedPokemon().isLoading">Loading...</div>
+  <div *ngIf="selectedPokemon().error">
+    <div class="alert alert-danger" role="alert">
+      {{ selectedPokemon()?.error || error }}
+    </div>
+  </div>
+  <div *ngIf="selectedPokemon().results" class="col-md-4">
+    <button class="btn btn-primary mb-4" (click)="goBackToPokemonsList()">
       Back to List
     </button>
     <div class="card mb-4 shadow-sm">
       <img
-        [src]="selectedPokemon().image"
+        [src]="selectedPokemon().results.image"
         class="card-img-top"
-        alt="{{ selectedPokemon().name }}"
+        alt="{{ selectedPokemon().results.name }}"
       />
       <div class="card-body">
-        <h5 class="card-title">{{ selectedPokemon().name }}</h5>
+        <h5 class="card-title">{{ selectedPokemon().results.name }}</h5>
       </div>
-    </div>
-  </div>
-
-  <div *ngIf="pokemons()?.error || error()">
-    <div class="alert alert-danger" role="alert">
-      {{ pokemons()?.error || error }}
     </div>
   </div>
 </div>
