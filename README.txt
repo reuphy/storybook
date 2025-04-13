@@ -1,149 +1,147 @@
-previews.js
+import { CommonModule } from '@angular/common';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  Input,
+  Output,
+  QueryList,
+  SimpleChanges,
+  booleanAttribute,
+  signal,
+} from '@angular/core';
+import {
+  IbzProgressStepComponent,
+  IbzVerticalStepItemComponent,
+} from '@craftzing/angular-ui-library/src/lib/components/atoms/ibz-progress-step';
+import { IbzStepComponent } from '@craftzing/angular-ui-library/src/lib/internals/ibz-step';
+import { IbzContentStepComponent } from '@craftzing/angular-ui-library/src/lib/components/atoms/ibz-content-step';
 
-import { setCompodocJson } from '@storybook/addon-docs/angular';
-import cssVariablesTheme from '@etchteam/storybook-addon-css-variables-theme';
-import ibz from '!!style-loader?injectType=lazyStyleTag!css-loader!../public/ibz.css';
-import custom from '!!style-loader?injectType=lazyStyleTag!css-loader!../public/custom.css';
-import docJson from '../documentation.json';
-import 'zone.js';
-import { title } from 'process';
-setCompodocJson(docJson);
-
-export const parameters = {
-  controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/,
-    },
-  },
-  docs: { story: { inline: true } },
-  options: {
-    storySort: {
-      method: 'alphabetical',
-      order: [
-        'About',
-        'Structure',
-        'Navigation',
-        'Forms',
-        'Components',
-        'Utilities',
-        'Blueprints',
-      ],
-    },
-  },
-  cssVariables: {
-    files: {
-      'Theme: IBZ': ibz,
-      'Theme: Custom': custom,
-    },
-    defaultTheme: 'Theme: IBZ',
-  },
+/** @deprecated since 9.0. Use `IbzStepsTypes` instead. */
+export type IbzVerticalStepsTypes = {
+  currentStep?: number;
+  testId?: string;
 };
 
-export const decorators = [
-  (Story, context) => {
-    const theme = context.globals.theme || 'light';
-    document.documentElement.setAttribute('data-theme', theme);
-    return Story();
-  },
-  cssVariablesTheme,
-];
-export const tags = ['autodocs'];
+/** @deprecated since 9.0. Use `IbzStepsComponent` instead. */
+@Component({
+  selector: 'ibz-vertical-steps',
+  templateUrl: './ibz-vertical-steps.component.html',
+  standalone: true,
+  imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class IbzVerticalStepsComponent implements AfterViewInit {
+  @ContentChildren(IbzVerticalStepItemComponent)
+  protected _verticalStepItems: QueryList<IbzVerticalStepItemComponent>;
 
-export const globalTypes = {
-  theme: {
-    name: 'Theme',
-    description: 'Global theme for components',
-    defaultValue: 'light',
-    toolbar: {
-      title: 'Color Scheme',
-      icon: 'circlehollow',
-      items: [
-        { value: 'light', title: 'Light' },
-        { value: 'dark', title: 'Dark' },
-      ],
-      showName: true,
-    },
-  },
-};
----------------------
-import { Meta, StoryFn } from '@storybook/angular';
+  @Input() public currentStep = 1;
+  @Input() public testId?: string;
 
-const colorsLight = [
-  // Neutral
-  { name: '$color-black', value: '#141414' },
-  { name: '$color-white', value: '#ffffff' },
+  @Output() public onStepChange = new EventEmitter<number>();
 
-  // Grey
-  { name: '$color-gray-50', value: '#f5f8f9' },
-  { name: '$color-gray-100', value: '#edf1f5' },
-  { name: '$color-gray-200', value: '#e1e5eb' },
-  { name: '$color-gray-300', value: '#d2d7df' },
-  { name: '$color-gray-400', value: '#a3a8b2' },
-  { name: '$color-gray-500', value: '#868b95' },
-  { name: '$color-gray-600', value: '#64666c' },
-  // Add more colors...
-];
+  public minStep = signal(1);
+  public maxStep = signal(0);
 
-const colorsDark = [
-  // Neutral
-  { name: '$dark-color-black', value: 'red' },
-  { name: '$dark-color-white', value: '#ffffff' },
+  //solution ??
+  // private _isInitialized = false;
 
-  // Grey
-  { name: '$dark-color-gray-50', value: '#f5f8f9' },
-  { name: '$dark-color-gray-100', value: '#edf1f5' },
-  { name: '$dark-color-gray-200', value: '#e1e5eb' },
-  { name: '$dark-color-gray-300', value: '#d2d7df' },
-  { name: '$dark-color-gray-400', value: '#a3a8b2' },
-  { name: '$dark-color-gray-500', value: '#868b95' },
-  { name: '$dark-color-gray-600', value: '#64666c' },
-  // Add more colors...
-];
+  public ngAfterViewInit(): void {
+    if (!this._verticalStepItems) {
+      return;
+    }
 
-export default {
-  title: 'About/Theme',
-  tags: ['!autodocs'],
-} as Meta;
+    this.maxStep.set(this._verticalStepItems.toArray().length);
+    // solution ??
+    // this._isInitialized = true;
+  }
 
-const Template: StoryFn = (args, { globals }) => {
-  // Détecte le thème actuel (light ou dark)
-  const currentTheme = globals['theme'] || 'light';
+  public ngOnChanges(changes: SimpleChanges) {
+    // solution??
+    // if (!this._isInitialized) {
+    //   return;
+    // }
 
-  const colors = currentTheme === 'dark' ? colorsDark : colorsLight;
+    const nextValue = changes['currentStep']?.currentValue;
+    const prevValue = changes['currentStep']?.previousValue;
 
-  return {
-    template: `
-      <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: var(--background-color); color: var(--text-color);">
-        <div style="width: 90%; max-width: 800px; overflow-x: auto; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-          <table style="width: 100%; border-collapse: collapse; text-align: center; font-family: Arial, sans-serif;">
-            <thead style="background-color: #f4f4f4; border-bottom: 2px solid #ddd;">
-              <tr>
-                <th style="padding: 12px; font-weight: bold; border-right: 1px solid #ddd;">Property Name</th>
-                <th style="padding: 12px; font-weight: bold; border-right: 1px solid #ddd;">Value</th>
-                <th style="padding: 12px; font-weight: bold;">Preview</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${colors
-                .map(
-                  (color) => `
-                <tr style="border-bottom: 1px solid #ddd;">
-                  <td style="padding: 12px; border-right: 1px solid #ddd;">${color.name}</td>
-                  <td style="padding: 12px; border-right: 1px solid #ddd;">${color.value}</td>
-                  <td style="padding: 12px;">
-                    <div style="width: 24px; height: 24px; background-color: ${color.value}; border: 1px solid #ddd; margin: 0 auto; border-radius: 4px;"></div>
-                  </td>
-                </tr>
-              `,
-                )
-                .join('')}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    `,
-  };
-};
+    if (nextValue !== prevValue) {
+      if (nextValue > this.maxStep()) {
+        console.error(`Error: step ${this.currentStep} exceeds maxStep.`);
+        return;
+      }
 
-export const Colors = Template.bind({});
+      if (nextValue < this.minStep()) {
+        console.error(`Error: step ${this.currentStep} exceeds minStep.`);
+        return;
+      }
+
+      this.onStepChange.emit(this.currentStep);
+    }
+  }
+
+  public goToStep(stepNumber: number) {
+    if (stepNumber > this.maxStep()) {
+      console.error(`Error: step ${stepNumber} exceeds maxStep.`);
+      return;
+    }
+
+    if (stepNumber < this.minStep()) {
+      console.error(`Error: step ${stepNumber} exceeds minStep.`);
+      return;
+    }
+
+    this.currentStep = stepNumber;
+    this.onStepChange.emit(this.currentStep);
+  }
+
+  public nextStep() {
+    if (this.maxStep && this.currentStep >= this.maxStep()) {
+      console.error(`Error: step ${this.currentStep + 1} exceeds maxStep.`);
+      return;
+    }
+
+    this.currentStep++;
+    this.onStepChange.emit(this.currentStep);
+  }
+
+  public prevStep() {
+    if (this.currentStep <= this.minStep()) {
+      console.error(`Error: step ${this.currentStep - 1} exceeds minStep.`);
+      return;
+    }
+
+    this.currentStep--;
+    this.onStepChange.emit(this.currentStep);
+  }
+}
+
+// --- ibz-steps ---
+// Extend the functionality of the newly named component. Merge with the old one when deprecated component is removed.
+
+export type IbzStepsTypes = {
+  modGap: boolean;
+} & IbzVerticalStepsTypes;
+
+@Component({
+  selector: 'ibz-steps',
+  templateUrl: './ibz-steps.component.html',
+  standalone: true,
+  imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class IbzStepsComponent extends IbzVerticalStepsComponent {
+  @ContentChildren(IbzStepComponent)
+  public _steps?: QueryList<IbzContentStepComponent | IbzProgressStepComponent>;
+
+  @Input({ transform: booleanAttribute }) public modGap = true;
+
+  override ngAfterViewInit(): void {
+    this._verticalStepItems = this
+      ._steps as QueryList<IbzVerticalStepItemComponent>;
+
+    super.ngAfterViewInit();
+  }
+}
