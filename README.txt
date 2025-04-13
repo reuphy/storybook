@@ -45,8 +45,7 @@ export class IbzVerticalStepsComponent implements AfterViewInit {
   public minStep = signal(1);
   public maxStep = signal(0);
 
-  //solution ??
-  // private _isInitialized = false;
+  private _isInitialized = false;
 
   public ngAfterViewInit(): void {
     if (!this._verticalStepItems) {
@@ -54,15 +53,13 @@ export class IbzVerticalStepsComponent implements AfterViewInit {
     }
 
     this.maxStep.set(this._verticalStepItems.toArray().length);
-    // solution ??
-    // this._isInitialized = true;
+    this._isInitialized = true;
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    // solution??
-    // if (!this._isInitialized) {
-    //   return;
-    // }
+    if (!this._isInitialized) {
+      return;
+    }
 
     const nextValue = changes['currentStep']?.currentValue;
     const prevValue = changes['currentStep']?.previousValue;
