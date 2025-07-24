@@ -1,0 +1,6 @@
+.accordion-2-header {
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}

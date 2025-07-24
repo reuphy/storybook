@@ -123,12 +123,12 @@
         },
         {
             "name": "HttpResponse",
-            "id": "interface-HttpResponse-806e155c6839d18dcec4127ab7bfc9990f0e94db330290f80c5eb1606f040f726c09b5e4b91f1515ab717eb3e3cf802c354613908fa754d213f6861bf045bdd8",
-            "file": "src/app/components/fetch-data/fetch-data.component.ts",
+            "id": "interface-HttpResponse-8b2d620fc835693e6eba504112d6f11513429505cabda6ded6b121086a5fc06d1676833a2fa71f6d14aa3bfd07971c7f82fc9e5e6caed674c91f624f85c6b45d",
+            "file": "src/app/components/fetch-data/pokemon.service.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, computed, OnInit, Signal, signal } from '@angular/core';\r\nimport { Observable, forkJoin } from 'rxjs';\r\nimport { catchError, delay, map, mergeMap } from 'rxjs/operators';\r\nimport { ajax } from 'rxjs/ajax';\r\nimport { CommonModule } from '@angular/common';\r\nimport { toSignal } from '@angular/core/rxjs-interop';\r\n\r\ninterface Pokemon {\r\n  name: string;\r\n  sprites?: {\r\n    front_default: string;\r\n  };\r\n  image: string;\r\n  id: number;\r\n}\r\n\r\ninterface HttpResponse<T> {\r\n  results: T;\r\n  error: string | undefined;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-fetch-data',\r\n  templateUrl: './fetch-data.component.html',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n})\r\nexport class FetchDataComponent {\r\n  url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5';\r\n  loading = computed(\r\n    () => this.pokemons().results.length === 0 && !this.pokemons().error\r\n  );\r\n\r\n  pokemons: Signal<HttpResponse<Pokemon[]>> = toSignal(\r\n    this.getPokemonData().pipe(\r\n      map((pokemons) => {\r\n        return {\r\n          results: pokemons,\r\n          error: undefined,\r\n        };\r\n      }),\r\n      catchError((error) => {\r\n        return [{ results: [], error: '' + error.message }];\r\n      })\r\n    ),\r\n    { initialValue: { results: [], error: undefined } }\r\n  );\r\n\r\n  selectedPokemon = signal<Pokemon | null>(null);\r\n  error = signal<string | null>(null);\r\n\r\n  fetchData<T>(url: string): Observable<T> {\r\n    return ajax.getJSON<T>(url);\r\n  }\r\n\r\n  mapPokemons(pokemons: Pokemon[]): Pokemon[] {\r\n    return pokemons.map((pokemon) => ({\r\n      name: pokemon.name,\r\n      image: pokemon.sprites?.front_default ?? '',\r\n      id: pokemon.id,\r\n    }));\r\n  }\r\n\r\n  getPokemonData(): Observable<Pokemon[]> {\r\n    return this.fetchData<HttpResponse<Pokemon[]>>(this.url).pipe(\r\n      mergeMap((data) =>\r\n        forkJoin(\r\n          data.results.map((_, index) =>\r\n            this.fetchData<Pokemon>(\r\n              `https://pokeapi.co/api/v2/pokemon/${index + 1}/`\r\n            )\r\n          )\r\n        )\r\n      ),\r\n      map((pokemons) => this.mapPokemons(pokemons)),\r\n      delay(2000)\r\n    );\r\n  }\r\n\r\n  selectPokemon(pokemon: Pokemon) {\r\n    this.fetchData<Pokemon>(\r\n      `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`\r\n    ).subscribe({\r\n      next: (data) => {\r\n        this.selectedPokemon.set({\r\n          name: data.name,\r\n          image: data.sprites?.front_default ?? '',\r\n          id: data.id,\r\n        });\r\n        this.error.set(null); // Clear any previous error\r\n      },\r\n      error: (err) => {\r\n        console.error('Error fetching Pokémon details:', err);\r\n        this.error.set('Failed to fetch Pokémon details');\r\n      },\r\n    });\r\n  }\r\n\r\n  clearSelection() {\r\n    this.selectedPokemon.set(null);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Injectable, Signal, signal } from '@angular/core';\r\nimport { Observable, forkJoin } from 'rxjs';\r\nimport { catchError, delay, map, mergeMap } from 'rxjs/operators';\r\nimport { ajax } from 'rxjs/ajax';\r\n\r\ninterface Pokemon {\r\n  name: string;\r\n  sprites?: {\r\n    front_default: string;\r\n  };\r\n  image: string;\r\n  id: number;\r\n}\r\n\r\ninterface HttpResponse<T> {\r\n  results: T;\r\n  error: string | undefined;\r\n  isLoading: boolean;\r\n}\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class PokemonService {\r\n  url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5';\r\n\r\n  pokemons = signal<HttpResponse<Pokemon[]>>({\r\n    results: [],\r\n    error: undefined,\r\n    isLoading: true,\r\n  });\r\n\r\n  pokemonDetail = signal<HttpResponse<Pokemon | null>>({\r\n    results: null,\r\n    error: undefined,\r\n    isLoading: false,\r\n  });\r\n\r\n  fetchData<T>(url: string): Observable<T> {\r\n    return ajax.getJSON<T>(url).pipe(delay(2000));\r\n  }\r\n\r\n  mapPokemons(pokemons: Pokemon[]): Pokemon[] {\r\n    return pokemons.map((pokemon) => ({\r\n      name: pokemon.name,\r\n      image: pokemon.sprites?.front_default ?? '',\r\n      id: pokemon.id,\r\n    }));\r\n  }\r\n\r\n  getPokemons(): Observable<HttpResponse<Pokemon[]>> {\r\n    return this.fetchData<HttpResponse<Pokemon[]>>(this.url).pipe(\r\n      mergeMap((data) =>\r\n        forkJoin(\r\n          data.results.map((_, index) =>\r\n            this.fetchData<Pokemon>(\r\n              `https://pokeapi.co/api/v2/pokemon/${index + 1}/`\r\n            )\r\n          )\r\n        )\r\n      ),\r\n      map((pokemons) => ({\r\n        results: this.mapPokemons(pokemons),\r\n        error: undefined,\r\n        isLoading: false,\r\n      })),\r\n      catchError((error) => {\r\n        return [{ results: [], error: '' + error.message, isLoading: false }];\r\n      })\r\n    );\r\n  }\r\n\r\n  getPokemonDetails(\r\n    pokemon: Pokemon\r\n  ): Observable<HttpResponse<Pokemon | null>> {\r\n    return this.fetchData<Pokemon>(\r\n      `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`\r\n    ).pipe(\r\n      map((data) => ({\r\n        results: {\r\n          name: data.name,\r\n          image: data.sprites?.front_default ?? '',\r\n          id: data.id,\r\n        },\r\n        error: undefined,\r\n        isLoading: false,\r\n      })),\r\n      catchError((error) => {\r\n        return [\r\n          {\r\n            results: null,\r\n            error: 'Failed to fetch Pokémon details',\r\n            isLoading: false,\r\n          },\r\n        ];\r\n      })\r\n    );\r\n  }\r\n\r\n  setPokemonsLoadingState() {\r\n    this.pokemons.set({\r\n      results: this.pokemons().results,\r\n      error: undefined,\r\n      isLoading: true,\r\n    });\r\n  }\r\n\r\n  setPokemonsSuccessState(results: Pokemon[]) {\r\n    this.pokemons.set({\r\n      results,\r\n      error: undefined,\r\n      isLoading: false,\r\n    });\r\n  }\r\n\r\n  setPokemonsErrorState(error: any) {\r\n    this.pokemons.set({\r\n      results: this.pokemons().results,\r\n      error: '' + error.message,\r\n      isLoading: false,\r\n    });\r\n  }\r\n\r\n  setPokemonDetailLoadingState() {\r\n    this.pokemonDetail.set({\r\n      results: this.pokemonDetail().results,\r\n      error: undefined,\r\n      isLoading: true,\r\n    });\r\n  }\r\n\r\n  setPokemonDetailSuccessState(results: Pokemon) {\r\n    this.pokemonDetail.set({\r\n      results,\r\n      error: undefined,\r\n      isLoading: false,\r\n    });\r\n  }\r\n\r\n  setPokemonDetailErrorState(error: any) {\r\n    this.pokemonDetail.set({\r\n      results: this.pokemonDetail().results,\r\n      error: '' + error.message,\r\n      isLoading: false,\r\n    });\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "error",
@@ -138,7 +138,17 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 19
+                    "line": 17
+                },
+                {
+                    "name": "isLoading",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
                 },
                 {
                     "name": "results",
@@ -148,7 +158,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 18
+                    "line": 16
                 }
             ],
             "indexSignatures": [],
@@ -158,12 +168,12 @@
         },
         {
             "name": "Pokemon",
-            "id": "interface-Pokemon-806e155c6839d18dcec4127ab7bfc9990f0e94db330290f80c5eb1606f040f726c09b5e4b91f1515ab717eb3e3cf802c354613908fa754d213f6861bf045bdd8",
+            "id": "interface-Pokemon-8b14352500ea1e94e1a86e6611dd3efa3b617c55072d784650166ca41358c88f028da408ab404210a03d99393073f831e08adc7da647e636cc922df7b7551d3e",
             "file": "src/app/components/fetch-data/fetch-data.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Component, computed, OnInit, Signal, signal } from '@angular/core';\r\nimport { Observable, forkJoin } from 'rxjs';\r\nimport { catchError, delay, map, mergeMap } from 'rxjs/operators';\r\nimport { ajax } from 'rxjs/ajax';\r\nimport { CommonModule } from '@angular/common';\r\nimport { toSignal } from '@angular/core/rxjs-interop';\r\n\r\ninterface Pokemon {\r\n  name: string;\r\n  sprites?: {\r\n    front_default: string;\r\n  };\r\n  image: string;\r\n  id: number;\r\n}\r\n\r\ninterface HttpResponse<T> {\r\n  results: T;\r\n  error: string | undefined;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-fetch-data',\r\n  templateUrl: './fetch-data.component.html',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n})\r\nexport class FetchDataComponent {\r\n  url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5';\r\n  loading = computed(\r\n    () => this.pokemons().results.length === 0 && !this.pokemons().error\r\n  );\r\n\r\n  pokemons: Signal<HttpResponse<Pokemon[]>> = toSignal(\r\n    this.getPokemonData().pipe(\r\n      map((pokemons) => {\r\n        return {\r\n          results: pokemons,\r\n          error: undefined,\r\n        };\r\n      }),\r\n      catchError((error) => {\r\n        return [{ results: [], error: '' + error.message }];\r\n      })\r\n    ),\r\n    { initialValue: { results: [], error: undefined } }\r\n  );\r\n\r\n  selectedPokemon = signal<Pokemon | null>(null);\r\n  error = signal<string | null>(null);\r\n\r\n  fetchData<T>(url: string): Observable<T> {\r\n    return ajax.getJSON<T>(url);\r\n  }\r\n\r\n  mapPokemons(pokemons: Pokemon[]): Pokemon[] {\r\n    return pokemons.map((pokemon) => ({\r\n      name: pokemon.name,\r\n      image: pokemon.sprites?.front_default ?? '',\r\n      id: pokemon.id,\r\n    }));\r\n  }\r\n\r\n  getPokemonData(): Observable<Pokemon[]> {\r\n    return this.fetchData<HttpResponse<Pokemon[]>>(this.url).pipe(\r\n      mergeMap((data) =>\r\n        forkJoin(\r\n          data.results.map((_, index) =>\r\n            this.fetchData<Pokemon>(\r\n              `https://pokeapi.co/api/v2/pokemon/${index + 1}/`\r\n            )\r\n          )\r\n        )\r\n      ),\r\n      map((pokemons) => this.mapPokemons(pokemons)),\r\n      delay(2000)\r\n    );\r\n  }\r\n\r\n  selectPokemon(pokemon: Pokemon) {\r\n    this.fetchData<Pokemon>(\r\n      `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`\r\n    ).subscribe({\r\n      next: (data) => {\r\n        this.selectedPokemon.set({\r\n          name: data.name,\r\n          image: data.sprites?.front_default ?? '',\r\n          id: data.id,\r\n        });\r\n        this.error.set(null); // Clear any previous error\r\n      },\r\n      error: (err) => {\r\n        console.error('Error fetching Pokémon details:', err);\r\n        this.error.set('Failed to fetch Pokémon details');\r\n      },\r\n    });\r\n  }\r\n\r\n  clearSelection() {\r\n    this.selectedPokemon.set(null);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, inject, OnInit } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { PokemonService } from './pokemon.service';\r\n\r\ninterface Pokemon {\r\n  name: string;\r\n  sprites?: {\r\n    front_default: string;\r\n  };\r\n  image: string;\r\n  id: number;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-fetch-data',\r\n  templateUrl: './fetch-data.component.html',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n})\r\nexport class FetchDataComponent implements OnInit {\r\n  pokemonService = inject(PokemonService);\r\n\r\n  ngOnInit() {\r\n    this.fetchPokemons();\r\n  }\r\n\r\n  fetchPokemons() {\r\n    this.pokemonService.setPokemonsLoadingState();\r\n\r\n    this.pokemonService.getPokemons().subscribe({\r\n      next: (response) => {\r\n        this.pokemonService.setPokemonsSuccessState(response.results);\r\n      },\r\n      error: (error) => {\r\n        this.pokemonService.setPokemonsErrorState(error);\r\n      },\r\n    });\r\n  }\r\n\r\n  getPokemonDetails(pokemon: Pokemon) {\r\n    this.pokemonService.setPokemonsSuccessState([]);\r\n    this.pokemonService.setPokemonDetailLoadingState();\r\n\r\n    this.pokemonService.getPokemonDetails(pokemon).subscribe({\r\n      next: (response) => {\r\n        if (response.results) {\r\n          this.pokemonService.setPokemonDetailSuccessState(response.results);\r\n        } else {\r\n          this.pokemonService.setPokemonDetailErrorState(\r\n            new Error('Pokemon details not found')\r\n          );\r\n        }\r\n      },\r\n      error: (err) => {\r\n        this.pokemonService.setPokemonDetailErrorState(err);\r\n      },\r\n    });\r\n  }\r\n\r\n  goBackToPokemonsList() {\r\n    this.pokemonService.pokemonDetail.set({\r\n      results: null,\r\n      error: undefined,\r\n      isLoading: false,\r\n    });\r\n    this.fetchPokemons();\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "id",
@@ -173,7 +183,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 14
+                    "line": 11
                 },
                 {
                     "name": "image",
@@ -183,7 +193,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 13
+                    "line": 10
                 },
                 {
                     "name": "name",
@@ -193,7 +203,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 9
+                    "line": 6
                 },
                 {
                     "name": "sprites",
@@ -203,13 +213,71 @@
                     "indexKey": "",
                     "optional": true,
                     "description": "",
-                    "line": 10
+                    "line": 7
                 }
             ],
             "indexSignatures": [],
             "kind": 171,
             "methods": [],
             "extends": []
+        },
+        {
+            "name": "Pokemon",
+            "id": "interface-Pokemon-8b2d620fc835693e6eba504112d6f11513429505cabda6ded6b121086a5fc06d1676833a2fa71f6d14aa3bfd07971c7f82fc9e5e6caed674c91f624f85c6b45d-1",
+            "file": "src/app/components/fetch-data/pokemon.service.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Injectable, Signal, signal } from '@angular/core';\r\nimport { Observable, forkJoin } from 'rxjs';\r\nimport { catchError, delay, map, mergeMap } from 'rxjs/operators';\r\nimport { ajax } from 'rxjs/ajax';\r\n\r\ninterface Pokemon {\r\n  name: string;\r\n  sprites?: {\r\n    front_default: string;\r\n  };\r\n  image: string;\r\n  id: number;\r\n}\r\n\r\ninterface HttpResponse<T> {\r\n  results: T;\r\n  error: string | undefined;\r\n  isLoading: boolean;\r\n}\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class PokemonService {\r\n  url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5';\r\n\r\n  pokemons = signal<HttpResponse<Pokemon[]>>({\r\n    results: [],\r\n    error: undefined,\r\n    isLoading: true,\r\n  });\r\n\r\n  pokemonDetail = signal<HttpResponse<Pokemon | null>>({\r\n    results: null,\r\n    error: undefined,\r\n    isLoading: false,\r\n  });\r\n\r\n  fetchData<T>(url: string): Observable<T> {\r\n    return ajax.getJSON<T>(url).pipe(delay(2000));\r\n  }\r\n\r\n  mapPokemons(pokemons: Pokemon[]): Pokemon[] {\r\n    return pokemons.map((pokemon) => ({\r\n      name: pokemon.name,\r\n      image: pokemon.sprites?.front_default ?? '',\r\n      id: pokemon.id,\r\n    }));\r\n  }\r\n\r\n  getPokemons(): Observable<HttpResponse<Pokemon[]>> {\r\n    return this.fetchData<HttpResponse<Pokemon[]>>(this.url).pipe(\r\n      mergeMap((data) =>\r\n        forkJoin(\r\n          data.results.map((_, index) =>\r\n            this.fetchData<Pokemon>(\r\n              `https://pokeapi.co/api/v2/pokemon/${index + 1}/`\r\n            )\r\n          )\r\n        )\r\n      ),\r\n      map((pokemons) => ({\r\n        results: this.mapPokemons(pokemons),\r\n        error: undefined,\r\n        isLoading: false,\r\n      })),\r\n      catchError((error) => {\r\n        return [{ results: [], error: '' + error.message, isLoading: false }];\r\n      })\r\n    );\r\n  }\r\n\r\n  getPokemonDetails(\r\n    pokemon: Pokemon\r\n  ): Observable<HttpResponse<Pokemon | null>> {\r\n    return this.fetchData<Pokemon>(\r\n      `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`\r\n    ).pipe(\r\n      map((data) => ({\r\n        results: {\r\n          name: data.name,\r\n          image: data.sprites?.front_default ?? '',\r\n          id: data.id,\r\n        },\r\n        error: undefined,\r\n        isLoading: false,\r\n      })),\r\n      catchError((error) => {\r\n        return [\r\n          {\r\n            results: null,\r\n            error: 'Failed to fetch Pokémon details',\r\n            isLoading: false,\r\n          },\r\n        ];\r\n      })\r\n    );\r\n  }\r\n\r\n  setPokemonsLoadingState() {\r\n    this.pokemons.set({\r\n      results: this.pokemons().results,\r\n      error: undefined,\r\n      isLoading: true,\r\n    });\r\n  }\r\n\r\n  setPokemonsSuccessState(results: Pokemon[]) {\r\n    this.pokemons.set({\r\n      results,\r\n      error: undefined,\r\n      isLoading: false,\r\n    });\r\n  }\r\n\r\n  setPokemonsErrorState(error: any) {\r\n    this.pokemons.set({\r\n      results: this.pokemons().results,\r\n      error: '' + error.message,\r\n      isLoading: false,\r\n    });\r\n  }\r\n\r\n  setPokemonDetailLoadingState() {\r\n    this.pokemonDetail.set({\r\n      results: this.pokemonDetail().results,\r\n      error: undefined,\r\n      isLoading: true,\r\n    });\r\n  }\r\n\r\n  setPokemonDetailSuccessState(results: Pokemon) {\r\n    this.pokemonDetail.set({\r\n      results,\r\n      error: undefined,\r\n      isLoading: false,\r\n    });\r\n  }\r\n\r\n  setPokemonDetailErrorState(error: any) {\r\n    this.pokemonDetail.set({\r\n      results: this.pokemonDetail().results,\r\n      error: '' + error.message,\r\n      isLoading: false,\r\n    });\r\n  }\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "image",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "sprites",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "Pokemon-1"
         },
         {
             "name": "StyleConfig",
@@ -312,7 +380,285 @@
             "extends": []
         }
     ],
-    "injectables": [],
+    "injectables": [
+        {
+            "name": "PokemonService",
+            "id": "injectable-PokemonService-8b2d620fc835693e6eba504112d6f11513429505cabda6ded6b121086a5fc06d1676833a2fa71f6d14aa3bfd07971c7f82fc9e5e6caed674c91f624f85c6b45d",
+            "file": "src/app/components/fetch-data/pokemon.service.ts",
+            "properties": [
+                {
+                    "name": "pokemonDetail",
+                    "defaultValue": "signal<HttpResponse<Pokemon | null>>({\r\n    results: null,\r\n    error: undefined,\r\n    isLoading: false,\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 33
+                },
+                {
+                    "name": "pokemons",
+                    "defaultValue": "signal<HttpResponse<Pokemon[]>>({\r\n    results: [],\r\n    error: undefined,\r\n    isLoading: true,\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 27
+                },
+                {
+                    "name": "url",
+                    "defaultValue": "'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 25
+                }
+            ],
+            "methods": [
+                {
+                    "name": "fetchData",
+                    "args": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<T>",
+                    "typeParameters": [
+                        "T"
+                    ],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getPokemonDetails",
+                    "args": [
+                        {
+                            "name": "pokemon",
+                            "type": "Pokemon",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<HttpResponse<Pokemon | null>>",
+                    "typeParameters": [],
+                    "line": 73,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "pokemon",
+                            "type": "Pokemon",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getPokemons",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<HttpResponse<Pokemon[]>>",
+                    "typeParameters": [],
+                    "line": 51,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "mapPokemons",
+                    "args": [
+                        {
+                            "name": "pokemons",
+                            "type": "Pokemon[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Pokemon[]",
+                    "typeParameters": [],
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "pokemons",
+                            "type": "Pokemon[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setPokemonDetailErrorState",
+                    "args": [
+                        {
+                            "name": "error",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 140,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "error",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setPokemonDetailLoadingState",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 124,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "setPokemonDetailSuccessState",
+                    "args": [
+                        {
+                            "name": "results",
+                            "type": "Pokemon",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 132,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "results",
+                            "type": "Pokemon",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setPokemonsErrorState",
+                    "args": [
+                        {
+                            "name": "error",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 116,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "error",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setPokemonsLoadingState",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 100,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "setPokemonsSuccessState",
+                    "args": [
+                        {
+                            "name": "results",
+                            "type": "Pokemon[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 108,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "results",
+                            "type": "Pokemon[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable, Signal, signal } from '@angular/core';\r\nimport { Observable, forkJoin } from 'rxjs';\r\nimport { catchError, delay, map, mergeMap } from 'rxjs/operators';\r\nimport { ajax } from 'rxjs/ajax';\r\n\r\ninterface Pokemon {\r\n  name: string;\r\n  sprites?: {\r\n    front_default: string;\r\n  };\r\n  image: string;\r\n  id: number;\r\n}\r\n\r\ninterface HttpResponse<T> {\r\n  results: T;\r\n  error: string | undefined;\r\n  isLoading: boolean;\r\n}\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class PokemonService {\r\n  url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5';\r\n\r\n  pokemons = signal<HttpResponse<Pokemon[]>>({\r\n    results: [],\r\n    error: undefined,\r\n    isLoading: true,\r\n  });\r\n\r\n  pokemonDetail = signal<HttpResponse<Pokemon | null>>({\r\n    results: null,\r\n    error: undefined,\r\n    isLoading: false,\r\n  });\r\n\r\n  fetchData<T>(url: string): Observable<T> {\r\n    return ajax.getJSON<T>(url).pipe(delay(2000));\r\n  }\r\n\r\n  mapPokemons(pokemons: Pokemon[]): Pokemon[] {\r\n    return pokemons.map((pokemon) => ({\r\n      name: pokemon.name,\r\n      image: pokemon.sprites?.front_default ?? '',\r\n      id: pokemon.id,\r\n    }));\r\n  }\r\n\r\n  getPokemons(): Observable<HttpResponse<Pokemon[]>> {\r\n    return this.fetchData<HttpResponse<Pokemon[]>>(this.url).pipe(\r\n      mergeMap((data) =>\r\n        forkJoin(\r\n          data.results.map((_, index) =>\r\n            this.fetchData<Pokemon>(\r\n              `https://pokeapi.co/api/v2/pokemon/${index + 1}/`\r\n            )\r\n          )\r\n        )\r\n      ),\r\n      map((pokemons) => ({\r\n        results: this.mapPokemons(pokemons),\r\n        error: undefined,\r\n        isLoading: false,\r\n      })),\r\n      catchError((error) => {\r\n        return [{ results: [], error: '' + error.message, isLoading: false }];\r\n      })\r\n    );\r\n  }\r\n\r\n  getPokemonDetails(\r\n    pokemon: Pokemon\r\n  ): Observable<HttpResponse<Pokemon | null>> {\r\n    return this.fetchData<Pokemon>(\r\n      `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`\r\n    ).pipe(\r\n      map((data) => ({\r\n        results: {\r\n          name: data.name,\r\n          image: data.sprites?.front_default ?? '',\r\n          id: data.id,\r\n        },\r\n        error: undefined,\r\n        isLoading: false,\r\n      })),\r\n      catchError((error) => {\r\n        return [\r\n          {\r\n            results: null,\r\n            error: 'Failed to fetch Pokémon details',\r\n            isLoading: false,\r\n          },\r\n        ];\r\n      })\r\n    );\r\n  }\r\n\r\n  setPokemonsLoadingState() {\r\n    this.pokemons.set({\r\n      results: this.pokemons().results,\r\n      error: undefined,\r\n      isLoading: true,\r\n    });\r\n  }\r\n\r\n  setPokemonsSuccessState(results: Pokemon[]) {\r\n    this.pokemons.set({\r\n      results,\r\n      error: undefined,\r\n      isLoading: false,\r\n    });\r\n  }\r\n\r\n  setPokemonsErrorState(error: any) {\r\n    this.pokemons.set({\r\n      results: this.pokemons().results,\r\n      error: '' + error.message,\r\n      isLoading: false,\r\n    });\r\n  }\r\n\r\n  setPokemonDetailLoadingState() {\r\n    this.pokemonDetail.set({\r\n      results: this.pokemonDetail().results,\r\n      error: undefined,\r\n      isLoading: true,\r\n    });\r\n  }\r\n\r\n  setPokemonDetailSuccessState(results: Pokemon) {\r\n    this.pokemonDetail.set({\r\n      results,\r\n      error: undefined,\r\n      isLoading: false,\r\n    });\r\n  }\r\n\r\n  setPokemonDetailErrorState(error: any) {\r\n    this.pokemonDetail.set({\r\n      results: this.pokemonDetail().results,\r\n      error: '' + error.message,\r\n      isLoading: false,\r\n    });\r\n  }\r\n}\r\n",
+            "extends": [],
+            "type": "injectable"
+        }
+    ],
     "guards": [],
     "interceptors": [],
     "classes": [],
@@ -756,9 +1102,227 @@
                     }
                 ]
             }
+        },
+        {
+            "name": "StopAccordionToggleDirective",
+            "id": "directive-StopAccordionToggleDirective-b086d0c0fa813aeed62b0442bf95b4a511d2a595441127169a1af21a03e888fa23e80cb7c0681942597fe2811a6b3c4e49489250e9183c4f5e9ffc5c9b9a8577",
+            "file": "src/app/components/accordion/accordion-2.component.ts",
+            "type": "directive",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Component, Input, ContentChildren, QueryList, AfterContentInit, Output, EventEmitter, Directive, HostListener } from '@angular/core';\r\n\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Directive({selector: 'button[stopAccordionToggle]', standalone: true})\r\nexport class StopAccordionToggleDirective {\r\n  @HostListener('click', ['$event'])\r\n  onClick(event: Event) {\r\n    event.stopPropagation();\r\n  }\r\n}\r\n\r\n@Component({\r\n  selector: 'app-accordion-2',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  template: `\r\n    <div [ngStyle]=\"{ 'margin-left': getMargin(level) }\">\r\n      <div class=\"accordion-2-header\" (click)=\"toggle()\">\r\n        <span class=\"accordion-2-chevron\" [style.transform]=\"expanded ? 'rotate(90deg)' : 'rotate(0deg)'\" style=\"display:inline-flex;align-items:center;margin-right:0.5rem;transition:transform 0.2s;\">\r\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n            <path d=\"M6 12L10 8L6 4\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n          </svg>\r\n        </span>\r\n        <ng-content select=\"[accordion-2-title]\"></ng-content>\r\n      </div>\r\n      <div class=\"accordion-2-content\" *ngIf=\"expanded\">\r\n        <div\r\n          class=\"accordion-2-child-content\"\r\n          [class.accordion-2-child-active]=\"childActive\"\r\n        >\r\n          <ng-content></ng-content>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  `,\r\n  styleUrls: ['./accordion-2.component.css']\r\n})\r\nexport class Accordion2Component implements AfterContentInit {\r\n  @Input() level = 1;\r\n  expanded = false;\r\n\r\n  @ContentChildren(Accordion2Component) children!: QueryList<Accordion2Component>;\r\n\r\n  ngAfterContentInit() {\r\n    this.children.forEach(child => child.level = this.level + 1);\r\n  }\r\n\r\n  toggle() {\r\n    this.expanded = !this.expanded;\r\n  }\r\n\r\n  getMargin(level: number): string {\r\n    if (level === 1) return '1rem';\r\n    if (level === 2) return '1.5rem';\r\n    return '2rem';\r\n  }\r\n}\r\n",
+            "selector": "button[stopAccordionToggle]",
+            "providers": [],
+            "hostDirectives": [],
+            "standalone": true,
+            "inputsClass": [],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "click",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "argsDecorator": [
+                        "$event"
+                    ],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 8
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "onClick",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 8,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'click', ['$event']"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "extends": []
         }
     ],
     "components": [
+        {
+            "name": "Accordion2Component",
+            "id": "component-Accordion2Component-b086d0c0fa813aeed62b0442bf95b4a511d2a595441127169a1af21a03e888fa23e80cb7c0681942597fe2811a6b3c4e49489250e9183c4f5e9ffc5c9b9a8577",
+            "file": "src/app/components/accordion/accordion-2.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-accordion-2",
+            "styleUrls": [
+                "./accordion-2.component.css"
+            ],
+            "styles": [],
+            "template": "<div [ngStyle]=\"{ 'margin-left': getMargin(level) }\">\n  <div class=\"accordion-2-header\" (click)=\"toggle()\">\n    <span class=\"accordion-2-chevron\" [style.transform]=\"expanded ? 'rotate(90deg)' : 'rotate(0deg)'\" style=\"display:inline-flex;align-items:center;margin-right:0.5rem;transition:transform 0.2s;\">\n      <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M6 12L10 8L6 4\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n      </svg>\n    </span>\n    <ng-content select=\"[accordion-2-title]\"></ng-content>\n  </div>\n  <div class=\"accordion-2-content\" *ngIf=\"expanded\">\n    <div\n      class=\"accordion-2-child-content\"\n      [class.accordion-2-child-active]=\"childActive\"\n    >\n      <ng-content></ng-content>\n    </div>\n  </div>\n</div>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "level",
+                    "defaultValue": "1",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "number",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "children",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "QueryList<Accordion2Component>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 43,
+                    "decorators": [
+                        {
+                            "name": "ContentChildren",
+                            "stringifiedArguments": "Accordion2Component"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "expanded",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 41
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getMargin",
+                    "args": [
+                        {
+                            "name": "level",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 53,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "level",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngAfterContentInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "toggle",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 49,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, ContentChildren, QueryList, AfterContentInit, Output, EventEmitter, Directive, HostListener } from '@angular/core';\r\n\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Directive({selector: 'button[stopAccordionToggle]', standalone: true})\r\nexport class StopAccordionToggleDirective {\r\n  @HostListener('click', ['$event'])\r\n  onClick(event: Event) {\r\n    event.stopPropagation();\r\n  }\r\n}\r\n\r\n@Component({\r\n  selector: 'app-accordion-2',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  template: `\r\n    <div [ngStyle]=\"{ 'margin-left': getMargin(level) }\">\r\n      <div class=\"accordion-2-header\" (click)=\"toggle()\">\r\n        <span class=\"accordion-2-chevron\" [style.transform]=\"expanded ? 'rotate(90deg)' : 'rotate(0deg)'\" style=\"display:inline-flex;align-items:center;margin-right:0.5rem;transition:transform 0.2s;\">\r\n          <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\r\n            <path d=\"M6 12L10 8L6 4\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\r\n          </svg>\r\n        </span>\r\n        <ng-content select=\"[accordion-2-title]\"></ng-content>\r\n      </div>\r\n      <div class=\"accordion-2-content\" *ngIf=\"expanded\">\r\n        <div\r\n          class=\"accordion-2-child-content\"\r\n          [class.accordion-2-child-active]=\"childActive\"\r\n        >\r\n          <ng-content></ng-content>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  `,\r\n  styleUrls: ['./accordion-2.component.css']\r\n})\r\nexport class Accordion2Component implements AfterContentInit {\r\n  @Input() level = 1;\r\n  expanded = false;\r\n\r\n  @ContentChildren(Accordion2Component) children!: QueryList<Accordion2Component>;\r\n\r\n  ngAfterContentInit() {\r\n    this.children.forEach(child => child.level = this.level + 1);\r\n  }\r\n\r\n  toggle() {\r\n    this.expanded = !this.expanded;\r\n  }\r\n\r\n  getMargin(level: number): string {\r\n    if (level === 1) return '1rem';\r\n    if (level === 2) return '1.5rem';\r\n    return '2rem';\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".accordion-2-header {\r\n  cursor: pointer;\r\n  font-weight: bold;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n",
+                    "styleUrl": "./accordion-2.component.css"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "AfterContentInit"
+            ]
+        },
         {
             "name": "AccordionComponent",
             "id": "component-AccordionComponent-942f02e8ce4c5f7814253f20f05809097085bff22f7a453fdfaf358e19e08e03c8b5bb62a6125444758eb1ea1bba776f075d96e1d28bc134582144e36d5467b7",
@@ -1035,7 +1599,7 @@
         },
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-46f0c71d4ba228ee6f286250e5009a743ccfe5b0c37094f1c86d730aef800b689ee7d07e056129151ef27995ae66f22a8aef0c0fa1d71d3dc5735d62b4dad829",
+            "id": "component-AppComponent-3232cc5f4040ffdbe3bd316f40dd86a80d21bf91535d582e617201456282041272b48fda043ed015f16d35e5506feb9393cec4d6a7993d3fb0661fcfe708a524",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1077,7 +1641,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n    selector: 'app-root',\n    templateUrl: './app.component.html',\n    styleUrls: ['./app.component.css'],\n    standalone: false\n})\nexport class AppComponent {\n  title = 'taskbox';\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n    selector: 'app-root',\r\n    templateUrl: './app.component.html',\r\n    styleUrls: ['./app.component.css'],\r\n    standalone: false\r\n})\r\nexport class AppComponent {\r\n  title = 'taskbox';\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1091,7 +1655,7 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-60061ee1a375f38274238523bc4654eac3671a7efb979731f945f5e25f90c2351929e4bf5c906f32882bb325d9bf8bd7c0c4e3faa6f3c06acab121aefa43f955",
+            "id": "component-ButtonComponent-da22cdf6e18082277be7aa40c3ee7c1956c54eec75ef50daaa217ef92d08fb810c51856142491694139305806477f104e5837ee90fe6bff578c2bf6fee4219f4",
             "file": "src/app/components/button/button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1125,16 +1689,16 @@
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "pos": 806,
-                            "end": 819,
+                            "pos": 845,
+                            "end": 859,
                             "kind": 327,
                             "id": 0,
                             "flags": 16842752,
                             "modifierFlagsCache": 0,
                             "transformFlags": 0,
                             "tagName": {
-                                "pos": 807,
-                                "end": 815,
+                                "pos": 846,
+                                "end": 854,
                                 "kind": 80,
                                 "id": 0,
                                 "flags": 16842752,
@@ -1201,11 +1765,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  imports: [CommonModule],\n  standalone: true,\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary\n      ? 'storybook-button--primary'\n      : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'storybook-button',\r\n  imports: [CommonModule],\r\n  standalone: true,\r\n  template: ` <button\r\n    type=\"button\"\r\n    (click)=\"onClick.emit($event)\"\r\n    [ngClass]=\"classes\"\r\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\r\n  >\r\n    {{ label }}\r\n  </button>`,\r\n  styleUrls: ['./button.css'],\r\n})\r\nexport default class ButtonComponent {\r\n  /**\r\n   * Is this the principal call to action on the page?\r\n   */\r\n  @Input()\r\n  primary = false;\r\n\r\n  /**\r\n   * What background color to use\r\n   */\r\n  @Input()\r\n  backgroundColor?: string;\r\n\r\n  /**\r\n   * How large should the button be?\r\n   */\r\n  @Input()\r\n  size: 'small' | 'medium' | 'large' = 'medium';\r\n\r\n  /**\r\n   * Button contents\r\n   *\r\n   * @required\r\n   */\r\n  @Input()\r\n  label = 'Button';\r\n\r\n  /**\r\n   * Optional click handler\r\n   */\r\n  @Output()\r\n  onClick = new EventEmitter<Event>();\r\n\r\n  public get classes(): string[] {\r\n    const mode = this.primary\r\n      ? 'storybook-button--primary'\r\n      : 'storybook-button--secondary';\r\n\r\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".storybook-button {\n  font-family: \"Nunito Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-weight: 700;\n  border: 0;\n  border-radius: 3em;\n  cursor: pointer;\n  display: inline-block;\n  line-height: 1;\n}\n.storybook-button--primary {\n  color: white;\n  background-color: #1ea7fd;\n}\n.storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n}\n.storybook-button--large {\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
+                    "data": ".storybook-button {\r\n  font-family: \"Nunito Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\r\n  font-weight: 700;\r\n  border: 0;\r\n  border-radius: 3em;\r\n  cursor: pointer;\r\n  display: inline-block;\r\n  line-height: 1;\r\n}\r\n.storybook-button--primary {\r\n  color: white;\r\n  background-color: #1ea7fd;\r\n}\r\n.storybook-button--secondary {\r\n  color: #333;\r\n  background-color: transparent;\r\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\r\n}\r\n.storybook-button--small {\r\n  font-size: 12px;\r\n  padding: 10px 16px;\r\n}\r\n.storybook-button--medium {\r\n  font-size: 14px;\r\n  padding: 11px 20px;\r\n}\r\n.storybook-button--large {\r\n  font-size: 16px;\r\n  padding: 12px 24px;\r\n}\r\n",
                     "styleUrl": "./button.css"
                 }
             ],
@@ -2458,7 +3022,7 @@
         },
         {
             "name": "FetchDataComponent",
-            "id": "component-FetchDataComponent-806e155c6839d18dcec4127ab7bfc9990f0e94db330290f80c5eb1606f040f726c09b5e4b91f1515ab717eb3e3cf802c354613908fa754d213f6861bf045bdd8",
+            "id": "component-FetchDataComponent-8b14352500ea1e94e1a86e6611dd3efa3b617c55072d784650166ca41358c88f028da408ab404210a03d99393073f831e08adc7da647e636cc922df7b7551d3e",
             "file": "src/app/components/fetch-data/fetch-data.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2477,142 +3041,30 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "error",
-                    "defaultValue": "signal<string | null>(null)",
+                    "name": "pokemonService",
+                    "defaultValue": "inject(PokemonService)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 50
-                },
-                {
-                    "name": "loading",
-                    "defaultValue": "computed(\r\n    () => this.pokemons().results.length === 0 && !this.pokemons().error\r\n  )",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 30
-                },
-                {
-                    "name": "pokemons",
-                    "defaultValue": "toSignal(\r\n    this.getPokemonData().pipe(\r\n      map((pokemons) => {\r\n        return {\r\n          results: pokemons,\r\n          error: undefined,\r\n        };\r\n      }),\r\n      catchError((error) => {\r\n        return [{ results: [], error: '' + error.message }];\r\n      })\r\n    ),\r\n    { initialValue: { results: [], error: undefined } }\r\n  )",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Signal<HttpResponse<Pokemon[]>>",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 34
-                },
-                {
-                    "name": "selectedPokemon",
-                    "defaultValue": "signal<Pokemon | null>(null)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 49
-                },
-                {
-                    "name": "url",
-                    "defaultValue": "'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 29
+                    "line": 21
                 }
             ],
             "methodsClass": [
                 {
-                    "name": "clearSelection",
+                    "name": "fetchPokemons",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 99,
+                    "line": 27,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
                 {
-                    "name": "fetchData",
-                    "args": [
-                        {
-                            "name": "url",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "Observable<T>",
-                    "typeParameters": [
-                        "T"
-                    ],
-                    "line": 52,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "url",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "getPokemonData",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "Observable<Pokemon[]>",
-                    "typeParameters": [],
-                    "line": 64,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "mapPokemons",
-                    "args": [
-                        {
-                            "name": "pokemons",
-                            "type": "Pokemon[]",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "Pokemon[]",
-                    "typeParameters": [],
-                    "line": 56,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "pokemons",
-                            "type": "Pokemon[]",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "selectPokemon",
+                    "name": "getPokemonDetails",
                     "args": [
                         {
                             "name": "pokemon",
@@ -2624,7 +3076,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 80,
+                    "line": 40,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2638,6 +3090,26 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "goBackToPokemonsList",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 60,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
             "deprecated": false,
@@ -2654,12 +3126,15 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, computed, OnInit, Signal, signal } from '@angular/core';\r\nimport { Observable, forkJoin } from 'rxjs';\r\nimport { catchError, delay, map, mergeMap } from 'rxjs/operators';\r\nimport { ajax } from 'rxjs/ajax';\r\nimport { CommonModule } from '@angular/common';\r\nimport { toSignal } from '@angular/core/rxjs-interop';\r\n\r\ninterface Pokemon {\r\n  name: string;\r\n  sprites?: {\r\n    front_default: string;\r\n  };\r\n  image: string;\r\n  id: number;\r\n}\r\n\r\ninterface HttpResponse<T> {\r\n  results: T;\r\n  error: string | undefined;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-fetch-data',\r\n  templateUrl: './fetch-data.component.html',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n})\r\nexport class FetchDataComponent {\r\n  url = 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=5';\r\n  loading = computed(\r\n    () => this.pokemons().results.length === 0 && !this.pokemons().error\r\n  );\r\n\r\n  pokemons: Signal<HttpResponse<Pokemon[]>> = toSignal(\r\n    this.getPokemonData().pipe(\r\n      map((pokemons) => {\r\n        return {\r\n          results: pokemons,\r\n          error: undefined,\r\n        };\r\n      }),\r\n      catchError((error) => {\r\n        return [{ results: [], error: '' + error.message }];\r\n      })\r\n    ),\r\n    { initialValue: { results: [], error: undefined } }\r\n  );\r\n\r\n  selectedPokemon = signal<Pokemon | null>(null);\r\n  error = signal<string | null>(null);\r\n\r\n  fetchData<T>(url: string): Observable<T> {\r\n    return ajax.getJSON<T>(url);\r\n  }\r\n\r\n  mapPokemons(pokemons: Pokemon[]): Pokemon[] {\r\n    return pokemons.map((pokemon) => ({\r\n      name: pokemon.name,\r\n      image: pokemon.sprites?.front_default ?? '',\r\n      id: pokemon.id,\r\n    }));\r\n  }\r\n\r\n  getPokemonData(): Observable<Pokemon[]> {\r\n    return this.fetchData<HttpResponse<Pokemon[]>>(this.url).pipe(\r\n      mergeMap((data) =>\r\n        forkJoin(\r\n          data.results.map((_, index) =>\r\n            this.fetchData<Pokemon>(\r\n              `https://pokeapi.co/api/v2/pokemon/${index + 1}/`\r\n            )\r\n          )\r\n        )\r\n      ),\r\n      map((pokemons) => this.mapPokemons(pokemons)),\r\n      delay(2000)\r\n    );\r\n  }\r\n\r\n  selectPokemon(pokemon: Pokemon) {\r\n    this.fetchData<Pokemon>(\r\n      `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`\r\n    ).subscribe({\r\n      next: (data) => {\r\n        this.selectedPokemon.set({\r\n          name: data.name,\r\n          image: data.sprites?.front_default ?? '',\r\n          id: data.id,\r\n        });\r\n        this.error.set(null); // Clear any previous error\r\n      },\r\n      error: (err) => {\r\n        console.error('Error fetching Pokémon details:', err);\r\n        this.error.set('Failed to fetch Pokémon details');\r\n      },\r\n    });\r\n  }\r\n\r\n  clearSelection() {\r\n    this.selectedPokemon.set(null);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, inject, OnInit } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { PokemonService } from './pokemon.service';\r\n\r\ninterface Pokemon {\r\n  name: string;\r\n  sprites?: {\r\n    front_default: string;\r\n  };\r\n  image: string;\r\n  id: number;\r\n}\r\n\r\n@Component({\r\n  selector: 'app-fetch-data',\r\n  templateUrl: './fetch-data.component.html',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n})\r\nexport class FetchDataComponent implements OnInit {\r\n  pokemonService = inject(PokemonService);\r\n\r\n  ngOnInit() {\r\n    this.fetchPokemons();\r\n  }\r\n\r\n  fetchPokemons() {\r\n    this.pokemonService.setPokemonsLoadingState();\r\n\r\n    this.pokemonService.getPokemons().subscribe({\r\n      next: (response) => {\r\n        this.pokemonService.setPokemonsSuccessState(response.results);\r\n      },\r\n      error: (error) => {\r\n        this.pokemonService.setPokemonsErrorState(error);\r\n      },\r\n    });\r\n  }\r\n\r\n  getPokemonDetails(pokemon: Pokemon) {\r\n    this.pokemonService.setPokemonsSuccessState([]);\r\n    this.pokemonService.setPokemonDetailLoadingState();\r\n\r\n    this.pokemonService.getPokemonDetails(pokemon).subscribe({\r\n      next: (response) => {\r\n        if (response.results) {\r\n          this.pokemonService.setPokemonDetailSuccessState(response.results);\r\n        } else {\r\n          this.pokemonService.setPokemonDetailErrorState(\r\n            new Error('Pokemon details not found')\r\n          );\r\n        }\r\n      },\r\n      error: (err) => {\r\n        this.pokemonService.setPokemonDetailErrorState(err);\r\n      },\r\n    });\r\n  }\r\n\r\n  goBackToPokemonsList() {\r\n    this.pokemonService.pokemonDetail.set({\r\n      results: null,\r\n      error: undefined,\r\n      isLoading: false,\r\n    });\r\n    this.fetchPokemons();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"container mt-4\">\r\n  <h5 class=\"mb-4\">\r\n    This example fetches a list of Pokémons and their details, then displays\r\n    their names and images.\r\n  </h5>\r\n  @if(loading()) {\r\n  <div class=\"spinner-border text-primary\" role=\"status\">\r\n    <span class=\"sr-only\">Loading...</span>\r\n  </div>\r\n  }\r\n\r\n  <div *ngIf=\"!selectedPokemon() && !error()\">\r\n    <div class=\"row\">\r\n      @for (pokemon of pokemons().results; track pokemon; let index = $index) {\r\n      <div class=\"col-md-4\">\r\n        <div\r\n          class=\"card cursor-pointer mb-4 shadow-sm\"\r\n          (click)=\"selectPokemon(pokemon)\"\r\n        >\r\n          <img\r\n            [src]=\"pokemon.image\"\r\n            class=\"card-img-top\"\r\n            alt=\"{{ pokemon.name }}\"\r\n          />\r\n          <div class=\"card-body\">\r\n            <h5 class=\"card-title\">{{ pokemon.name }}</h5>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      }\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"col-md-4\" *ngIf=\"selectedPokemon()\">\r\n    <button class=\"btn btn-primary mb-4\" (click)=\"clearSelection()\">\r\n      Back to List\r\n    </button>\r\n    <div class=\"card mb-4 shadow-sm\">\r\n      <img\r\n        [src]=\"selectedPokemon().image\"\r\n        class=\"card-img-top\"\r\n        alt=\"{{ selectedPokemon().name }}\"\r\n      />\r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title\">{{ selectedPokemon().name }}</h5>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div *ngIf=\"pokemons()?.error || error()\">\r\n    <div class=\"alert alert-danger\" role=\"alert\">\r\n      {{ pokemons()?.error || error }}\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"container mt-4\">\r\n  <h5 class=\"mb-4\">\r\n    This example fetches a list of Pokémons and their details, then displays\r\n    their names and images.\r\n  </h5>\r\n  <div *ngIf=\"pokemonService.pokemons().isLoading\">Loading...</div>\r\n  <div *ngIf=\"pokemonService.pokemons().error\">\r\n    <div class=\"alert alert-danger\" role=\"alert\">\r\n      {{ pokemonService.pokemons()?.error || error }}\r\n    </div>\r\n  </div>\r\n  <div *ngIf=\"pokemonService.pokemons().results.length > 0\">\r\n    <div class=\"row\">\r\n      @for (pokemon of pokemonService.pokemons().results; track pokemon; let\r\n      index = $index) {\r\n      <div class=\"col-md-4\">\r\n        <div\r\n          class=\"card cursor-pointer mb-4 shadow-sm\"\r\n          (click)=\"getPokemonDetails(pokemon)\"\r\n        >\r\n          <img\r\n            [src]=\"pokemon.image\"\r\n            class=\"card-img-top\"\r\n            alt=\"{{ pokemon.name }}\"\r\n          />\r\n          <div class=\"card-body\">\r\n            <h5 class=\"card-title\">{{ pokemon.name }}</h5>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      }\r\n    </div>\r\n  </div>\r\n\r\n  <div *ngIf=\"pokemonService.pokemonDetail().isLoading\">Loading...</div>\r\n  <div *ngIf=\"pokemonService.pokemonDetail().error\">\r\n    <div class=\"alert alert-danger\" role=\"alert\">\r\n      {{ pokemonService.pokemonDetail()?.error || error }}\r\n    </div>\r\n  </div>\r\n  <div *ngIf=\"pokemonService.pokemonDetail().results\" class=\"col-md-4\">\r\n    <button class=\"btn btn-primary mb-4\" (click)=\"goBackToPokemonsList()\">\r\n      Back to List\r\n    </button>\r\n    <div class=\"card mb-4 shadow-sm\">\r\n      <img\r\n        [src]=\"pokemonService.pokemonDetail().results.image\"\r\n        class=\"card-img-top\"\r\n        alt=\"{{ pokemonService.pokemonDetail().results.name }}\"\r\n      />\r\n      <div class=\"card-body\">\r\n        <h5 class=\"card-title\">\r\n          {{ pokemonService.pokemonDetail().results.name }}\r\n        </h5>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "FormComponent",
@@ -3119,8 +3594,162 @@
             "templateData": "<ngx-charts-bar-vertical\r\n  [view]=\"view\"\r\n  [scheme]=\"colorScheme\"\r\n  [results]=\"single\"\r\n  [gradient]=\"gradient\"\r\n  [xAxis]=\"showXAxis\"\r\n  [yAxis]=\"showYAxis\"\r\n  [legend]=\"showLegend\"\r\n  [showXAxisLabel]=\"showXAxisLabel\"\r\n  [showYAxisLabel]=\"showYAxisLabel\"\r\n  [xAxisLabel]=\"xAxisLabel\"\r\n  [yAxisLabel]=\"yAxisLabel\">\r\n</ngx-charts-bar-vertical>\r\n"
         },
         {
+            "name": "ListComponent",
+            "id": "component-ListComponent-1b58a7f5eafd70bd45fcd6ed03b9256b67c301b97501361da47323a5408c550ee62f36117ef084b3f362506c3422ead302addd91295fc16f1691dd390d57c20e",
+            "file": "src/app/components/list/list.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-list",
+            "styleUrls": [
+                "./list.component.css"
+            ],
+            "styles": [],
+            "template": "<ul class=\"custom-list\">\n  <ng-content></ng-content>\n</ul>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Output, EventEmitter, Input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-list',\r\n  standalone: true,\r\n  template: `\r\n    <ul class=\"custom-list\">\r\n      <ng-content></ng-content>\r\n    </ul>\r\n  `,\r\n  styleUrls: ['./list.component.css']\r\n})\r\nexport class ListComponent {}\r\n\r\n@Component({\r\n  selector: 'app-list-item',\r\n  standalone: true,\r\n  template: `\r\n    <li class=\"custom-list-item\" [class.active]=\"active\" (click)=\"handleClick($event)\" (focus)=\"onFocus()\" (blur)=\"onBlur()\" tabindex=\"0\">\r\n      <ng-content></ng-content>\r\n    </li>\r\n  `,\r\n  styleUrls: ['./list.component.css']\r\n})\r\nexport class ListItemComponent {\r\n  @Output() itemClick = new EventEmitter<Event>();\r\n  active = false;\r\n\r\n  handleClick(event: Event) {\r\n    this.active = true;\r\n    this.itemClick.emit(event);\r\n  }\r\n\r\n  onFocus() {\r\n    this.active = true;\r\n  }\r\n\r\n  onBlur() {\r\n    this.active = false;\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".custom-list {\r\n  list-style: none;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n.custom-list-item {\r\n  padding: 0.75rem 1rem;\r\n  cursor: pointer;\r\n  display: flex;\r\n  align-items: center;\r\n  transition: background 0.2s, border-left 0.2s;\r\n  border-left: 4px solid transparent;\r\n}\r\n.custom-list-item.active {\r\n  border-left: 4px solid #1976d2;\r\n  background: #e3f0ff;\r\n}\r\n.custom-list-item:hover {\r\n  background: #f0f6ff;\r\n}\r\n",
+                    "styleUrl": "./list.component.css"
+                }
+            ],
+            "stylesData": "",
+            "extends": []
+        },
+        {
+            "name": "ListItemComponent",
+            "id": "component-ListItemComponent-1b58a7f5eafd70bd45fcd6ed03b9256b67c301b97501361da47323a5408c550ee62f36117ef084b3f362506c3422ead302addd91295fc16f1691dd390d57c20e",
+            "file": "src/app/components/list/list.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-list-item",
+            "styleUrls": [
+                "./list.component.css"
+            ],
+            "styles": [],
+            "template": "<li class=\"custom-list-item\" [class.active]=\"active\" (click)=\"handleClick($event)\" (focus)=\"onFocus()\" (blur)=\"onBlur()\" tabindex=\"0\">\n  <ng-content></ng-content>\n</li>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "itemClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "active",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 27
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "handleClick",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onFocus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 34,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Output, EventEmitter, Input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-list',\r\n  standalone: true,\r\n  template: `\r\n    <ul class=\"custom-list\">\r\n      <ng-content></ng-content>\r\n    </ul>\r\n  `,\r\n  styleUrls: ['./list.component.css']\r\n})\r\nexport class ListComponent {}\r\n\r\n@Component({\r\n  selector: 'app-list-item',\r\n  standalone: true,\r\n  template: `\r\n    <li class=\"custom-list-item\" [class.active]=\"active\" (click)=\"handleClick($event)\" (focus)=\"onFocus()\" (blur)=\"onBlur()\" tabindex=\"0\">\r\n      <ng-content></ng-content>\r\n    </li>\r\n  `,\r\n  styleUrls: ['./list.component.css']\r\n})\r\nexport class ListItemComponent {\r\n  @Output() itemClick = new EventEmitter<Event>();\r\n  active = false;\r\n\r\n  handleClick(event: Event) {\r\n    this.active = true;\r\n    this.itemClick.emit(event);\r\n  }\r\n\r\n  onFocus() {\r\n    this.active = true;\r\n  }\r\n\r\n  onBlur() {\r\n    this.active = false;\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".custom-list {\r\n  list-style: none;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n.custom-list-item {\r\n  padding: 0.75rem 1rem;\r\n  cursor: pointer;\r\n  display: flex;\r\n  align-items: center;\r\n  transition: background 0.2s, border-left 0.2s;\r\n  border-left: 4px solid transparent;\r\n}\r\n.custom-list-item.active {\r\n  border-left: 4px solid #1976d2;\r\n  background: #e3f0ff;\r\n}\r\n.custom-list-item:hover {\r\n  background: #f0f6ff;\r\n}\r\n",
+                    "styleUrl": "./list.component.css"
+                }
+            ],
+            "stylesData": "",
+            "extends": []
+        },
+        {
             "name": "NG2DatePickerComponent",
-            "id": "component-NG2DatePickerComponent-6dda194d4b6af901c4ff2441f80090fda957857c8ca10b85394a67aff55152bda7b2eed659e18cb0439f23fc048b4bc5118ca1bf3af057c235118fd1f78eb58b",
+            "id": "component-NG2DatePickerComponent-0d906293b1f7d8951409bcd15ba462949eb24c41a06b2b9330bb359ec337a0692a2cb9f7b5f26cefab64641946317c774457c2d9864a939c5921bfb111d6e6d5",
             "file": "src/app/components/ng2-date-picker/date-picker.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3140,7 +3769,7 @@
             "inputsClass": [
                 {
                     "name": "disabledWeekDays",
-                    "defaultValue": "[0, 6]",
+                    "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 16,
@@ -3309,7 +3938,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { DpDatePickerModule, IDatePickerConfig } from 'ng2-date-picker';\r\nimport dayjs from 'dayjs';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'app-ng2-date-picker',\r\n  imports: [FormsModule, DpDatePickerModule, CommonModule],\r\n  templateUrl: './date-picker.component.html',\r\n  styleUrls: ['./date-picker.component.scss'],\r\n})\r\nexport class NG2DatePickerComponent {\r\n  @Input() selectedDate: Date | null = null;\r\n  @Input() extraDisabledDates: dayjs.Dayjs[] = [];\r\n  @Input() disabledWeekDays: number[] = [0, 6]; // 0 = Sunday, 6 = Saturday\r\n  @Output() selectedDateChange: EventEmitter<Date | null> =\r\n    new EventEmitter<Date | null>();\r\n\r\n  public datePickerConfig: Partial<IDatePickerConfig> = {\r\n    format: 'DD/MM/YYYY',\r\n    showNearMonthDays: true,\r\n    disableKeypress: false,\r\n    isDayDisabledCallback: (date: dayjs.Dayjs) => this.isDateDisabled(date),\r\n    dayBtnCssClassCallback: (day: dayjs.Dayjs) => {\r\n      if (this.isDateDisabled(day)) {\r\n        return 'strikethrough-diagonal';\r\n      }\r\n      return day.isSame(dayjs(), 'day') ? 'date-picker-dot' : '';\r\n    },\r\n  };\r\n\r\n  private isDateDisabled(date: dayjs.Dayjs): boolean {\r\n    if (this.disabledWeekDays.includes(date.day())) {\r\n      return true;\r\n    }\r\n\r\n    return this.extraDisabledDates.some((disabledDate) =>\r\n      date.isSame(disabledDate, 'day')\r\n    );\r\n  }\r\n\r\n  public addExtraDisabledDate(date: Date): void {\r\n    this.extraDisabledDates.push(dayjs(date));\r\n  }\r\n\r\n  public onDateChange(date: Date | null): void {\r\n    this.selectedDate = date;\r\n    this.selectedDateChange.emit(this.selectedDate);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { DpDatePickerModule, IDatePickerConfig } from 'ng2-date-picker';\r\nimport dayjs from 'dayjs';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'app-ng2-date-picker',\r\n  imports: [FormsModule, DpDatePickerModule, CommonModule],\r\n  templateUrl: './date-picker.component.html',\r\n  styleUrls: ['./date-picker.component.scss'],\r\n})\r\nexport class NG2DatePickerComponent {\r\n  @Input() selectedDate: Date | null = null;\r\n  @Input() extraDisabledDates: dayjs.Dayjs[] = [];\r\n  @Input() disabledWeekDays: number[] = [];\r\n  @Output() selectedDateChange: EventEmitter<Date | null> =\r\n    new EventEmitter<Date | null>();\r\n\r\n  public datePickerConfig: Partial<IDatePickerConfig> = {\r\n    format: 'DD/MM/YYYY',\r\n    showNearMonthDays: true,\r\n    disableKeypress: false,\r\n    isDayDisabledCallback: (date: dayjs.Dayjs) => this.isDateDisabled(date),\r\n    dayBtnCssClassCallback: (day: dayjs.Dayjs) => {\r\n      if (this.isDateDisabled(day)) {\r\n        return 'strikethrough-diagonal';\r\n      }\r\n      return day.isSame(dayjs(), 'day') ? 'date-picker-dot' : '';\r\n    },\r\n  };\r\n\r\n  private isDateDisabled(date: dayjs.Dayjs): boolean {\r\n    if (this.disabledWeekDays.includes(date.day())) {\r\n      return true;\r\n    }\r\n\r\n    return this.extraDisabledDates.some((disabledDate) =>\r\n      date.isSame(disabledDate, 'day')\r\n    );\r\n  }\r\n\r\n  public addExtraDisabledDate(date: Date): void {\r\n    this.extraDisabledDates.push(dayjs(date));\r\n  }\r\n\r\n  public onDateChange(date: Date | null): void {\r\n    this.selectedDate = date;\r\n    this.selectedDateChange.emit(this.selectedDate);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -4132,7 +4761,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\n  production: true,\n}"
+                "defaultValue": "{\r\n  production: true,\r\n}"
             },
             {
                 "name": "environment",
@@ -4142,7 +4771,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\n  production: false,\n}"
+                "defaultValue": "{\r\n  production: false,\r\n}"
             },
             {
                 "name": "single",
@@ -4168,7 +4797,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\n  production: true,\n}"
+                    "defaultValue": "{\r\n  production: true,\r\n}"
                 }
             ],
             "src/environments/environment.ts": [
@@ -4180,7 +4809,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\n  production: false,\n}"
+                    "defaultValue": "{\r\n  production: false,\r\n}"
                 }
             ],
             "src/app/components/histogram/data.ts": [
@@ -4202,7 +4831,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 4,
+        "count": 3,
         "status": "low",
         "files": [
             {
@@ -4212,6 +4841,24 @@
                 "name": "AppComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/accordion/accordion-2.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "Accordion2Component",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/accordion/accordion-2.component.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "StopAccordionToggleDirective",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -4310,20 +4957,38 @@
                 "linktype": "component",
                 "name": "FetchDataComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/11",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
                 "filePath": "src/app/components/fetch-data/fetch-data.component.ts",
                 "type": "interface",
                 "linktype": "interface",
-                "name": "HttpResponse",
+                "name": "Pokemon",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/fetch-data/fetch-data.component.ts",
+                "filePath": "src/app/components/fetch-data/pokemon.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "PokemonService",
+                "coveragePercent": 0,
+                "coverageCount": "0/14",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/fetch-data/pokemon.service.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "HttpResponse",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/fetch-data/pokemon.service.ts",
                 "type": "interface",
                 "linktype": "interface",
                 "name": "Pokemon",
@@ -4366,6 +5031,24 @@
                 "name": "HistogramComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/14",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/list/list.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ListComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/list/list.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ListItemComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {

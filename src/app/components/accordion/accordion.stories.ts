@@ -4,10 +4,10 @@ import { AccordionComponent } from './accordion.component';
 import { userEvent, within, expect } from '@storybook/test';
 
 const meta: Meta<AccordionComponent> = {
-  title: 'Components/Accordion',
+  title: 'Components/old/Accordion',
   component: AccordionComponent,
 
-  tags: ['autodocs'],
+  tags: ['!autodocs'],
 };
 
 export default meta;
