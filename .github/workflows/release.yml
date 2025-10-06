@@ -38,4 +38,4 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           npm install -g netlify-cli
-          netlify deploy --dir=storybook-static --prod --site=storybook-raphael --auth=$NETLIFY_AUTH_TOKEN
+          netlify deploy --dir=storybook-static --prod --site=storybook-raphael-2 --auth=$NETLIFY_AUTH_TOKEN
