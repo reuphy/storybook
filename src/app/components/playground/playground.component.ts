@@ -17,8 +17,6 @@ import {
   CsDatePickerComponent,
   DateOptions,
 } from '../cs-date-picker/cs-date-picker.component';
-import { NG2DatePickerComponent } from '../ng2-date-picker/date-picker.component';
-import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-playground',
@@ -41,7 +39,6 @@ import dayjs from 'dayjs';
     DatePickerComponent,
     CsDatePickerComponent,
     FetchDataComponent,
-    NG2DatePickerComponent,
   ],
 })
 export class PlaygroundComponent {
@@ -130,30 +127,6 @@ export class PlaygroundComponent {
     //   isStepperYearShown: false,
     // },
   ];
-  startDate = '';
-  todate = '';
-  date: Object[] = [{}, {}, {}, {}];
-  dateObject(e: any, index: number) {
-    console.log('date', index, e);
 
-    this.date[index] = e;
-  }
-  //////////////////////////
-  // ng2 date picker
-  selectedDate: Date | null = null;
 
-  extraDisabledDates: dayjs.Dayjs[] = [
-    this.toDayjs(2025, 2, 25),
-    this.toDayjs(2025, 2, 27),
-  ];
-
-  disabledWeekDays: number[] = [0, 6]; // 0 = Sunday, 6 = Saturday
-
-  toDayjs(year: number, month: number, day: number): dayjs.Dayjs {
-    return dayjs(new Date(year, month, day));
-  }
-
-  onSelectedDateChange(date: Date | null): void {
-    this.selectedDate = date;
-  }
 }

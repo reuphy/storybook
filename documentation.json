@@ -8790,7 +8790,7 @@
         },
         {
             "name": "DatePickerComponent",
-            "id": "component-DatePickerComponent-c1ce2d93aac17b970401804ccb0f65813c7e7946d30dde47063b6862db6838dcbab1afefcac043e2e8c159278e763e617b4f083f2a8691247f78912fb79aff6a-1",
+            "id": "component-DatePickerComponent-5bb1912ffc6f760149ee926b677db3bad28ee2bda54d32d3cc8b7b29a6fb1fa16667d9b87af9e18b86d91f35912cab714f3cd2e2766c400412c3cc4bea28ef34-1",
             "file": "src/app/components/ng2datepickercopy/lib/date-picker/date-picker.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -9141,6 +9141,7 @@
                 },
                 {
                     "name": "globalListenersUnlisteners",
+                    "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Function[]",
@@ -10003,7 +10004,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {IDate} from '../common/models/date.model';\nimport {UtilsService} from '../common/services/utils/utils.service';\nimport {CalendarMode} from '../common/types/calendar-mode';\nimport {ECalendarMode} from '../common/types/calendar-mode-enum';\nimport {CalendarValue} from '../common/types/calendar-value';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\nimport {SingleCalendarValue} from '../common/types/single-calendar-value';\nimport {IDayCalendarConfig} from '../day-calendar/day-calendar-config.model';\nimport {DayCalendarComponent} from '../day-calendar/day-calendar.component';\nimport {DayCalendarService} from '../day-calendar/day-calendar.service';\nimport {IDayTimeCalendarConfig} from '../day-time-calendar/day-time-calendar-config.model';\nimport {DayTimeCalendarService} from '../day-time-calendar/day-time-calendar.service';\nimport {ITimeSelectConfig} from '../time-select/time-select-config.model';\nimport {TimeSelectComponent} from '../time-select/time-select.component';\nimport {TimeSelectService} from '../time-select/time-select.service';\nimport {IDatePickerConfig, IDatePickerConfigInternal} from './date-picker-config.model';\nimport {IDpDayPickerApi} from './date-picker.api';\nimport {DatePickerService} from './date-picker.service';\nimport {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ElementRef,\n  EventEmitter,\n  forwardRef,\n  HostBinding,\n  HostListener,\n  Input,\n  OnChanges,\n  OnDestroy,\n  OnInit,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewChild,\n  ViewEncapsulation\n} from '@angular/core';\nimport {\n  ControlValueAccessor,\n  UntypedFormControl,\n  NG_VALIDATORS,\n  NG_VALUE_ACCESSOR,\n  ValidationErrors,\n  Validator,\n  FormsModule\n} from '@angular/forms';\n\nimport {DateValidator} from '../common/types/validator.type';\nimport {MonthCalendarComponent} from '../month-calendar/month-calendar.component';\nimport {DayTimeCalendarComponent} from '../day-time-calendar/day-time-calendar.component';\nimport {INavEvent} from '../common/models/navigation-event.model';\nimport {SelectEvent} from '../common/types/selection-event.enum';\nimport {ISelectionEvent} from '../common/types/selection-event.model';\nimport {Dayjs, UnitType} from 'dayjs';\nimport {dayjsRef} from '../common/dayjs/dayjs.ref';\nimport {ConnectionPositionPair} from '@angular/cdk/overlay';\nimport { DatePickerDirective } from './date-picker.directive';\nimport { CalendarNavComponent } from '../calendar-nav/calendar-nav.component';\nimport { CommonModule } from '@angular/common';\nimport { OverlayModule } from '@angular/cdk/overlay';\n\n@Component({\n    selector: 'dp-date-picker',\n    templateUrl: 'date-picker.component.html',\n    styleUrls: ['date-picker.component.less'],\n    encapsulation: ViewEncapsulation.None,\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    imports: [\n          DayCalendarComponent,\n          MonthCalendarComponent,\n          TimeSelectComponent,\n          DayTimeCalendarComponent,\n          FormsModule,\n          CommonModule,\n          OverlayModule\n    ],\n    providers: [\n        DatePickerService,\n        DayTimeCalendarService,\n        DayCalendarService,\n        TimeSelectService,\n        {\n            provide: NG_VALUE_ACCESSOR,\n            useExisting: forwardRef(() => DatePickerComponent),\n            multi: true\n        },\n        {\n            provide: NG_VALIDATORS,\n            useExisting: forwardRef(() => DatePickerComponent),\n            multi: true\n        }\n    ],\n    standalone: true\n})\nexport class DatePickerComponent implements OnChanges,\n                                            OnInit,\n                                            ControlValueAccessor,\n                                            Validator,\n                                            OnDestroy {\n  isInitialized: boolean = false;\n  @Input() config!: IDatePickerConfig;\n  @Input() mode!: CalendarMode;\n  @Input() placeholder!: string;\n  @Input() disabled!: boolean;\n  @Input() displayDate!: Dayjs | string;\n  @HostBinding('class') @Input() theme!: string;\n  @Input() minDate!: SingleCalendarValue;\n  @Input() maxDate!: SingleCalendarValue;\n  @Input() minTime!: SingleCalendarValue;\n  @Input() maxTime!: SingleCalendarValue;\n  @Output() open = new EventEmitter<void>();\n  @Output() close = new EventEmitter<void>();\n  @Output() onChange = new EventEmitter<CalendarValue>();\n  @Output() onGoToCurrent = new EventEmitter<void>();\n  @Output() onLeftNav = new EventEmitter<INavEvent>();\n  @Output() onRightNav = new EventEmitter<INavEvent>();\n  @Output() onSelect = new EventEmitter<ISelectionEvent>();\n  @ViewChild('container') calendarContainer!: ElementRef;\n  @ViewChild('dayCalendar') dayCalendarRef!: DayCalendarComponent;\n  @ViewChild('monthCalendar') monthCalendarRef!: MonthCalendarComponent;\n  @ViewChild('daytimeCalendar') dayTimeCalendarRef!: DayTimeCalendarComponent;\n  @ViewChild('timeSelect') timeSelectRef!: TimeSelectComponent;\n  @ViewChild('inputElement') inputElement!: ElementRef<HTMLInputElement>;\n  componentConfig!: IDatePickerConfigInternal;\n  dayCalendarConfig!: IDayCalendarConfig;\n  dayTimeCalendarConfig!: IDayTimeCalendarConfig;\n  timeSelectConfig!: ITimeSelectConfig;\n  inputValue!: CalendarValue;\n  isFocusedTrigger = false;\n  inputElementValue!: string;\n  calendarWrapper!: HTMLElement;\n  appendToElement!: HTMLElement;\n  handleInnerElementClickUnlisteners!: Function[];\n  globalListenersUnlisteners!: Function[];\n  validateFn!: DateValidator;\n  api: IDpDayPickerApi = {\n    open: this.showCalendars.bind(this),\n    close: this.hideCalendar.bind(this),\n    moveCalendarTo: this.moveCalendarTo.bind(this)\n  };\n  selectEvent = SelectEvent;\n  origin!: ElementRef | HTMLElement;\n  private onOpenDelayTimeoutHandler: any;\n\n  constructor(private readonly dayPickerService: DatePickerService,\n              private readonly elemRef: ElementRef,\n              private readonly renderer: Renderer2,\n              private readonly utilsService: UtilsService,\n              public readonly cd: ChangeDetectorRef) {\n  }\n\n  get openOnFocus(): boolean {\n    return this.componentConfig.openOnFocus ?? false;\n  }\n\n  get openOnClick(): boolean {\n    return this.componentConfig.openOnClick ?? false;\n  }\n\n  areCalendarsShown: boolean = false;\n\n  _selected!: Dayjs[];\n\n  get selected(): Dayjs[] {\n    return this._selected;\n  }\n\n  set selected(selected: Dayjs[]) {\n    this._selected = selected;\n    this.inputElementValue = (<string[]>this.utilsService\n      .convertFromDayjsArray(this.componentConfig.format ?? '', selected, ECalendarValue.StringArr))\n      .join(' | ');\n    const val = this.processOnChangeCallback(selected);\n    this.onChangeCallback(val, false);\n    this.onChange.emit(val);\n  }\n\n  _currentDateView!: Dayjs;\n  overlayPosition!: ConnectionPositionPair[] | undefined;\n\n  get currentDateView(): Dayjs {\n    return this._currentDateView;\n  }\n\n  set currentDateView(date: Dayjs) {\n    this._currentDateView = date;\n\n    if (this.dayCalendarRef) {\n      this.dayCalendarRef.moveCalendarTo(date);\n    }\n\n    if (this.monthCalendarRef) {\n      this.monthCalendarRef.moveCalendarTo(date);\n    }\n\n    if (this.dayTimeCalendarRef) {\n      this.dayTimeCalendarRef.moveCalendarTo(date);\n    }\n\n    this.displayDate = date;\n  }\n\n  @HostListener('click')\n  onClick(): void {\n    if (!this.openOnClick) {\n      return;\n    }\n\n    if (!this.isFocusedTrigger && !this.disabled) {\n      if (!this.areCalendarsShown) {\n        this.showCalendars();\n      }\n    }\n  }\n\n  onBodyClick(event: MouseEvent) {\n    if (this.inputElement.nativeElement === event.target) {\n      return;\n    }\n\n    if (this.componentConfig.hideOnOutsideClick) {\n      this.hideCalendar();\n    }\n  }\n\n  writeValue(value: CalendarValue): void {\n    this.inputValue = value;\n\n    if (value || value === '') {\n      this.selected = this.utilsService\n        .convertToDayjsArray(value, this.componentConfig);\n      this.init();\n    } else {\n      this.selected = [];\n    }\n\n    this.cd.markForCheck();\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChangeCallback = fn;\n  }\n\n  onChangeCallback(_: any, __: boolean) {\n  }\n\n  registerOnTouched(fn: any): void {\n    this.onTouchedCallback = fn;\n  }\n\n  onTouchedCallback() {\n  }\n\n  validate(formControl: UntypedFormControl): ValidationErrors {\n    return this.validateFn(formControl.value);\n  }\n\n  processOnChangeCallback(selected: Dayjs[] | string): CalendarValue {\n    if (typeof selected === 'string') {\n      return selected;\n    } else {\n      return this.utilsService.convertFromDayjsArray(\n        this.componentConfig.format ?? '',\n        selected,\n        this.componentConfig.returnedValueType || this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false)\n      );\n    }\n  }\n\n  initValidators(): void {\n    this.validateFn = this.utilsService.createValidator(\n      {\n        minDate: this.minDate,\n        maxDate: this.maxDate,\n        minTime: this.minTime,\n        maxTime: this.maxTime\n      }, this.componentConfig.format ?? '', this.mode);\n\n    this.onChangeCallback(this.processOnChangeCallback(this.selected), false);\n  }\n\n  ngOnInit(): void {\n    this.isInitialized = true;\n    this.init();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (this.isInitialized) {\n      this.init();\n    }\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n    this.disabled = isDisabled;\n    this.cd.markForCheck();\n  }\n\n  init(): void {\n    this.componentConfig = this.dayPickerService.getConfig(this.config, this.mode);\n    this.currentDateView = this.displayDate\n      ? this.utilsService.convertToDayjs(this.displayDate, this.componentConfig.format ?? '')\n      : this.utilsService\n        .getDefaultDisplayDate(\n          this.currentDateView,\n          this.selected,\n          this.componentConfig.allowMultiSelect ?? false,\n          this.componentConfig.min ?? dayjsRef()\n        );\n    this.dayCalendarConfig = this.dayPickerService.getDayConfigService(this.componentConfig);\n    this.dayTimeCalendarConfig = this.dayPickerService.getDayTimeConfig(this.componentConfig);\n    this.timeSelectConfig = this.dayPickerService.getTimeConfig(this.componentConfig);\n    this.initValidators();\n    this.overlayPosition = this.dayPickerService.getOverlayPosition(this.componentConfig);\n    this.origin = this.utilsService.getNativeElement(this.componentConfig.inputElementContainer ?? this.elemRef) ?? this.elemRef;\n  }\n\n  inputFocused(): void {\n    if (!this.openOnFocus) {\n      return;\n    }\n\n    clearTimeout(this.onOpenDelayTimeoutHandler);\n    this.isFocusedTrigger = true;\n    this.onOpenDelayTimeoutHandler = setTimeout(() => {\n      if (!this.areCalendarsShown) {\n        this.showCalendars();\n      }\n\n      this.isFocusedTrigger = false;\n      this.cd.markForCheck();\n    }, this.componentConfig.onOpenDelay);\n  }\n\n  inputBlurred(): void {\n    clearTimeout(this.onOpenDelayTimeoutHandler);\n    this.onTouchedCallback();\n  }\n\n  showCalendars(): void {\n    this.areCalendarsShown = true;\n    this.startGlobalListeners();\n\n    if (this.timeSelectRef) {\n      this.timeSelectRef.api.triggerChange();\n    }\n\n    this.open.emit();\n    this.cd.markForCheck();\n  }\n\n  hideCalendar(): void {\n    this.areCalendarsShown = false;\n\n    if (this.dayCalendarRef) {\n      this.dayCalendarRef.api.toggleCalendarMode(ECalendarMode.Day);\n    }\n    this.stopGlobalListeners();\n\n    this.close.emit();\n    this.cd.markForCheck();\n  }\n\n  onViewDateChange(value: CalendarValue): void {\n    const strVal = value ? this.utilsService.convertToString(value, this.componentConfig.format ?? '') : '';\n    if (this.dayPickerService.isValidInputDateValue(strVal, this.componentConfig)) {\n      this.selected = this.dayPickerService.convertInputValueToDayjsArray(strVal, this.componentConfig);\n      this.currentDateView = this.selected.length\n        ? this.utilsService.getDefaultDisplayDate(\n          dayjsRef(),\n          this.selected,\n          this.componentConfig.allowMultiSelect ?? false,\n          this.componentConfig.min ?? dayjsRef()\n        )\n        : this.currentDateView;\n\n      this.onSelect.emit({\n        date: strVal,\n        type: SelectEvent.INPUT,\n        granularity: 'day'\n      })\n    } else {\n      this._selected = this.utilsService\n        .getValidDayjsArray(strVal, this.componentConfig.format ?? '');\n      this.onChangeCallback(this.processOnChangeCallback(strVal), true);\n    }\n  }\n\n  dateSelected(date: IDate, granularity: UnitType, type: SelectEvent, ignoreClose?: boolean): void {\n    this.selected = this.utilsService\n      .updateSelected(this.componentConfig.allowMultiSelect ?? false, this.selected, date, granularity);\n    if (!ignoreClose) {\n      this.onDateClick();\n    }\n\n    this.onSelect.emit({\n      date: date.date,\n      granularity,\n      type\n    });\n  }\n\n  onDateClick(): void {\n    if (this.componentConfig.closeOnSelect) {\n      setTimeout(this.hideCalendar.bind(this), this.componentConfig.closeOnSelectDelay);\n    }\n  }\n\n  onKeyPress(event: KeyboardEvent): void {\n    switch (event.key) {\n      case ('Escape'):\n      case ('Esc'):\n      case ('Tab'):\n        this.hideCalendar();\n        break;\n    }\n  }\n\n  moveCalendarTo(date: SingleCalendarValue): void {\n    this.currentDateView = this.utilsService.convertToDayjs(date, this.componentConfig.format ?? '');\n  }\n\n  onLeftNavClick(change: INavEvent): void {\n    this.displayDate = change.to;\n    this.onLeftNav.emit(change);\n  }\n\n  onRightNavClick(change: INavEvent): void {\n    this.displayDate = change.to;\n    this.onRightNav.emit(change);\n  }\n\n  startGlobalListeners(): void {\n    this.globalListenersUnlisteners.push(\n      this.renderer.listen(document, 'keydown', (e: KeyboardEvent) => {\n        this.onKeyPress(e);\n      })\n    );\n  }\n\n  stopGlobalListeners(): void {\n    this.globalListenersUnlisteners.forEach((ul) => ul());\n    this.globalListenersUnlisteners = [];\n  }\n\n  ngOnDestroy(): void {\n    this.handleInnerElementClickUnlisteners.forEach(ul => ul());\n\n    if (this.appendToElement) {\n      this.appendToElement.removeChild(this.calendarWrapper);\n    }\n  }\n\n  goToCurrent(): void {\n    this.currentDateView = dayjsRef();\n    this.onGoToCurrent.emit()\n  }\n}\n",
+            "sourceCode": "import {IDate} from '../common/models/date.model';\nimport {UtilsService} from '../common/services/utils/utils.service';\nimport {CalendarMode} from '../common/types/calendar-mode';\nimport {ECalendarMode} from '../common/types/calendar-mode-enum';\nimport {CalendarValue} from '../common/types/calendar-value';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\nimport {SingleCalendarValue} from '../common/types/single-calendar-value';\nimport {IDayCalendarConfig} from '../day-calendar/day-calendar-config.model';\nimport {DayCalendarComponent} from '../day-calendar/day-calendar.component';\nimport {DayCalendarService} from '../day-calendar/day-calendar.service';\nimport {IDayTimeCalendarConfig} from '../day-time-calendar/day-time-calendar-config.model';\nimport {DayTimeCalendarService} from '../day-time-calendar/day-time-calendar.service';\nimport {ITimeSelectConfig} from '../time-select/time-select-config.model';\nimport {TimeSelectComponent} from '../time-select/time-select.component';\nimport {TimeSelectService} from '../time-select/time-select.service';\nimport {IDatePickerConfig, IDatePickerConfigInternal} from './date-picker-config.model';\nimport {IDpDayPickerApi} from './date-picker.api';\nimport {DatePickerService} from './date-picker.service';\nimport {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ElementRef,\n  EventEmitter,\n  forwardRef,\n  HostBinding,\n  HostListener,\n  Input,\n  OnChanges,\n  OnDestroy,\n  OnInit,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewChild,\n  ViewEncapsulation\n} from '@angular/core';\nimport {\n  ControlValueAccessor,\n  UntypedFormControl,\n  NG_VALIDATORS,\n  NG_VALUE_ACCESSOR,\n  ValidationErrors,\n  Validator,\n  FormsModule\n} from '@angular/forms';\n\nimport {DateValidator} from '../common/types/validator.type';\nimport {MonthCalendarComponent} from '../month-calendar/month-calendar.component';\nimport {DayTimeCalendarComponent} from '../day-time-calendar/day-time-calendar.component';\nimport {INavEvent} from '../common/models/navigation-event.model';\nimport {SelectEvent} from '../common/types/selection-event.enum';\nimport {ISelectionEvent} from '../common/types/selection-event.model';\nimport {Dayjs, UnitType} from 'dayjs';\nimport {dayjsRef} from '../common/dayjs/dayjs.ref';\nimport {ConnectionPositionPair} from '@angular/cdk/overlay';\nimport { DatePickerDirective } from './date-picker.directive';\nimport { CalendarNavComponent } from '../calendar-nav/calendar-nav.component';\nimport { CommonModule } from '@angular/common';\nimport { OverlayModule } from '@angular/cdk/overlay';\n\n@Component({\n    selector: 'dp-date-picker',\n    templateUrl: 'date-picker.component.html',\n    styleUrls: ['date-picker.component.less'],\n    encapsulation: ViewEncapsulation.None,\n    changeDetection: ChangeDetectionStrategy.OnPush,\n    imports: [\n          DayCalendarComponent,\n          MonthCalendarComponent,\n          TimeSelectComponent,\n          DayTimeCalendarComponent,\n          FormsModule,\n          CommonModule,\n          OverlayModule\n    ],\n    providers: [\n        DatePickerService,\n        DayTimeCalendarService,\n        DayCalendarService,\n        TimeSelectService,\n        {\n            provide: NG_VALUE_ACCESSOR,\n            useExisting: forwardRef(() => DatePickerComponent),\n            multi: true\n        },\n        {\n            provide: NG_VALIDATORS,\n            useExisting: forwardRef(() => DatePickerComponent),\n            multi: true\n        }\n    ],\n    standalone: true\n})\nexport class DatePickerComponent implements OnChanges,\n                                            OnInit,\n                                            ControlValueAccessor,\n                                            Validator,\n                                            OnDestroy {\n  isInitialized: boolean = false;\n  @Input() config!: IDatePickerConfig;\n  @Input() mode!: CalendarMode;\n  @Input() placeholder!: string;\n  @Input() disabled!: boolean;\n  @Input() displayDate!: Dayjs | string;\n  @HostBinding('class') @Input() theme!: string;\n  @Input() minDate!: SingleCalendarValue;\n  @Input() maxDate!: SingleCalendarValue;\n  @Input() minTime!: SingleCalendarValue;\n  @Input() maxTime!: SingleCalendarValue;\n  @Output() open = new EventEmitter<void>();\n  @Output() close = new EventEmitter<void>();\n  @Output() onChange = new EventEmitter<CalendarValue>();\n  @Output() onGoToCurrent = new EventEmitter<void>();\n  @Output() onLeftNav = new EventEmitter<INavEvent>();\n  @Output() onRightNav = new EventEmitter<INavEvent>();\n  @Output() onSelect = new EventEmitter<ISelectionEvent>();\n  @ViewChild('container') calendarContainer!: ElementRef;\n  @ViewChild('dayCalendar') dayCalendarRef!: DayCalendarComponent;\n  @ViewChild('monthCalendar') monthCalendarRef!: MonthCalendarComponent;\n  @ViewChild('daytimeCalendar') dayTimeCalendarRef!: DayTimeCalendarComponent;\n  @ViewChild('timeSelect') timeSelectRef!: TimeSelectComponent;\n  @ViewChild('inputElement') inputElement!: ElementRef<HTMLInputElement>;\n  componentConfig!: IDatePickerConfigInternal;\n  dayCalendarConfig!: IDayCalendarConfig;\n  dayTimeCalendarConfig!: IDayTimeCalendarConfig;\n  timeSelectConfig!: ITimeSelectConfig;\n  inputValue!: CalendarValue;\n  isFocusedTrigger = false;\n  inputElementValue!: string;\n  calendarWrapper!: HTMLElement;\n  appendToElement!: HTMLElement;\n  handleInnerElementClickUnlisteners!: Function[];\n  globalListenersUnlisteners: Function[] = [];\n  validateFn!: DateValidator;\n  api: IDpDayPickerApi = {\n    open: this.showCalendars.bind(this),\n    close: this.hideCalendar.bind(this),\n    moveCalendarTo: this.moveCalendarTo.bind(this)\n  };\n  selectEvent = SelectEvent;\n  origin!: ElementRef | HTMLElement;\n  private onOpenDelayTimeoutHandler: any;\n\n  constructor(private readonly dayPickerService: DatePickerService,\n              private readonly elemRef: ElementRef,\n              private readonly renderer: Renderer2,\n              private readonly utilsService: UtilsService,\n              public readonly cd: ChangeDetectorRef) {\n  }\n\n  get openOnFocus(): boolean {\n    return this.componentConfig.openOnFocus ?? false;\n  }\n\n  get openOnClick(): boolean {\n    return this.componentConfig.openOnClick ?? false;\n  }\n\n  areCalendarsShown: boolean = false;\n\n  _selected!: Dayjs[];\n\n  get selected(): Dayjs[] {\n    return this._selected;\n  }\n\n  set selected(selected: Dayjs[]) {\n    this._selected = selected;\n    this.inputElementValue = (<string[]>this.utilsService\n      .convertFromDayjsArray(this.componentConfig.format ?? '', selected, ECalendarValue.StringArr))\n      .join(' | ');\n    const val = this.processOnChangeCallback(selected);\n    this.onChangeCallback(val, false);\n    this.onChange.emit(val);\n  }\n\n  _currentDateView!: Dayjs;\n  overlayPosition!: ConnectionPositionPair[] | undefined;\n\n  get currentDateView(): Dayjs {\n    return this._currentDateView;\n  }\n\n  set currentDateView(date: Dayjs) {\n    this._currentDateView = date;\n\n    if (this.dayCalendarRef) {\n      this.dayCalendarRef.moveCalendarTo(date);\n    }\n\n    if (this.monthCalendarRef) {\n      this.monthCalendarRef.moveCalendarTo(date);\n    }\n\n    if (this.dayTimeCalendarRef) {\n      this.dayTimeCalendarRef.moveCalendarTo(date);\n    }\n\n    this.displayDate = date;\n  }\n\n  @HostListener('click')\n  onClick(): void {\n    if (!this.openOnClick) {\n      return;\n    }\n\n    if (!this.isFocusedTrigger && !this.disabled) {\n      if (!this.areCalendarsShown) {\n        this.showCalendars();\n      }\n    }\n  }\n\n  onBodyClick(event: MouseEvent) {\n    if (this.inputElement.nativeElement === event.target) {\n      return;\n    }\n\n    if (this.componentConfig.hideOnOutsideClick) {\n      this.hideCalendar();\n    }\n  }\n\n  writeValue(value: CalendarValue): void {\n    this.inputValue = value;\n\n    if (value || value === '') {\n      this.selected = this.utilsService\n        .convertToDayjsArray(value, this.componentConfig);\n      this.init();\n    } else {\n      this.selected = [];\n    }\n\n    this.cd.markForCheck();\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChangeCallback = fn;\n  }\n\n  onChangeCallback(_: any, __: boolean) {\n  }\n\n  registerOnTouched(fn: any): void {\n    this.onTouchedCallback = fn;\n  }\n\n  onTouchedCallback() {\n  }\n\n  validate(formControl: UntypedFormControl): ValidationErrors {\n    return this.validateFn(formControl.value);\n  }\n\n  processOnChangeCallback(selected: Dayjs[] | string): CalendarValue {\n    if (typeof selected === 'string') {\n      return selected;\n    } else {\n      return this.utilsService.convertFromDayjsArray(\n        this.componentConfig.format ?? '',\n        selected,\n        this.componentConfig.returnedValueType || this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false)\n      );\n    }\n  }\n\n  initValidators(): void {\n    this.validateFn = this.utilsService.createValidator(\n      {\n        minDate: this.minDate,\n        maxDate: this.maxDate,\n        minTime: this.minTime,\n        maxTime: this.maxTime\n      }, this.componentConfig.format ?? '', this.mode);\n\n    this.onChangeCallback(this.processOnChangeCallback(this.selected), false);\n  }\n\n  ngOnInit(): void {\n    this.isInitialized = true;\n    this.init();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (this.isInitialized) {\n      this.init();\n    }\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n    this.disabled = isDisabled;\n    this.cd.markForCheck();\n  }\n\n  init(): void {\n    this.componentConfig = this.dayPickerService.getConfig(this.config, this.mode);\n    this.currentDateView = this.displayDate\n      ? this.utilsService.convertToDayjs(this.displayDate, this.componentConfig.format ?? '')\n      : this.utilsService\n        .getDefaultDisplayDate(\n          this.currentDateView,\n          this.selected,\n          this.componentConfig.allowMultiSelect ?? false,\n          this.componentConfig.min ?? dayjsRef()\n        );\n    this.dayCalendarConfig = this.dayPickerService.getDayConfigService(this.componentConfig);\n    this.dayTimeCalendarConfig = this.dayPickerService.getDayTimeConfig(this.componentConfig);\n    this.timeSelectConfig = this.dayPickerService.getTimeConfig(this.componentConfig);\n    this.initValidators();\n    this.overlayPosition = this.dayPickerService.getOverlayPosition(this.componentConfig);\n    this.origin = this.utilsService.getNativeElement(this.componentConfig.inputElementContainer ?? this.elemRef) ?? this.elemRef;\n  }\n\n  inputFocused(): void {\n    if (!this.openOnFocus) {\n      return;\n    }\n\n    clearTimeout(this.onOpenDelayTimeoutHandler);\n    this.isFocusedTrigger = true;\n    this.onOpenDelayTimeoutHandler = setTimeout(() => {\n      if (!this.areCalendarsShown) {\n        this.showCalendars();\n      }\n\n      this.isFocusedTrigger = false;\n      this.cd.markForCheck();\n    }, this.componentConfig.onOpenDelay);\n  }\n\n  inputBlurred(): void {\n    clearTimeout(this.onOpenDelayTimeoutHandler);\n    this.onTouchedCallback();\n  }\n\n  showCalendars(): void {\n    this.areCalendarsShown = true;\n    this.startGlobalListeners();\n\n    if (this.timeSelectRef) {\n      this.timeSelectRef.api.triggerChange();\n    }\n\n    this.open.emit();\n    this.cd.markForCheck();\n  }\n\n  hideCalendar(): void {\n    this.areCalendarsShown = false;\n\n    if (this.dayCalendarRef) {\n      this.dayCalendarRef.api.toggleCalendarMode(ECalendarMode.Day);\n    }\n    this.stopGlobalListeners();\n\n    this.close.emit();\n    this.cd.markForCheck();\n  }\n\n  onViewDateChange(value: CalendarValue): void {\n    const strVal = value ? this.utilsService.convertToString(value, this.componentConfig.format ?? '') : '';\n    if (this.dayPickerService.isValidInputDateValue(strVal, this.componentConfig)) {\n      this.selected = this.dayPickerService.convertInputValueToDayjsArray(strVal, this.componentConfig);\n      this.currentDateView = this.selected.length\n        ? this.utilsService.getDefaultDisplayDate(\n          dayjsRef(),\n          this.selected,\n          this.componentConfig.allowMultiSelect ?? false,\n          this.componentConfig.min ?? dayjsRef()\n        )\n        : this.currentDateView;\n\n      this.onSelect.emit({\n        date: strVal,\n        type: SelectEvent.INPUT,\n        granularity: 'day'\n      })\n    } else {\n      this._selected = this.utilsService\n        .getValidDayjsArray(strVal, this.componentConfig.format ?? '');\n      this.onChangeCallback(this.processOnChangeCallback(strVal), true);\n    }\n  }\n\n  dateSelected(date: IDate, granularity: UnitType, type: SelectEvent, ignoreClose?: boolean): void {\n    this.selected = this.utilsService\n      .updateSelected(this.componentConfig.allowMultiSelect ?? false, this.selected, date, granularity);\n    if (!ignoreClose) {\n      this.onDateClick();\n    }\n\n    this.onSelect.emit({\n      date: date.date,\n      granularity,\n      type\n    });\n  }\n\n  onDateClick(): void {\n    if (this.componentConfig.closeOnSelect) {\n      setTimeout(this.hideCalendar.bind(this), this.componentConfig.closeOnSelectDelay);\n    }\n  }\n\n  onKeyPress(event: KeyboardEvent): void {\n    switch (event.key) {\n      case ('Escape'):\n      case ('Esc'):\n      case ('Tab'):\n        this.hideCalendar();\n        break;\n    }\n  }\n\n  moveCalendarTo(date: SingleCalendarValue): void {\n    this.currentDateView = this.utilsService.convertToDayjs(date, this.componentConfig.format ?? '');\n  }\n\n  onLeftNavClick(change: INavEvent): void {\n    this.displayDate = change.to;\n    this.onLeftNav.emit(change);\n  }\n\n  onRightNavClick(change: INavEvent): void {\n    this.displayDate = change.to;\n    this.onRightNav.emit(change);\n  }\n\n  startGlobalListeners(): void {\n    this.globalListenersUnlisteners.push(\n      this.renderer.listen(document, 'keydown', (e: KeyboardEvent) => {\n        this.onKeyPress(e);\n      })\n    );\n  }\n\n  stopGlobalListeners(): void {\n    this.globalListenersUnlisteners.forEach((ul) => ul());\n    this.globalListenersUnlisteners = [];\n  }\n\n  ngOnDestroy(): void {\n    this.handleInnerElementClickUnlisteners.forEach(ul => ul());\n\n    if (this.appendToElement) {\n      this.appendToElement.removeChild(this.calendarWrapper);\n    }\n  }\n\n  goToCurrent(): void {\n    this.currentDateView = dayjsRef();\n    this.onGoToCurrent.emit()\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -13790,211 +13791,8 @@
             "templateData": "<div class=\"dp-month-calendar-container\" dir=\"ltr\">\n  <dp-calendar-nav\n      (onGoToCurrent)=\"goToCurrent()\"\n      (onLabelClick)=\"toggleCalendarMode()\"\n      (onLeftNav)=\"onLeftNavClick()\"\n      (onLeftSecondaryNav)=\"onLeftSecondaryNavClick()\"\n      (onRightNav)=\"onRightNavClick()\"\n      (onRightSecondaryNav)=\"onRightSecondaryNavClick()\"\n      [isLabelClickable]=\"componentConfig.isNavHeaderBtnClickable\"\n      [label]=\"navLabel\"\n      [showGoToCurrent]=\"shouldShowCurrent()\"\n      [showLeftNav]=\"showLeftNav\"\n      [showLeftSecondaryNav]=\"showSecondaryLeftNav\"\n      [showRightNav]=\"showRightNav\"\n      [showRightSecondaryNav]=\"showSecondaryRightNav\"\n      [theme]=\"theme\">\n  </dp-calendar-nav>\n\n  <div class=\"dp-calendar-wrapper\">\n    <div *ngFor=\"let monthRow of yearMonths\" class=\"dp-months-row\">\n      <button (click)=\"monthClicked(month)\"\n              *ngFor=\"let month of monthRow\"\n              [attr.data-date]=\"month.date.format(componentConfig.format)\"\n              [disabled]=\"month.disabled\"\n              [innerText]=\"month.text\"\n              [ngClass]=\"getMonthBtnCssClass(month)\"\n              class=\"dp-calendar-month\"\n              type=\"button\">\n      </button>\n    </div>\n  </div>\n</div>\n"
         },
         {
-            "name": "NG2DatePickerComponent",
-            "id": "component-NG2DatePickerComponent-0d906293b1f7d8951409bcd15ba462949eb24c41a06b2b9330bb359ec337a0692a2cb9f7b5f26cefab64641946317c774457c2d9864a939c5921bfb111d6e6d5",
-            "file": "src/app/components/ng2-date-picker/date-picker.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-ng2-date-picker",
-            "styleUrls": [
-                "./date-picker.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./date-picker.component.html"
-            ],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "disabledWeekDays",
-                    "defaultValue": "[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 16,
-                    "type": "number[]",
-                    "decorators": []
-                },
-                {
-                    "name": "extraDisabledDates",
-                    "defaultValue": "[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 15,
-                    "type": "dayjs.Dayjs[]",
-                    "decorators": []
-                },
-                {
-                    "name": "selectedDate",
-                    "defaultValue": "null",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 14,
-                    "type": "Date | null",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "selectedDateChange",
-                    "defaultValue": "new EventEmitter<Date | null>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 17,
-                    "type": "EventEmitter<Date | null>"
-                }
-            ],
-            "propertiesClass": [
-                {
-                    "name": "datePickerConfig",
-                    "defaultValue": "{\r\n    format: 'DD/MM/YYYY',\r\n    showNearMonthDays: true,\r\n    disableKeypress: false,\r\n    isDayDisabledCallback: (date: dayjs.Dayjs) => this.isDateDisabled(date),\r\n    dayBtnCssClassCallback: (day: dayjs.Dayjs) => {\r\n      if (this.isDateDisabled(day)) {\r\n        return 'strikethrough-diagonal';\r\n      }\r\n      return day.isSame(dayjs(), 'day') ? 'date-picker-dot' : '';\r\n    },\r\n  }",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Partial<IDatePickerConfig>",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 20,
-                    "modifierKind": [
-                        125
-                    ]
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "addExtraDisabledDate",
-                    "args": [
-                        {
-                            "name": "date",
-                            "type": "Date",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 43,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        125
-                    ],
-                    "jsdoctags": [
-                        {
-                            "name": "date",
-                            "type": "Date",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "isDateDisabled",
-                    "args": [
-                        {
-                            "name": "date",
-                            "type": "dayjs.Dayjs",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "boolean",
-                    "typeParameters": [],
-                    "line": 33,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        123
-                    ],
-                    "jsdoctags": [
-                        {
-                            "name": "date",
-                            "type": "dayjs.Dayjs",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "onDateChange",
-                    "args": [
-                        {
-                            "name": "date",
-                            "type": "Date | null",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 47,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        125
-                    ],
-                    "jsdoctags": [
-                        {
-                            "name": "date",
-                            "type": "Date | null",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": false,
-            "imports": [
-                {
-                    "name": "FormsModule",
-                    "type": "module"
-                },
-                {
-                    "name": "DpDatePickerModule",
-                    "type": "module"
-                },
-                {
-                    "name": "CommonModule",
-                    "type": "module"
-                }
-            ],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { DpDatePickerModule, IDatePickerConfig } from 'ng2-date-picker';\r\nimport dayjs from 'dayjs';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'app-ng2-date-picker',\r\n  imports: [FormsModule, DpDatePickerModule, CommonModule],\r\n  templateUrl: './date-picker.component.html',\r\n  styleUrls: ['./date-picker.component.scss'],\r\n})\r\nexport class NG2DatePickerComponent {\r\n  @Input() selectedDate: Date | null = null;\r\n  @Input() extraDisabledDates: dayjs.Dayjs[] = [];\r\n  @Input() disabledWeekDays: number[] = [];\r\n  @Output() selectedDateChange: EventEmitter<Date | null> =\r\n    new EventEmitter<Date | null>();\r\n\r\n  public datePickerConfig: Partial<IDatePickerConfig> = {\r\n    format: 'DD/MM/YYYY',\r\n    showNearMonthDays: true,\r\n    disableKeypress: false,\r\n    isDayDisabledCallback: (date: dayjs.Dayjs) => this.isDateDisabled(date),\r\n    dayBtnCssClassCallback: (day: dayjs.Dayjs) => {\r\n      if (this.isDateDisabled(day)) {\r\n        return 'strikethrough-diagonal';\r\n      }\r\n      return day.isSame(dayjs(), 'day') ? 'date-picker-dot' : '';\r\n    },\r\n  };\r\n\r\n  private isDateDisabled(date: dayjs.Dayjs): boolean {\r\n    if (this.disabledWeekDays.includes(date.day())) {\r\n      return true;\r\n    }\r\n\r\n    return this.extraDisabledDates.some((disabledDate) =>\r\n      date.isSame(disabledDate, 'day')\r\n    );\r\n  }\r\n\r\n  public addExtraDisabledDate(date: Date): void {\r\n    this.extraDisabledDates.push(dayjs(date));\r\n  }\r\n\r\n  public onDateChange(date: Date | null): void {\r\n    this.selectedDate = date;\r\n    this.selectedDateChange.emit(this.selectedDate);\r\n  }\r\n}\r\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "::ng-deep .date-picker-dot {\r\n    position: relative;\r\n  \r\n    &::after {\r\n      content: \"\";\r\n      position: absolute;\r\n      bottom: 0px;\r\n      left: 50%;\r\n      transform: translateX(-50%);\r\n      width: 5px;\r\n      height: 5px;\r\n      background-color: #4facfe;\r\n      border-radius: 50%;\r\n    }\r\n  }\r\n  \r\n  ::ng-deep .strikethrough-diagonal {\r\n    position: relative;\r\n    \r\n    &:before {\r\n      position: absolute;\r\n      content: '';\r\n      left: 0;\r\n      top: 45%;\r\n      right: 0;\r\n      border-top: 1px solid;\r\n      border-color: inherit;\r\n      -webkit-transform: skewY(-40deg);\r\n      -moz-transform: skewY(-40deg);\r\n      transform: skewY(-40deg);\r\n    }\r\n  }\r\n    \r\n  \r\n  ",
-                    "styleUrl": "./date-picker.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "extends": [],
-            "templateData": "<dp-date-picker\r\n  data-test-id=\"date-picker\"\r\n  [(ngModel)]=\"selectedDate\"\r\n  [config]=\"datePickerConfig\"\r\n  (ngModelChange)=\"onDateChange($event)\"\r\n>\r\n</dp-date-picker>\r\n"
-        },
-        {
             "name": "PlaygroundComponent",
-            "id": "component-PlaygroundComponent-f610e5874837413bf7d46d187ba515d6fa55d9b2bb3263208449fff2d8ec7120a8283e52ada4d5604157e115e49903d8ee82e690554df8740877ee4b1d7a9d15",
+            "id": "component-PlaygroundComponent-89a4a2de20a448d731c15bd7b85bf60dd903038b965f9aaeb7cc872786ef021bb73e1673da22dbf1fe5f7639c87010b31af1e1984f16ecdf7742e5416a304e7e",
             "file": "src/app/components/playground/playground.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -14023,18 +13821,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 49
-                },
-                {
-                    "name": "date",
-                    "defaultValue": "[{}, {}, {}, {}]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Object[]",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 135
+                    "line": 46
                 },
                 {
                     "name": "dateOptions",
@@ -14045,29 +13832,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 111
-                },
-                {
-                    "name": "disabledWeekDays",
-                    "defaultValue": "[0, 6]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number[]",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 150
-                },
-                {
-                    "name": "extraDisabledDates",
-                    "defaultValue": "[\r\n    this.toDayjs(2025, 2, 25),\r\n    this.toDayjs(2025, 2, 27),\r\n  ]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "dayjs.Dayjs[]",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 145
+                    "line": 108
                 },
                 {
                     "name": "histogramData",
@@ -14078,7 +13843,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 66
+                    "line": 63
                 },
                 {
                     "name": "items",
@@ -14089,7 +13854,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 60
+                    "line": 57
                 },
                 {
                     "name": "progress",
@@ -14100,18 +13865,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 50
-                },
-                {
-                    "name": "selectedDate",
-                    "defaultValue": "null",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Date | null",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 143
+                    "line": 47
                 },
                 {
                     "name": "simpletableData",
@@ -14122,29 +13876,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 72
-                },
-                {
-                    "name": "startDate",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 133
-                },
-                {
-                    "name": "todate",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 134
+                    "line": 69
                 },
                 {
                     "name": "toggleState",
@@ -14155,139 +13887,12 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 48
+                    "line": 45
                 }
             ],
             "methodsClass": [
                 {
-                    "name": "dateObject",
-                    "args": [
-                        {
-                            "name": "e",
-                            "type": "any",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        },
-                        {
-                            "name": "index",
-                            "type": "number",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 136,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "e",
-                            "type": "any",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        },
-                        {
-                            "name": "index",
-                            "type": "number",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
                     "name": "onCheckboxChange",
-                    "args": [
-                        {
-                            "name": "state",
-                            "type": "boolean",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 55,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "state",
-                            "type": "boolean",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "onFormSubmit",
-                    "args": [
-                        {
-                            "name": "formData",
-                            "type": "any",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 106,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "formData",
-                            "type": "any",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "onSelectedDateChange",
-                    "args": [
-                        {
-                            "name": "date",
-                            "type": "Date | null",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 156,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "date",
-                            "type": "Date | null",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "onToggleChange",
                     "args": [
                         {
                             "name": "state",
@@ -14315,55 +13920,53 @@
                     ]
                 },
                 {
-                    "name": "toDayjs",
+                    "name": "onFormSubmit",
                     "args": [
                         {
-                            "name": "year",
-                            "type": "number",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        },
-                        {
-                            "name": "month",
-                            "type": "number",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        },
-                        {
-                            "name": "day",
-                            "type": "number",
+                            "name": "formData",
+                            "type": "any",
                             "deprecated": false,
                             "deprecationMessage": ""
                         }
                     ],
                     "optional": false,
-                    "returnType": "dayjs.Dayjs",
+                    "returnType": "void",
                     "typeParameters": [],
-                    "line": 152,
+                    "line": 103,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "name": "year",
-                            "type": "number",
+                            "name": "formData",
+                            "type": "any",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
-                        },
+                        }
+                    ]
+                },
+                {
+                    "name": "onToggleChange",
+                    "args": [
                         {
-                            "name": "month",
-                            "type": "number",
+                            "name": "state",
+                            "type": "boolean",
                             "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        },
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 49,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
                         {
-                            "name": "day",
-                            "type": "number",
+                            "name": "state",
+                            "type": "boolean",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -14438,16 +14041,12 @@
                 {
                     "name": "FetchDataComponent",
                     "type": "component"
-                },
-                {
-                    "name": "NG2DatePickerComponent",
-                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ToggleComponent } from '../toggle/toggle.component';\r\nimport { CardComponent } from '../card/card.component';\r\nimport { CheckboxComponent } from '../checkbox/checkbox.component';\r\nimport { PlTitleComponent } from './components/plg-title/plg-title.component';\r\nimport { AccordionComponent } from '../accordion/accordion.component';\r\nimport { HistogramComponent } from '../histogram/histogram.component';\r\nimport AlertComponent from '../alert/alert.component';\r\nimport { ProgressBarComponent } from '../progress-bar/progress-bar.component';\r\nimport { SimpleTableComponent } from '../simple-table/simple-table.component';\r\nimport { FormComponent } from '../form/form.component';\r\nimport { DynamicClassDirective } from 'src/app/directives/dynamic-class.directive';\r\nimport { DatePickerComponent } from '../date-picker/date-picker.component';\r\nimport { FetchDataComponent } from '../fetch-data/fetch-data.component';\r\nimport {\r\n  CsDatePickerComponent,\r\n  DateOptions,\r\n} from '../cs-date-picker/cs-date-picker.component';\r\nimport { NG2DatePickerComponent } from '../ng2-date-picker/date-picker.component';\r\nimport dayjs from 'dayjs';\r\n\r\n@Component({\r\n  selector: 'app-playground',\r\n  templateUrl: './playground.component.html',\r\n  styleUrls: ['./playground.component.scss'],\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    PlTitleComponent,\r\n    ToggleComponent,\r\n    CardComponent,\r\n    CheckboxComponent,\r\n    AccordionComponent,\r\n    HistogramComponent,\r\n    AlertComponent,\r\n    ProgressBarComponent,\r\n    SimpleTableComponent,\r\n    FormComponent,\r\n    DynamicClassDirective,\r\n    DatePickerComponent,\r\n    CsDatePickerComponent,\r\n    FetchDataComponent,\r\n    NG2DatePickerComponent,\r\n  ],\r\n})\r\nexport class PlaygroundComponent {\r\n  toggleState = false;\r\n  checkboxState = true;\r\n  progress = 0;\r\n\r\n  onToggleChange(state: boolean): void {\r\n    this.toggleState = state;\r\n  }\r\n  onCheckboxChange(state: boolean): void {\r\n    this.checkboxState = state;\r\n  }\r\n\r\n  // accordion\r\n  items = [\r\n    { title: 'Item 1', content: 'Content 1', isOpen: false },\r\n    { title: 'Item 2', content: 'Content 2', isOpen: false },\r\n    { title: 'Item 3', content: 'Content 3', isOpen: false },\r\n  ];\r\n  // histogram\r\n  histogramData = [\r\n    { name: 'A', value: 100 },\r\n    { name: 'B', value: 200 },\r\n    { name: 'C', value: 300 },\r\n  ];\r\n\r\n  simpletableData: {\r\n    Name: string;\r\n    Age: number;\r\n    Occupation: string;\r\n    lastName: string;\r\n    link: string;\r\n    className?: string;\r\n  }[] = [\r\n    {\r\n      Name: 'John',\r\n      Age: 30,\r\n      Occupation: 'Developer',\r\n      lastName: 'Doe',\r\n      link: 'https://www.google.com',\r\n      className: 'text-success',\r\n    },\r\n    {\r\n      Name: 'Jane',\r\n      Age: 25,\r\n      Occupation: 'Designer',\r\n      lastName: 'Bishop',\r\n      link: 'https://www.google.com',\r\n      className: 'text-danger',\r\n    },\r\n    {\r\n      Name: 'Jim',\r\n      Age: 35,\r\n      Occupation: 'Product Manager',\r\n      lastName: 'Doe',\r\n      link: 'https://amazone.com',\r\n      className: 'text-warning',\r\n    },\r\n  ];\r\n\r\n  onFormSubmit(formData: any): void {\r\n    console.log('Form Data:', formData);\r\n  }\r\n\r\n  // date picker\r\n  dateOptions: DateOptions[] = [\r\n    {\r\n      disabledWeekends: true,\r\n      isStepperYearShown: true,\r\n      disableRangePciker: false,\r\n    },\r\n    // {\r\n    //   selectedEndDate: new Date(),\r\n    //   selectedStartDate: new Date(),\r\n    //   disabledWeekends: false,\r\n    // },\r\n    // {\r\n    //   dateFormat: 'dd MM yyyy',\r\n    //   disableRangePciker: true,\r\n    // },\r\n    // {\r\n    //   selectedEndDate: new Date(),\r\n    //   selectedStartDate: new Date(),\r\n    //   disabledWeekends: false,\r\n    //   isStepperYearShown: false,\r\n    // },\r\n  ];\r\n  startDate = '';\r\n  todate = '';\r\n  date: Object[] = [{}, {}, {}, {}];\r\n  dateObject(e: any, index: number) {\r\n    console.log('date', index, e);\r\n\r\n    this.date[index] = e;\r\n  }\r\n  //////////////////////////\r\n  // ng2 date picker\r\n  selectedDate: Date | null = null;\r\n\r\n  extraDisabledDates: dayjs.Dayjs[] = [\r\n    this.toDayjs(2025, 2, 25),\r\n    this.toDayjs(2025, 2, 27),\r\n  ];\r\n\r\n  disabledWeekDays: number[] = [0, 6]; // 0 = Sunday, 6 = Saturday\r\n\r\n  toDayjs(year: number, month: number, day: number): dayjs.Dayjs {\r\n    return dayjs(new Date(year, month, day));\r\n  }\r\n\r\n  onSelectedDateChange(date: Date | null): void {\r\n    this.selectedDate = date;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ToggleComponent } from '../toggle/toggle.component';\r\nimport { CardComponent } from '../card/card.component';\r\nimport { CheckboxComponent } from '../checkbox/checkbox.component';\r\nimport { PlTitleComponent } from './components/plg-title/plg-title.component';\r\nimport { AccordionComponent } from '../accordion/accordion.component';\r\nimport { HistogramComponent } from '../histogram/histogram.component';\r\nimport AlertComponent from '../alert/alert.component';\r\nimport { ProgressBarComponent } from '../progress-bar/progress-bar.component';\r\nimport { SimpleTableComponent } from '../simple-table/simple-table.component';\r\nimport { FormComponent } from '../form/form.component';\r\nimport { DynamicClassDirective } from 'src/app/directives/dynamic-class.directive';\r\nimport { DatePickerComponent } from '../date-picker/date-picker.component';\r\nimport { FetchDataComponent } from '../fetch-data/fetch-data.component';\r\nimport {\r\n  CsDatePickerComponent,\r\n  DateOptions,\r\n} from '../cs-date-picker/cs-date-picker.component';\r\n\r\n@Component({\r\n  selector: 'app-playground',\r\n  templateUrl: './playground.component.html',\r\n  styleUrls: ['./playground.component.scss'],\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    PlTitleComponent,\r\n    ToggleComponent,\r\n    CardComponent,\r\n    CheckboxComponent,\r\n    AccordionComponent,\r\n    HistogramComponent,\r\n    AlertComponent,\r\n    ProgressBarComponent,\r\n    SimpleTableComponent,\r\n    FormComponent,\r\n    DynamicClassDirective,\r\n    DatePickerComponent,\r\n    CsDatePickerComponent,\r\n    FetchDataComponent,\r\n  ],\r\n})\r\nexport class PlaygroundComponent {\r\n  toggleState = false;\r\n  checkboxState = true;\r\n  progress = 0;\r\n\r\n  onToggleChange(state: boolean): void {\r\n    this.toggleState = state;\r\n  }\r\n  onCheckboxChange(state: boolean): void {\r\n    this.checkboxState = state;\r\n  }\r\n\r\n  // accordion\r\n  items = [\r\n    { title: 'Item 1', content: 'Content 1', isOpen: false },\r\n    { title: 'Item 2', content: 'Content 2', isOpen: false },\r\n    { title: 'Item 3', content: 'Content 3', isOpen: false },\r\n  ];\r\n  // histogram\r\n  histogramData = [\r\n    { name: 'A', value: 100 },\r\n    { name: 'B', value: 200 },\r\n    { name: 'C', value: 300 },\r\n  ];\r\n\r\n  simpletableData: {\r\n    Name: string;\r\n    Age: number;\r\n    Occupation: string;\r\n    lastName: string;\r\n    link: string;\r\n    className?: string;\r\n  }[] = [\r\n    {\r\n      Name: 'John',\r\n      Age: 30,\r\n      Occupation: 'Developer',\r\n      lastName: 'Doe',\r\n      link: 'https://www.google.com',\r\n      className: 'text-success',\r\n    },\r\n    {\r\n      Name: 'Jane',\r\n      Age: 25,\r\n      Occupation: 'Designer',\r\n      lastName: 'Bishop',\r\n      link: 'https://www.google.com',\r\n      className: 'text-danger',\r\n    },\r\n    {\r\n      Name: 'Jim',\r\n      Age: 35,\r\n      Occupation: 'Product Manager',\r\n      lastName: 'Doe',\r\n      link: 'https://amazone.com',\r\n      className: 'text-warning',\r\n    },\r\n  ];\r\n\r\n  onFormSubmit(formData: any): void {\r\n    console.log('Form Data:', formData);\r\n  }\r\n\r\n  // date picker\r\n  dateOptions: DateOptions[] = [\r\n    {\r\n      disabledWeekends: true,\r\n      isStepperYearShown: true,\r\n      disableRangePciker: false,\r\n    },\r\n    // {\r\n    //   selectedEndDate: new Date(),\r\n    //   selectedStartDate: new Date(),\r\n    //   disabledWeekends: false,\r\n    // },\r\n    // {\r\n    //   dateFormat: 'dd MM yyyy',\r\n    //   disableRangePciker: true,\r\n    // },\r\n    // {\r\n    //   selectedEndDate: new Date(),\r\n    //   selectedStartDate: new Date(),\r\n    //   disabledWeekends: false,\r\n    //   isStepperYearShown: false,\r\n    // },\r\n  ];\r\n\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -16476,15 +16075,6 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/ng2-date-picker/date-picker.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "NG2DatePickerComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/9",
-                "status": "low"
-            },
-            {
                 "filePath": "src/app/components/ng2datepickercopy/lib/calendar-nav/calendar-nav.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -16991,7 +16581,7 @@
                 "linktype": "component",
                 "name": "PlaygroundComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/20",
+                "coverageCount": "0/11",
                 "status": "low"
             },
             {
