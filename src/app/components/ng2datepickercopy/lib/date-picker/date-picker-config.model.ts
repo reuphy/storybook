@@ -17,12 +17,15 @@ export interface IConfig {
   opens?: TOpens;
   hideInputContainer?: boolean;
   hideOnOutsideClick?: boolean;
+  numOfYearRows?: number;
+  numOfYearsPerPage?: number;
 }
 
 export interface IDatePickerConfig extends IConfig,
                                            IDayCalendarConfig,
                                            IMonthCalendarConfig,
                                            ITimeSelectConfig {
+
 
 }
 

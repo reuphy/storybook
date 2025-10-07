@@ -40,12 +40,13 @@ import {dayjsRef} from '../common/dayjs/dayjs.ref';
 import { MonthCalendarComponent } from '../month-calendar/month-calendar.component';
 import { CommonModule } from '@angular/common';
 import { CalendarNavComponent } from '../calendar-nav/calendar-nav.component';
+import { YearCalendarComponent } from '../year-calendar/year-calendar.component';
 
 @Component({
     selector: 'dp-day-calendar',
     templateUrl: 'day-calendar.component.html',
     styleUrls: ['day-calendar.component.less'],
-    imports: [MonthCalendarComponent, CommonModule, FormsModule, CalendarNavComponent],
+    imports: [MonthCalendarComponent, CommonModule, FormsModule, CalendarNavComponent, YearCalendarComponent],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [
@@ -123,10 +124,9 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
     this.weeks = this.dayCalendarService
       .generateMonthArray(this.componentConfig, this._currentDateView, this.selected);
     this.navLabel = this.dayCalendarService.getHeaderLabel(this.componentConfig, this._currentDateView);
-    this.showLeftNav = this.dayCalendarService.shouldShowLeft(this.componentConfig.min ?? dayjsRef(), this.currentDateView);
-    this.showRightNav = this.dayCalendarService.shouldShowRight(this.componentConfig.max ?? dayjsRef(), this.currentDateView);
+    this.showLeftNav = true; //this.dayCalendarService.shouldShowLeft(this.componentConfig.min ?? dayjsRef(), this.currentDateView);
+    this.showRightNav = true; //this.dayCalendarService.shouldShowRight(this.componentConfig.max ?? dayjsRef(), this.currentDateView);
   }
-  ;
 
   ngOnInit() {
     this.isInited = true;
@@ -270,7 +270,15 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
     this.onLeftNav.emit(change);
   }
 
+  onYearCalendarLeftClick(change: INavEvent) {
+    this.onLeftNav.emit(change);
+  }
+
   onMonthCalendarRightClick(change: INavEvent) {
+    this.onRightNav.emit(change);
+  }
+
+  onYearCalendarRightClick (change: INavEvent) {
     this.onRightNav.emit(change);
   }
 

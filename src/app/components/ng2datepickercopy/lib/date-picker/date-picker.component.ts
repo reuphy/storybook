@@ -58,6 +58,8 @@ import { DatePickerDirective } from './date-picker.directive';
 import { CalendarNavComponent } from '../calendar-nav/calendar-nav.component';
 import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { YearCalendarComponent } from '../year-calendar/year-calendar.component';
+import { IYearCalendarConfig } from '../year-calendar/year-calendar-config';
 
 @Component({
     selector: 'dp-date-picker',
@@ -70,6 +72,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
           MonthCalendarComponent,
           TimeSelectComponent,
           DayTimeCalendarComponent,
+          YearCalendarComponent,
           FormsModule,
           CommonModule,
           OverlayModule
@@ -123,6 +126,7 @@ export class DatePickerComponent implements OnChanges,
   @ViewChild('inputElement') inputElement!: ElementRef<HTMLInputElement>;
   componentConfig!: IDatePickerConfigInternal;
   dayCalendarConfig!: IDayCalendarConfig;
+  yearCalendarConfig!: IYearCalendarConfig;
   dayTimeCalendarConfig!: IDayTimeCalendarConfig;
   timeSelectConfig!: ITimeSelectConfig;
   inputValue!: CalendarValue;
@@ -307,6 +311,7 @@ export class DatePickerComponent implements OnChanges,
           this.componentConfig.min ?? dayjsRef()
         );
     this.dayCalendarConfig = this.dayPickerService.getDayConfigService(this.componentConfig);
+    this.yearCalendarConfig = this.dayPickerService.getYearConfigService(this.componentConfig);
     this.dayTimeCalendarConfig = this.dayPickerService.getDayTimeConfig(this.componentConfig);
     this.timeSelectConfig = this.dayPickerService.getTimeConfig(this.componentConfig);
     this.initValidators();

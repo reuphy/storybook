@@ -67,6 +67,17 @@
                               [ngModel]="_selected && _selected[0]"
                               [theme]="theme">
         </dp-day-time-calendar>
+
+        <dp-year-calendar #yearCalendar
+        (onLeftNav)="onLeftNavClick($event)"
+        (onRightNav)="onRightNavClick($event)"
+        (onSelect)="dateSelected($event, 'year', selectEvent.SELECTION, false)"
+        [config]="yearCalendarConfig"
+        [displayDate]="displayDate"
+        [ngModel]="_selected"
+        *ngSwitchCase="'year'"
+        [theme]="theme">
+        </dp-year-calendar>
       </div>
     </div>
   </ng-template>

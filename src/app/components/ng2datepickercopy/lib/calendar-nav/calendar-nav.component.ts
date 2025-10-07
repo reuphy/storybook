@@ -20,6 +20,7 @@ import {
 })
 export class CalendarNavComponent {
   @Input() label!: string;
+  @Input() yearLabel!: string;
   @Input() isLabelClickable: boolean = false;
   @Input() showLeftNav: boolean = true;
   @Input() showLeftSecondaryNav: boolean = false;
@@ -38,6 +39,7 @@ export class CalendarNavComponent {
   @Output() onRightSecondaryNav: EventEmitter<null> = new EventEmitter();
   @Output() onLabelClick: EventEmitter<null> = new EventEmitter();
   @Output() onGoToCurrent: EventEmitter<null> = new EventEmitter();
+  @Output() onChooseYearClick: EventEmitter<null> = new EventEmitter();
 
   leftNavClicked() {
     this.onLeftNav.emit();
@@ -57,5 +59,9 @@ export class CalendarNavComponent {
 
   labelClicked() {
     this.onLabelClick.emit();
+  }
+
+  chooseYearClicked() {
+    this.onChooseYearClick.emit();
   }
 }

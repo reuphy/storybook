@@ -293,142 +293,7 @@
         },
         {
             "name": "IConfig",
-            "id": "interface-IConfig-2ce86f7ab7db239166779bafd18eff4647b1e797d6fc993fe12ad6ecc21239201c24ce6faccee8926caa0682ea0c5fe0bf756498805f9e0bcceb89abd34eac08",
-            "file": "src/app/components/ng2datepickercopy/lib/date-picker/date-picker-config.model.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "import {TDrops, TOpens} from '../common/types/poistions.type';\nimport {IDayCalendarConfig, IDayCalendarConfigInternal} from '../day-calendar/day-calendar-config.model';\nimport {IMonthCalendarConfig, IMonthCalendarConfigInternal} from '../month-calendar/month-calendar-config';\nimport {ITimeSelectConfig, ITimeSelectConfigInternal} from '../time-select/time-select-config.model';\nimport {ElementRef} from '@angular/core';\n\nexport interface IConfig {\n  closeOnSelect?: boolean;\n  closeOnSelectDelay?: number;\n  openOnFocus?: boolean;\n  openOnClick?: boolean;\n  onOpenDelay?: number;\n  closeOnEnter?: boolean;\n  disableKeypress?: boolean;\n  inputElementContainer?: HTMLElement | string | ElementRef;\n  drops?: TDrops;\n  opens?: TOpens;\n  hideInputContainer?: boolean;\n  hideOnOutsideClick?: boolean;\n}\n\nexport interface IDatePickerConfig extends IConfig,\n                                           IDayCalendarConfig,\n                                           IMonthCalendarConfig,\n                                           ITimeSelectConfig {\n\n}\n\nexport interface IDatePickerConfigInternal extends IConfig,\n                                                   IDayCalendarConfigInternal,\n                                                   IMonthCalendarConfigInternal,\n                                                   ITimeSelectConfigInternal {\n}\n",
-            "properties": [
-                {
-                    "name": "closeOnEnter",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 13
-                },
-                {
-                    "name": "closeOnSelect",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 8
-                },
-                {
-                    "name": "closeOnSelectDelay",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 9
-                },
-                {
-                    "name": "disableKeypress",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 14
-                },
-                {
-                    "name": "drops",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "TDrops",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 16
-                },
-                {
-                    "name": "hideInputContainer",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 18
-                },
-                {
-                    "name": "hideOnOutsideClick",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 19
-                },
-                {
-                    "name": "inputElementContainer",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "HTMLElement | string | ElementRef",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 15
-                },
-                {
-                    "name": "onOpenDelay",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 12
-                },
-                {
-                    "name": "openOnClick",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 11
-                },
-                {
-                    "name": "openOnFocus",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 10
-                },
-                {
-                    "name": "opens",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "TOpens",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 17
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 171,
-            "methods": [],
-            "extends": []
-        },
-        {
-            "name": "IConfig",
-            "id": "interface-IConfig-c7138ca5eb96f7a5a606bf3335d27e4f9c94806af0f7a10a7e9b17ca28721fb419631ac94f4fe51417b41ad83c7417fcb50b69f93a8790414821fb7baf37c9c5-1",
+            "id": "interface-IConfig-c7138ca5eb96f7a5a606bf3335d27e4f9c94806af0f7a10a7e9b17ca28721fb419631ac94f4fe51417b41ad83c7417fcb50b69f93a8790414821fb7baf37c9c5",
             "file": "src/app/components/ng2datepickercopy/lib/day-calendar/day-calendar-config.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
@@ -694,6 +559,141 @@
                     "optional": true,
                     "description": "",
                     "line": 20
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "IConfig",
+            "id": "interface-IConfig-2ce86f7ab7db239166779bafd18eff4647b1e797d6fc993fe12ad6ecc21239201c24ce6faccee8926caa0682ea0c5fe0bf756498805f9e0bcceb89abd34eac08-1",
+            "file": "src/app/components/ng2datepickercopy/lib/date-picker/date-picker-config.model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {TDrops, TOpens} from '../common/types/poistions.type';\nimport {IDayCalendarConfig, IDayCalendarConfigInternal} from '../day-calendar/day-calendar-config.model';\nimport {IMonthCalendarConfig, IMonthCalendarConfigInternal} from '../month-calendar/month-calendar-config';\nimport {ITimeSelectConfig, ITimeSelectConfigInternal} from '../time-select/time-select-config.model';\nimport {ElementRef} from '@angular/core';\n\nexport interface IConfig {\n  closeOnSelect?: boolean;\n  closeOnSelectDelay?: number;\n  openOnFocus?: boolean;\n  openOnClick?: boolean;\n  onOpenDelay?: number;\n  closeOnEnter?: boolean;\n  disableKeypress?: boolean;\n  inputElementContainer?: HTMLElement | string | ElementRef;\n  drops?: TDrops;\n  opens?: TOpens;\n  hideInputContainer?: boolean;\n  hideOnOutsideClick?: boolean;\n}\n\nexport interface IDatePickerConfig extends IConfig,\n                                           IDayCalendarConfig,\n                                           IMonthCalendarConfig,\n                                           ITimeSelectConfig {\n\n}\n\nexport interface IDatePickerConfigInternal extends IConfig,\n                                                   IDayCalendarConfigInternal,\n                                                   IMonthCalendarConfigInternal,\n                                                   ITimeSelectConfigInternal {\n}\n",
+            "properties": [
+                {
+                    "name": "closeOnEnter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "closeOnSelect",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "closeOnSelectDelay",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "disableKeypress",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "drops",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TDrops",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "hideInputContainer",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "hideOnOutsideClick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "inputElementContainer",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "HTMLElement | string | ElementRef",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "onOpenDelay",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "openOnClick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "openOnFocus",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "opens",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TOpens",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 17
                 }
             ],
             "indexSignatures": [],
@@ -1021,6 +1021,164 @@
             "duplicateName": "IConfig-3"
         },
         {
+            "name": "IConfig",
+            "id": "interface-IConfig-9de3db4b36e85c32da2560ec41184c527d2f6defd95a5e3017dc4926352ed833ff3e9263e51bd43e07e83d7793200b3d81dfc0aa2ada50dc20b43d741528e2b8-4",
+            "file": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar-config.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport { ECalendarValue } from '../public-api';\n\nexport interface IConfig {\n  isYearDisabledCallback?: (date: Dayjs) => boolean;\n  isNavHeaderBtnClickable?: boolean;\n  allowMultiSelect?: boolean;\n  yearFormat?: string;\n  yearFormatter?: (year: Dayjs) => string;\n  format?: string;\n  numOfYearsPerPage: number;\n  numOfYearRows?: number;\n  yearBtnCssClassCallback?: (year: Dayjs) => string;\n  yearBtnFormatter?: (year: Dayjs) => string;\n  yearBtnFormat?: string;\n  returnedValueType?: ECalendarValue;\n  showGoToCurrent?: boolean;\n  unSelectOnClick?: boolean;\n}\n\nexport interface IYearCalendarConfig extends IConfig,\n                                             ICalendar {\n}\n\nexport interface IYearCalendarConfigInternal extends IConfig,\n                                                     ICalendarInternal {\n}\n",
+            "properties": [
+                {
+                    "name": "allowMultiSelect",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "format",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "isNavHeaderBtnClickable",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "isYearDisabledCallback",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "numOfYearRows",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "numOfYearsPerPage",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "returnedValueType",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ECalendarValue",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "showGoToCurrent",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "unSelectOnClick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "yearBtnCssClassCallback",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "yearBtnFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "yearBtnFormatter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "yearFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "yearFormatter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 4,
+            "duplicateName": "IConfig-4"
+        },
+        {
             "name": "IDate",
             "id": "interface-IDate-ac9e271c4df9885f5bfb367d130ad6f2aaf86e300f4294e6e88eb9ac35e9e799f8d3f7e9199f30964a6c17bdbd9839e2b779e87aea7c0c56ae9263ee8f97b027",
             "file": "src/app/components/ng2datepickercopy/lib/common/models/date.model.ts",
@@ -1054,6 +1212,139 @@
             "kind": 171,
             "methods": [],
             "extends": []
+        },
+        {
+            "name": "IDateCell",
+            "id": "interface-IDateCell-5f1643dce71c538ea5bf746755cac08352a18591d29f1075fe9a6d7e9294b83f56b4a27728033b7cbd99af7dc4393aac45773597c7927c9785b952e7f4092855",
+            "file": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface IGenCalendarParams<T> {\n  startDate: Dayjs;\n  numOfRows: number;\n  numOfCells: number;\n  isDisabledCb: (date: Dayjs, config: T) => boolean;\n  getBtnTextCb: (config: T, date: Dayjs) => string;\n  selected: Dayjs[];\n  config: T;\n  granularity: 'year' | 'month';\n}\n\nexport interface IDateCell {\n  date: Dayjs;\n  selected: boolean;\n  current: boolean;\n  disabled: boolean\n  text: string;\n}\n\nimport {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  EventEmitter,\n  forwardRef,\n  HostBinding,\n  Input,\n  OnChanges,\n  OnInit,\n  Output,\n  SimpleChange,\n  SimpleChanges,\n  ViewEncapsulation\n} from '@angular/core';\nimport {\n  ControlValueAccessor,\n  FormControl,\n  NG_VALIDATORS,\n  NG_VALUE_ACCESSOR,\n  ValidationErrors,\n  Validator\n} from '@angular/forms';\nimport dayjs, {Dayjs} from 'dayjs';\nimport {INavEvent} from '../common/models/navigation-event.model';\nimport {DateValidator} from '../common/types/validator.type';\nimport {IYearCalendarConfig, IYearCalendarConfigInternal} from './year-calendar-config';\nimport {YearCalendarService} from './year-calendar.service';\nimport {UtilsService} from '../common/services/utils/utils.service';\nimport { CalendarValue, ECalendarValue, SingleCalendarValue } from '../public-api';\n\n@Component({\n  selector: 'dp-year-calendar',\n  templateUrl: './year-calendar.component.html',\n  styleUrls: ['./year-calendar.component.less'],\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => YearCalendarComponent),\n      multi: true\n    },\n    {\n      provide: NG_VALIDATORS,\n      useExisting: forwardRef(() => YearCalendarComponent),\n      multi: true\n    }\n  ]\n})\nexport class YearCalendarComponent implements OnInit, OnChanges, ControlValueAccessor, Validator {\n\n  @Input() config!: IYearCalendarConfig;\n  @Input() displayDate!: Dayjs;\n  @Input() minDate!: Dayjs;\n  @Input() maxDate!: Dayjs;\n  @HostBinding('class') @Input() theme!: string;\n  @Output() onSelect: EventEmitter<IDateCell> = new EventEmitter();\n  @Output() onNavHeaderBtnClick: EventEmitter<null> = new EventEmitter();\n  @Output() onGoToCurrent: EventEmitter<void> = new EventEmitter();\n  @Output() onLeftNav: EventEmitter<INavEvent> = new EventEmitter();\n  @Output() onRightNav: EventEmitter<INavEvent> = new EventEmitter();\n  @Output() onLeftSecondaryNav: EventEmitter<INavEvent> = new EventEmitter();\n  @Output() onRightSecondaryNav: EventEmitter<INavEvent> = new EventEmitter();\n  isInited: boolean = false;\n  componentConfig!: IYearCalendarConfigInternal;\n  yearMonths!: IDateCell[][];\n  inputValue!: CalendarValue;\n  inputValueType!: ECalendarValue;\n  validateFn!: DateValidator;\n  _shouldShowCurrent: boolean = true;\n  navLabel!: string;\n  showLeftNav!: boolean;\n  showRightNav!: boolean;\n  api = {\n    toggleCalendar: this.toggleCalendarMode.bind(this),\n    moveCalendarTo: this.moveCalendarTo.bind(this)\n  };\n\n  _selected!: Dayjs[];\n  _currentDateView!: Dayjs;\n\n  get selected(): Dayjs[] {\n    return this._selected;\n  }\n\n  set selected(selected: Dayjs[]) {\n    this._selected = selected;\n    this.onChangeCallback(this.processOnChangeCallback(selected));\n  }\n\n  get currentDateView(): Dayjs {\n    return this._currentDateView;\n  }\n\n    convertToMoment(date: SingleCalendarValue, format: string): Dayjs | null {\n    if (!date) {\n      return null;\n    } else if (typeof date === 'string') {\n      return dayjs(date, format);\n    } else {\n      return date.clone();\n    }\n  }\n\n  set currentDateView(current: Dayjs) {\n    this._currentDateView = current.clone();\n    const momentDate = this.convertToMoment(this._currentDateView, this.componentConfig.format ?? 'YYYY-MM-DD');\n    this.yearMonths = momentDate\n      ? this.yearCalendarService.generateCalendar(this.componentConfig, momentDate, this.selected)\n      : [];\n    this.navLabel = this.yearCalendarService.getHeaderLabel(this.componentConfig, this.currentDateView);\n    this.showLeftNav = this.yearCalendarService.shouldShowLeft(this.componentConfig.min, this._currentDateView);\n    this.showRightNav = this.yearCalendarService.shouldShowRight(this.componentConfig.max, this.currentDateView);\n  }\n\n  constructor(private readonly cd: ChangeDetectorRef,\n              private readonly yearCalendarService: YearCalendarService,\n              private readonly utilsService: UtilsService) {\n  }\n\n  ngOnInit() {\n    this.isInited = true;\n    this.init();\n    this.initValidators();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (this.isInited) {\n      const {minDate, maxDate, config} = changes;\n\n      this.handleConfigChange(config);\n      this.init();\n\n      if (minDate || maxDate) {\n        this.initValidators();\n      }\n    }\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChangeCallback = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n  }\n\n  registerOnValidatorChange(fn: () => void): void {\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n  }\n\n  validate(formControl: FormControl): ValidationErrors | any {\n    if (this.minDate || this.maxDate) {\n      return this.validateFn(formControl.value);\n    } else {\n      return () => null;\n    }\n  }\n\n  writeValue(value: CalendarValue): void {\n    this.inputValue = value;\n\n    if (value) {\n      this.selected = this.utilsService.convertToDayjsArray(value, this.componentConfig);\n      this.yearMonths = this.yearCalendarService\n        .generateCalendar(this.componentConfig, this.currentDateView, this.selected);\n      this.inputValueType = this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\n    } else {\n      this.selected = [];\n      this.yearMonths = this.yearCalendarService\n        .generateCalendar(this.componentConfig, this.currentDateView, this.selected);\n    }\n\n    this.cd.markForCheck();\n  }\n\n  onChangeCallback(_: any): void {\n  }\n\n  processOnChangeCallback(value: Dayjs[]): CalendarValue {\n    return this.utilsService.convertFromDayjsArray(\n      this.componentConfig.format ?? '',\n      value,\n      this.componentConfig.returnedValueType || this.inputValueType\n    );\n  }\n\n\n  // todo:: add unit test\n  convertFromMomentArray(format: string,\n                         value: Dayjs[],\n                         convertTo: ECalendarValue): CalendarValue {\n    switch (convertTo) {\n      case (ECalendarValue.String):\n        return value[0] && value[0].format(format);\n      case (ECalendarValue.StringArr):\n        return value.filter(Boolean).map(v => v.format(format));\n      case (ECalendarValue.Dayjs):\n        return value[0] ? value[0].clone() : value[0];\n      case (ECalendarValue.DayjsArr):\n        return value ? value.map(v => v.clone()) : value;\n      default:\n        return value;\n    }\n  }\n\n  goToCurrent(): void {\n    this.currentDateView = dayjs();\n    this.onGoToCurrent.emit();\n  }\n\n  onLeftNavClick() {\n    const from = this.currentDateView.clone();\n    this.currentDateView = this.currentDateView.clone().subtract(1, 'year');\n    const to = this.currentDateView.clone();\n    this.yearMonths = this.yearCalendarService.generateCalendar(this.componentConfig, this.currentDateView, this.selected);\n    this.onLeftNav.emit({from, to});\n  }\n\n  onRightNavClick(): void {\n    const from = this.currentDateView.clone();\n    this.currentDateView = this.currentDateView.clone().add(1, 'year');\n    const to = this.currentDateView.clone();\n    this.onRightNav.emit({from, to});\n  }\n\n  shouldShowCurrent(): boolean {\n    return this.utilsService.shouldShowCurrent(\n      this.componentConfig.showGoToCurrent ?? false,\n      'month',\n      this.componentConfig.min ?? dayjs(),\n      this.componentConfig.max ?? dayjs()\n    );\n  }\n\n  yearClicked(year: IDateCell): void {\n    if (year.selected && !this.componentConfig.unSelectOnClick) {\n      return;\n    }\n\n    this.selected = this.utilsService\n      .updateSelected(this.componentConfig.allowMultiSelect ?? false, this.selected, year, 'year');\n    this.yearMonths = this.yearCalendarService\n      .generateCalendar(this.componentConfig, this.currentDateView, this.selected);\n    this.onSelect.emit(year);\n  }\n\n  getYearBtnCssClass(year: IDateCell): {[klass: string]: boolean} {\n    const cssClass: {[klass: string]: boolean} = {\n      'dp-selected': year.selected,\n      'dp-current-year': year.current\n    };\n    const customCssClass: string = this.yearCalendarService.getYearBtnCssClass(this.componentConfig, year.date);\n\n    if (customCssClass) {\n      cssClass[customCssClass] = true;\n    }\n\n    return cssClass;\n  }\n\n  private init(): void {\n    this.componentConfig = this.yearCalendarService.getConfig(this.config);\n    this.selected = this.selected || [];\n    this.currentDateView = this.displayDate\n      ? this.displayDate\n      : this.utilsService\n        .getDefaultDisplayDate(\n          this.currentDateView,\n          this.selected,\n          this.componentConfig.allowMultiSelect ?? false,\n          this.componentConfig.min ?? dayjs()\n        );\n    this.inputValueType = this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\n    this._shouldShowCurrent = this.shouldShowCurrent();\n  }\n\n  private initValidators(): void {\n    this.validateFn = this.utilsService.createValidator(\n      {minDate: this.minDate, maxDate: this.maxDate},\n      this.componentConfig.format ?? '',\n      'month'\n    );\n    this.onChangeCallback(this.processOnChangeCallback(this.selected));\n  }\n\n  private toggleCalendarMode(): void {\n    this.onNavHeaderBtnClick.emit();\n  }\n\n  private moveCalendarTo(to: SingleCalendarValue): void {\n    if (to) {\n      this.currentDateView = this.utilsService.convertToDayjs(to, this.componentConfig.format ?? '');\n      this.cd.markForCheck();\n    }\n  }\n\n  private handleConfigChange(config: SimpleChange): void {\n    if (config) {\n      const prevConf: IYearCalendarConfigInternal = this.yearCalendarService.getConfig(config.previousValue);\n      const currentConf: IYearCalendarConfigInternal = this.yearCalendarService.getConfig(config.currentValue);\n\n      if (this.utilsService.shouldResetCurrentView(prevConf, currentConf)) {\n        this._currentDateView = dayjs();\n      }\n\n      // Use locale from the original config objects, not the internal config\n      const prevLocale = config.previousValue?.locale;\n      const currentLocale = config.currentValue?.locale;\n\n      if (prevLocale !== currentLocale) {\n        if (this.currentDateView && currentLocale) {\n          this.currentDateView = this.currentDateView.locale(currentLocale);\n        }\n\n        if (currentLocale) {\n          (this.selected || []).forEach((d) => d.locale(currentLocale));\n        }\n      }\n    }\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "current",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "date",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Dayjs",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "disabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "selected",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "text",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "IDateCell",
+            "id": "interface-IDateCell-b4ae261ff444371e658d5a905bd465be66957090e382ad4491f700a1a7b201d2194024e3c6817c2478cc78c3d10b2ac5168f27e2b11b5aa888a832a3da14de1d-1",
+            "file": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar.service.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {Injectable} from '@angular/core';\nimport dayjs, {Dayjs} from 'dayjs';\nimport {UtilsService} from '../common/services/utils/utils.service';\nimport {IYearCalendarConfig, IYearCalendarConfigInternal} from './year-calendar-config';\nimport { IGenCalendarParams } from './year-calendar.component';\n\nexport interface IDateCell {\n  date: Dayjs;\n  selected: boolean;\n  current: boolean;\n  disabled: boolean\n  text: string;\n}\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class YearCalendarService {\n  readonly DEFAULT_CONFIG: IYearCalendarConfigInternal = {\n    allowMultiSelect: false,\n    yearFormat: 'YYYY',\n    yearBtnFormat: 'YYYY',\n    format: 'YYYY',\n    numOfYearsPerPage: 24,\n    numOfYearRows: 6,\n    unSelectOnClick: true\n  };\n\n  constructor(private utilsService: UtilsService) {\n  }\n\n  getConfig(config: IYearCalendarConfig): IYearCalendarConfigInternal {\n    const _config = <IYearCalendarConfigInternal>{\n      ...this.DEFAULT_CONFIG,\n      ...this.utilsService.clearUndefined(config)\n    };\n\n    this.validateConfig(_config);\n\n  this.utilsService.convertPropsToDayjs(_config, _config.format ?? 'YYYY', ['min', 'max']);\n  // If you use dayjs locale plugin, set locale here if needed\n\n    return _config;\n  }\n\n    _generateCalendar<T>({\n                        numOfRows,\n                        numOfCells,\n                        isDisabledCb,\n                        getBtnTextCb,\n                        selected,\n                        config,\n                        startDate,\n                        granularity\n                      }: IGenCalendarParams<T>): IDateCell[][] {\n    const index = startDate.clone();\n\n    return this.createArray(numOfRows).map(() => {\n      return this.createArray(numOfCells / numOfRows).map(() => {\n        const date = index.clone();\n        const month = {\n          date,\n          selected: !!selected.find(s => index.isSame(s, granularity)),\n          current: index.isSame(dayjs(), granularity),\n          disabled: isDisabledCb(date, config),\n          text: getBtnTextCb(config, date)\n        };\n\n        index.add(1, 'month');\n\n        return month;\n      });\n    });\n  }\n\n  generateCalendar(config: IYearCalendarConfig, year: Dayjs, selected: Dayjs[] = []): IDateCell[][] {\n    return this._generateCalendar<IYearCalendarConfig>({\n      numOfRows: config.numOfYearRows ?? 0,\n      numOfCells: config.numOfYearsPerPage ?? this.DEFAULT_CONFIG.numOfYearsPerPage,\n      isDisabledCb: this.isYearDisabled,\n      getBtnTextCb: this.getYearBtnText,\n      selected,\n      config,\n      startDate: year.clone().startOf('year'),\n      granularity: 'year'\n    });\n  }\n\n  isYearDisabled(date: Dayjs, config: IYearCalendarConfig) {\n    if (config.min && date.isBefore(config.min, 'year')) {\n      return true;\n    }\n    return !!(config.max && date.isAfter(config.max, 'year'));\n  }\n\n  shouldShowLeft(min: Dayjs | undefined, currentMonthView: Dayjs): boolean {\n    return min ? min.isBefore(currentMonthView, 'year') : true;\n  }\n\n  shouldShowRight(max: Dayjs | undefined, currentMonthView: Dayjs): boolean {\n    return max ? max.isAfter(currentMonthView, 'year') : true;\n  }\n\n  getHeaderLabel(config: IYearCalendarConfig, year: Dayjs): string {\n    if (config.yearFormatter) {\n      return config.yearFormatter(year);\n    }\n    return year.format(config.yearFormat ?? 'YYYY');\n  }\n\n  getYearBtnText(config: IYearCalendarConfig, year: Dayjs): string {\n    if (config.yearBtnFormatter) {\n      return config.yearBtnFormatter(year);\n    }\n    return year.format(config.yearBtnFormat ?? 'YYYY');\n  }\n\n  getYearBtnCssClass(config: IYearCalendarConfig, year: Dayjs): string {\n    if (config.yearBtnCssClassCallback) {\n      return config.yearBtnCssClassCallback(year);\n    }\n    return '';\n  }\n\n  private validateConfig(config: IYearCalendarConfigInternal): void {\n  }\n\n  private createArray(length: number): number[] {\n    return Array.from({ length }, (_, i) => i);\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "current",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "date",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Dayjs",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "disabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "selected",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "text",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "IDateCell-1"
         },
         {
             "name": "IDatePickerConfig",
@@ -1402,6 +1693,101 @@
             "extends": []
         },
         {
+            "name": "IGenCalendarParams",
+            "id": "interface-IGenCalendarParams-5f1643dce71c538ea5bf746755cac08352a18591d29f1075fe9a6d7e9294b83f56b4a27728033b7cbd99af7dc4393aac45773597c7927c9785b952e7f4092855",
+            "file": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface IGenCalendarParams<T> {\n  startDate: Dayjs;\n  numOfRows: number;\n  numOfCells: number;\n  isDisabledCb: (date: Dayjs, config: T) => boolean;\n  getBtnTextCb: (config: T, date: Dayjs) => string;\n  selected: Dayjs[];\n  config: T;\n  granularity: 'year' | 'month';\n}\n\nexport interface IDateCell {\n  date: Dayjs;\n  selected: boolean;\n  current: boolean;\n  disabled: boolean\n  text: string;\n}\n\nimport {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  EventEmitter,\n  forwardRef,\n  HostBinding,\n  Input,\n  OnChanges,\n  OnInit,\n  Output,\n  SimpleChange,\n  SimpleChanges,\n  ViewEncapsulation\n} from '@angular/core';\nimport {\n  ControlValueAccessor,\n  FormControl,\n  NG_VALIDATORS,\n  NG_VALUE_ACCESSOR,\n  ValidationErrors,\n  Validator\n} from '@angular/forms';\nimport dayjs, {Dayjs} from 'dayjs';\nimport {INavEvent} from '../common/models/navigation-event.model';\nimport {DateValidator} from '../common/types/validator.type';\nimport {IYearCalendarConfig, IYearCalendarConfigInternal} from './year-calendar-config';\nimport {YearCalendarService} from './year-calendar.service';\nimport {UtilsService} from '../common/services/utils/utils.service';\nimport { CalendarValue, ECalendarValue, SingleCalendarValue } from '../public-api';\n\n@Component({\n  selector: 'dp-year-calendar',\n  templateUrl: './year-calendar.component.html',\n  styleUrls: ['./year-calendar.component.less'],\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => YearCalendarComponent),\n      multi: true\n    },\n    {\n      provide: NG_VALIDATORS,\n      useExisting: forwardRef(() => YearCalendarComponent),\n      multi: true\n    }\n  ]\n})\nexport class YearCalendarComponent implements OnInit, OnChanges, ControlValueAccessor, Validator {\n\n  @Input() config!: IYearCalendarConfig;\n  @Input() displayDate!: Dayjs;\n  @Input() minDate!: Dayjs;\n  @Input() maxDate!: Dayjs;\n  @HostBinding('class') @Input() theme!: string;\n  @Output() onSelect: EventEmitter<IDateCell> = new EventEmitter();\n  @Output() onNavHeaderBtnClick: EventEmitter<null> = new EventEmitter();\n  @Output() onGoToCurrent: EventEmitter<void> = new EventEmitter();\n  @Output() onLeftNav: EventEmitter<INavEvent> = new EventEmitter();\n  @Output() onRightNav: EventEmitter<INavEvent> = new EventEmitter();\n  @Output() onLeftSecondaryNav: EventEmitter<INavEvent> = new EventEmitter();\n  @Output() onRightSecondaryNav: EventEmitter<INavEvent> = new EventEmitter();\n  isInited: boolean = false;\n  componentConfig!: IYearCalendarConfigInternal;\n  yearMonths!: IDateCell[][];\n  inputValue!: CalendarValue;\n  inputValueType!: ECalendarValue;\n  validateFn!: DateValidator;\n  _shouldShowCurrent: boolean = true;\n  navLabel!: string;\n  showLeftNav!: boolean;\n  showRightNav!: boolean;\n  api = {\n    toggleCalendar: this.toggleCalendarMode.bind(this),\n    moveCalendarTo: this.moveCalendarTo.bind(this)\n  };\n\n  _selected!: Dayjs[];\n  _currentDateView!: Dayjs;\n\n  get selected(): Dayjs[] {\n    return this._selected;\n  }\n\n  set selected(selected: Dayjs[]) {\n    this._selected = selected;\n    this.onChangeCallback(this.processOnChangeCallback(selected));\n  }\n\n  get currentDateView(): Dayjs {\n    return this._currentDateView;\n  }\n\n    convertToMoment(date: SingleCalendarValue, format: string): Dayjs | null {\n    if (!date) {\n      return null;\n    } else if (typeof date === 'string') {\n      return dayjs(date, format);\n    } else {\n      return date.clone();\n    }\n  }\n\n  set currentDateView(current: Dayjs) {\n    this._currentDateView = current.clone();\n    const momentDate = this.convertToMoment(this._currentDateView, this.componentConfig.format ?? 'YYYY-MM-DD');\n    this.yearMonths = momentDate\n      ? this.yearCalendarService.generateCalendar(this.componentConfig, momentDate, this.selected)\n      : [];\n    this.navLabel = this.yearCalendarService.getHeaderLabel(this.componentConfig, this.currentDateView);\n    this.showLeftNav = this.yearCalendarService.shouldShowLeft(this.componentConfig.min, this._currentDateView);\n    this.showRightNav = this.yearCalendarService.shouldShowRight(this.componentConfig.max, this.currentDateView);\n  }\n\n  constructor(private readonly cd: ChangeDetectorRef,\n              private readonly yearCalendarService: YearCalendarService,\n              private readonly utilsService: UtilsService) {\n  }\n\n  ngOnInit() {\n    this.isInited = true;\n    this.init();\n    this.initValidators();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (this.isInited) {\n      const {minDate, maxDate, config} = changes;\n\n      this.handleConfigChange(config);\n      this.init();\n\n      if (minDate || maxDate) {\n        this.initValidators();\n      }\n    }\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChangeCallback = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n  }\n\n  registerOnValidatorChange(fn: () => void): void {\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n  }\n\n  validate(formControl: FormControl): ValidationErrors | any {\n    if (this.minDate || this.maxDate) {\n      return this.validateFn(formControl.value);\n    } else {\n      return () => null;\n    }\n  }\n\n  writeValue(value: CalendarValue): void {\n    this.inputValue = value;\n\n    if (value) {\n      this.selected = this.utilsService.convertToDayjsArray(value, this.componentConfig);\n      this.yearMonths = this.yearCalendarService\n        .generateCalendar(this.componentConfig, this.currentDateView, this.selected);\n      this.inputValueType = this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\n    } else {\n      this.selected = [];\n      this.yearMonths = this.yearCalendarService\n        .generateCalendar(this.componentConfig, this.currentDateView, this.selected);\n    }\n\n    this.cd.markForCheck();\n  }\n\n  onChangeCallback(_: any): void {\n  }\n\n  processOnChangeCallback(value: Dayjs[]): CalendarValue {\n    return this.utilsService.convertFromDayjsArray(\n      this.componentConfig.format ?? '',\n      value,\n      this.componentConfig.returnedValueType || this.inputValueType\n    );\n  }\n\n\n  // todo:: add unit test\n  convertFromMomentArray(format: string,\n                         value: Dayjs[],\n                         convertTo: ECalendarValue): CalendarValue {\n    switch (convertTo) {\n      case (ECalendarValue.String):\n        return value[0] && value[0].format(format);\n      case (ECalendarValue.StringArr):\n        return value.filter(Boolean).map(v => v.format(format));\n      case (ECalendarValue.Dayjs):\n        return value[0] ? value[0].clone() : value[0];\n      case (ECalendarValue.DayjsArr):\n        return value ? value.map(v => v.clone()) : value;\n      default:\n        return value;\n    }\n  }\n\n  goToCurrent(): void {\n    this.currentDateView = dayjs();\n    this.onGoToCurrent.emit();\n  }\n\n  onLeftNavClick() {\n    const from = this.currentDateView.clone();\n    this.currentDateView = this.currentDateView.clone().subtract(1, 'year');\n    const to = this.currentDateView.clone();\n    this.yearMonths = this.yearCalendarService.generateCalendar(this.componentConfig, this.currentDateView, this.selected);\n    this.onLeftNav.emit({from, to});\n  }\n\n  onRightNavClick(): void {\n    const from = this.currentDateView.clone();\n    this.currentDateView = this.currentDateView.clone().add(1, 'year');\n    const to = this.currentDateView.clone();\n    this.onRightNav.emit({from, to});\n  }\n\n  shouldShowCurrent(): boolean {\n    return this.utilsService.shouldShowCurrent(\n      this.componentConfig.showGoToCurrent ?? false,\n      'month',\n      this.componentConfig.min ?? dayjs(),\n      this.componentConfig.max ?? dayjs()\n    );\n  }\n\n  yearClicked(year: IDateCell): void {\n    if (year.selected && !this.componentConfig.unSelectOnClick) {\n      return;\n    }\n\n    this.selected = this.utilsService\n      .updateSelected(this.componentConfig.allowMultiSelect ?? false, this.selected, year, 'year');\n    this.yearMonths = this.yearCalendarService\n      .generateCalendar(this.componentConfig, this.currentDateView, this.selected);\n    this.onSelect.emit(year);\n  }\n\n  getYearBtnCssClass(year: IDateCell): {[klass: string]: boolean} {\n    const cssClass: {[klass: string]: boolean} = {\n      'dp-selected': year.selected,\n      'dp-current-year': year.current\n    };\n    const customCssClass: string = this.yearCalendarService.getYearBtnCssClass(this.componentConfig, year.date);\n\n    if (customCssClass) {\n      cssClass[customCssClass] = true;\n    }\n\n    return cssClass;\n  }\n\n  private init(): void {\n    this.componentConfig = this.yearCalendarService.getConfig(this.config);\n    this.selected = this.selected || [];\n    this.currentDateView = this.displayDate\n      ? this.displayDate\n      : this.utilsService\n        .getDefaultDisplayDate(\n          this.currentDateView,\n          this.selected,\n          this.componentConfig.allowMultiSelect ?? false,\n          this.componentConfig.min ?? dayjs()\n        );\n    this.inputValueType = this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\n    this._shouldShowCurrent = this.shouldShowCurrent();\n  }\n\n  private initValidators(): void {\n    this.validateFn = this.utilsService.createValidator(\n      {minDate: this.minDate, maxDate: this.maxDate},\n      this.componentConfig.format ?? '',\n      'month'\n    );\n    this.onChangeCallback(this.processOnChangeCallback(this.selected));\n  }\n\n  private toggleCalendarMode(): void {\n    this.onNavHeaderBtnClick.emit();\n  }\n\n  private moveCalendarTo(to: SingleCalendarValue): void {\n    if (to) {\n      this.currentDateView = this.utilsService.convertToDayjs(to, this.componentConfig.format ?? '');\n      this.cd.markForCheck();\n    }\n  }\n\n  private handleConfigChange(config: SimpleChange): void {\n    if (config) {\n      const prevConf: IYearCalendarConfigInternal = this.yearCalendarService.getConfig(config.previousValue);\n      const currentConf: IYearCalendarConfigInternal = this.yearCalendarService.getConfig(config.currentValue);\n\n      if (this.utilsService.shouldResetCurrentView(prevConf, currentConf)) {\n        this._currentDateView = dayjs();\n      }\n\n      // Use locale from the original config objects, not the internal config\n      const prevLocale = config.previousValue?.locale;\n      const currentLocale = config.currentValue?.locale;\n\n      if (prevLocale !== currentLocale) {\n        if (this.currentDateView && currentLocale) {\n          this.currentDateView = this.currentDateView.locale(currentLocale);\n        }\n\n        if (currentLocale) {\n          (this.selected || []).forEach((d) => d.locale(currentLocale));\n        }\n      }\n    }\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "config",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "T",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "getBtnTextCb",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "granularity",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"year\" | \"month\"",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "isDisabledCb",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "numOfCells",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "numOfRows",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "selected",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Dayjs[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "startDate",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Dayjs",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "IMonth",
             "id": "interface-IMonth-85da296dfc95afc8007fb22ff67169c98ee912a0750f7e582c1bb60b56cdaf5725b5135644f22a2a7e51586406a5adaa033aa989965677707f92841ff43cf637",
             "file": "src/app/components/ng2datepickercopy/lib/month-calendar/month.model.ts",
@@ -1584,6 +1970,38 @@
             "deprecationMessage": "",
             "type": "interface",
             "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\ninterface IConfig {\n  hours12Format?: string;\n  hours24Format?: string;\n  maxTime?: Dayjs;\n  meridiemFormat?: string;\n  minTime?: Dayjs;\n  minutesFormat?: string;\n  minutesInterval?: number;\n  secondsFormat?: string;\n  secondsInterval?: number;\n  showSeconds?: boolean;\n  showTwentyFourHours?: boolean;\n  timeSeparator?: string;\n  returnedValueType?: ECalendarValue;\n}\n\nexport interface ITimeSelectConfig extends IConfig, ICalendar {\n}\n\nexport interface ITimeSelectConfigInternal extends IConfig,\n                                                   ICalendarInternal {\n}\n",
+            "properties": [],
+            "indexSignatures": [],
+            "methods": [],
+            "extends": [
+                "IConfig",
+                "ICalendarInternal"
+            ]
+        },
+        {
+            "name": "IYearCalendarConfig",
+            "id": "interface-IYearCalendarConfig-9de3db4b36e85c32da2560ec41184c527d2f6defd95a5e3017dc4926352ed833ff3e9263e51bd43e07e83d7793200b3d81dfc0aa2ada50dc20b43d741528e2b8",
+            "file": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar-config.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport { ECalendarValue } from '../public-api';\n\nexport interface IConfig {\n  isYearDisabledCallback?: (date: Dayjs) => boolean;\n  isNavHeaderBtnClickable?: boolean;\n  allowMultiSelect?: boolean;\n  yearFormat?: string;\n  yearFormatter?: (year: Dayjs) => string;\n  format?: string;\n  numOfYearsPerPage: number;\n  numOfYearRows?: number;\n  yearBtnCssClassCallback?: (year: Dayjs) => string;\n  yearBtnFormatter?: (year: Dayjs) => string;\n  yearBtnFormat?: string;\n  returnedValueType?: ECalendarValue;\n  showGoToCurrent?: boolean;\n  unSelectOnClick?: boolean;\n}\n\nexport interface IYearCalendarConfig extends IConfig,\n                                             ICalendar {\n}\n\nexport interface IYearCalendarConfigInternal extends IConfig,\n                                                     ICalendarInternal {\n}\n",
+            "properties": [],
+            "indexSignatures": [],
+            "methods": [],
+            "extends": [
+                "IConfig",
+                "ICalendar"
+            ]
+        },
+        {
+            "name": "IYearCalendarConfigInternal",
+            "id": "interface-IYearCalendarConfigInternal-9de3db4b36e85c32da2560ec41184c527d2f6defd95a5e3017dc4926352ed833ff3e9263e51bd43e07e83d7793200b3d81dfc0aa2ada50dc20b43d741528e2b8",
+            "file": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar-config.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport { ECalendarValue } from '../public-api';\n\nexport interface IConfig {\n  isYearDisabledCallback?: (date: Dayjs) => boolean;\n  isNavHeaderBtnClickable?: boolean;\n  allowMultiSelect?: boolean;\n  yearFormat?: string;\n  yearFormatter?: (year: Dayjs) => string;\n  format?: string;\n  numOfYearsPerPage: number;\n  numOfYearRows?: number;\n  yearBtnCssClassCallback?: (year: Dayjs) => string;\n  yearBtnFormatter?: (year: Dayjs) => string;\n  yearBtnFormat?: string;\n  returnedValueType?: ECalendarValue;\n  showGoToCurrent?: boolean;\n  unSelectOnClick?: boolean;\n}\n\nexport interface IYearCalendarConfig extends IConfig,\n                                             ICalendar {\n}\n\nexport interface IYearCalendarConfigInternal extends IConfig,\n                                                     ICalendarInternal {\n}\n",
             "properties": [],
             "indexSignatures": [],
             "methods": [],
@@ -5301,6 +5719,498 @@
             "description": "",
             "rawdescription": "\n",
             "sourceCode": "import {ECalendarValue} from '../../types/calendar-value-enum';\nimport {SingleCalendarValue} from '../../types/single-calendar-value';\nimport {ElementRef, Injectable} from '@angular/core';\n\nimport {Dayjs, UnitType} from 'dayjs';\nimport {CalendarValue} from '../../types/calendar-value';\nimport {IDate} from '../../models/date.model';\nimport {CalendarMode} from '../../types/calendar-mode';\nimport {DateValidator} from '../../types/validator.type';\nimport {ICalendarInternal} from '../../models/calendar.model';\nimport {dayjsRef} from '../../dayjs/dayjs.ref';\n\nexport interface DateLimits {\n  minDate?: SingleCalendarValue;\n  maxDate?: SingleCalendarValue;\n  minTime?: SingleCalendarValue;\n  maxTime?: SingleCalendarValue;\n}\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class UtilsService {\n  static debounce(func: Function, wait: number) {\n    let timeout: ReturnType<typeof setTimeout>;\n    return (...args: any[]) => {\n      clearTimeout(timeout);\n      timeout = setTimeout(() => {\n        func(...args);\n      }, wait);\n    };\n  }\n\n  createArray(size: number): number[] {\n    return new Array(size).fill(1);\n  }\n\n  convertToDayjs(date: SingleCalendarValue, format: string): Dayjs {\n    if (!date) {\n      return dayjsRef();\n    } else if (typeof date === 'string') {\n      return dayjsRef(date, format);\n    } else {\n      return dayjsRef(date.toDate());\n    }\n  }\n\n  isDateValid(date: string, format: string): boolean {\n    if (date === '') {\n      return true;\n    }\n\n    return dayjsRef(date, format, true).isValid();\n  }\n\n  // todo:: add unit test\n  getDefaultDisplayDate(current: Dayjs,\n                        selected: Dayjs[],\n                        allowMultiSelect: boolean,\n                        minDate: Dayjs): Dayjs {\n    if (current) {\n      return dayjsRef(current.toDate());\n    } else if (minDate && minDate.isAfter(dayjsRef())) {\n      return dayjsRef(minDate.toDate());\n    } else if (allowMultiSelect) {\n      if (selected && selected[selected.length]) {\n        return dayjsRef(selected[selected.length].toDate());\n      }\n    } else if (selected && selected[0]) {\n      return dayjsRef(selected[0].toDate());\n    }\n\n    return dayjsRef();\n  }\n\n  // todo:: add unit test\n  getInputType(value: CalendarValue, allowMultiSelect: boolean): ECalendarValue {\n    if (Array.isArray(value)) {\n      if (!value.length) {\n        return ECalendarValue.DayjsArr;\n      } else if (typeof value[0] === 'string') {\n        return ECalendarValue.StringArr;\n      } else if (dayjsRef.isDayjs(value[0])) {\n        return ECalendarValue.DayjsArr;\n      }\n    } else {\n      if (typeof value === 'string') {\n        return ECalendarValue.String;\n      } else if (dayjsRef.isDayjs(value)) {\n        return ECalendarValue.Dayjs;\n      }\n    }\n\n    return allowMultiSelect ? ECalendarValue.DayjsArr : ECalendarValue.Dayjs;\n  }\n\n  // todo:: add unit test\n  convertToDayjsArray(value: CalendarValue,\n                      config: { allowMultiSelect?: boolean, format?: string }): Dayjs[] {\n    let retVal: Dayjs[];\n    switch (this.getInputType(value, config.allowMultiSelect ?? false)) {\n      case (ECalendarValue.String):\n        retVal = value ? [dayjsRef(<string>value, config.format, true)] : [];\n        break;\n      case (ECalendarValue.StringArr):\n        retVal = (<string[]>value)\n          .map(v => v ? dayjsRef(v, config.format, true) : null)\n          .filter((d): d is Dayjs => d !== null && d !== undefined);\n        break;\n      case (ECalendarValue.Dayjs):\n        retVal = value ? [dayjsRef((<Dayjs>value).toDate())] : [];\n        break;\n      case (ECalendarValue.DayjsArr):\n        retVal = (<Dayjs[]>value || []).map(v => dayjsRef(v.toDate()));\n        break;\n      default:\n        retVal = [];\n    }\n\n    return retVal;\n  }\n\n  // todo:: add unit test\n  convertFromDayjsArray(format: string,\n                        value: Dayjs[],\n                        convertTo: ECalendarValue): CalendarValue {\n    switch (convertTo) {\n      case (ECalendarValue.String):\n        return value[0] && value[0].format(format);\n      case (ECalendarValue.StringArr):\n        return value.filter(Boolean).map(v => v.format(format));\n      case (ECalendarValue.Dayjs):\n        return value[0] ? dayjsRef(value[0].toDate()) : value[0];\n      case (ECalendarValue.DayjsArr):\n        return value ? value.map(v => dayjsRef(v.toDate())) : value;\n      default:\n        return value;\n    }\n  }\n\n  convertToString(value: CalendarValue, format: string): string {\n    let tmpVal: string[];\n\n    if (typeof value === 'string') {\n      tmpVal = [value];\n    } else if (Array.isArray(value)) {\n      if (value.length) {\n        tmpVal = (<SingleCalendarValue[]>value).map((v) => {\n          return this.convertToDayjs(v, format).format(format);\n        });\n      } else {\n        tmpVal = <string[]>value;\n      }\n    } else if (dayjsRef.isDayjs(value)) {\n      tmpVal = [value.format(format)];\n    } else {\n      return '';\n    }\n\n    return tmpVal.filter(Boolean).join(' | ');\n  }\n\n  // todo:: add unit test\n  clearUndefined<T extends { [key: string]: any }>(obj: T): T {\n    if (!obj) {\n      return obj;\n    }\n\n    Object.keys(obj).forEach((key) => (obj[key] === undefined) && delete obj[key]);\n    return obj;\n  }\n\n  updateSelected(isMultiple: boolean,\n                 currentlySelected: Dayjs[],\n                 date: IDate,\n                 granularity: UnitType = 'day'): Dayjs[] {\n    if (isMultiple) {\n      return !date.selected\n        ? currentlySelected.concat([date.date])\n        : currentlySelected.filter(d => !d.isSame(date.date, granularity));\n    } else {\n      return !date.selected ? [date.date] : [];\n    }\n  }\n\n  closestParent(element: HTMLElement, selector: string): HTMLElement | null {\n    if (!element) {\n      return null;\n    }\n    const match = <HTMLElement>element.querySelector(selector);\n    if (match) {\n      return match;\n    }\n    if (element.parentElement) {\n      return this.closestParent(element.parentElement, selector);\n    }\n    return null;\n  }\n\n  onlyTime(m: Dayjs): Dayjs {\n    return m && dayjsRef.isDayjs(m) ? dayjsRef(m.format('HH:mm:ss'), 'HH:mm:ss') : dayjsRef('00:00:00', 'HH:mm:ss');\n  }\n\n  granularityFromType(calendarType: CalendarMode): UnitType {\n    switch (calendarType) {\n      case 'time':\n        return 'second';\n      case 'daytime':\n        return 'second';\n      default:\n        return calendarType;\n    }\n  }\n\n  createValidator({minDate, maxDate, minTime, maxTime}: DateLimits,\n                  format: string,\n                  calendarType: CalendarMode): DateValidator {\n    let isValid: boolean;\n    let value: Dayjs[];\n    const validators: { key: string; isValid: () => boolean }[] = [];\n    const granularity = this.granularityFromType(calendarType);\n\n    if (minDate) {\n      const md = this.convertToDayjs(minDate, format);\n      validators.push({\n        key: 'minDate',\n        isValid: () => {\n          const _isValid = value.every(val => val.isSameOrAfter(md, granularity));\n          isValid = isValid ? _isValid : false;\n          return _isValid;\n        }\n      });\n    }\n\n    if (maxDate) {\n      const md = this.convertToDayjs(maxDate, format);\n      validators.push({\n        key: 'maxDate',\n        isValid: () => {\n          const _isValid = value.every(val => val.isSameOrBefore(md, granularity));\n          isValid = isValid ? _isValid : false;\n          return _isValid;\n        }\n      });\n    }\n\n    if (minTime) {\n      const md = this.onlyTime(this.convertToDayjs(minTime, format));\n      validators.push({\n        key: 'minTime',\n        isValid: () => {\n          const _isValid = value.every(val => this.onlyTime(val).isSameOrAfter(md));\n          isValid = isValid ? _isValid : false;\n          return _isValid;\n        }\n      });\n    }\n\n    if (maxTime) {\n      const md = this.onlyTime(this.convertToDayjs(maxTime, format));\n      validators.push({\n        key: 'maxTime',\n        isValid: () => {\n          const _isValid = value.every(val => this.onlyTime(val).isSameOrBefore(md));\n          isValid = isValid ? _isValid : false;\n          return _isValid;\n        }\n      });\n    }\n\n    return (inputVal: CalendarValue) => {\n      isValid = true;\n\n      value = this.convertToDayjsArray(inputVal, {\n        format,\n        allowMultiSelect: true\n      }).filter(Boolean);\n\n      if (!value.every(val => val.isValid())) {\n        return {\n          format: {\n            given: inputVal\n          }\n        };\n      }\n\n      interface Validator {\n        key: string;\n        isValid: () => boolean;\n      }\n\n      interface ErrorMap {\n        [key: string]: {\n          given: Dayjs[];\n        };\n      }\n\n      interface Validator {\n        key: string;\n        isValid: () => boolean;\n      }\n\n      const errors: ErrorMap = validators.reduce<ErrorMap>((map: ErrorMap, err: Validator) => {\n        if (!err.isValid()) {\n          map[err.key] = {\n        given: value\n          };\n        }\n\n        return map;\n      }, {});\n\n      return !isValid ? errors : {};\n    };\n  }\n\n  datesStringToStringArray(value: string): string[] {\n    return (value || '').split('|').map(m => m.trim()).filter(Boolean);\n  }\n\n  getValidDayjsArray(value: string, format: string): Dayjs[] {\n    return this.datesStringToStringArray(value)\n      .filter(d => this.isDateValid(d, format))\n      .map(d => dayjsRef(d, format));\n  }\n\n  shouldShowCurrent(showGoToCurrent: boolean,\n                    mode: CalendarMode,\n                    min: Dayjs,\n                    max: Dayjs): boolean {\n    return showGoToCurrent &&\n      mode !== 'time' &&\n      this.isDateInRange(dayjsRef(), min, max);\n  }\n\n  isDateInRange(date: Dayjs, from: Dayjs, to: Dayjs): boolean {\n    if (!date) {\n      return false;\n    }\n\n    if (!from && !to) {\n      return true;\n    }\n\n    if (!from && to) {\n      return date.isSameOrBefore(to);\n    }\n\n    if (from && !to) {\n      return date.isSameOrAfter(from);\n    }\n\n    return date.isBetween(from, to, 'day', '[]');\n  }\n\n  convertPropsToDayjs(obj: { [key: string]: any }, format: string, props: string[]): void {\n    props.forEach((prop) => {\n      if (obj.hasOwnProperty(prop)) {\n        obj[prop] = this.convertToDayjs(obj[prop], format);\n      }\n    });\n  }\n\n  shouldResetCurrentView<T extends ICalendarInternal>(prevConf: T, currentConf: T): boolean {\n    if (prevConf && currentConf) {\n      if (!prevConf.min && currentConf.min) {\n        return true;\n      } else if (prevConf.min && currentConf.min && !prevConf.min.isSame(currentConf.min, 'd')) {\n        return true;\n      } else if (!prevConf.max && currentConf.max) {\n        return true;\n      } else if (prevConf.max && currentConf.max && !prevConf.max.isSame(currentConf.max, 'd')) {\n        return true;\n      }\n\n      return false;\n    }\n\n    return false;\n  }\n\n  getNativeElement(elem: HTMLElement | string | ElementRef): HTMLElement | null {\n    if (!elem) {\n      return null;\n    } else if (typeof elem === 'string') {\n      return document.querySelector(elem);\n    } else if (elem instanceof ElementRef) {\n      return elem.nativeElement;\n    } else {\n      return elem;\n    }\n  }\n}\n",
+            "extends": [],
+            "type": "injectable"
+        },
+        {
+            "name": "YearCalendarService",
+            "id": "injectable-YearCalendarService-b4ae261ff444371e658d5a905bd465be66957090e382ad4491f700a1a7b201d2194024e3c6817c2478cc78c3d10b2ac5168f27e2b11b5aa888a832a3da14de1d",
+            "file": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar.service.ts",
+            "properties": [
+                {
+                    "name": "DEFAULT_CONFIG",
+                    "defaultValue": "{\n    allowMultiSelect: false,\n    yearFormat: 'YYYY',\n    yearBtnFormat: 'YYYY',\n    format: 'YYYY',\n    numOfYearsPerPage: 24,\n    numOfYearRows: 6,\n    unSelectOnClick: true\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "IYearCalendarConfigInternal",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "modifierKind": [
+                        148
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "_generateCalendar",
+                    "args": [
+                        {
+                            "type": "IGenCalendarParams<T>",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "[][]",
+                    "typeParameters": [
+                        "T"
+                    ],
+                    "line": 46,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "type": "IGenCalendarParams<T>",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "createArray",
+                    "args": [
+                        {
+                            "name": "length",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "number[]",
+                    "typeParameters": [],
+                    "line": 128,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "length",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "generateCalendar",
+                    "args": [
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfig",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "year",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "selected",
+                            "type": "Dayjs[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "[]"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "[][]",
+                    "typeParameters": [],
+                    "line": 76,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfig",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "year",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "selected",
+                            "type": "Dayjs[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "defaultValue": "[]",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getConfig",
+                    "args": [
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfig",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "IYearCalendarConfigInternal",
+                    "typeParameters": [],
+                    "line": 32,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfig",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getHeaderLabel",
+                    "args": [
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfig",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "year",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 104,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfig",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "year",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getYearBtnCssClass",
+                    "args": [
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfig",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "year",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 118,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfig",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "year",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getYearBtnText",
+                    "args": [
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfig",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "year",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 111,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfig",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "year",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isYearDisabled",
+                    "args": [
+                        {
+                            "name": "date",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfig",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 89,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "date",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfig",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "shouldShowLeft",
+                    "args": [
+                        {
+                            "name": "min",
+                            "type": "Dayjs | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "currentMonthView",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 96,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "min",
+                            "type": "Dayjs | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "currentMonthView",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "shouldShowRight",
+                    "args": [
+                        {
+                            "name": "max",
+                            "type": "Dayjs | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "currentMonthView",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 100,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "max",
+                            "type": "Dayjs | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "currentMonthView",
+                            "type": "Dayjs",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "validateConfig",
+                    "args": [
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfigInternal",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 125,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "config",
+                            "type": "IYearCalendarConfigInternal",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import {Injectable} from '@angular/core';\nimport dayjs, {Dayjs} from 'dayjs';\nimport {UtilsService} from '../common/services/utils/utils.service';\nimport {IYearCalendarConfig, IYearCalendarConfigInternal} from './year-calendar-config';\nimport { IGenCalendarParams } from './year-calendar.component';\n\nexport interface IDateCell {\n  date: Dayjs;\n  selected: boolean;\n  current: boolean;\n  disabled: boolean\n  text: string;\n}\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class YearCalendarService {\n  readonly DEFAULT_CONFIG: IYearCalendarConfigInternal = {\n    allowMultiSelect: false,\n    yearFormat: 'YYYY',\n    yearBtnFormat: 'YYYY',\n    format: 'YYYY',\n    numOfYearsPerPage: 24,\n    numOfYearRows: 6,\n    unSelectOnClick: true\n  };\n\n  constructor(private utilsService: UtilsService) {\n  }\n\n  getConfig(config: IYearCalendarConfig): IYearCalendarConfigInternal {\n    const _config = <IYearCalendarConfigInternal>{\n      ...this.DEFAULT_CONFIG,\n      ...this.utilsService.clearUndefined(config)\n    };\n\n    this.validateConfig(_config);\n\n  this.utilsService.convertPropsToDayjs(_config, _config.format ?? 'YYYY', ['min', 'max']);\n  // If you use dayjs locale plugin, set locale here if needed\n\n    return _config;\n  }\n\n    _generateCalendar<T>({\n                        numOfRows,\n                        numOfCells,\n                        isDisabledCb,\n                        getBtnTextCb,\n                        selected,\n                        config,\n                        startDate,\n                        granularity\n                      }: IGenCalendarParams<T>): IDateCell[][] {\n    const index = startDate.clone();\n\n    return this.createArray(numOfRows).map(() => {\n      return this.createArray(numOfCells / numOfRows).map(() => {\n        const date = index.clone();\n        const month = {\n          date,\n          selected: !!selected.find(s => index.isSame(s, granularity)),\n          current: index.isSame(dayjs(), granularity),\n          disabled: isDisabledCb(date, config),\n          text: getBtnTextCb(config, date)\n        };\n\n        index.add(1, 'month');\n\n        return month;\n      });\n    });\n  }\n\n  generateCalendar(config: IYearCalendarConfig, year: Dayjs, selected: Dayjs[] = []): IDateCell[][] {\n    return this._generateCalendar<IYearCalendarConfig>({\n      numOfRows: config.numOfYearRows ?? 0,\n      numOfCells: config.numOfYearsPerPage ?? this.DEFAULT_CONFIG.numOfYearsPerPage,\n      isDisabledCb: this.isYearDisabled,\n      getBtnTextCb: this.getYearBtnText,\n      selected,\n      config,\n      startDate: year.clone().startOf('year'),\n      granularity: 'year'\n    });\n  }\n\n  isYearDisabled(date: Dayjs, config: IYearCalendarConfig) {\n    if (config.min && date.isBefore(config.min, 'year')) {\n      return true;\n    }\n    return !!(config.max && date.isAfter(config.max, 'year'));\n  }\n\n  shouldShowLeft(min: Dayjs | undefined, currentMonthView: Dayjs): boolean {\n    return min ? min.isBefore(currentMonthView, 'year') : true;\n  }\n\n  shouldShowRight(max: Dayjs | undefined, currentMonthView: Dayjs): boolean {\n    return max ? max.isAfter(currentMonthView, 'year') : true;\n  }\n\n  getHeaderLabel(config: IYearCalendarConfig, year: Dayjs): string {\n    if (config.yearFormatter) {\n      return config.yearFormatter(year);\n    }\n    return year.format(config.yearFormat ?? 'YYYY');\n  }\n\n  getYearBtnText(config: IYearCalendarConfig, year: Dayjs): string {\n    if (config.yearBtnFormatter) {\n      return config.yearBtnFormatter(year);\n    }\n    return year.format(config.yearBtnFormat ?? 'YYYY');\n  }\n\n  getYearBtnCssClass(config: IYearCalendarConfig, year: Dayjs): string {\n    if (config.yearBtnCssClassCallback) {\n      return config.yearBtnCssClassCallback(year);\n    }\n    return '';\n  }\n\n  private validateConfig(config: IYearCalendarConfigInternal): void {\n  }\n\n  private createArray(length: number): number[] {\n    return Array.from({ length }, (_, i) => i);\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "utilsService",
+                        "type": "UtilsService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 27,
+                "jsdoctags": [
+                    {
+                        "name": "utilsService",
+                        "type": "UtilsService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
             "type": "injectable"
         }
@@ -15162,6 +16072,993 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<label class=\"switch\">\r\n  <input\r\n    type=\"checkbox\"\r\n    [checked]=\"isChecked\"\r\n    (change)=\"onToggleChange()\"\r\n    id=\"toggleSwitch\"\r\n  />\r\n  <span class=\"slider round\"></span>\r\n</label>\r\n<label for=\"toggleSwitch\" class=\"visually-hidden\">Toggle switch</label>\r\n"
+        },
+        {
+            "name": "YearCalendarComponent",
+            "id": "component-YearCalendarComponent-5f1643dce71c538ea5bf746755cac08352a18591d29f1075fe9a6d7e9294b83f56b4a27728033b7cbd99af7dc4393aac45773597c7927c9785b952e7f4092855",
+            "file": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => YearCalendarComponent), multi: true\n}",
+                    "type": "component"
+                },
+                {
+                    "name": "{\n    provide: NG_VALIDATORS, useExisting: forwardRef(() => YearCalendarComponent), multi: true\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "dp-year-calendar",
+            "styleUrls": [
+                "./year-calendar.component.less"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./year-calendar.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "config",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 72,
+                    "type": "IYearCalendarConfig",
+                    "decorators": []
+                },
+                {
+                    "name": "displayDate",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 73,
+                    "type": "Dayjs",
+                    "decorators": []
+                },
+                {
+                    "name": "maxDate",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 75,
+                    "type": "Dayjs",
+                    "decorators": []
+                },
+                {
+                    "name": "minDate",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 74,
+                    "type": "Dayjs",
+                    "decorators": []
+                },
+                {
+                    "name": "theme",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 76,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onGoToCurrent",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 79,
+                    "type": "EventEmitter<void>"
+                },
+                {
+                    "name": "onLeftNav",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 80,
+                    "type": "EventEmitter<INavEvent>"
+                },
+                {
+                    "name": "onLeftSecondaryNav",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 82,
+                    "type": "EventEmitter<INavEvent>"
+                },
+                {
+                    "name": "onNavHeaderBtnClick",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 78,
+                    "type": "EventEmitter<>"
+                },
+                {
+                    "name": "onRightNav",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 81,
+                    "type": "EventEmitter<INavEvent>"
+                },
+                {
+                    "name": "onRightSecondaryNav",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 83,
+                    "type": "EventEmitter<INavEvent>"
+                },
+                {
+                    "name": "onSelect",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 77,
+                    "type": "EventEmitter<IDateCell>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "_currentDateView",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Dayjs",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 100
+                },
+                {
+                    "name": "_selected",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Dayjs[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 99
+                },
+                {
+                    "name": "_shouldShowCurrent",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 90
+                },
+                {
+                    "name": "api",
+                    "defaultValue": "{\n    toggleCalendar: this.toggleCalendarMode.bind(this),\n    moveCalendarTo: this.moveCalendarTo.bind(this)\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 94
+                },
+                {
+                    "name": "componentConfig",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "IYearCalendarConfigInternal",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 85
+                },
+                {
+                    "name": "inputValue",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "CalendarValue",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 87
+                },
+                {
+                    "name": "inputValueType",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ECalendarValue",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 88
+                },
+                {
+                    "name": "isInited",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 84
+                },
+                {
+                    "name": "navLabel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 91
+                },
+                {
+                    "name": "showLeftNav",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 92
+                },
+                {
+                    "name": "showRightNav",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 93
+                },
+                {
+                    "name": "validateFn",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "DateValidator",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 89
+                },
+                {
+                    "name": "yearMonths",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "IDateCell[][]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 86
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "convertFromMomentArray",
+                    "args": [
+                        {
+                            "name": "format",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "value",
+                            "type": "Dayjs[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "convertTo",
+                            "type": "ECalendarValue",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "CalendarValue",
+                    "typeParameters": [],
+                    "line": 211,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "format",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "value",
+                            "type": "Dayjs[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "convertTo",
+                            "type": "ECalendarValue",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "convertToMoment",
+                    "args": [
+                        {
+                            "name": "date",
+                            "type": "SingleCalendarValue",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "format",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Dayjs | null",
+                    "typeParameters": [],
+                    "line": 115,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "date",
+                            "type": "SingleCalendarValue",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "format",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getYearBtnCssClass",
+                    "args": [
+                        {
+                            "name": "year",
+                            "type": "IDateCell",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "literal type",
+                    "typeParameters": [],
+                    "line": 269,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "year",
+                            "type": "IDateCell",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "goToCurrent",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 228,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleConfigChange",
+                    "args": [
+                        {
+                            "name": "config",
+                            "type": "SimpleChange",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 319,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "config",
+                            "type": "SimpleChange",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "init",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 283,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "initValidators",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 299,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "moveCalendarTo",
+                    "args": [
+                        {
+                            "name": "to",
+                            "type": "SingleCalendarValue",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 312,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "to",
+                            "type": "SingleCalendarValue",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnChanges",
+                    "args": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 147,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 141,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onChangeCallback",
+                    "args": [
+                        {
+                            "name": "_",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 198,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "_",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onLeftNavClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 233,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onRightNavClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 241,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "processOnChangeCallback",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "Dayjs[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "CalendarValue",
+                    "typeParameters": [],
+                    "line": 201,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "Dayjs[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 160,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 164,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnValidatorChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": []
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 167,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "function",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "function": [],
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setDisabledState",
+                    "args": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 170,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "isDisabled",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "shouldShowCurrent",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 248,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "toggleCalendarMode",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 308,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "validate",
+                    "args": [
+                        {
+                            "name": "formControl",
+                            "type": "FormControl",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "ValidationErrors | any",
+                    "typeParameters": [],
+                    "line": 173,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "formControl",
+                            "type": "FormControl",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "CalendarValue",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 181,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "CalendarValue",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "yearClicked",
+                    "args": [
+                        {
+                            "name": "year",
+                            "type": "IDateCell",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 257,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "year",
+                            "type": "IDateCell",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "export interface IGenCalendarParams<T> {\n  startDate: Dayjs;\n  numOfRows: number;\n  numOfCells: number;\n  isDisabledCb: (date: Dayjs, config: T) => boolean;\n  getBtnTextCb: (config: T, date: Dayjs) => string;\n  selected: Dayjs[];\n  config: T;\n  granularity: 'year' | 'month';\n}\n\nexport interface IDateCell {\n  date: Dayjs;\n  selected: boolean;\n  current: boolean;\n  disabled: boolean\n  text: string;\n}\n\nimport {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  EventEmitter,\n  forwardRef,\n  HostBinding,\n  Input,\n  OnChanges,\n  OnInit,\n  Output,\n  SimpleChange,\n  SimpleChanges,\n  ViewEncapsulation\n} from '@angular/core';\nimport {\n  ControlValueAccessor,\n  FormControl,\n  NG_VALIDATORS,\n  NG_VALUE_ACCESSOR,\n  ValidationErrors,\n  Validator\n} from '@angular/forms';\nimport dayjs, {Dayjs} from 'dayjs';\nimport {INavEvent} from '../common/models/navigation-event.model';\nimport {DateValidator} from '../common/types/validator.type';\nimport {IYearCalendarConfig, IYearCalendarConfigInternal} from './year-calendar-config';\nimport {YearCalendarService} from './year-calendar.service';\nimport {UtilsService} from '../common/services/utils/utils.service';\nimport { CalendarValue, ECalendarValue, SingleCalendarValue } from '../public-api';\n\n@Component({\n  selector: 'dp-year-calendar',\n  templateUrl: './year-calendar.component.html',\n  styleUrls: ['./year-calendar.component.less'],\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => YearCalendarComponent),\n      multi: true\n    },\n    {\n      provide: NG_VALIDATORS,\n      useExisting: forwardRef(() => YearCalendarComponent),\n      multi: true\n    }\n  ]\n})\nexport class YearCalendarComponent implements OnInit, OnChanges, ControlValueAccessor, Validator {\n\n  @Input() config!: IYearCalendarConfig;\n  @Input() displayDate!: Dayjs;\n  @Input() minDate!: Dayjs;\n  @Input() maxDate!: Dayjs;\n  @HostBinding('class') @Input() theme!: string;\n  @Output() onSelect: EventEmitter<IDateCell> = new EventEmitter();\n  @Output() onNavHeaderBtnClick: EventEmitter<null> = new EventEmitter();\n  @Output() onGoToCurrent: EventEmitter<void> = new EventEmitter();\n  @Output() onLeftNav: EventEmitter<INavEvent> = new EventEmitter();\n  @Output() onRightNav: EventEmitter<INavEvent> = new EventEmitter();\n  @Output() onLeftSecondaryNav: EventEmitter<INavEvent> = new EventEmitter();\n  @Output() onRightSecondaryNav: EventEmitter<INavEvent> = new EventEmitter();\n  isInited: boolean = false;\n  componentConfig!: IYearCalendarConfigInternal;\n  yearMonths!: IDateCell[][];\n  inputValue!: CalendarValue;\n  inputValueType!: ECalendarValue;\n  validateFn!: DateValidator;\n  _shouldShowCurrent: boolean = true;\n  navLabel!: string;\n  showLeftNav!: boolean;\n  showRightNav!: boolean;\n  api = {\n    toggleCalendar: this.toggleCalendarMode.bind(this),\n    moveCalendarTo: this.moveCalendarTo.bind(this)\n  };\n\n  _selected!: Dayjs[];\n  _currentDateView!: Dayjs;\n\n  get selected(): Dayjs[] {\n    return this._selected;\n  }\n\n  set selected(selected: Dayjs[]) {\n    this._selected = selected;\n    this.onChangeCallback(this.processOnChangeCallback(selected));\n  }\n\n  get currentDateView(): Dayjs {\n    return this._currentDateView;\n  }\n\n    convertToMoment(date: SingleCalendarValue, format: string): Dayjs | null {\n    if (!date) {\n      return null;\n    } else if (typeof date === 'string') {\n      return dayjs(date, format);\n    } else {\n      return date.clone();\n    }\n  }\n\n  set currentDateView(current: Dayjs) {\n    this._currentDateView = current.clone();\n    const momentDate = this.convertToMoment(this._currentDateView, this.componentConfig.format ?? 'YYYY-MM-DD');\n    this.yearMonths = momentDate\n      ? this.yearCalendarService.generateCalendar(this.componentConfig, momentDate, this.selected)\n      : [];\n    this.navLabel = this.yearCalendarService.getHeaderLabel(this.componentConfig, this.currentDateView);\n    this.showLeftNav = this.yearCalendarService.shouldShowLeft(this.componentConfig.min, this._currentDateView);\n    this.showRightNav = this.yearCalendarService.shouldShowRight(this.componentConfig.max, this.currentDateView);\n  }\n\n  constructor(private readonly cd: ChangeDetectorRef,\n              private readonly yearCalendarService: YearCalendarService,\n              private readonly utilsService: UtilsService) {\n  }\n\n  ngOnInit() {\n    this.isInited = true;\n    this.init();\n    this.initValidators();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (this.isInited) {\n      const {minDate, maxDate, config} = changes;\n\n      this.handleConfigChange(config);\n      this.init();\n\n      if (minDate || maxDate) {\n        this.initValidators();\n      }\n    }\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChangeCallback = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n  }\n\n  registerOnValidatorChange(fn: () => void): void {\n  }\n\n  setDisabledState(isDisabled: boolean): void {\n  }\n\n  validate(formControl: FormControl): ValidationErrors | any {\n    if (this.minDate || this.maxDate) {\n      return this.validateFn(formControl.value);\n    } else {\n      return () => null;\n    }\n  }\n\n  writeValue(value: CalendarValue): void {\n    this.inputValue = value;\n\n    if (value) {\n      this.selected = this.utilsService.convertToDayjsArray(value, this.componentConfig);\n      this.yearMonths = this.yearCalendarService\n        .generateCalendar(this.componentConfig, this.currentDateView, this.selected);\n      this.inputValueType = this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\n    } else {\n      this.selected = [];\n      this.yearMonths = this.yearCalendarService\n        .generateCalendar(this.componentConfig, this.currentDateView, this.selected);\n    }\n\n    this.cd.markForCheck();\n  }\n\n  onChangeCallback(_: any): void {\n  }\n\n  processOnChangeCallback(value: Dayjs[]): CalendarValue {\n    return this.utilsService.convertFromDayjsArray(\n      this.componentConfig.format ?? '',\n      value,\n      this.componentConfig.returnedValueType || this.inputValueType\n    );\n  }\n\n\n  // todo:: add unit test\n  convertFromMomentArray(format: string,\n                         value: Dayjs[],\n                         convertTo: ECalendarValue): CalendarValue {\n    switch (convertTo) {\n      case (ECalendarValue.String):\n        return value[0] && value[0].format(format);\n      case (ECalendarValue.StringArr):\n        return value.filter(Boolean).map(v => v.format(format));\n      case (ECalendarValue.Dayjs):\n        return value[0] ? value[0].clone() : value[0];\n      case (ECalendarValue.DayjsArr):\n        return value ? value.map(v => v.clone()) : value;\n      default:\n        return value;\n    }\n  }\n\n  goToCurrent(): void {\n    this.currentDateView = dayjs();\n    this.onGoToCurrent.emit();\n  }\n\n  onLeftNavClick() {\n    const from = this.currentDateView.clone();\n    this.currentDateView = this.currentDateView.clone().subtract(1, 'year');\n    const to = this.currentDateView.clone();\n    this.yearMonths = this.yearCalendarService.generateCalendar(this.componentConfig, this.currentDateView, this.selected);\n    this.onLeftNav.emit({from, to});\n  }\n\n  onRightNavClick(): void {\n    const from = this.currentDateView.clone();\n    this.currentDateView = this.currentDateView.clone().add(1, 'year');\n    const to = this.currentDateView.clone();\n    this.onRightNav.emit({from, to});\n  }\n\n  shouldShowCurrent(): boolean {\n    return this.utilsService.shouldShowCurrent(\n      this.componentConfig.showGoToCurrent ?? false,\n      'month',\n      this.componentConfig.min ?? dayjs(),\n      this.componentConfig.max ?? dayjs()\n    );\n  }\n\n  yearClicked(year: IDateCell): void {\n    if (year.selected && !this.componentConfig.unSelectOnClick) {\n      return;\n    }\n\n    this.selected = this.utilsService\n      .updateSelected(this.componentConfig.allowMultiSelect ?? false, this.selected, year, 'year');\n    this.yearMonths = this.yearCalendarService\n      .generateCalendar(this.componentConfig, this.currentDateView, this.selected);\n    this.onSelect.emit(year);\n  }\n\n  getYearBtnCssClass(year: IDateCell): {[klass: string]: boolean} {\n    const cssClass: {[klass: string]: boolean} = {\n      'dp-selected': year.selected,\n      'dp-current-year': year.current\n    };\n    const customCssClass: string = this.yearCalendarService.getYearBtnCssClass(this.componentConfig, year.date);\n\n    if (customCssClass) {\n      cssClass[customCssClass] = true;\n    }\n\n    return cssClass;\n  }\n\n  private init(): void {\n    this.componentConfig = this.yearCalendarService.getConfig(this.config);\n    this.selected = this.selected || [];\n    this.currentDateView = this.displayDate\n      ? this.displayDate\n      : this.utilsService\n        .getDefaultDisplayDate(\n          this.currentDateView,\n          this.selected,\n          this.componentConfig.allowMultiSelect ?? false,\n          this.componentConfig.min ?? dayjs()\n        );\n    this.inputValueType = this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\n    this._shouldShowCurrent = this.shouldShowCurrent();\n  }\n\n  private initValidators(): void {\n    this.validateFn = this.utilsService.createValidator(\n      {minDate: this.minDate, maxDate: this.maxDate},\n      this.componentConfig.format ?? '',\n      'month'\n    );\n    this.onChangeCallback(this.processOnChangeCallback(this.selected));\n  }\n\n  private toggleCalendarMode(): void {\n    this.onNavHeaderBtnClick.emit();\n  }\n\n  private moveCalendarTo(to: SingleCalendarValue): void {\n    if (to) {\n      this.currentDateView = this.utilsService.convertToDayjs(to, this.componentConfig.format ?? '');\n      this.cd.markForCheck();\n    }\n  }\n\n  private handleConfigChange(config: SimpleChange): void {\n    if (config) {\n      const prevConf: IYearCalendarConfigInternal = this.yearCalendarService.getConfig(config.previousValue);\n      const currentConf: IYearCalendarConfigInternal = this.yearCalendarService.getConfig(config.currentValue);\n\n      if (this.utilsService.shouldResetCurrentView(prevConf, currentConf)) {\n        this._currentDateView = dayjs();\n      }\n\n      // Use locale from the original config objects, not the internal config\n      const prevLocale = config.previousValue?.locale;\n      const currentLocale = config.currentValue?.locale;\n\n      if (prevLocale !== currentLocale) {\n        if (this.currentDateView && currentLocale) {\n          this.currentDateView = this.currentDateView.locale(currentLocale);\n        }\n\n        if (currentLocale) {\n          (this.selected || []).forEach((d) => d.locale(currentLocale));\n        }\n      }\n    }\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./year-calendar.component.less"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "cd",
+                        "type": "ChangeDetectorRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "yearCalendarService",
+                        "type": "YearCalendarService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "utilsService",
+                        "type": "UtilsService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 134,
+                "jsdoctags": [
+                    {
+                        "name": "cd",
+                        "type": "ChangeDetectorRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "yearCalendarService",
+                        "type": "YearCalendarService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "utilsService",
+                        "type": "UtilsService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "implements": [
+                "OnInit",
+                "OnChanges",
+                "ControlValueAccessor",
+                "Validator"
+            ],
+            "accessors": {
+                "selected": {
+                    "name": "selected",
+                    "setSignature": {
+                        "name": "selected",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "selected",
+                                "type": "Dayjs[]",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 106,
+                        "jsdoctags": [
+                            {
+                                "name": "selected",
+                                "type": "Dayjs[]",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "selected",
+                        "type": "[]",
+                        "returnType": "Dayjs[]",
+                        "line": 102
+                    }
+                },
+                "currentDateView": {
+                    "name": "currentDateView",
+                    "setSignature": {
+                        "name": "currentDateView",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "current",
+                                "type": "Dayjs",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 125,
+                        "jsdoctags": [
+                            {
+                                "name": "current",
+                                "type": "Dayjs",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "currentDateView",
+                        "type": "",
+                        "returnType": "Dayjs",
+                        "line": 111
+                    }
+                }
+            },
+            "templateData": "<div class=\"dp-year-calendar-container\">\n  <dp-calendar-nav\n      (onGoToCurrent)=\"goToCurrent()\"\n      (onLabelClick)=\"toggleCalendarMode()\"\n      (onLeftNav)=\"onLeftNavClick()\"\n      (onRightNav)=\"onRightNavClick()\"\n      [isLabelClickable]=\"componentConfig.isNavHeaderBtnClickable\"\n      [label]=\"navLabel\"\n      [showGoToCurrent]=\"shouldShowCurrent()\"\n      [showLeftNav]=\"showLeftNav\"\n      [showRightNav]=\"showRightNav\"\n      [theme]=\"theme\">\n  </dp-calendar-nav>\n\n  <div class=\"dp-calendar-wrapper\">\n    <div *ngFor=\"let yearRow of yearMonths\" class=\"dp-years-row\">\n      <button (click)=\"yearClicked(year)\"\n              *ngFor=\"let year of yearRow\"\n              [attr.data-date]=\"year.date.format(componentConfig.format)\"\n              [disabled]=\"year.disabled\"\n              [innerText]=\"year.text\"\n              [ngClass]=\"getYearBtnCssClass(year)\"\n              class=\"dp-calendar-year\"\n              type=\"button\">\n      </button>\n    </div>\n  </div>\n</div>\n"
         }
     ],
     "modules": [
@@ -16564,6 +18461,78 @@
                 "name": "TimeUnit",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar-config.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "IConfig",
+                "coveragePercent": 0,
+                "coverageCount": "0/15",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar-config.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "IYearCalendarConfig",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar-config.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "IYearCalendarConfigInternal",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "YearCalendarComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/50",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "IDateCell",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "IGenCalendarParams",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "YearCalendarService",
+                "coveragePercent": 0,
+                "coverageCount": "0/14",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar.service.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "IDateCell",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {

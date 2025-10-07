@@ -10,6 +10,7 @@ import {CalendarMode} from '../common/types/calendar-mode';
 import {Dayjs} from 'dayjs';
 import {IDayTimeCalendarConfig} from '../day-time-calendar/day-time-calendar-config.model';
 import {ConnectionPositionPair} from '@angular/cdk/overlay';
+import { IYearCalendarConfig } from '../year-calendar/year-calendar-config';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,26 @@ export class DatePickerService {
     }
 
     return _config;
+  }
+
+    getYearConfigService(pickerConfig: IDatePickerConfig): IYearCalendarConfig {
+    return {
+      min: pickerConfig.min,
+      max: pickerConfig.max,
+      isYearDisabledCallback: pickerConfig.isDayDisabledCallback,
+      allowMultiSelect: pickerConfig.allowMultiSelect,
+      yearFormat: pickerConfig.yearFormat,
+      yearFormatter: pickerConfig.yearFormatter,
+      format: pickerConfig.format,
+      numOfYearsPerPage: 24,
+      numOfYearRows: 4,
+      yearBtnFormat: pickerConfig.yearFormat,
+      yearBtnFormatter: pickerConfig.yearFormatter,
+      yearBtnCssClassCallback: pickerConfig.dayBtnCssClassCallback,
+      returnedValueType: pickerConfig.returnedValueType,
+      showGoToCurrent: pickerConfig.showGoToCurrent,
+      unSelectOnClick: pickerConfig.unSelectOnClick
+    };
   }
 
   getDayConfigService(pickerConfig: IDatePickerConfig): IDayCalendarConfig {
@@ -138,6 +159,8 @@ export class DatePickerService {
         return 'HH:mm:ss';
       case 'month':
         return 'MMM, YYYY';
+      case 'year':
+        return 'YYYY';
     }
   }
 }
