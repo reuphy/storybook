@@ -17,9 +17,10 @@ export default {
 export const Default = () => ({
 	props: {
 		selectedDayTime: null,
+		displayDate: null,
 		config: {
 			firstDayOfWeek: 'su',
-			monthFormat: 'MMM, YYYY',
+			monthFormat: 'DD-MM-YYYY',
 			disableKeypress: false,
 			closeOnSelect: undefined,
 			closeOnSelectDelay: 100,
@@ -52,16 +53,24 @@ export const Default = () => ({
 			unSelectOnClick: true,
 			hideOnOutsideClick: true,
 			numOfMonthRows: 3,
-			format: 'DD-MM-YYYY HH:mm:ss',
+			format: 'DD-MM-YYYY',
+		},
+		updateDisplayDate: function(date: any) {
+			if (date && date !== 'Invalid date' && date.length >= 10) {
+				this.displayDate = date;
+				console.log('Display date updated:', this.displayDate);
+			}
 		},
 	},
 	template: `
 		<input
 			#dateDirective
 			[dpDayPicker]="config"
-			[mode]="'daytime'"
+			[mode]="'day'"
+			[displayDate]="displayDate"
 			theme="ibz-datepicker"
 			id="picker"
+			(ngModelChange)="updateDisplayDate($event)"
 			[(ngModel)]="selectedDayTime"
 		/>
 		<p>Date sélectionnée : {{ selectedDayTime }}</p>
