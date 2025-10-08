@@ -448,7 +448,175 @@
         },
         {
             "name": "IConfig",
-            "id": "interface-IConfig-c7138ca5eb96f7a5a606bf3335d27e4f9c94806af0f7a10a7e9b17ca28721fb419631ac94f4fe51417b41ad83c7417fcb50b69f93a8790414821fb7baf37c9c5-1",
+            "id": "interface-IConfig-a794e6826c2dd1a18e1ffbbf95cd717aa6d5dc84b9c2de83295b5b0bc40719546b69024344c2e5d4afc45d4042f7e193012d6c93644466363856cad4079d19d6-1",
+            "file": "src/app/components/ng2datepickercopy/lib/month-calendar/month-calendar-config.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\nexport interface IConfig {\n  isMonthDisabledCallback?: (date: Dayjs) => boolean;\n  allowMultiSelect?: boolean;\n  yearFormat?: string;\n  yearFormatter?: (month: Dayjs) => string;\n  format?: string;\n  isNavHeaderBtnClickable?: boolean;\n  monthBtnFormat?: string;\n  monthBtnFormatter?: (day: Dayjs) => string;\n  numOfMonthRows?: number;\n  monthBtnCssClassCallback?: (day: Dayjs) => string;\n  multipleYearsNavigateBy?: number;\n  showMultipleYearsNavigation?: boolean;\n  returnedValueType?: ECalendarValue;\n  showGoToCurrent?: boolean;\n  unSelectOnClick?: boolean;\n}\n\nexport interface IMonthCalendarConfig extends IConfig,\n                                              ICalendar {\n}\n\nexport interface IMonthCalendarConfigInternal extends IConfig,\n                                                      ICalendarInternal {\n}\n",
+            "properties": [
+                {
+                    "name": "allowMultiSelect",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "format",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "isMonthDisabledCallback",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "isNavHeaderBtnClickable",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "monthBtnCssClassCallback",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "monthBtnFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "monthBtnFormatter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "multipleYearsNavigateBy",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "numOfMonthRows",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "returnedValueType",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ECalendarValue",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "showGoToCurrent",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "showMultipleYearsNavigation",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "unSelectOnClick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "yearFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "yearFormatter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "IConfig-1"
+        },
+        {
+            "name": "IConfig",
+            "id": "interface-IConfig-c7138ca5eb96f7a5a606bf3335d27e4f9c94806af0f7a10a7e9b17ca28721fb419631ac94f4fe51417b41ad83c7417fcb50b69f93a8790414821fb7baf37c9c5-2",
             "file": "src/app/components/ng2datepickercopy/lib/day-calendar/day-calendar-config.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
@@ -721,328 +889,12 @@
             "methods": [],
             "extends": [],
             "isDuplicate": true,
-            "duplicateId": 1,
-            "duplicateName": "IConfig-1"
-        },
-        {
-            "name": "IConfig",
-            "id": "interface-IConfig-a794e6826c2dd1a18e1ffbbf95cd717aa6d5dc84b9c2de83295b5b0bc40719546b69024344c2e5d4afc45d4042f7e193012d6c93644466363856cad4079d19d6-2",
-            "file": "src/app/components/ng2datepickercopy/lib/month-calendar/month-calendar-config.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\nexport interface IConfig {\n  isMonthDisabledCallback?: (date: Dayjs) => boolean;\n  allowMultiSelect?: boolean;\n  yearFormat?: string;\n  yearFormatter?: (month: Dayjs) => string;\n  format?: string;\n  isNavHeaderBtnClickable?: boolean;\n  monthBtnFormat?: string;\n  monthBtnFormatter?: (day: Dayjs) => string;\n  numOfMonthRows?: number;\n  monthBtnCssClassCallback?: (day: Dayjs) => string;\n  multipleYearsNavigateBy?: number;\n  showMultipleYearsNavigation?: boolean;\n  returnedValueType?: ECalendarValue;\n  showGoToCurrent?: boolean;\n  unSelectOnClick?: boolean;\n}\n\nexport interface IMonthCalendarConfig extends IConfig,\n                                              ICalendar {\n}\n\nexport interface IMonthCalendarConfigInternal extends IConfig,\n                                                      ICalendarInternal {\n}\n",
-            "properties": [
-                {
-                    "name": "allowMultiSelect",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 7
-                },
-                {
-                    "name": "format",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 10
-                },
-                {
-                    "name": "isMonthDisabledCallback",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 6
-                },
-                {
-                    "name": "isNavHeaderBtnClickable",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 11
-                },
-                {
-                    "name": "monthBtnCssClassCallback",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 15
-                },
-                {
-                    "name": "monthBtnFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 12
-                },
-                {
-                    "name": "monthBtnFormatter",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 13
-                },
-                {
-                    "name": "multipleYearsNavigateBy",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 16
-                },
-                {
-                    "name": "numOfMonthRows",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 14
-                },
-                {
-                    "name": "returnedValueType",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "ECalendarValue",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 18
-                },
-                {
-                    "name": "showGoToCurrent",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 19
-                },
-                {
-                    "name": "showMultipleYearsNavigation",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 17
-                },
-                {
-                    "name": "unSelectOnClick",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 20
-                },
-                {
-                    "name": "yearFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 8
-                },
-                {
-                    "name": "yearFormatter",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 9
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 171,
-            "methods": [],
-            "extends": [],
-            "isDuplicate": true,
             "duplicateId": 2,
             "duplicateName": "IConfig-2"
         },
         {
             "name": "IConfig",
-            "id": "interface-IConfig-ca5f55aa590a67435d6b2977e5f27f0257659638e89aea1ea023af91c23e7b1ab46eec0bcb4d4bada283291e19c13a43e97cda575edc1ab42f6c36022e769d72-3",
-            "file": "src/app/components/ng2datepickercopy/lib/time-select/time-select-config.model.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\ninterface IConfig {\n  hours12Format?: string;\n  hours24Format?: string;\n  maxTime?: Dayjs;\n  meridiemFormat?: string;\n  minTime?: Dayjs;\n  minutesFormat?: string;\n  minutesInterval?: number;\n  secondsFormat?: string;\n  secondsInterval?: number;\n  showSeconds?: boolean;\n  showTwentyFourHours?: boolean;\n  timeSeparator?: string;\n  returnedValueType?: ECalendarValue;\n}\n\nexport interface ITimeSelectConfig extends IConfig, ICalendar {\n}\n\nexport interface ITimeSelectConfigInternal extends IConfig,\n                                                   ICalendarInternal {\n}\n",
-            "properties": [
-                {
-                    "name": "hours12Format",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 6
-                },
-                {
-                    "name": "hours24Format",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 7
-                },
-                {
-                    "name": "maxTime",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Dayjs",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 8
-                },
-                {
-                    "name": "meridiemFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 9
-                },
-                {
-                    "name": "minTime",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Dayjs",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 10
-                },
-                {
-                    "name": "minutesFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 11
-                },
-                {
-                    "name": "minutesInterval",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 12
-                },
-                {
-                    "name": "returnedValueType",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "ECalendarValue",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 18
-                },
-                {
-                    "name": "secondsFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 13
-                },
-                {
-                    "name": "secondsInterval",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 14
-                },
-                {
-                    "name": "showSeconds",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 15
-                },
-                {
-                    "name": "showTwentyFourHours",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 16
-                },
-                {
-                    "name": "timeSeparator",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 17
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 171,
-            "methods": [],
-            "extends": [],
-            "isDuplicate": true,
-            "duplicateId": 3,
-            "duplicateName": "IConfig-3"
-        },
-        {
-            "name": "IConfig",
-            "id": "interface-IConfig-3d7fd022b7c7f5f3b1367c966a1083ac6d10cd7cb83d7cfbca19cc79bbdd62198faffd2371feef11613672ad3e01674d6cf2dd3cb8b2d63d79b2ca7ba19f2cbf-4",
+            "id": "interface-IConfig-3d7fd022b7c7f5f3b1367c966a1083ac6d10cd7cb83d7cfbca19cc79bbdd62198faffd2371feef11613672ad3e01674d6cf2dd3cb8b2d63d79b2ca7ba19f2cbf-3",
             "file": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar-config.ts",
             "deprecated": false,
             "deprecationMessage": "",
@@ -1188,6 +1040,154 @@
                     "optional": true,
                     "description": "",
                     "line": 10
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 3,
+            "duplicateName": "IConfig-3"
+        },
+        {
+            "name": "IConfig",
+            "id": "interface-IConfig-ca5f55aa590a67435d6b2977e5f27f0257659638e89aea1ea023af91c23e7b1ab46eec0bcb4d4bada283291e19c13a43e97cda575edc1ab42f6c36022e769d72-4",
+            "file": "src/app/components/ng2datepickercopy/lib/time-select/time-select-config.model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\ninterface IConfig {\n  hours12Format?: string;\n  hours24Format?: string;\n  maxTime?: Dayjs;\n  meridiemFormat?: string;\n  minTime?: Dayjs;\n  minutesFormat?: string;\n  minutesInterval?: number;\n  secondsFormat?: string;\n  secondsInterval?: number;\n  showSeconds?: boolean;\n  showTwentyFourHours?: boolean;\n  timeSeparator?: string;\n  returnedValueType?: ECalendarValue;\n}\n\nexport interface ITimeSelectConfig extends IConfig, ICalendar {\n}\n\nexport interface ITimeSelectConfigInternal extends IConfig,\n                                                   ICalendarInternal {\n}\n",
+            "properties": [
+                {
+                    "name": "hours12Format",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "hours24Format",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "maxTime",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Dayjs",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "meridiemFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "minTime",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Dayjs",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "minutesFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "minutesInterval",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "returnedValueType",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ECalendarValue",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "secondsFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "secondsInterval",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "showSeconds",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "showTwentyFourHours",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "timeSeparator",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 17
                 }
             ],
             "indexSignatures": [],
@@ -8537,7 +8537,7 @@
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"dp-calendar-nav-container\" dir=\"ltr\">\r\n  <div class=\"dp-nav-header\">\r\n    <span [attr.data-hidden]=\"isLabelClickable\"\r\n          [hidden]=\"isLabelClickable\"\r\n          [innerText]=\"label\">\r\n    </span>\r\n    <button (click)=\"labelClicked()\"\r\n            *ngIf=\"label\"\r\n            [attr.data-hidden]=\"!isLabelClickable\"\r\n            [hidden]=\"!isLabelClickable\"\r\n            [innerText]=\"label\"\r\n            class=\"dp-nav-header-btn\"\r\n            type=\"button\">\r\n    </button>\r\n    <button (click)=\"chooseYearClicked()\"\r\n            class=\"dp-nav-choose-year-btn\"\r\n            type=\"button\">\r\n       {{yearLabel ?? 'Year'}}\r\n    </button>\r\n  </div>\r\n\r\n  <div class=\"dp-nav-btns-container\">\r\n    <div class=\"dp-calendar-nav-container-left\">\r\n      <button (click)=\"leftSecondaryNavClicked()\"\r\n              *ngIf=\"showLeftSecondaryNav\"\r\n              [disabled]=\"leftSecondaryNavDisabled\"\r\n              class=\"dp-calendar-secondary-nav-left\"\r\n              type=\"button\">\r\n      </button>\r\n      <button (click)=\"leftNavClicked()\"\r\n              [attr.data-hidden]=\"!showLeftNav\"\r\n              [disabled]=\"leftNavDisabled\"\r\n              [hidden]=\"!showLeftNav\"\r\n              class=\"dp-calendar-nav-left\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n    <button (click)=\"onGoToCurrent.emit()\"\r\n            *ngIf=\"showGoToCurrent\"\r\n            class=\"dp-current-location-btn\"\r\n            type=\"button\">\r\n    </button>\r\n    <div class=\"dp-calendar-nav-container-right\">\r\n      <button (click)=\"rightNavClicked()\"\r\n              [attr.data-hidden]=\"!showRightNav\"\r\n              [disabled]=\"rightNavDisabled\"\r\n              [hidden]=\"!showRightNav\"\r\n              class=\"dp-calendar-nav-right\"\r\n              type=\"button\">\r\n      </button>\r\n      <button (click)=\"rightSecondaryNavClicked()\"\r\n              *ngIf=\"showRightSecondaryNav\"\r\n              [disabled]=\"rightSecondaryNavDisabled\"\r\n              class=\"dp-calendar-secondary-nav-right\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"dp-calendar-nav-container\" dir=\"ltr\">\r\n  <div class=\"dp-nav-header\">\r\n    <span [attr.data-hidden]=\"isLabelClickable\"\r\n          [hidden]=\"isLabelClickable\"\r\n          [innerText]=\"label\">\r\n    </span>\r\n    <button (click)=\"labelClicked()\"\r\n            *ngIf=\"label\"\r\n            [attr.data-hidden]=\"!isLabelClickable\"\r\n            [hidden]=\"!isLabelClickable\"\r\n            [innerText]=\"label\"\r\n            class=\"dp-nav-header-btn\"\r\n            type=\"button\">\r\n    </button>\r\n    <!-- <button (click)=\"chooseYearClicked()\"\r\n            class=\"dp-nav-choose-year-btn\"\r\n            type=\"button\">\r\n       {{yearLabel ?? 'Year'}}\r\n    </button> -->\r\n  </div>\r\n\r\n  <div class=\"dp-nav-btns-container\">\r\n    <div class=\"dp-calendar-nav-container-left\">\r\n      <button (click)=\"leftSecondaryNavClicked()\"\r\n              *ngIf=\"showLeftSecondaryNav\"\r\n              [disabled]=\"leftSecondaryNavDisabled\"\r\n              class=\"dp-calendar-secondary-nav-left\"\r\n              type=\"button\">\r\n      </button>\r\n      <button (click)=\"leftNavClicked()\"\r\n              [attr.data-hidden]=\"!showLeftNav\"\r\n              [disabled]=\"leftNavDisabled\"\r\n              [hidden]=\"!showLeftNav\"\r\n              class=\"dp-calendar-nav-left\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n    <button (click)=\"onGoToCurrent.emit()\"\r\n            *ngIf=\"showGoToCurrent\"\r\n            class=\"dp-current-location-btn\"\r\n            type=\"button\">\r\n    </button>\r\n    <div class=\"dp-calendar-nav-container-right\">\r\n      <button (click)=\"rightNavClicked()\"\r\n              [attr.data-hidden]=\"!showRightNav\"\r\n              [disabled]=\"rightNavDisabled\"\r\n              [hidden]=\"!showRightNav\"\r\n              class=\"dp-calendar-nav-right\"\r\n              type=\"button\">\r\n      </button>\r\n      <button (click)=\"rightSecondaryNavClicked()\"\r\n              *ngIf=\"showRightSecondaryNav\"\r\n              [disabled]=\"rightSecondaryNavDisabled\"\r\n              class=\"dp-calendar-secondary-nav-right\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "CardComponent",
@@ -11204,7 +11204,7 @@
         },
         {
             "name": "DayCalendarComponent",
-            "id": "component-DayCalendarComponent-31adb3f18837ce9469a556fac347d6c1c98c9bce54f1d19018a0876ff9396f3859bd1759c51c0c88722af8283caa44c2d4688f6fb29f5fec5e70177e13d296da",
+            "id": "component-DayCalendarComponent-b0f01a6af5900f01445de89ff792613be87c56e4cb11deb5f23327285ac7ffc687124ba762d79eeb0d222593a18ed94cc2c7884445edf5c286a3a9e5c1218f57",
             "file": "src/app/components/ng2datepickercopy/lib/day-calendar/day-calendar.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -11667,7 +11667,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 338,
+                    "line": 344,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -11684,7 +11684,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 343,
+                    "line": 349,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -11773,7 +11773,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 316,
+                    "line": 322,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -11820,7 +11820,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 321,
+                    "line": 327,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -12179,7 +12179,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 329,
+                    "line": 335,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -12266,6 +12266,34 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "yearSelected",
+                    "args": [
+                        {
+                            "name": "year",
+                            "type": "literal type",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 316,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "year",
+                            "type": "literal type",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 }
             ],
             "deprecated": false,
@@ -12298,7 +12326,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {ECalendarValue} from '../common/types/calendar-value-enum';\r\nimport {SingleCalendarValue} from '../common/types/single-calendar-value';\r\nimport {ECalendarMode} from '../common/types/calendar-mode-enum';\r\nimport {\r\n  ChangeDetectionStrategy,\r\n  ChangeDetectorRef,\r\n  Component,\r\n  EventEmitter,\r\n  forwardRef,\r\n  HostBinding,\r\n  Input,\r\n  OnChanges,\r\n  OnInit,\r\n  Output,\r\n  SimpleChange,\r\n  SimpleChanges,\r\n  ViewEncapsulation\r\n} from '@angular/core';\r\nimport {DayCalendarService} from './day-calendar.service';\r\n\r\nimport {Dayjs, ManipulateType} from 'dayjs';\r\nimport {IDayCalendarConfig, IDayCalendarConfigInternal} from './day-calendar-config.model';\r\nimport {IDay} from './day.model';\r\nimport {\r\n  ControlValueAccessor,\r\n  UntypedFormControl,\r\n  NG_VALIDATORS,\r\n  NG_VALUE_ACCESSOR,\r\n  ValidationErrors,\r\n  Validator,\r\n  FormsModule\r\n} from '@angular/forms';\r\nimport {CalendarValue} from '../common/types/calendar-value';\r\nimport {UtilsService} from '../common/services/utils/utils.service';\r\nimport {IMonthCalendarConfig} from '../month-calendar/month-calendar-config';\r\nimport {IMonth} from '../month-calendar/month.model';\r\nimport {DateValidator} from '../common/types/validator.type';\r\nimport {INavEvent} from '../common/models/navigation-event.model';\r\nimport {dayjsRef} from '../common/dayjs/dayjs.ref';\r\nimport { MonthCalendarComponent } from '../month-calendar/month-calendar.component';\r\nimport { CommonModule } from '@angular/common';\r\nimport { CalendarNavComponent } from '../calendar-nav/calendar-nav.component';\r\nimport { YearCalendarComponent } from '../year-calendar/year-calendar.component';\r\n\r\n@Component({\r\n    selector: 'dp-day-calendar',\r\n    templateUrl: 'day-calendar.component.html',\r\n    styleUrls: ['day-calendar.component.less'],\r\n    imports: [MonthCalendarComponent, CommonModule, FormsModule, CalendarNavComponent, YearCalendarComponent],\r\n    encapsulation: ViewEncapsulation.None,\r\n    changeDetection: ChangeDetectionStrategy.OnPush,\r\n    providers: [\r\n        DayCalendarService,\r\n        {\r\n            provide: NG_VALUE_ACCESSOR,\r\n            useExisting: forwardRef(() => DayCalendarComponent),\r\n            multi: true\r\n        },\r\n        {\r\n            provide: NG_VALIDATORS,\r\n            useExisting: forwardRef(() => DayCalendarComponent),\r\n            multi: true\r\n        }\r\n    ],\r\n    standalone: true\r\n})\r\nexport class DayCalendarComponent implements OnInit, OnChanges, ControlValueAccessor, Validator {\r\n\r\n  @Input() config!: IDayCalendarConfig;\r\n  @Input() displayDate!: SingleCalendarValue;\r\n  @Input() minDate!: Dayjs;\r\n  @Input() maxDate!: Dayjs;\r\n  @HostBinding('class') @Input() theme!: string;\r\n  @Output() onSelect: EventEmitter<IDay> = new EventEmitter();\r\n  @Output() onMonthSelect: EventEmitter<IMonth> = new EventEmitter();\r\n  @Output() onNavHeaderBtnClick: EventEmitter<ECalendarMode> = new EventEmitter();\r\n  @Output() onGoToCurrent: EventEmitter<void> = new EventEmitter();\r\n  @Output() onLeftNav: EventEmitter<INavEvent> = new EventEmitter();\r\n  @Output() onRightNav: EventEmitter<INavEvent> = new EventEmitter();\r\n  CalendarMode = ECalendarMode;\r\n  isInited: boolean = false;\r\n  componentConfig!: IDayCalendarConfigInternal;\r\n  weeks!: IDay[][];\r\n  weekdays!: Dayjs[];\r\n  inputValue!: CalendarValue;\r\n  inputValueType!: ECalendarValue;\r\n  validateFn!: DateValidator;\r\n  currentCalendarMode: ECalendarMode = ECalendarMode.Day;\r\n  monthCalendarConfig!: IMonthCalendarConfig;\r\n  _shouldShowCurrent: boolean = true;\r\n  navLabel!: string;\r\n  showLeftNav!: boolean;\r\n  showRightNav!: boolean;\r\n  api = {\r\n    moveCalendarsBy: this.moveCalendarsBy.bind(this),\r\n    moveCalendarTo: this.moveCalendarTo.bind(this),\r\n    toggleCalendarMode: this.toggleCalendarMode.bind(this)\r\n  };\r\n\r\n  constructor(public readonly dayCalendarService: DayCalendarService,\r\n              public readonly utilsService: UtilsService,\r\n              public readonly cd: ChangeDetectorRef) {\r\n  }\r\n\r\n  _selected!: Dayjs[];\r\n\r\n  get selected(): Dayjs[] {\r\n    return this._selected;\r\n  }\r\n\r\n  set selected(selected: Dayjs[]) {\r\n    this._selected = selected;\r\n    this.onChangeCallback(this.processOnChangeCallback(selected));\r\n  }\r\n\r\n  _currentDateView!: Dayjs | null;\r\n\r\n  get currentDateView(): Dayjs {\r\n    return this._currentDateView || dayjsRef();\r\n  }\r\n\r\n  set currentDateView(current: Dayjs) {\r\n    this._currentDateView = dayjsRef(current.toDate());\r\n    this.weeks = this.dayCalendarService\r\n      .generateMonthArray(this.componentConfig, this._currentDateView, this.selected);\r\n    this.navLabel = this.dayCalendarService.getHeaderLabel(this.componentConfig, this._currentDateView);\r\n    this.showLeftNav = true; //this.dayCalendarService.shouldShowLeft(this.componentConfig.min ?? dayjsRef(), this.currentDateView);\r\n    this.showRightNav = true; //this.dayCalendarService.shouldShowRight(this.componentConfig.max ?? dayjsRef(), this.currentDateView);\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.isInited = true;\r\n    this.init();\r\n    this.initValidators();\r\n  }\r\n\r\n  init() {\r\n    this.componentConfig = this.dayCalendarService.getConfig(this.config);\r\n    this.selected = this.selected || [];\r\n    this.currentDateView = this.displayDate\r\n      ? this.utilsService.convertToDayjs(this.displayDate, this.componentConfig.format ?? '')\r\n      : this.utilsService\r\n        .getDefaultDisplayDate(\r\n          this.currentDateView,\r\n          this.selected,\r\n          this.componentConfig.allowMultiSelect ?? false,\r\n          this.componentConfig.min ?? dayjsRef()\r\n        );\r\n    this.weekdays = this.dayCalendarService\r\n      .generateWeekdays(this.componentConfig.firstDayOfWeek ?? 'su');\r\n    this.inputValueType = this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\r\n    this.monthCalendarConfig = this.dayCalendarService.getMonthCalendarConfig(this.componentConfig);\r\n    this._shouldShowCurrent = this.shouldShowCurrent();\r\n  }\r\n\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n    if (this.isInited) {\r\n      const {minDate, maxDate, config} = changes;\r\n\r\n      this.handleConfigChange(config);\r\n      this.init();\r\n\r\n      if (minDate || maxDate) {\r\n        this.initValidators();\r\n      }\r\n    }\r\n  }\r\n\r\n  writeValue(value: CalendarValue): void {\r\n    this.inputValue = value;\r\n\r\n    if (value) {\r\n      this.selected = this.utilsService\r\n        .convertToDayjsArray(value, this.componentConfig);\r\n      this.inputValueType = this.utilsService\r\n        .getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\r\n    } else {\r\n      this.selected = [];\r\n    }\r\n\r\n    this.weeks = this.dayCalendarService\r\n      .generateMonthArray(this.componentConfig, this.currentDateView, this.selected);\r\n\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  registerOnChange(fn: any): void {\r\n    this.onChangeCallback = fn;\r\n  }\r\n\r\n  onChangeCallback(_: any) {\r\n  }\r\n\r\n  registerOnTouched(fn: any): void {\r\n  }\r\n\r\n  validate(formControl: UntypedFormControl): ValidationErrors | any {\r\n    if (this.minDate || this.maxDate) {\r\n      return this.validateFn(formControl.value);\r\n    } else {\r\n      return () => null;\r\n    }\r\n  }\r\n\r\n  processOnChangeCallback(value: Dayjs[]): CalendarValue {\r\n    return this.utilsService.convertFromDayjsArray(\r\n      this.componentConfig.format ?? '',\r\n      value,\r\n      this.componentConfig.returnedValueType || this.inputValueType\r\n    );\r\n  }\r\n\r\n  initValidators() {\r\n    this.validateFn = this.utilsService.createValidator(\r\n      {minDate: this.minDate, maxDate: this.maxDate},\r\n      this.componentConfig.format ?? '',\r\n      'day'\r\n    );\r\n\r\n    this.onChangeCallback(this.processOnChangeCallback(this.selected));\r\n  }\r\n\r\n  dayClicked(day: IDay) {\r\n    if (day.selected && !this.componentConfig.unSelectOnClick) {\r\n      return;\r\n    }\r\n\r\n    this.selected = this.utilsService\r\n      .updateSelected(this.componentConfig.allowMultiSelect ?? false, this.selected, day);\r\n    this.weeks = this.dayCalendarService\r\n      .generateMonthArray(this.componentConfig, this.currentDateView, this.selected);\r\n    this.onSelect.emit(day);\r\n  }\r\n\r\n  getDayBtnText(day: IDay): string {\r\n    return this.dayCalendarService.getDayBtnText(this.componentConfig, day.date);\r\n  }\r\n\r\n  getDayBtnCssClass(day: IDay): { [klass: string]: boolean } {\r\n    const cssClasses: { [klass: string]: boolean } = {\r\n      'dp-selected': day.selected,\r\n      'dp-current-month': !!day.currentMonth,\r\n      'dp-prev-month': !!day.prevMonth,\r\n      'dp-next-month': !!day.nextMonth,\r\n      'dp-current-day': !!day.currentDay\r\n    };\r\n    const customCssClass: string = this.dayCalendarService.getDayBtnCssClass(this.componentConfig, day.date);\r\n    if (customCssClass) {\r\n      cssClasses[customCssClass] = true;\r\n    }\r\n\r\n    return cssClasses;\r\n  }\r\n\r\n  onLeftNavClick() {\r\n    const from = dayjsRef(this.currentDateView.toDate());\r\n    this.moveCalendarsBy(this.currentDateView, -1, 'month');\r\n    const to = dayjsRef(this.currentDateView.toDate());\r\n    this.onLeftNav.emit({from, to});\r\n  }\r\n\r\n  onRightNavClick() {\r\n    const from = dayjsRef(this.currentDateView.toDate());\r\n    this.moveCalendarsBy(this.currentDateView, 1, 'month');\r\n    const to = dayjsRef(this.currentDateView.toDate());\r\n    this.onRightNav.emit({from, to});\r\n  }\r\n\r\n  onMonthCalendarLeftClick(change: INavEvent) {\r\n    this.onLeftNav.emit(change);\r\n  }\r\n\r\n  onYearCalendarLeftClick(change: INavEvent) {\r\n    this.onLeftNav.emit(change);\r\n  }\r\n\r\n  onMonthCalendarRightClick(change: INavEvent) {\r\n    this.onRightNav.emit(change);\r\n  }\r\n\r\n  onYearCalendarRightClick (change: INavEvent) {\r\n    this.onRightNav.emit(change);\r\n  }\r\n\r\n  onMonthCalendarSecondaryLeftClick(change: INavEvent) {\r\n    this.onRightNav.emit(change);\r\n  }\r\n\r\n  onMonthCalendarSecondaryRightClick(change: INavEvent) {\r\n    this.onLeftNav.emit(change);\r\n  }\r\n\r\n  getWeekdayName(weekday: Dayjs): string {\r\n    if (this.componentConfig.weekDayFormatter) {\r\n      return this.componentConfig.weekDayFormatter(weekday.day());\r\n    }\r\n\r\n    return weekday.format(this.componentConfig.weekDayFormat);\r\n  }\r\n\r\n  toggleCalendarMode(mode: ECalendarMode) {\r\n    if (this.currentCalendarMode !== mode) {\r\n      this.currentCalendarMode = mode;\r\n      this.onNavHeaderBtnClick.emit(mode);\r\n    }\r\n\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  monthSelected(month: IMonth) {\r\n    this.currentDateView = dayjsRef(month.date.toDate());\r\n    this.currentCalendarMode = ECalendarMode.Day;\r\n    this.onMonthSelect.emit(month);\r\n  }\r\n\r\n  moveCalendarsBy(current: Dayjs, amount: number, granularity: ManipulateType = 'month') {\r\n    this.currentDateView = dayjsRef(current.toDate()).add(amount, granularity);\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  moveCalendarTo(to: SingleCalendarValue) {\r\n    if (to) {\r\n      this.currentDateView = this.utilsService.convertToDayjs(to, this.componentConfig.format ?? '');\r\n    }\r\n\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  shouldShowCurrent(): boolean {\r\n    return this.utilsService.shouldShowCurrent(\r\n      this.componentConfig.showGoToCurrent ?? false,\r\n      'day',\r\n      this.componentConfig.min ?? dayjsRef(),\r\n      this.componentConfig.max ?? dayjsRef()\r\n    );\r\n  }\r\n\r\n  goToCurrent() {\r\n    this.currentDateView = dayjsRef();\r\n    this.onGoToCurrent.emit();\r\n  }\r\n\r\n  handleConfigChange(config: SimpleChange): void {\r\n    if (config) {\r\n      const prevConf: IDayCalendarConfigInternal = this.dayCalendarService.getConfig(config.previousValue);\r\n      const currentConf: IDayCalendarConfigInternal = this.dayCalendarService.getConfig(config.currentValue);\r\n\r\n      if (this.utilsService.shouldResetCurrentView(prevConf, currentConf)) {\r\n        this._currentDateView = null;\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import {ECalendarValue} from '../common/types/calendar-value-enum';\r\nimport {SingleCalendarValue} from '../common/types/single-calendar-value';\r\nimport {ECalendarMode} from '../common/types/calendar-mode-enum';\r\nimport {\r\n  ChangeDetectionStrategy,\r\n  ChangeDetectorRef,\r\n  Component,\r\n  EventEmitter,\r\n  forwardRef,\r\n  HostBinding,\r\n  Input,\r\n  OnChanges,\r\n  OnInit,\r\n  Output,\r\n  SimpleChange,\r\n  SimpleChanges,\r\n  ViewEncapsulation\r\n} from '@angular/core';\r\nimport {DayCalendarService} from './day-calendar.service';\r\n\r\nimport dayjs, {Dayjs, ManipulateType} from 'dayjs';\r\nimport {IDayCalendarConfig, IDayCalendarConfigInternal} from './day-calendar-config.model';\r\nimport {IDay} from './day.model';\r\nimport {\r\n  ControlValueAccessor,\r\n  UntypedFormControl,\r\n  NG_VALIDATORS,\r\n  NG_VALUE_ACCESSOR,\r\n  ValidationErrors,\r\n  Validator,\r\n  FormsModule\r\n} from '@angular/forms';\r\nimport {CalendarValue} from '../common/types/calendar-value';\r\nimport {UtilsService} from '../common/services/utils/utils.service';\r\nimport {IMonthCalendarConfig} from '../month-calendar/month-calendar-config';\r\nimport {IMonth} from '../month-calendar/month.model';\r\nimport {DateValidator} from '../common/types/validator.type';\r\nimport {INavEvent} from '../common/models/navigation-event.model';\r\nimport {dayjsRef} from '../common/dayjs/dayjs.ref';\r\nimport { MonthCalendarComponent } from '../month-calendar/month-calendar.component';\r\nimport { CommonModule } from '@angular/common';\r\nimport { CalendarNavComponent } from '../calendar-nav/calendar-nav.component';\r\nimport { YearCalendarComponent } from '../year-calendar/year-calendar.component';\r\n\r\n@Component({\r\n    selector: 'dp-day-calendar',\r\n    templateUrl: 'day-calendar.component.html',\r\n    styleUrls: ['day-calendar.component.less'],\r\n    imports: [MonthCalendarComponent, CommonModule, FormsModule, CalendarNavComponent, YearCalendarComponent],\r\n    encapsulation: ViewEncapsulation.None,\r\n    changeDetection: ChangeDetectionStrategy.OnPush,\r\n    providers: [\r\n        DayCalendarService,\r\n        {\r\n            provide: NG_VALUE_ACCESSOR,\r\n            useExisting: forwardRef(() => DayCalendarComponent),\r\n            multi: true\r\n        },\r\n        {\r\n            provide: NG_VALIDATORS,\r\n            useExisting: forwardRef(() => DayCalendarComponent),\r\n            multi: true\r\n        }\r\n    ],\r\n    standalone: true\r\n})\r\nexport class DayCalendarComponent implements OnInit, OnChanges, ControlValueAccessor, Validator {\r\n\r\n  @Input() config!: IDayCalendarConfig;\r\n  @Input() displayDate!: SingleCalendarValue;\r\n  @Input() minDate!: Dayjs;\r\n  @Input() maxDate!: Dayjs;\r\n  @HostBinding('class') @Input() theme!: string;\r\n  @Output() onSelect: EventEmitter<IDay> = new EventEmitter();\r\n  @Output() onMonthSelect: EventEmitter<IMonth> = new EventEmitter();\r\n  @Output() onNavHeaderBtnClick: EventEmitter<ECalendarMode> = new EventEmitter();\r\n  @Output() onGoToCurrent: EventEmitter<void> = new EventEmitter();\r\n  @Output() onLeftNav: EventEmitter<INavEvent> = new EventEmitter();\r\n  @Output() onRightNav: EventEmitter<INavEvent> = new EventEmitter();\r\n  CalendarMode = ECalendarMode;\r\n  isInited: boolean = false;\r\n  componentConfig!: IDayCalendarConfigInternal;\r\n  weeks!: IDay[][];\r\n  weekdays!: Dayjs[];\r\n  inputValue!: CalendarValue;\r\n  inputValueType!: ECalendarValue;\r\n  validateFn!: DateValidator;\r\n  currentCalendarMode: ECalendarMode = ECalendarMode.Day;\r\n  monthCalendarConfig!: IMonthCalendarConfig;\r\n  _shouldShowCurrent: boolean = true;\r\n  navLabel!: string;\r\n  showLeftNav!: boolean;\r\n  showRightNav!: boolean;\r\n  api = {\r\n    moveCalendarsBy: this.moveCalendarsBy.bind(this),\r\n    moveCalendarTo: this.moveCalendarTo.bind(this),\r\n    toggleCalendarMode: this.toggleCalendarMode.bind(this)\r\n  };\r\n\r\n  constructor(public readonly dayCalendarService: DayCalendarService,\r\n              public readonly utilsService: UtilsService,\r\n              public readonly cd: ChangeDetectorRef) {\r\n  }\r\n\r\n  _selected!: Dayjs[];\r\n\r\n  get selected(): Dayjs[] {\r\n    return this._selected;\r\n  }\r\n\r\n  set selected(selected: Dayjs[]) {\r\n    this._selected = selected;\r\n    this.onChangeCallback(this.processOnChangeCallback(selected));\r\n  }\r\n\r\n  _currentDateView!: Dayjs | null;\r\n\r\n  get currentDateView(): Dayjs {\r\n    return this._currentDateView || dayjsRef();\r\n  }\r\n\r\n  set currentDateView(current: Dayjs) {\r\n    this._currentDateView = dayjsRef(current.toDate());\r\n    this.weeks = this.dayCalendarService\r\n      .generateMonthArray(this.componentConfig, this._currentDateView, this.selected);\r\n    this.navLabel = this.dayCalendarService.getHeaderLabel(this.componentConfig, this._currentDateView);\r\n    this.showLeftNav = true; //this.dayCalendarService.shouldShowLeft(this.componentConfig.min ?? dayjsRef(), this.currentDateView);\r\n    this.showRightNav = true; //this.dayCalendarService.shouldShowRight(this.componentConfig.max ?? dayjsRef(), this.currentDateView);\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.isInited = true;\r\n    this.init();\r\n    this.initValidators();\r\n  }\r\n\r\n  init() {\r\n    this.componentConfig = this.dayCalendarService.getConfig(this.config);\r\n    this.selected = this.selected || [];\r\n    this.currentDateView = this.displayDate\r\n      ? this.utilsService.convertToDayjs(this.displayDate, this.componentConfig.format ?? '')\r\n      : this.utilsService\r\n        .getDefaultDisplayDate(\r\n          this.currentDateView,\r\n          this.selected,\r\n          this.componentConfig.allowMultiSelect ?? false,\r\n          this.componentConfig.min ?? dayjsRef()\r\n        );\r\n    this.weekdays = this.dayCalendarService\r\n      .generateWeekdays(this.componentConfig.firstDayOfWeek ?? 'su');\r\n    this.inputValueType = this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\r\n    this.monthCalendarConfig = this.dayCalendarService.getMonthCalendarConfig(this.componentConfig);\r\n    this._shouldShowCurrent = this.shouldShowCurrent();\r\n  }\r\n\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n    if (this.isInited) {\r\n      const {minDate, maxDate, config} = changes;\r\n\r\n      this.handleConfigChange(config);\r\n      this.init();\r\n\r\n      if (minDate || maxDate) {\r\n        this.initValidators();\r\n      }\r\n    }\r\n  }\r\n\r\n  writeValue(value: CalendarValue): void {\r\n    this.inputValue = value;\r\n\r\n    if (value) {\r\n      this.selected = this.utilsService\r\n        .convertToDayjsArray(value, this.componentConfig);\r\n      this.inputValueType = this.utilsService\r\n        .getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\r\n    } else {\r\n      this.selected = [];\r\n    }\r\n\r\n    this.weeks = this.dayCalendarService\r\n      .generateMonthArray(this.componentConfig, this.currentDateView, this.selected);\r\n\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  registerOnChange(fn: any): void {\r\n    this.onChangeCallback = fn;\r\n  }\r\n\r\n  onChangeCallback(_: any) {\r\n  }\r\n\r\n  registerOnTouched(fn: any): void {\r\n  }\r\n\r\n  validate(formControl: UntypedFormControl): ValidationErrors | any {\r\n    if (this.minDate || this.maxDate) {\r\n      return this.validateFn(formControl.value);\r\n    } else {\r\n      return () => null;\r\n    }\r\n  }\r\n\r\n  processOnChangeCallback(value: Dayjs[]): CalendarValue {\r\n    return this.utilsService.convertFromDayjsArray(\r\n      this.componentConfig.format ?? '',\r\n      value,\r\n      this.componentConfig.returnedValueType || this.inputValueType\r\n    );\r\n  }\r\n\r\n  initValidators() {\r\n    this.validateFn = this.utilsService.createValidator(\r\n      {minDate: this.minDate, maxDate: this.maxDate},\r\n      this.componentConfig.format ?? '',\r\n      'day'\r\n    );\r\n\r\n    this.onChangeCallback(this.processOnChangeCallback(this.selected));\r\n  }\r\n\r\n  dayClicked(day: IDay) {\r\n    if (day.selected && !this.componentConfig.unSelectOnClick) {\r\n      return;\r\n    }\r\n\r\n    this.selected = this.utilsService\r\n      .updateSelected(this.componentConfig.allowMultiSelect ?? false, this.selected, day);\r\n    this.weeks = this.dayCalendarService\r\n      .generateMonthArray(this.componentConfig, this.currentDateView, this.selected);\r\n    this.onSelect.emit(day);\r\n  }\r\n\r\n  getDayBtnText(day: IDay): string {\r\n    return this.dayCalendarService.getDayBtnText(this.componentConfig, day.date);\r\n  }\r\n\r\n  getDayBtnCssClass(day: IDay): { [klass: string]: boolean } {\r\n    const cssClasses: { [klass: string]: boolean } = {\r\n      'dp-selected': day.selected,\r\n      'dp-current-month': !!day.currentMonth,\r\n      'dp-prev-month': !!day.prevMonth,\r\n      'dp-next-month': !!day.nextMonth,\r\n      'dp-current-day': !!day.currentDay\r\n    };\r\n    const customCssClass: string = this.dayCalendarService.getDayBtnCssClass(this.componentConfig, day.date);\r\n    if (customCssClass) {\r\n      cssClasses[customCssClass] = true;\r\n    }\r\n\r\n    return cssClasses;\r\n  }\r\n\r\n  onLeftNavClick() {\r\n    const from = dayjsRef(this.currentDateView.toDate());\r\n    this.moveCalendarsBy(this.currentDateView, -1, 'month');\r\n    const to = dayjsRef(this.currentDateView.toDate());\r\n    this.onLeftNav.emit({from, to});\r\n  }\r\n\r\n  onRightNavClick() {\r\n    const from = dayjsRef(this.currentDateView.toDate());\r\n    this.moveCalendarsBy(this.currentDateView, 1, 'month');\r\n    const to = dayjsRef(this.currentDateView.toDate());\r\n    this.onRightNav.emit({from, to});\r\n  }\r\n\r\n  onMonthCalendarLeftClick(change: INavEvent) {\r\n    this.onLeftNav.emit(change);\r\n  }\r\n\r\n  onYearCalendarLeftClick(change: INavEvent) {\r\n    this.onLeftNav.emit(change);\r\n  }\r\n\r\n  onMonthCalendarRightClick(change: INavEvent) {\r\n    this.onRightNav.emit(change);\r\n  }\r\n\r\n  onYearCalendarRightClick (change: INavEvent) {\r\n    this.onRightNav.emit(change);\r\n  }\r\n\r\n  onMonthCalendarSecondaryLeftClick(change: INavEvent) {\r\n    this.onRightNav.emit(change);\r\n  }\r\n\r\n  onMonthCalendarSecondaryRightClick(change: INavEvent) {\r\n    this.onLeftNav.emit(change);\r\n  }\r\n\r\n  getWeekdayName(weekday: Dayjs): string {\r\n    if (this.componentConfig.weekDayFormatter) {\r\n      return this.componentConfig.weekDayFormatter(weekday.day());\r\n    }\r\n\r\n    return weekday.format(this.componentConfig.weekDayFormat);\r\n  }\r\n\r\n  toggleCalendarMode(mode: ECalendarMode) {\r\n    if (this.currentCalendarMode !== mode) {\r\n      this.currentCalendarMode = mode;\r\n      this.onNavHeaderBtnClick.emit(mode);\r\n    }\r\n\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  monthSelected(month: IMonth) {\r\n    this.currentDateView = dayjsRef(month.date.toDate());\r\n    this.currentCalendarMode = ECalendarMode.Day;\r\n    this.onMonthSelect.emit(month);\r\n  }\r\n\r\n    yearSelected(year: { date: Dayjs }) {\r\n    this.currentDateView = dayjsRef(year.date.toDate());\r\n    this.currentCalendarMode = ECalendarMode.Month;\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  moveCalendarsBy(current: Dayjs, amount: number, granularity: ManipulateType = 'month') {\r\n    this.currentDateView = dayjsRef(current.toDate()).add(amount, granularity);\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  moveCalendarTo(to: SingleCalendarValue) {\r\n    if (to) {\r\n      this.currentDateView = this.utilsService.convertToDayjs(to, this.componentConfig.format ?? '');\r\n    }\r\n\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  shouldShowCurrent(): boolean {\r\n    return this.utilsService.shouldShowCurrent(\r\n      this.componentConfig.showGoToCurrent ?? false,\r\n      'day',\r\n      this.componentConfig.min ?? dayjsRef(),\r\n      this.componentConfig.max ?? dayjsRef()\r\n    );\r\n  }\r\n\r\n  goToCurrent() {\r\n    this.currentDateView = dayjsRef();\r\n    this.onGoToCurrent.emit();\r\n  }\r\n\r\n  handleConfigChange(config: SimpleChange): void {\r\n    if (config) {\r\n      const prevConf: IDayCalendarConfigInternal = this.dayCalendarService.getConfig(config.previousValue);\r\n      const currentConf: IDayCalendarConfigInternal = this.dayCalendarService.getConfig(config.currentValue);\r\n\r\n      if (this.utilsService.shouldResetCurrentView(prevConf, currentConf)) {\r\n        this._currentDateView = null;\r\n      }\r\n    }\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -12444,7 +12472,7 @@
                     }
                 }
             },
-            "templateData": "<div *ngIf=\"currentCalendarMode ===  CalendarMode.Day\" class=\"dp-day-calendar-container\" dir=\"ltr\">\r\n  <dp-calendar-nav\r\n      (onGoToCurrent)=\"goToCurrent()\"\r\n      (onLabelClick)=\"toggleCalendarMode(CalendarMode.Month)\"\r\n      (onChooseYearClick)=\"toggleCalendarMode(CalendarMode.Year)\"\r\n      (onLeftNav)=\"onLeftNavClick()\"\r\n      (onRightNav)=\"onRightNavClick()\"\r\n      [isLabelClickable]=\"componentConfig.enableMonthSelector\"\r\n      [label]=\"navLabel\"\r\n      [showGoToCurrent]=\"_shouldShowCurrent\"\r\n      [showLeftNav]=\"showLeftNav\"\r\n      [showRightNav]=\"showRightNav\"\r\n      [theme]=\"theme\">\r\n  </dp-calendar-nav>\r\n\r\n  <div [ngClass]=\"{'dp-hide-near-month': !componentConfig.showNearMonthDays}\"\r\n       class=\"dp-calendar-wrapper\">\r\n    <div class=\"dp-weekdays\">\r\n      <span *ngFor=\"let weekday of weekdays\"\r\n            [innerText]=\"getWeekdayName(weekday)\"\r\n            class=\"dp-calendar-weekday\">\r\n      </span>\r\n    </div>\r\n    <div *ngFor=\"let week of weeks\" class=\"dp-calendar-week\">\r\n      <span *ngIf=\"componentConfig.showWeekNumbers\"\r\n            [innerText]=\"week[0].date.isoWeek()\"\r\n            class=\"dp-week-number\">\r\n      </span>\r\n      <button (click)=\"dayClicked(day)\"\r\n              *ngFor=\"let day of week\"\r\n              [attr.data-date]=\"day.date.format(componentConfig.format)\"\r\n              [disabled]=\"day.disabled\"\r\n              [innerText]=\"getDayBtnText(day)\"\r\n              [ngClass]=\"getDayBtnCssClass(day)\"\r\n              class=\"dp-calendar-day\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<dp-month-calendar\r\n    (onLeftNav)=\"onMonthCalendarLeftClick($event)\"\r\n    (onLeftSecondaryNav)=\"onMonthCalendarSecondaryLeftClick($event)\"\r\n    (onNavHeaderBtnClick)=\"toggleCalendarMode(CalendarMode.Day)\"\r\n    (onRightNav)=\"onMonthCalendarRightClick($event)\"\r\n    (onRightSecondaryNav)=\"onMonthCalendarSecondaryRightClick($event)\"\r\n    (onSelect)=\"monthSelected($event)\"\r\n    *ngIf=\"currentCalendarMode ===  CalendarMode.Month\"\r\n    [config]=\"monthCalendarConfig\"\r\n    [displayDate]=\"_currentDateView\"\r\n    [ngModel]=\"_selected\"\r\n    [theme]=\"theme\">\r\n</dp-month-calendar>\r\n\r\n<dp-year-calendar\r\n    (onLeftNav)=\"onYearCalendarLeftClick($event)\"\r\n    (onLeftSecondaryNav)=\"onYearCalendarSecondaryLeftClick($event)\"\r\n    (chooseYearClicked)=\"toggleCalendarMode(CalendarMode.Day)\"\r\n    (onRightNav)=\"onYearCalendarRightClick($event)\"\r\n    (onRightSecondaryNav)=\"onYearCalendarSecondaryRightClick($event)\"\r\n    (onSelect)=\"yearSelected($event)\"\r\n    *ngIf=\"currentCalendarMode ===  CalendarMode.Year\"\r\n    [config]=\"yearCalendarConfig\"\r\n    [displayDate]=\"_currentDateView\"\r\n    [ngModel]=\"_selected\"\r\n    [theme]=\"theme\">\r\n</dp-year-calendar>"
+            "templateData": "<div *ngIf=\"currentCalendarMode ===  CalendarMode.Day\" class=\"dp-day-calendar-container\" dir=\"ltr\">\r\n  <dp-calendar-nav\r\n      (onGoToCurrent)=\"goToCurrent()\"\r\n      (onLabelClick)=\"toggleCalendarMode(CalendarMode.Year)\"\r\n      (onChooseYearClick)=\"toggleCalendarMode(CalendarMode.Year)\"\r\n      (onLeftNav)=\"onLeftNavClick()\"\r\n      (onRightNav)=\"onRightNavClick()\"\r\n      [isLabelClickable]=\"componentConfig.enableMonthSelector\"\r\n      [label]=\"navLabel\"\r\n      [showGoToCurrent]=\"_shouldShowCurrent\"\r\n      [showLeftNav]=\"showLeftNav\"\r\n      [showRightNav]=\"showRightNav\"\r\n      [theme]=\"theme\">\r\n  </dp-calendar-nav>\r\n\r\n  <div [ngClass]=\"{'dp-hide-near-month': !componentConfig.showNearMonthDays}\"\r\n       class=\"dp-calendar-wrapper\">\r\n    <div class=\"dp-weekdays\">\r\n      <span *ngFor=\"let weekday of weekdays\"\r\n            [innerText]=\"getWeekdayName(weekday)\"\r\n            class=\"dp-calendar-weekday\">\r\n      </span>\r\n    </div>\r\n    <div *ngFor=\"let week of weeks\" class=\"dp-calendar-week\">\r\n      <span *ngIf=\"componentConfig.showWeekNumbers\"\r\n            [innerText]=\"week[0].date.isoWeek()\"\r\n            class=\"dp-week-number\">\r\n      </span>\r\n      <button (click)=\"dayClicked(day)\"\r\n              *ngFor=\"let day of week\"\r\n              [attr.data-date]=\"day.date.format(componentConfig.format)\"\r\n              [disabled]=\"day.disabled\"\r\n              [innerText]=\"getDayBtnText(day)\"\r\n              [ngClass]=\"getDayBtnCssClass(day)\"\r\n              class=\"dp-calendar-day\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<dp-month-calendar\r\n    (onLeftNav)=\"onMonthCalendarLeftClick($event)\"\r\n    (onLeftSecondaryNav)=\"onMonthCalendarSecondaryLeftClick($event)\"\r\n    (onNavHeaderBtnClick)=\"toggleCalendarMode(CalendarMode.Day)\"\r\n    (onRightNav)=\"onMonthCalendarRightClick($event)\"\r\n    (onRightSecondaryNav)=\"onMonthCalendarSecondaryRightClick($event)\"\r\n    (onSelect)=\"monthSelected($event)\"\r\n    *ngIf=\"currentCalendarMode ===  CalendarMode.Month\"\r\n    [config]=\"monthCalendarConfig\"\r\n    [displayDate]=\"_currentDateView\"\r\n    [ngModel]=\"_selected\"\r\n    [theme]=\"theme\">\r\n</dp-month-calendar>\r\n\r\n<dp-year-calendar\r\n    (onLeftNav)=\"onYearCalendarLeftClick($event)\"\r\n    (onLeftSecondaryNav)=\"onYearCalendarSecondaryLeftClick($event)\"\r\n    (chooseYearClicked)=\"toggleCalendarMode(CalendarMode.Day)\"\r\n    (onRightNav)=\"onYearCalendarRightClick($event)\"\r\n    (onRightSecondaryNav)=\"onYearCalendarSecondaryRightClick($event)\"\r\n    (onSelect)=\"yearSelected($event)\"\r\n    *ngIf=\"currentCalendarMode ===  CalendarMode.Year\"\r\n    [config]=\"yearCalendarConfig\"\r\n    [displayDate]=\"_currentDateView\"\r\n    [ngModel]=\"_selected\"\r\n    [theme]=\"theme\">\r\n</dp-year-calendar>"
         },
         {
             "name": "DayTimeCalendarComponent",
@@ -18436,7 +18464,7 @@
                 "linktype": "component",
                 "name": "DayCalendarComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/62",
+                "coverageCount": "0/63",
                 "status": "low"
             },
             {

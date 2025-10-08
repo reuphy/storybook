@@ -17,6 +17,7 @@ export default {
 export const Default = () => ({
 	props: {
 		selectedDayTime: null,
+		displayDate: null,
 		config: {
 			firstDayOfWeek: 'su',
 			monthFormat: 'DD-MM-YYYY',
@@ -54,13 +55,22 @@ export const Default = () => ({
 			numOfMonthRows: 3,
 			format: 'DD-MM-YYYY',
 		},
+		updateDisplayDate: function(date: any) {
+			// Ne met à jour que si la date est valide
+			if (date && date !== 'Invalid date' && date.length >= 10) {
+				this.displayDate = date;
+				console.log('Display date updated:', this.displayDate);
+			}
+		},
 	},
 	template: `
 		<input
 			#dateDirective
 			[dpDayPicker]="config"
+			[displayDate]="displayDate"
 			theme="ibz-datepicker"
 			id="picker"
+			(ngModelChange)="updateDisplayDate($event)"
 			[(ngModel)]="selectedDayTime"
 		/>
 		<p>Date sélectionnée : {{ selectedDayTime }}</p>
