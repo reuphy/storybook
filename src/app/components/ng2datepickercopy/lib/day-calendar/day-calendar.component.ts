@@ -18,7 +18,7 @@ import {
 } from '@angular/core';
 import {DayCalendarService} from './day-calendar.service';
 
-import {Dayjs, ManipulateType} from 'dayjs';
+import dayjs, {Dayjs, ManipulateType} from 'dayjs';
 import {IDayCalendarConfig, IDayCalendarConfigInternal} from './day-calendar-config.model';
 import {IDay} from './day.model';
 import {
@@ -313,6 +313,12 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
     this.onMonthSelect.emit(month);
   }
 
+    yearSelected(year: { date: Dayjs }) {
+    this.currentDateView = dayjsRef(year.date.toDate());
+    this.currentCalendarMode = ECalendarMode.Month;
+    this.cd.markForCheck();
+  }
+
   moveCalendarsBy(current: Dayjs, amount: number, granularity: ManipulateType = 'month') {
     this.currentDateView = dayjsRef(current.toDate()).add(amount, granularity);
     this.cd.markForCheck();
@@ -350,4 +356,5 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
       }
     }
   }
+
 }

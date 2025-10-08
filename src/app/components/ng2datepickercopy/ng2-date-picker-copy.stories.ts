@@ -19,7 +19,7 @@ export const Default = () => ({
 		selectedDayTime: null,
 		config: {
 			firstDayOfWeek: 'su',
-			monthFormat: 'MMM, YYYY',
+			monthFormat: 'DD-MM-YYYY',
 			disableKeypress: false,
 			closeOnSelect: undefined,
 			closeOnSelectDelay: 100,
@@ -52,7 +52,7 @@ export const Default = () => ({
 			unSelectOnClick: true,
 			hideOnOutsideClick: true,
 			numOfMonthRows: 3,
-			format: 'DD-MM-YYYY HH:mm:ss',
+			format: 'DD-MM-YYYY',
 		},
 	},
 	template: `
