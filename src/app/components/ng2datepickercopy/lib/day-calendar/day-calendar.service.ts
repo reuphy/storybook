@@ -5,6 +5,7 @@ import {UtilsService} from '../common/services/utils/utils.service';
 import {IDay} from './day.model';
 import {IDayCalendarConfig, IDayCalendarConfigInternal} from './day-calendar-config.model';
 import {IMonthCalendarConfig} from '../month-calendar/month-calendar-config';
+import {IYearCalendarConfig} from '../year-calendar/year-calendar-config';
 import {Dayjs} from 'dayjs';
 import {dayjsRef} from '../common/dayjs/dayjs.ref';
 
@@ -178,6 +179,22 @@ export class DayCalendarService {
       showMultipleYearsNavigation: componentConfig.showMultipleYearsNavigation,
       showGoToCurrent: componentConfig.showGoToCurrent,
       numOfMonthRows: componentConfig.numOfMonthRows
+    });
+  }
+
+  getYearCalendarConfig(componentConfig: IDayCalendarConfigInternal): IYearCalendarConfig {
+    return this.utilsService.clearUndefined({
+      min: componentConfig.min,
+      max: componentConfig.max,
+      format: componentConfig.format,
+      isNavHeaderBtnClickable: true,
+      allowMultiSelect: false,
+      yearFormat: componentConfig.yearFormat,
+      yearFormatter: componentConfig.yearFormatter,
+      showGoToCurrent: componentConfig.showGoToCurrent,
+      unSelectOnClick: componentConfig.unSelectOnClick,
+      numOfYearsPerPage: 24,
+      numOfYearRows: 6
     });
   }
 

@@ -33,6 +33,7 @@ import {
 import {CalendarValue} from '../common/types/calendar-value';
 import {UtilsService} from '../common/services/utils/utils.service';
 import {IMonthCalendarConfig} from '../month-calendar/month-calendar-config';
+import {IYearCalendarConfig} from '../year-calendar/year-calendar-config';
 import {IMonth} from '../month-calendar/month.model';
 import {DateValidator} from '../common/types/validator.type';
 import {INavEvent} from '../common/models/navigation-event.model';
@@ -87,6 +88,7 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
   validateFn!: DateValidator;
   currentCalendarMode: ECalendarMode = ECalendarMode.Day;
   monthCalendarConfig!: IMonthCalendarConfig;
+  yearCalendarConfig!: IYearCalendarConfig;
   _shouldShowCurrent: boolean = true;
   navLabel!: string;
   showLeftNav!: boolean;
@@ -124,8 +126,8 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
     this.weeks = this.dayCalendarService
       .generateMonthArray(this.componentConfig, this._currentDateView, this.selected);
     this.navLabel = this.dayCalendarService.getHeaderLabel(this.componentConfig, this._currentDateView);
-    this.showLeftNav = true; //this.dayCalendarService.shouldShowLeft(this.componentConfig.min ?? dayjsRef(), this.currentDateView);
-    this.showRightNav = true; //this.dayCalendarService.shouldShowRight(this.componentConfig.max ?? dayjsRef(), this.currentDateView);
+    this.showLeftNav = this.dayCalendarService.shouldShowLeft(this.componentConfig.min ?? dayjsRef(), this.currentDateView);
+    this.showRightNav = this.dayCalendarService.shouldShowRight(this.componentConfig.max ?? dayjsRef(), this.currentDateView);
   }
 
   ngOnInit() {
@@ -150,6 +152,7 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
       .generateWeekdays(this.componentConfig.firstDayOfWeek ?? 'su');
     this.inputValueType = this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);
     this.monthCalendarConfig = this.dayCalendarService.getMonthCalendarConfig(this.componentConfig);
+    this.yearCalendarConfig = this.dayCalendarService.getYearCalendarConfig(this.componentConfig);
     this._shouldShowCurrent = this.shouldShowCurrent();
   }
 

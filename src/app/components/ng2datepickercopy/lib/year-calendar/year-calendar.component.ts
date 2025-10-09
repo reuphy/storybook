@@ -128,6 +128,7 @@ export class YearCalendarComponent implements OnInit, OnChanges, ControlValueAcc
   }
 
   set currentDateView(current: Dayjs) {
+    console.log(this)
     this._currentDateView = current.clone();
     // Initial range: 2016-2039
     this.startYear =  this.currentDateView.year();
@@ -143,11 +144,12 @@ export class YearCalendarComponent implements OnInit, OnChanges, ControlValueAcc
     const currentYear = dayjs().year();
     for (let y = this.startYear; y < this.startYear + 24; y++) {
       const date = dayjs(`${y}-01-01`);
+      const isDisabled = this.yearCalendarService.isYearDisabled(date, this.componentConfig);
       years.push({
         date,
         selected: false,
         current: date.year() === currentYear,
-        disabled: false,
+        disabled: isDisabled,
         text: date.format(this.componentConfig.yearBtnFormat ?? 'YYYY'),
       });
     }
