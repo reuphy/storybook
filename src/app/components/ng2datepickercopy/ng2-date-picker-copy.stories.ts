@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { DatePickerComponent } from './lib/date-picker/date-picker.component';
 import { DatePickerDirective } from './lib/date-picker/date-picker.directive';
 import { YearCalendarComponent } from './lib/year-calendar/year-calendar.component';
-import { max } from 'rxjs';
+import { max, min } from 'rxjs';
 
 export default {
 	title: 'Components/DatePickerCopy',
@@ -55,6 +55,8 @@ export const Default = () => ({
 			hideOnOutsideClick: true,
 			numOfMonthRows: 3,
 			format: 'DD-MM-YYYY',
+			min: '01-01-2020',
+			max: '31-12-2025'
 		},
 		updateDisplayDate: function(date: any) {
 			// Ne met à jour que si la date est valide

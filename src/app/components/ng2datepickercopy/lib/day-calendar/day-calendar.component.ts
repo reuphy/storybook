@@ -126,8 +126,8 @@ export class DayCalendarComponent implements OnInit, OnChanges, ControlValueAcce
     this.weeks = this.dayCalendarService
       .generateMonthArray(this.componentConfig, this._currentDateView, this.selected);
     this.navLabel = this.dayCalendarService.getHeaderLabel(this.componentConfig, this._currentDateView);
-    this.showLeftNav = this.dayCalendarService.shouldShowLeft(this.componentConfig.min ?? dayjsRef(), this.currentDateView);
-    this.showRightNav = this.dayCalendarService.shouldShowRight(this.componentConfig.max ?? dayjsRef(), this.currentDateView);
+    this.showLeftNav = this.dayCalendarService.shouldShowLeft(this.componentConfig.min , this.currentDateView);
+    this.showRightNav = this.dayCalendarService.shouldShowRight(this.componentConfig.max , this.currentDateView);
   }
 
   ngOnInit() {

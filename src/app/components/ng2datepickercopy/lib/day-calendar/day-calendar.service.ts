@@ -143,12 +143,12 @@ export class DayCalendarService {
   }
 
   // todo:: add unit tests
-  shouldShowLeft(min: Dayjs, currentMonthView: Dayjs): boolean {
+  shouldShowLeft(min: Dayjs | undefined, currentMonthView: Dayjs): boolean {
     return min ? min.isBefore(currentMonthView, 'month') : true;
   }
 
   // todo:: add unit tests
-  shouldShowRight(max: Dayjs, currentMonthView: Dayjs): boolean {
+  shouldShowRight(max: Dayjs | undefined, currentMonthView: Dayjs): boolean {
     return max ? max.isAfter(currentMonthView, 'month') : true;
   }
 
