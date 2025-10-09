@@ -4,7 +4,7 @@
           [hidden]="isLabelClickable"
           [innerText]="label">
     </span>
-    <button (click)="labelClicked()"
+    <button (click)="labelClicked();"
             *ngIf="label"
             [attr.data-hidden]="!isLabelClickable"
             [hidden]="!isLabelClickable"
@@ -12,11 +12,12 @@
             class="dp-nav-header-btn"
             type="button">
     </button>
-    <!-- <button (click)="chooseYearClicked()"
+    <button (click)="chooseYearClicked()"
             class="dp-nav-choose-year-btn"
+            *ngIf="showYearButton"
             type="button">
        {{yearLabel ?? 'Year'}}
-    </button> -->
+    </button>
   </div>
 
   <div class="dp-nav-btns-container">

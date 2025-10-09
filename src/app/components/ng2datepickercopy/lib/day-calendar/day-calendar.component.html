@@ -1,7 +1,7 @@
 <div *ngIf="currentCalendarMode ===  CalendarMode.Day" class="dp-day-calendar-container" dir="ltr">
   <dp-calendar-nav
       (onGoToCurrent)="goToCurrent()"
-      (onLabelClick)="toggleCalendarMode(CalendarMode.Year)"
+      (onLabelClick)="toggleCalendarMode(CalendarMode.Month)"
       (onChooseYearClick)="toggleCalendarMode(CalendarMode.Year)"
       (onLeftNav)="onLeftNavClick()"
       (onRightNav)="onRightNavClick()"

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   HostBinding,
@@ -19,6 +20,8 @@ import {
     standalone: true
 })
 export class CalendarNavComponent {
+  constructor(private cd: ChangeDetectorRef) {}
+
   @Input() label!: string;
   @Input() yearLabel!: string;
   @Input() isLabelClickable: boolean = false;
@@ -31,6 +34,7 @@ export class CalendarNavComponent {
   @Input() rightNavDisabled: boolean = false;
   @Input() rightSecondaryNavDisabled: boolean = false;
   @Input() showGoToCurrent: boolean = true;
+  @Input() showYearButton: boolean = true;
   @HostBinding('class') @Input() theme!: string;
 
   @Output() onLeftNav: EventEmitter<null> = new EventEmitter();
@@ -59,6 +63,8 @@ export class CalendarNavComponent {
 
   labelClicked() {
     this.onLabelClick.emit();
+    this.showYearButton = false;
+    this.cd.markForCheck(); // Force la détection de changements
   }
 
   chooseYearClicked() {
