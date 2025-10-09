@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { DatePickerComponent } from './lib/date-picker/date-picker.component';
 import { DatePickerDirective } from './lib/date-picker/date-picker.directive';
 import { YearCalendarComponent } from './lib/year-calendar/year-calendar.component';
+import { max } from 'rxjs';
 
 export default {
 	title: 'Components/DatePickerCopy',

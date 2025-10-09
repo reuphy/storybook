@@ -448,175 +448,7 @@
         },
         {
             "name": "IConfig",
-            "id": "interface-IConfig-a794e6826c2dd1a18e1ffbbf95cd717aa6d5dc84b9c2de83295b5b0bc40719546b69024344c2e5d4afc45d4042f7e193012d6c93644466363856cad4079d19d6-1",
-            "file": "src/app/components/ng2datepickercopy/lib/month-calendar/month-calendar-config.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\nexport interface IConfig {\n  isMonthDisabledCallback?: (date: Dayjs) => boolean;\n  allowMultiSelect?: boolean;\n  yearFormat?: string;\n  yearFormatter?: (month: Dayjs) => string;\n  format?: string;\n  isNavHeaderBtnClickable?: boolean;\n  monthBtnFormat?: string;\n  monthBtnFormatter?: (day: Dayjs) => string;\n  numOfMonthRows?: number;\n  monthBtnCssClassCallback?: (day: Dayjs) => string;\n  multipleYearsNavigateBy?: number;\n  showMultipleYearsNavigation?: boolean;\n  returnedValueType?: ECalendarValue;\n  showGoToCurrent?: boolean;\n  unSelectOnClick?: boolean;\n}\n\nexport interface IMonthCalendarConfig extends IConfig,\n                                              ICalendar {\n}\n\nexport interface IMonthCalendarConfigInternal extends IConfig,\n                                                      ICalendarInternal {\n}\n",
-            "properties": [
-                {
-                    "name": "allowMultiSelect",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 7
-                },
-                {
-                    "name": "format",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 10
-                },
-                {
-                    "name": "isMonthDisabledCallback",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 6
-                },
-                {
-                    "name": "isNavHeaderBtnClickable",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 11
-                },
-                {
-                    "name": "monthBtnCssClassCallback",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 15
-                },
-                {
-                    "name": "monthBtnFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 12
-                },
-                {
-                    "name": "monthBtnFormatter",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 13
-                },
-                {
-                    "name": "multipleYearsNavigateBy",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 16
-                },
-                {
-                    "name": "numOfMonthRows",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 14
-                },
-                {
-                    "name": "returnedValueType",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "ECalendarValue",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 18
-                },
-                {
-                    "name": "showGoToCurrent",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 19
-                },
-                {
-                    "name": "showMultipleYearsNavigation",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 17
-                },
-                {
-                    "name": "unSelectOnClick",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 20
-                },
-                {
-                    "name": "yearFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 8
-                },
-                {
-                    "name": "yearFormatter",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 9
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 171,
-            "methods": [],
-            "extends": [],
-            "isDuplicate": true,
-            "duplicateId": 1,
-            "duplicateName": "IConfig-1"
-        },
-        {
-            "name": "IConfig",
-            "id": "interface-IConfig-c7138ca5eb96f7a5a606bf3335d27e4f9c94806af0f7a10a7e9b17ca28721fb419631ac94f4fe51417b41ad83c7417fcb50b69f93a8790414821fb7baf37c9c5-2",
+            "id": "interface-IConfig-c7138ca5eb96f7a5a606bf3335d27e4f9c94806af0f7a10a7e9b17ca28721fb419631ac94f4fe51417b41ad83c7417fcb50b69f93a8790414821fb7baf37c9c5-1",
             "file": "src/app/components/ng2datepickercopy/lib/day-calendar/day-calendar-config.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
@@ -882,6 +714,174 @@
                     "optional": true,
                     "description": "",
                     "line": 20
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "IConfig-1"
+        },
+        {
+            "name": "IConfig",
+            "id": "interface-IConfig-a794e6826c2dd1a18e1ffbbf95cd717aa6d5dc84b9c2de83295b5b0bc40719546b69024344c2e5d4afc45d4042f7e193012d6c93644466363856cad4079d19d6-2",
+            "file": "src/app/components/ng2datepickercopy/lib/month-calendar/month-calendar-config.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\nexport interface IConfig {\n  isMonthDisabledCallback?: (date: Dayjs) => boolean;\n  allowMultiSelect?: boolean;\n  yearFormat?: string;\n  yearFormatter?: (month: Dayjs) => string;\n  format?: string;\n  isNavHeaderBtnClickable?: boolean;\n  monthBtnFormat?: string;\n  monthBtnFormatter?: (day: Dayjs) => string;\n  numOfMonthRows?: number;\n  monthBtnCssClassCallback?: (day: Dayjs) => string;\n  multipleYearsNavigateBy?: number;\n  showMultipleYearsNavigation?: boolean;\n  returnedValueType?: ECalendarValue;\n  showGoToCurrent?: boolean;\n  unSelectOnClick?: boolean;\n}\n\nexport interface IMonthCalendarConfig extends IConfig,\n                                              ICalendar {\n}\n\nexport interface IMonthCalendarConfigInternal extends IConfig,\n                                                      ICalendarInternal {\n}\n",
+            "properties": [
+                {
+                    "name": "allowMultiSelect",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "format",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "isMonthDisabledCallback",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "isNavHeaderBtnClickable",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "monthBtnCssClassCallback",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "monthBtnFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "monthBtnFormatter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "multipleYearsNavigateBy",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "numOfMonthRows",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "returnedValueType",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ECalendarValue",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "showGoToCurrent",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "showMultipleYearsNavigation",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "unSelectOnClick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "yearFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "yearFormatter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
                 }
             ],
             "indexSignatures": [],
@@ -8582,7 +8582,7 @@
                 ]
             },
             "extends": [],
-            "templateData": "<div class=\"dp-calendar-nav-container\" dir=\"ltr\">\r\n  <div class=\"dp-nav-header\">\r\n    <!-- <span [attr.data-hidden]=\"isLabelClickable\"\r\n          [hidden]=\"isLabelClickable\"\r\n          [innerText]=\"label\">\r\n    </span> -->\r\n    <button (click)=\"labelClicked();\"\r\n            *ngIf=\"label\"\r\n            [attr.data-hidden]=\"!isLabelClickable\"\r\n            [hidden]=\"!isLabelClickable\"\r\n            [innerText]=\"label\"\r\n            class=\"dp-nav-header-btn\"\r\n            type=\"button\">\r\n    </button>\r\n    <button (click)=\"chooseYearClicked()\"\r\n            class=\"dp-nav-header-btn\"\r\n            *ngIf=\"showYearButton\"\r\n            type=\"button\">\r\n       {{getYearFromLabel() || label}}\r\n    </button>\r\n  </div>\r\n\r\n  <div class=\"dp-nav-btns-container\">\r\n    <div class=\"dp-calendar-nav-container-left\">\r\n      <button (click)=\"leftSecondaryNavClicked()\"\r\n              *ngIf=\"showLeftSecondaryNav\"\r\n              [disabled]=\"leftSecondaryNavDisabled\"\r\n              class=\"dp-calendar-secondary-nav-left\"\r\n              type=\"button\">\r\n      </button>\r\n      <button (click)=\"leftNavClicked()\"\r\n              [attr.data-hidden]=\"!showLeftNav\"\r\n              [disabled]=\"leftNavDisabled\"\r\n              [hidden]=\"!showLeftNav\"\r\n              class=\"dp-calendar-nav-left\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n    <button (click)=\"onGoToCurrent.emit()\"\r\n            *ngIf=\"showGoToCurrent\"\r\n            class=\"dp-current-location-btn\"\r\n            type=\"button\">\r\n    </button>\r\n    <div class=\"dp-calendar-nav-container-right\">\r\n      <button (click)=\"rightNavClicked()\"\r\n              [attr.data-hidden]=\"!showRightNav\"\r\n              [disabled]=\"rightNavDisabled\"\r\n              [hidden]=\"!showRightNav\"\r\n              class=\"dp-calendar-nav-right\"\r\n              type=\"button\">\r\n      </button>\r\n      <button (click)=\"rightSecondaryNavClicked()\"\r\n              *ngIf=\"showRightSecondaryNav\"\r\n              [disabled]=\"rightSecondaryNavDisabled\"\r\n              class=\"dp-calendar-secondary-nav-right\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"dp-calendar-nav-container\" dir=\"ltr\">\r\n  <div class=\"dp-nav-header\">\r\n    <!-- <span [attr.data-hidden]=\"isLabelClickable\"\r\n          [hidden]=\"isLabelClickable\"\r\n          [innerText]=\"label\">\r\n    </span> -->\r\n    <button (click)=\"labelClicked();\"\r\n            *ngIf=\"label\"\r\n            [attr.data-hidden]=\"!isLabelClickable\"\r\n            [hidden]=\"!isLabelClickable\"\r\n            [innerText]=\"label\"\r\n            class=\"dp-nav-header-btn\"\r\n            type=\"button\">\r\n    </button>\r\n    <button (click)=\"chooseYearClicked()\"\r\n            class=\"dp-nav-header-btn\"\r\n            *ngIf=\"showYearButton\"\r\n            type=\"button\">\r\n       {{ label}}\r\n    </button>\r\n  </div>\r\n\r\n  <div class=\"dp-nav-btns-container\">\r\n    <div class=\"dp-calendar-nav-container-left\">\r\n      <button (click)=\"leftSecondaryNavClicked()\"\r\n              *ngIf=\"showLeftSecondaryNav\"\r\n              [disabled]=\"leftSecondaryNavDisabled\"\r\n              class=\"dp-calendar-secondary-nav-left\"\r\n              type=\"button\">\r\n      </button>\r\n      <button (click)=\"leftNavClicked()\"\r\n              [attr.data-hidden]=\"!showLeftNav\"\r\n              [disabled]=\"leftNavDisabled\"\r\n              [hidden]=\"!showLeftNav\"\r\n              class=\"dp-calendar-nav-left\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n    <button (click)=\"onGoToCurrent.emit()\"\r\n            *ngIf=\"showGoToCurrent\"\r\n            class=\"dp-current-location-btn\"\r\n            type=\"button\">\r\n    </button>\r\n    <div class=\"dp-calendar-nav-container-right\">\r\n      <button (click)=\"rightNavClicked()\"\r\n              [attr.data-hidden]=\"!showRightNav\"\r\n              [disabled]=\"rightNavDisabled\"\r\n              [hidden]=\"!showRightNav\"\r\n              class=\"dp-calendar-nav-right\"\r\n              type=\"button\">\r\n      </button>\r\n      <button (click)=\"rightSecondaryNavClicked()\"\r\n              *ngIf=\"showRightSecondaryNav\"\r\n              [disabled]=\"rightSecondaryNavDisabled\"\r\n              class=\"dp-calendar-secondary-nav-right\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "CardComponent",
