@@ -72,11 +72,11 @@ export class MonthCalendarService {
     return !!(config?.max && date?.isAfter?.(config.max, 'month'));
   }
 
-  shouldShowLeft(min: Dayjs, currentMonthView: Dayjs): boolean {
+  shouldShowLeft(min: Dayjs | undefined, currentMonthView: Dayjs): boolean {
   return min?.isBefore?.(currentMonthView, 'year') ?? true;
   }
 
-  shouldShowRight(max: Dayjs, currentMonthView: Dayjs): boolean {
+  shouldShowRight(max: Dayjs | undefined, currentMonthView: Dayjs): boolean {
   return max?.isAfter?.(currentMonthView, 'year') ?? true;
   }
 

@@ -293,7 +293,172 @@
         },
         {
             "name": "IConfig",
-            "id": "interface-IConfig-3c7273b93d3b84de765099155f3907e8d73ddc5d13ab598d9e775eea2070dfc2ee1d1d4addf6ed3ab5f3c982c20190fb60e6f9124b44e4249fa4aa0bcfcefa24",
+            "id": "interface-IConfig-a794e6826c2dd1a18e1ffbbf95cd717aa6d5dc84b9c2de83295b5b0bc40719546b69024344c2e5d4afc45d4042f7e193012d6c93644466363856cad4079d19d6",
+            "file": "src/app/components/ng2datepickercopy/lib/month-calendar/month-calendar-config.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\nexport interface IConfig {\n  isMonthDisabledCallback?: (date: Dayjs) => boolean;\n  allowMultiSelect?: boolean;\n  yearFormat?: string;\n  yearFormatter?: (month: Dayjs) => string;\n  format?: string;\n  isNavHeaderBtnClickable?: boolean;\n  monthBtnFormat?: string;\n  monthBtnFormatter?: (day: Dayjs) => string;\n  numOfMonthRows?: number;\n  monthBtnCssClassCallback?: (day: Dayjs) => string;\n  multipleYearsNavigateBy?: number;\n  showMultipleYearsNavigation?: boolean;\n  returnedValueType?: ECalendarValue;\n  showGoToCurrent?: boolean;\n  unSelectOnClick?: boolean;\n}\n\nexport interface IMonthCalendarConfig extends IConfig,\n                                              ICalendar {\n}\n\nexport interface IMonthCalendarConfigInternal extends IConfig,\n                                                      ICalendarInternal {\n}\n",
+            "properties": [
+                {
+                    "name": "allowMultiSelect",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "format",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "isMonthDisabledCallback",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "isNavHeaderBtnClickable",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "monthBtnCssClassCallback",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "monthBtnFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "monthBtnFormatter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "multipleYearsNavigateBy",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "numOfMonthRows",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "returnedValueType",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ECalendarValue",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "showGoToCurrent",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "showMultipleYearsNavigation",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "unSelectOnClick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "yearFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "yearFormatter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "IConfig",
+            "id": "interface-IConfig-3c7273b93d3b84de765099155f3907e8d73ddc5d13ab598d9e775eea2070dfc2ee1d1d4addf6ed3ab5f3c982c20190fb60e6f9124b44e4249fa4aa0bcfcefa24-1",
             "file": "src/app/components/ng2datepickercopy/lib/date-picker/date-picker-config.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
@@ -424,11 +589,14 @@
             "indexSignatures": [],
             "kind": 171,
             "methods": [],
-            "extends": []
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "IConfig-1"
         },
         {
             "name": "IConfig",
-            "id": "interface-IConfig-c7138ca5eb96f7a5a606bf3335d27e4f9c94806af0f7a10a7e9b17ca28721fb419631ac94f4fe51417b41ad83c7417fcb50b69f93a8790414821fb7baf37c9c5-1",
+            "id": "interface-IConfig-c7138ca5eb96f7a5a606bf3335d27e4f9c94806af0f7a10a7e9b17ca28721fb419631ac94f4fe51417b41ad83c7417fcb50b69f93a8790414821fb7baf37c9c5-2",
             "file": "src/app/components/ng2datepickercopy/lib/day-calendar/day-calendar-config.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
@@ -694,174 +862,6 @@
                     "optional": true,
                     "description": "",
                     "line": 20
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 171,
-            "methods": [],
-            "extends": [],
-            "isDuplicate": true,
-            "duplicateId": 1,
-            "duplicateName": "IConfig-1"
-        },
-        {
-            "name": "IConfig",
-            "id": "interface-IConfig-a794e6826c2dd1a18e1ffbbf95cd717aa6d5dc84b9c2de83295b5b0bc40719546b69024344c2e5d4afc45d4042f7e193012d6c93644466363856cad4079d19d6-2",
-            "file": "src/app/components/ng2datepickercopy/lib/month-calendar/month-calendar-config.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\nexport interface IConfig {\n  isMonthDisabledCallback?: (date: Dayjs) => boolean;\n  allowMultiSelect?: boolean;\n  yearFormat?: string;\n  yearFormatter?: (month: Dayjs) => string;\n  format?: string;\n  isNavHeaderBtnClickable?: boolean;\n  monthBtnFormat?: string;\n  monthBtnFormatter?: (day: Dayjs) => string;\n  numOfMonthRows?: number;\n  monthBtnCssClassCallback?: (day: Dayjs) => string;\n  multipleYearsNavigateBy?: number;\n  showMultipleYearsNavigation?: boolean;\n  returnedValueType?: ECalendarValue;\n  showGoToCurrent?: boolean;\n  unSelectOnClick?: boolean;\n}\n\nexport interface IMonthCalendarConfig extends IConfig,\n                                              ICalendar {\n}\n\nexport interface IMonthCalendarConfigInternal extends IConfig,\n                                                      ICalendarInternal {\n}\n",
-            "properties": [
-                {
-                    "name": "allowMultiSelect",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 7
-                },
-                {
-                    "name": "format",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 10
-                },
-                {
-                    "name": "isMonthDisabledCallback",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 6
-                },
-                {
-                    "name": "isNavHeaderBtnClickable",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 11
-                },
-                {
-                    "name": "monthBtnCssClassCallback",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 15
-                },
-                {
-                    "name": "monthBtnFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 12
-                },
-                {
-                    "name": "monthBtnFormatter",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 13
-                },
-                {
-                    "name": "multipleYearsNavigateBy",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 16
-                },
-                {
-                    "name": "numOfMonthRows",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 14
-                },
-                {
-                    "name": "returnedValueType",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "ECalendarValue",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 18
-                },
-                {
-                    "name": "showGoToCurrent",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 19
-                },
-                {
-                    "name": "showMultipleYearsNavigation",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 17
-                },
-                {
-                    "name": "unSelectOnClick",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 20
-                },
-                {
-                    "name": "yearFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 8
-                },
-                {
-                    "name": "yearFormatter",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 9
                 }
             ],
             "indexSignatures": [],
@@ -2192,7 +2192,7 @@
         },
         {
             "name": "DayCalendarService",
-            "id": "injectable-DayCalendarService-dcee0bcab0c69af6b063e12d7c48b492b6a249d5debddd1895a6f01098e1cce026c3d1e31ffd3696a1f9781ce8c2c1a8a2d2fe90e62dafa6f9566026dc80bc14",
+            "id": "injectable-DayCalendarService-751e238605596b732e35985760c4df071ce899ec6ca541da393388cde2003305b72f24ea463c66dd7850ea37551bcb6f288b0436b2327afa293dd17dc8f5abf5",
             "file": "src/app/components/ng2datepickercopy/lib/day-calendar/day-calendar.service.ts",
             "properties": [
                 {
@@ -2212,7 +2212,7 @@
                 },
                 {
                     "name": "DEFAULT_CONFIG",
-                    "defaultValue": "{\n    showNearMonthDays: true,\n    showWeekNumbers: false,\n    firstDayOfWeek: 'su',\n    weekDayFormat: 'ddd',\n    format: 'DD-MM-YYYY',\n    allowMultiSelect: false,\n    monthFormat: 'MMM, YYYY',\n    enableMonthSelector: true,\n    dayBtnFormat: 'DD',\n    unSelectOnClick: true\n  }",
+                    "defaultValue": "{\r\n    showNearMonthDays: true,\r\n    showWeekNumbers: false,\r\n    firstDayOfWeek: 'su',\r\n    weekDayFormat: 'ddd',\r\n    format: 'DD-MM-YYYY',\r\n    allowMultiSelect: false,\r\n    monthFormat: 'MMM, YYYY',\r\n    enableMonthSelector: true,\r\n    dayBtnFormat: 'DD',\r\n    unSelectOnClick: true\r\n  }",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "IDayCalendarConfig",
@@ -2647,7 +2647,7 @@
                     "args": [
                         {
                             "name": "min",
-                            "type": "Dayjs",
+                            "type": "Dayjs | undefined",
                             "deprecated": false,
                             "deprecationMessage": ""
                         },
@@ -2667,7 +2667,7 @@
                     "jsdoctags": [
                         {
                             "name": "min",
-                            "type": "Dayjs",
+                            "type": "Dayjs | undefined",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -2690,7 +2690,7 @@
                     "args": [
                         {
                             "name": "max",
-                            "type": "Dayjs",
+                            "type": "Dayjs | undefined",
                             "deprecated": false,
                             "deprecationMessage": ""
                         },
@@ -2710,7 +2710,7 @@
                     "jsdoctags": [
                         {
                             "name": "max",
-                            "type": "Dayjs",
+                            "type": "Dayjs | undefined",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -2733,7 +2733,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import {Injectable} from '@angular/core';\n\nimport {WeekDays} from '../common/types/week-days.type';\nimport {UtilsService} from '../common/services/utils/utils.service';\nimport {IDay} from './day.model';\nimport {IDayCalendarConfig, IDayCalendarConfigInternal} from './day-calendar-config.model';\nimport {IMonthCalendarConfig} from '../month-calendar/month-calendar-config';\nimport {Dayjs} from 'dayjs';\nimport {dayjsRef} from '../common/dayjs/dayjs.ref';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class DayCalendarService {\n  readonly DEFAULT_CONFIG: IDayCalendarConfig = {\n    showNearMonthDays: true,\n    showWeekNumbers: false,\n    firstDayOfWeek: 'su',\n    weekDayFormat: 'ddd',\n    format: 'DD-MM-YYYY',\n    allowMultiSelect: false,\n    monthFormat: 'MMM, YYYY',\n    enableMonthSelector: true,\n    dayBtnFormat: 'DD',\n    unSelectOnClick: true\n  };\n  private readonly DAYS = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'];\n\n  constructor(private utilsService: UtilsService) {\n  }\n\n  getConfig(config: IDayCalendarConfig): IDayCalendarConfigInternal {\n    const _config = {\n      ...this.DEFAULT_CONFIG,\n      ...this.utilsService.clearUndefined(config)\n    };\n\n    this.utilsService.convertPropsToDayjs(_config, _config.format ?? 'DD-MM-YYYY', ['min', 'max']);\n\n    return _config as IDayCalendarConfigInternal;\n  }\n\n  generateDaysMap(firstDayOfWeek: WeekDays) {\n    const firstDayIndex = this.DAYS.indexOf(firstDayOfWeek);\n    const daysArr = this.DAYS.slice(firstDayIndex, 7).concat(this.DAYS.slice(0, firstDayIndex));\n    return daysArr.reduce((map, day, index) => {\n      map[day] = index;\n\n      return map;\n    }, <{[key: string]: number}>{});\n  }\n\n  generateMonthArray(config: IDayCalendarConfigInternal, month: Dayjs, selected: Dayjs[]): IDay[][] {\n    const parsedMonth = month.isValid() ? dayjsRef(month.toDate()) : dayjsRef();\n    let monthArray: IDay[][] = [];\n    const firstDayOfWeekIndex = this.DAYS.indexOf(config.firstDayOfWeek ?? 'su');\n    let firstDayOfBoard = parsedMonth.startOf('month');\n\n    while (firstDayOfBoard.day() !== firstDayOfWeekIndex) {\n      firstDayOfBoard = firstDayOfBoard.subtract(1, 'day');\n    }\n\n    let current = dayjsRef(firstDayOfBoard.toDate());\n    const prevMonth = parsedMonth.subtract(1, 'month');\n    const nextMonth = parsedMonth.add(1, 'month');\n    const today = dayjsRef();\n\n    const daysOfCalendar: IDay[] = this.utilsService.createArray(42)\n      .reduce((array: IDay[]) => {\n        array.push({\n          date: dayjsRef(current.toDate()),\n          selected: !!selected.find(selectedDay => current.isSame(selectedDay, 'day')),\n          currentMonth: current.isSame(parsedMonth, 'month'),\n          prevMonth: current.isSame(prevMonth, 'month'),\n          nextMonth: current.isSame(nextMonth, 'month'),\n          currentDay: current.isSame(today, 'day'),\n          disabled: this.isDateDisabled(current, config)\n        });\n        current = current.add(1, 'day');\n\n        return array;\n      }, []);\n\n    daysOfCalendar.forEach((day, index) => {\n      const weekIndex = Math.floor(index / 7);\n\n      if (!monthArray[weekIndex]) {\n        monthArray.push([]);\n      }\n\n      monthArray[weekIndex].push(day);\n    });\n\n    if (!config.showNearMonthDays) {\n      monthArray = this.removeNearMonthWeeks(parsedMonth, monthArray);\n    }\n\n    return monthArray;\n  }\n\n  generateWeekdays(firstDayOfWeek: WeekDays): Dayjs[] {\n    const weekdayNames: {[key: string]: Dayjs} = {\n      su: dayjsRef().day(0),\n      mo: dayjsRef().day(1),\n      tu: dayjsRef().day(2),\n      we: dayjsRef().day(3),\n      th: dayjsRef().day(4),\n      fr: dayjsRef().day(5),\n      sa: dayjsRef().day(6)\n    };\n    const weekdays: Dayjs[] = [];\n    const daysMap = this.generateDaysMap(firstDayOfWeek);\n\n    for (const dayKey in daysMap) {\n      if (daysMap.hasOwnProperty(dayKey)) {\n        weekdays[daysMap[dayKey]] = weekdayNames[dayKey];\n      }\n    }\n\n    return weekdays;\n  }\n\n  isDateDisabled(date: Dayjs, config: IDayCalendarConfigInternal): boolean {\n    if (config.isDayDisabledCallback) {\n      return config.isDayDisabledCallback(date);\n    }\n\n    if (config.min && date.isBefore(config.min, 'day')) {\n      return true;\n    }\n\n    return !!(config.max && date.isAfter(config.max, 'day'));\n  }\n\n  // todo:: add unit tests\n  getHeaderLabel(config: IDayCalendarConfigInternal, month: Dayjs): string {\n    if (config.monthFormatter) {\n      return config.monthFormatter(month);\n    }\n\n    return month.format(config.monthFormat);\n  }\n\n  // todo:: add unit tests\n  shouldShowLeft(min: Dayjs, currentMonthView: Dayjs): boolean {\n    return min ? min.isBefore(currentMonthView, 'month') : true;\n  }\n\n  // todo:: add unit tests\n  shouldShowRight(max: Dayjs, currentMonthView: Dayjs): boolean {\n    return max ? max.isAfter(currentMonthView, 'month') : true;\n  }\n\n  generateDaysIndexMap(firstDayOfWeek: WeekDays) {\n    const firstDayIndex = this.DAYS.indexOf(firstDayOfWeek);\n    const daysArr = this.DAYS.slice(firstDayIndex, 7).concat(this.DAYS.slice(0, firstDayIndex));\n    return daysArr.reduce((map, day, index) => {\n      map[index] = day;\n\n      return map;\n    }, <{[key: number]: string}>{});\n  }\n\n  getMonthCalendarConfig(componentConfig: IDayCalendarConfigInternal): IMonthCalendarConfig {\n    return this.utilsService.clearUndefined({\n      min: componentConfig.min,\n      max: componentConfig.max,\n      format: componentConfig.format,\n      isNavHeaderBtnClickable: true,\n      allowMultiSelect: false,\n      yearFormat: componentConfig.yearFormat,\n      yearFormatter: componentConfig.yearFormatter,\n      monthBtnFormat: componentConfig.monthBtnFormat,\n      monthBtnFormatter: componentConfig.monthBtnFormatter,\n      monthBtnCssClassCallback: componentConfig.monthBtnCssClassCallback,\n      isMonthDisabledCallback: componentConfig.isMonthDisabledCallback,\n      multipleYearsNavigateBy: componentConfig.multipleYearsNavigateBy,\n      showMultipleYearsNavigation: componentConfig.showMultipleYearsNavigation,\n      showGoToCurrent: componentConfig.showGoToCurrent,\n      numOfMonthRows: componentConfig.numOfMonthRows\n    });\n  }\n\n  getDayBtnText(config: IDayCalendarConfigInternal, day: Dayjs): string {\n    if (config.dayBtnFormatter) {\n      return config.dayBtnFormatter(day);\n    }\n\n    return day.format(config.dayBtnFormat);\n  }\n\n  getDayBtnCssClass(config: IDayCalendarConfigInternal, day: Dayjs): string {\n    if (config.dayBtnCssClassCallback) {\n      return config.dayBtnCssClassCallback(day);\n    }\n\n    return '';\n  }\n\n  private removeNearMonthWeeks(currentMonth: Dayjs, monthArray: IDay[][]): IDay[][] {\n    if (monthArray[monthArray.length - 1].find((day) => day.date.isSame(currentMonth, 'month'))) {\n      return monthArray;\n    } else {\n      return monthArray.slice(0, -1);\n    }\n  }\n}\n",
+            "sourceCode": "import {Injectable} from '@angular/core';\r\n\r\nimport {WeekDays} from '../common/types/week-days.type';\r\nimport {UtilsService} from '../common/services/utils/utils.service';\r\nimport {IDay} from './day.model';\r\nimport {IDayCalendarConfig, IDayCalendarConfigInternal} from './day-calendar-config.model';\r\nimport {IMonthCalendarConfig} from '../month-calendar/month-calendar-config';\r\nimport {Dayjs} from 'dayjs';\r\nimport {dayjsRef} from '../common/dayjs/dayjs.ref';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class DayCalendarService {\r\n  readonly DEFAULT_CONFIG: IDayCalendarConfig = {\r\n    showNearMonthDays: true,\r\n    showWeekNumbers: false,\r\n    firstDayOfWeek: 'su',\r\n    weekDayFormat: 'ddd',\r\n    format: 'DD-MM-YYYY',\r\n    allowMultiSelect: false,\r\n    monthFormat: 'MMM, YYYY',\r\n    enableMonthSelector: true,\r\n    dayBtnFormat: 'DD',\r\n    unSelectOnClick: true\r\n  };\r\n  private readonly DAYS = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'];\r\n\r\n  constructor(private utilsService: UtilsService) {\r\n  }\r\n\r\n  getConfig(config: IDayCalendarConfig): IDayCalendarConfigInternal {\r\n    const _config = {\r\n      ...this.DEFAULT_CONFIG,\r\n      ...this.utilsService.clearUndefined(config)\r\n    };\r\n\r\n    this.utilsService.convertPropsToDayjs(_config, _config.format ?? 'DD-MM-YYYY', ['min', 'max']);\r\n\r\n    return _config as IDayCalendarConfigInternal;\r\n  }\r\n\r\n  generateDaysMap(firstDayOfWeek: WeekDays) {\r\n    const firstDayIndex = this.DAYS.indexOf(firstDayOfWeek);\r\n    const daysArr = this.DAYS.slice(firstDayIndex, 7).concat(this.DAYS.slice(0, firstDayIndex));\r\n    return daysArr.reduce((map, day, index) => {\r\n      map[day] = index;\r\n\r\n      return map;\r\n    }, <{[key: string]: number}>{});\r\n  }\r\n\r\n  generateMonthArray(config: IDayCalendarConfigInternal, month: Dayjs, selected: Dayjs[]): IDay[][] {\r\n    const parsedMonth = month.isValid() ? dayjsRef(month.toDate()) : dayjsRef();\r\n    let monthArray: IDay[][] = [];\r\n    const firstDayOfWeekIndex = this.DAYS.indexOf(config.firstDayOfWeek ?? 'su');\r\n    let firstDayOfBoard = parsedMonth.startOf('month');\r\n\r\n    while (firstDayOfBoard.day() !== firstDayOfWeekIndex) {\r\n      firstDayOfBoard = firstDayOfBoard.subtract(1, 'day');\r\n    }\r\n\r\n    let current = dayjsRef(firstDayOfBoard.toDate());\r\n    const prevMonth = parsedMonth.subtract(1, 'month');\r\n    const nextMonth = parsedMonth.add(1, 'month');\r\n    const today = dayjsRef();\r\n\r\n    const daysOfCalendar: IDay[] = this.utilsService.createArray(42)\r\n      .reduce((array: IDay[]) => {\r\n        array.push({\r\n          date: dayjsRef(current.toDate()),\r\n          selected: !!selected.find(selectedDay => current.isSame(selectedDay, 'day')),\r\n          currentMonth: current.isSame(parsedMonth, 'month'),\r\n          prevMonth: current.isSame(prevMonth, 'month'),\r\n          nextMonth: current.isSame(nextMonth, 'month'),\r\n          currentDay: current.isSame(today, 'day'),\r\n          disabled: this.isDateDisabled(current, config)\r\n        });\r\n        current = current.add(1, 'day');\r\n\r\n        return array;\r\n      }, []);\r\n\r\n    daysOfCalendar.forEach((day, index) => {\r\n      const weekIndex = Math.floor(index / 7);\r\n\r\n      if (!monthArray[weekIndex]) {\r\n        monthArray.push([]);\r\n      }\r\n\r\n      monthArray[weekIndex].push(day);\r\n    });\r\n\r\n    if (!config.showNearMonthDays) {\r\n      monthArray = this.removeNearMonthWeeks(parsedMonth, monthArray);\r\n    }\r\n\r\n    return monthArray;\r\n  }\r\n\r\n  generateWeekdays(firstDayOfWeek: WeekDays): Dayjs[] {\r\n    const weekdayNames: {[key: string]: Dayjs} = {\r\n      su: dayjsRef().day(0),\r\n      mo: dayjsRef().day(1),\r\n      tu: dayjsRef().day(2),\r\n      we: dayjsRef().day(3),\r\n      th: dayjsRef().day(4),\r\n      fr: dayjsRef().day(5),\r\n      sa: dayjsRef().day(6)\r\n    };\r\n    const weekdays: Dayjs[] = [];\r\n    const daysMap = this.generateDaysMap(firstDayOfWeek);\r\n\r\n    for (const dayKey in daysMap) {\r\n      if (daysMap.hasOwnProperty(dayKey)) {\r\n        weekdays[daysMap[dayKey]] = weekdayNames[dayKey];\r\n      }\r\n    }\r\n\r\n    return weekdays;\r\n  }\r\n\r\n  isDateDisabled(date: Dayjs, config: IDayCalendarConfigInternal): boolean {\r\n    if (config.isDayDisabledCallback) {\r\n      return config.isDayDisabledCallback(date);\r\n    }\r\n\r\n    if (config.min && date.isBefore(config.min, 'day')) {\r\n      return true;\r\n    }\r\n\r\n    return !!(config.max && date.isAfter(config.max, 'day'));\r\n  }\r\n\r\n  // todo:: add unit tests\r\n  getHeaderLabel(config: IDayCalendarConfigInternal, month: Dayjs): string {\r\n    if (config.monthFormatter) {\r\n      return config.monthFormatter(month);\r\n    }\r\n\r\n    return month.format(config.monthFormat);\r\n  }\r\n\r\n  // todo:: add unit tests\r\n  shouldShowLeft(min: Dayjs | undefined, currentMonthView: Dayjs): boolean {\r\n    return min ? min.isBefore(currentMonthView, 'month') : true;\r\n  }\r\n\r\n  // todo:: add unit tests\r\n  shouldShowRight(max: Dayjs | undefined, currentMonthView: Dayjs): boolean {\r\n    return max ? max.isAfter(currentMonthView, 'month') : true;\r\n  }\r\n\r\n  generateDaysIndexMap(firstDayOfWeek: WeekDays) {\r\n    const firstDayIndex = this.DAYS.indexOf(firstDayOfWeek);\r\n    const daysArr = this.DAYS.slice(firstDayIndex, 7).concat(this.DAYS.slice(0, firstDayIndex));\r\n    return daysArr.reduce((map, day, index) => {\r\n      map[index] = day;\r\n\r\n      return map;\r\n    }, <{[key: number]: string}>{});\r\n  }\r\n\r\n  getMonthCalendarConfig(componentConfig: IDayCalendarConfigInternal): IMonthCalendarConfig {\r\n    return this.utilsService.clearUndefined({\r\n      min: componentConfig.min,\r\n      max: componentConfig.max,\r\n      format: componentConfig.format,\r\n      isNavHeaderBtnClickable: true,\r\n      allowMultiSelect: false,\r\n      yearFormat: componentConfig.yearFormat,\r\n      yearFormatter: componentConfig.yearFormatter,\r\n      monthBtnFormat: componentConfig.monthBtnFormat,\r\n      monthBtnFormatter: componentConfig.monthBtnFormatter,\r\n      monthBtnCssClassCallback: componentConfig.monthBtnCssClassCallback,\r\n      isMonthDisabledCallback: componentConfig.isMonthDisabledCallback,\r\n      multipleYearsNavigateBy: componentConfig.multipleYearsNavigateBy,\r\n      showMultipleYearsNavigation: componentConfig.showMultipleYearsNavigation,\r\n      showGoToCurrent: componentConfig.showGoToCurrent,\r\n      numOfMonthRows: componentConfig.numOfMonthRows\r\n    });\r\n  }\r\n\r\n  getDayBtnText(config: IDayCalendarConfigInternal, day: Dayjs): string {\r\n    if (config.dayBtnFormatter) {\r\n      return config.dayBtnFormatter(day);\r\n    }\r\n\r\n    return day.format(config.dayBtnFormat);\r\n  }\r\n\r\n  getDayBtnCssClass(config: IDayCalendarConfigInternal, day: Dayjs): string {\r\n    if (config.dayBtnCssClassCallback) {\r\n      return config.dayBtnCssClassCallback(day);\r\n    }\r\n\r\n    return '';\r\n  }\r\n\r\n  private removeNearMonthWeeks(currentMonth: Dayjs, monthArray: IDay[][]): IDay[][] {\r\n    if (monthArray[monthArray.length - 1].find((day) => day.date.isSame(currentMonth, 'month'))) {\r\n      return monthArray;\r\n    } else {\r\n      return monthArray.slice(0, -1);\r\n    }\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -2980,7 +2980,7 @@
         },
         {
             "name": "MonthCalendarService",
-            "id": "injectable-MonthCalendarService-816b502c589740b4790a0541778afd3d559a6ccfd057fd1a0ac4de2108162083cc77b42a923cddd82bcd3ec672fc6c94a7366ef708a0a8057a144ef934e9d398",
+            "id": "injectable-MonthCalendarService-7d14c8a99919e05af00c4994a221f861a5381f51398982bf9d471a5015010ab9fa7c194f24fda44bdaa7e863c29817ca8c6a7b58dd5e4489d04c20f7b779a665",
             "file": "src/app/components/ng2datepickercopy/lib/month-calendar/month-calendar.service.ts",
             "properties": [
                 {
@@ -3264,7 +3264,7 @@
                     "args": [
                         {
                             "name": "min",
-                            "type": "Dayjs",
+                            "type": "Dayjs | undefined",
                             "deprecated": false,
                             "deprecationMessage": ""
                         },
@@ -3284,7 +3284,7 @@
                     "jsdoctags": [
                         {
                             "name": "min",
-                            "type": "Dayjs",
+                            "type": "Dayjs | undefined",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -3307,7 +3307,7 @@
                     "args": [
                         {
                             "name": "max",
-                            "type": "Dayjs",
+                            "type": "Dayjs | undefined",
                             "deprecated": false,
                             "deprecationMessage": ""
                         },
@@ -3327,7 +3327,7 @@
                     "jsdoctags": [
                         {
                             "name": "max",
-                            "type": "Dayjs",
+                            "type": "Dayjs | undefined",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -3382,7 +3382,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import {Injectable} from '@angular/core';\n\nimport {UtilsService} from '../common/services/utils/utils.service';\nimport {IMonth} from './month.model';\nimport {IMonthCalendarConfig, IMonthCalendarConfigInternal} from './month-calendar-config';\nimport {Dayjs} from 'dayjs';\nimport {dayjsRef} from '../common/dayjs/dayjs.ref';\n\n\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class MonthCalendarService {\n  readonly DEFAULT_CONFIG: IMonthCalendarConfigInternal = {\n    allowMultiSelect: false,\n    yearFormat: 'YYYY',\n    format: 'MM-YYYY',\n    isNavHeaderBtnClickable: false,\n    monthBtnFormat: 'MMM',\n    multipleYearsNavigateBy: 10,\n    showMultipleYearsNavigation: false,\n    unSelectOnClick: true,\n    numOfMonthRows: 3\n  };\n\n  constructor(private utilsService: UtilsService) {\n  }\n\n  getConfig(config: IMonthCalendarConfig): IMonthCalendarConfigInternal {\n    const _config = <IMonthCalendarConfigInternal>{\n      ...this.DEFAULT_CONFIG,\n      ...this.utilsService?.clearUndefined?.(config) ?? {}\n    };\n\n    MonthCalendarService.validateConfig(_config);\n  this.utilsService?.convertPropsToDayjs?.(_config, _config.format ?? 'MM-YYYY', ['min', 'max']);\n\n    return _config;\n  }\n\n  generateYear(config: IMonthCalendarConfig, year: Dayjs, selected?: Dayjs[]): IMonth[][] {\n    let index = year?.startOf?.('year') ?? dayjsRef().startOf('year');\n\n    return this.utilsService?.createArray?.(config?.numOfMonthRows ?? 1)?.map(() => {\n      return this.utilsService?.createArray?.(12 / (config?.numOfMonthRows ?? 1))?.map(() => {\n        const date = dayjsRef(index);\n        const month = {\n          date,\n          selected: !!selected?.find?.(s => index?.isSame?.(s, 'month')),\n          currentMonth: index?.isSame?.(dayjsRef(), 'month') ?? false,\n          disabled: this.isMonthDisabled(date, config),\n          text: this.getMonthBtnText(config, date)\n        };\n\n        index = index?.add?.(1, 'month') ?? index;\n\n        return month;\n      }) ?? [];\n    }) ?? [];\n  }\n\n  isMonthDisabled(date: Dayjs, config: IMonthCalendarConfig) {\n    if (config?.isMonthDisabledCallback) {\n      return config.isMonthDisabledCallback(date);\n    }\n\n    if (config?.min && date?.isBefore?.(config.min, 'month')) {\n      return true;\n    }\n\n    return !!(config?.max && date?.isAfter?.(config.max, 'month'));\n  }\n\n  shouldShowLeft(min: Dayjs, currentMonthView: Dayjs): boolean {\n  return min?.isBefore?.(currentMonthView, 'year') ?? true;\n  }\n\n  shouldShowRight(max: Dayjs, currentMonthView: Dayjs): boolean {\n  return max?.isAfter?.(currentMonthView, 'year') ?? true;\n  }\n\n  getHeaderLabel(config: IMonthCalendarConfig, year: Dayjs): string {\n    if (config?.yearFormatter) {\n      return config.yearFormatter(year);\n    }\n\n    return year?.format?.(config?.yearFormat ?? 'YYYY') ?? '';\n  }\n\n  getMonthBtnText(config: IMonthCalendarConfig, month: Dayjs): string {\n    if (config?.monthBtnFormatter) {\n      return config.monthBtnFormatter(month);\n    }\n\n    return month?.format?.(config?.monthBtnFormat ?? 'MMM') ?? '';\n  }\n\n  getMonthBtnCssClass(config: IMonthCalendarConfig, month: Dayjs): string {\n    if (config?.monthBtnCssClassCallback) {\n      return config.monthBtnCssClassCallback(month);\n    }\n\n    return '';\n  }\n\n  private static validateConfig(config: IMonthCalendarConfigInternal): void {\n    if ((config?.numOfMonthRows ?? 0) < 1 || (config?.numOfMonthRows ?? 0) > 12 || !Number.isInteger(12 / (config?.numOfMonthRows ?? 1))) {\n      throw new Error('numOfMonthRows has to be between 1 - 12 and divide 12 to integer');\n    }\n  }\n}\n",
+            "sourceCode": "import {Injectable} from '@angular/core';\n\nimport {UtilsService} from '../common/services/utils/utils.service';\nimport {IMonth} from './month.model';\nimport {IMonthCalendarConfig, IMonthCalendarConfigInternal} from './month-calendar-config';\nimport {Dayjs} from 'dayjs';\nimport {dayjsRef} from '../common/dayjs/dayjs.ref';\n\n\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class MonthCalendarService {\n  readonly DEFAULT_CONFIG: IMonthCalendarConfigInternal = {\n    allowMultiSelect: false,\n    yearFormat: 'YYYY',\n    format: 'MM-YYYY',\n    isNavHeaderBtnClickable: false,\n    monthBtnFormat: 'MMM',\n    multipleYearsNavigateBy: 10,\n    showMultipleYearsNavigation: false,\n    unSelectOnClick: true,\n    numOfMonthRows: 3\n  };\n\n  constructor(private utilsService: UtilsService) {\n  }\n\n  getConfig(config: IMonthCalendarConfig): IMonthCalendarConfigInternal {\n    const _config = <IMonthCalendarConfigInternal>{\n      ...this.DEFAULT_CONFIG,\n      ...this.utilsService?.clearUndefined?.(config) ?? {}\n    };\n\n    MonthCalendarService.validateConfig(_config);\n  this.utilsService?.convertPropsToDayjs?.(_config, _config.format ?? 'MM-YYYY', ['min', 'max']);\n\n    return _config;\n  }\n\n  generateYear(config: IMonthCalendarConfig, year: Dayjs, selected?: Dayjs[]): IMonth[][] {\n    let index = year?.startOf?.('year') ?? dayjsRef().startOf('year');\n\n    return this.utilsService?.createArray?.(config?.numOfMonthRows ?? 1)?.map(() => {\n      return this.utilsService?.createArray?.(12 / (config?.numOfMonthRows ?? 1))?.map(() => {\n        const date = dayjsRef(index);\n        const month = {\n          date,\n          selected: !!selected?.find?.(s => index?.isSame?.(s, 'month')),\n          currentMonth: index?.isSame?.(dayjsRef(), 'month') ?? false,\n          disabled: this.isMonthDisabled(date, config),\n          text: this.getMonthBtnText(config, date)\n        };\n\n        index = index?.add?.(1, 'month') ?? index;\n\n        return month;\n      }) ?? [];\n    }) ?? [];\n  }\n\n  isMonthDisabled(date: Dayjs, config: IMonthCalendarConfig) {\n    if (config?.isMonthDisabledCallback) {\n      return config.isMonthDisabledCallback(date);\n    }\n\n    if (config?.min && date?.isBefore?.(config.min, 'month')) {\n      return true;\n    }\n\n    return !!(config?.max && date?.isAfter?.(config.max, 'month'));\n  }\n\n  shouldShowLeft(min: Dayjs | undefined, currentMonthView: Dayjs): boolean {\n  return min?.isBefore?.(currentMonthView, 'year') ?? true;\n  }\n\n  shouldShowRight(max: Dayjs | undefined, currentMonthView: Dayjs): boolean {\n  return max?.isAfter?.(currentMonthView, 'year') ?? true;\n  }\n\n  getHeaderLabel(config: IMonthCalendarConfig, year: Dayjs): string {\n    if (config?.yearFormatter) {\n      return config.yearFormatter(year);\n    }\n\n    return year?.format?.(config?.yearFormat ?? 'YYYY') ?? '';\n  }\n\n  getMonthBtnText(config: IMonthCalendarConfig, month: Dayjs): string {\n    if (config?.monthBtnFormatter) {\n      return config.monthBtnFormatter(month);\n    }\n\n    return month?.format?.(config?.monthBtnFormat ?? 'MMM') ?? '';\n  }\n\n  getMonthBtnCssClass(config: IMonthCalendarConfig, month: Dayjs): string {\n    if (config?.monthBtnCssClassCallback) {\n      return config.monthBtnCssClassCallback(month);\n    }\n\n    return '';\n  }\n\n  private static validateConfig(config: IMonthCalendarConfigInternal): void {\n    if ((config?.numOfMonthRows ?? 0) < 1 || (config?.numOfMonthRows ?? 0) > 12 || !Number.isInteger(12 / (config?.numOfMonthRows ?? 1))) {\n      throw new Error('numOfMonthRows has to be between 1 - 12 and divide 12 to integer');\n    }\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -10206,7 +10206,7 @@
         },
         {
             "name": "DayCalendarComponent",
-            "id": "component-DayCalendarComponent-71f93c6162725b6d31ee213ab83fde0d62a4777518423b0673121275ed2ce18b789969f23f44eb0d9b3b9b600d1ea5730d6e9f336467c0c5e33694142e3a30b5",
+            "id": "component-DayCalendarComponent-5fce7cf64e05417d6c716cfcd1894628ea6636c39438d01b11c5baecd41f21d9f5d7753823acc6e6ca24eed6a5fc9c7956c60ac7e514bc1f50f92c79e81e2176",
             "file": "src/app/components/ng2datepickercopy/lib/day-calendar/day-calendar.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -11240,7 +11240,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {ECalendarValue} from '../common/types/calendar-value-enum';\r\nimport {SingleCalendarValue} from '../common/types/single-calendar-value';\r\nimport {ECalendarMode} from '../common/types/calendar-mode-enum';\r\nimport {\r\n  ChangeDetectionStrategy,\r\n  ChangeDetectorRef,\r\n  Component,\r\n  EventEmitter,\r\n  forwardRef,\r\n  HostBinding,\r\n  Input,\r\n  OnChanges,\r\n  OnInit,\r\n  Output,\r\n  SimpleChange,\r\n  SimpleChanges,\r\n  ViewEncapsulation\r\n} from '@angular/core';\r\nimport {DayCalendarService} from './day-calendar.service';\r\n\r\nimport {Dayjs, ManipulateType} from 'dayjs';\r\nimport {IDayCalendarConfig, IDayCalendarConfigInternal} from './day-calendar-config.model';\r\nimport {IDay} from './day.model';\r\nimport {\r\n  ControlValueAccessor,\r\n  UntypedFormControl,\r\n  NG_VALIDATORS,\r\n  NG_VALUE_ACCESSOR,\r\n  ValidationErrors,\r\n  Validator,\r\n  FormsModule\r\n} from '@angular/forms';\r\nimport {CalendarValue} from '../common/types/calendar-value';\r\nimport {UtilsService} from '../common/services/utils/utils.service';\r\nimport {IMonthCalendarConfig} from '../month-calendar/month-calendar-config';\r\nimport {IMonth} from '../month-calendar/month.model';\r\nimport {DateValidator} from '../common/types/validator.type';\r\nimport {INavEvent} from '../common/models/navigation-event.model';\r\nimport {dayjsRef} from '../common/dayjs/dayjs.ref';\r\nimport { MonthCalendarComponent } from '../month-calendar/month-calendar.component';\r\nimport { CommonModule } from '@angular/common';\r\nimport { CalendarNavComponent } from '../calendar-nav/calendar-nav.component';\r\n\r\n@Component({\r\n    selector: 'dp-day-calendar',\r\n    templateUrl: 'day-calendar.component.html',\r\n    styleUrls: ['day-calendar.component.less'],\r\n    imports: [MonthCalendarComponent, CommonModule, FormsModule, CalendarNavComponent],\r\n    encapsulation: ViewEncapsulation.None,\r\n    changeDetection: ChangeDetectionStrategy.OnPush,\r\n    providers: [\r\n        DayCalendarService,\r\n        {\r\n            provide: NG_VALUE_ACCESSOR,\r\n            useExisting: forwardRef(() => DayCalendarComponent),\r\n            multi: true\r\n        },\r\n        {\r\n            provide: NG_VALIDATORS,\r\n            useExisting: forwardRef(() => DayCalendarComponent),\r\n            multi: true\r\n        }\r\n    ],\r\n    standalone: true\r\n})\r\nexport class DayCalendarComponent implements OnInit, OnChanges, ControlValueAccessor, Validator {\r\n\r\n  @Input() config!: IDayCalendarConfig;\r\n  @Input() displayDate!: SingleCalendarValue;\r\n  @Input() minDate!: Dayjs;\r\n  @Input() maxDate!: Dayjs;\r\n  @HostBinding('class') @Input() theme!: string;\r\n  @Output() onSelect: EventEmitter<IDay> = new EventEmitter();\r\n  @Output() onMonthSelect: EventEmitter<IMonth> = new EventEmitter();\r\n  @Output() onNavHeaderBtnClick: EventEmitter<ECalendarMode> = new EventEmitter();\r\n  @Output() onGoToCurrent: EventEmitter<void> = new EventEmitter();\r\n  @Output() onLeftNav: EventEmitter<INavEvent> = new EventEmitter();\r\n  @Output() onRightNav: EventEmitter<INavEvent> = new EventEmitter();\r\n  CalendarMode = ECalendarMode;\r\n  isInited: boolean = false;\r\n  componentConfig!: IDayCalendarConfigInternal;\r\n  weeks!: IDay[][];\r\n  weekdays!: Dayjs[];\r\n  inputValue!: CalendarValue;\r\n  inputValueType!: ECalendarValue;\r\n  validateFn!: DateValidator;\r\n  currentCalendarMode: ECalendarMode = ECalendarMode.Day;\r\n  monthCalendarConfig!: IMonthCalendarConfig;\r\n  _shouldShowCurrent: boolean = true;\r\n  navLabel!: string;\r\n  showLeftNav!: boolean;\r\n  showRightNav!: boolean;\r\n  api = {\r\n    moveCalendarsBy: this.moveCalendarsBy.bind(this),\r\n    moveCalendarTo: this.moveCalendarTo.bind(this),\r\n    toggleCalendarMode: this.toggleCalendarMode.bind(this)\r\n  };\r\n\r\n  constructor(public readonly dayCalendarService: DayCalendarService,\r\n              public readonly utilsService: UtilsService,\r\n              public readonly cd: ChangeDetectorRef) {\r\n  }\r\n\r\n  _selected!: Dayjs[];\r\n\r\n  get selected(): Dayjs[] {\r\n    return this._selected;\r\n  }\r\n\r\n  set selected(selected: Dayjs[]) {\r\n    this._selected = selected;\r\n    this.onChangeCallback(this.processOnChangeCallback(selected));\r\n  }\r\n\r\n  _currentDateView!: Dayjs | null;\r\n\r\n  get currentDateView(): Dayjs {\r\n    return this._currentDateView || dayjsRef();\r\n  }\r\n\r\n  set currentDateView(current: Dayjs) {\r\n    this._currentDateView = dayjsRef(current.toDate());\r\n    this.weeks = this.dayCalendarService\r\n      .generateMonthArray(this.componentConfig, this._currentDateView, this.selected);\r\n    this.navLabel = this.dayCalendarService.getHeaderLabel(this.componentConfig, this._currentDateView);\r\n    this.showLeftNav = this.dayCalendarService.shouldShowLeft(this.componentConfig.min ?? dayjsRef(), this.currentDateView);\r\n    this.showRightNav = this.dayCalendarService.shouldShowRight(this.componentConfig.max ?? dayjsRef(), this.currentDateView);\r\n  }\r\n  ;\r\n\r\n  ngOnInit() {\r\n    this.isInited = true;\r\n    this.init();\r\n    this.initValidators();\r\n  }\r\n\r\n  init() {\r\n    this.componentConfig = this.dayCalendarService.getConfig(this.config);\r\n    this.selected = this.selected || [];\r\n    this.currentDateView = this.displayDate\r\n      ? this.utilsService.convertToDayjs(this.displayDate, this.componentConfig.format ?? '')\r\n      : this.utilsService\r\n        .getDefaultDisplayDate(\r\n          this.currentDateView,\r\n          this.selected,\r\n          this.componentConfig.allowMultiSelect ?? false,\r\n          this.componentConfig.min ?? dayjsRef()\r\n        );\r\n    this.weekdays = this.dayCalendarService\r\n      .generateWeekdays(this.componentConfig.firstDayOfWeek ?? 'su');\r\n    this.inputValueType = this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\r\n    this.monthCalendarConfig = this.dayCalendarService.getMonthCalendarConfig(this.componentConfig);\r\n    this._shouldShowCurrent = this.shouldShowCurrent();\r\n  }\r\n\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n    if (this.isInited) {\r\n      const {minDate, maxDate, config} = changes;\r\n\r\n      this.handleConfigChange(config);\r\n      this.init();\r\n\r\n      if (minDate || maxDate) {\r\n        this.initValidators();\r\n      }\r\n    }\r\n  }\r\n\r\n  writeValue(value: CalendarValue): void {\r\n    this.inputValue = value;\r\n\r\n    if (value) {\r\n      this.selected = this.utilsService\r\n        .convertToDayjsArray(value, this.componentConfig);\r\n      this.inputValueType = this.utilsService\r\n        .getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\r\n    } else {\r\n      this.selected = [];\r\n    }\r\n\r\n    this.weeks = this.dayCalendarService\r\n      .generateMonthArray(this.componentConfig, this.currentDateView, this.selected);\r\n\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  registerOnChange(fn: any): void {\r\n    this.onChangeCallback = fn;\r\n  }\r\n\r\n  onChangeCallback(_: any) {\r\n  }\r\n\r\n  registerOnTouched(fn: any): void {\r\n  }\r\n\r\n  validate(formControl: UntypedFormControl): ValidationErrors | any {\r\n    if (this.minDate || this.maxDate) {\r\n      return this.validateFn(formControl.value);\r\n    } else {\r\n      return () => null;\r\n    }\r\n  }\r\n\r\n  processOnChangeCallback(value: Dayjs[]): CalendarValue {\r\n    return this.utilsService.convertFromDayjsArray(\r\n      this.componentConfig.format ?? '',\r\n      value,\r\n      this.componentConfig.returnedValueType || this.inputValueType\r\n    );\r\n  }\r\n\r\n  initValidators() {\r\n    this.validateFn = this.utilsService.createValidator(\r\n      {minDate: this.minDate, maxDate: this.maxDate},\r\n      this.componentConfig.format ?? '',\r\n      'day'\r\n    );\r\n\r\n    this.onChangeCallback(this.processOnChangeCallback(this.selected));\r\n  }\r\n\r\n  dayClicked(day: IDay) {\r\n    if (day.selected && !this.componentConfig.unSelectOnClick) {\r\n      return;\r\n    }\r\n\r\n    this.selected = this.utilsService\r\n      .updateSelected(this.componentConfig.allowMultiSelect ?? false, this.selected, day);\r\n    this.weeks = this.dayCalendarService\r\n      .generateMonthArray(this.componentConfig, this.currentDateView, this.selected);\r\n    this.onSelect.emit(day);\r\n  }\r\n\r\n  getDayBtnText(day: IDay): string {\r\n    return this.dayCalendarService.getDayBtnText(this.componentConfig, day.date);\r\n  }\r\n\r\n  getDayBtnCssClass(day: IDay): { [klass: string]: boolean } {\r\n    const cssClasses: { [klass: string]: boolean } = {\r\n      'dp-selected': day.selected,\r\n      'dp-current-month': !!day.currentMonth,\r\n      'dp-prev-month': !!day.prevMonth,\r\n      'dp-next-month': !!day.nextMonth,\r\n      'dp-current-day': !!day.currentDay\r\n    };\r\n    const customCssClass: string = this.dayCalendarService.getDayBtnCssClass(this.componentConfig, day.date);\r\n    if (customCssClass) {\r\n      cssClasses[customCssClass] = true;\r\n    }\r\n\r\n    return cssClasses;\r\n  }\r\n\r\n  onLeftNavClick() {\r\n    const from = dayjsRef(this.currentDateView.toDate());\r\n    this.moveCalendarsBy(this.currentDateView, -1, 'month');\r\n    const to = dayjsRef(this.currentDateView.toDate());\r\n    this.onLeftNav.emit({from, to});\r\n  }\r\n\r\n  onRightNavClick() {\r\n    const from = dayjsRef(this.currentDateView.toDate());\r\n    this.moveCalendarsBy(this.currentDateView, 1, 'month');\r\n    const to = dayjsRef(this.currentDateView.toDate());\r\n    this.onRightNav.emit({from, to});\r\n  }\r\n\r\n  onMonthCalendarLeftClick(change: INavEvent) {\r\n    this.onLeftNav.emit(change);\r\n  }\r\n\r\n  onMonthCalendarRightClick(change: INavEvent) {\r\n    this.onRightNav.emit(change);\r\n  }\r\n\r\n  onMonthCalendarSecondaryLeftClick(change: INavEvent) {\r\n    this.onRightNav.emit(change);\r\n  }\r\n\r\n  onMonthCalendarSecondaryRightClick(change: INavEvent) {\r\n    this.onLeftNav.emit(change);\r\n  }\r\n\r\n  getWeekdayName(weekday: Dayjs): string {\r\n    if (this.componentConfig.weekDayFormatter) {\r\n      return this.componentConfig.weekDayFormatter(weekday.day());\r\n    }\r\n\r\n    return weekday.format(this.componentConfig.weekDayFormat);\r\n  }\r\n\r\n  toggleCalendarMode(mode: ECalendarMode) {\r\n    if (this.currentCalendarMode !== mode) {\r\n      this.currentCalendarMode = mode;\r\n      this.onNavHeaderBtnClick.emit(mode);\r\n    }\r\n\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  monthSelected(month: IMonth) {\r\n    this.currentDateView = dayjsRef(month.date.toDate());\r\n    this.currentCalendarMode = ECalendarMode.Day;\r\n    this.onMonthSelect.emit(month);\r\n  }\r\n\r\n  moveCalendarsBy(current: Dayjs, amount: number, granularity: ManipulateType = 'month') {\r\n    this.currentDateView = dayjsRef(current.toDate()).add(amount, granularity);\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  moveCalendarTo(to: SingleCalendarValue) {\r\n    if (to) {\r\n      this.currentDateView = this.utilsService.convertToDayjs(to, this.componentConfig.format ?? '');\r\n    }\r\n\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  shouldShowCurrent(): boolean {\r\n    return this.utilsService.shouldShowCurrent(\r\n      this.componentConfig.showGoToCurrent ?? false,\r\n      'day',\r\n      this.componentConfig.min ?? dayjsRef(),\r\n      this.componentConfig.max ?? dayjsRef()\r\n    );\r\n  }\r\n\r\n  goToCurrent() {\r\n    this.currentDateView = dayjsRef();\r\n    this.onGoToCurrent.emit();\r\n  }\r\n\r\n  handleConfigChange(config: SimpleChange): void {\r\n    if (config) {\r\n      const prevConf: IDayCalendarConfigInternal = this.dayCalendarService.getConfig(config.previousValue);\r\n      const currentConf: IDayCalendarConfigInternal = this.dayCalendarService.getConfig(config.currentValue);\r\n\r\n      if (this.utilsService.shouldResetCurrentView(prevConf, currentConf)) {\r\n        this._currentDateView = null;\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import {ECalendarValue} from '../common/types/calendar-value-enum';\r\nimport {SingleCalendarValue} from '../common/types/single-calendar-value';\r\nimport {ECalendarMode} from '../common/types/calendar-mode-enum';\r\nimport {\r\n  ChangeDetectionStrategy,\r\n  ChangeDetectorRef,\r\n  Component,\r\n  EventEmitter,\r\n  forwardRef,\r\n  HostBinding,\r\n  Input,\r\n  OnChanges,\r\n  OnInit,\r\n  Output,\r\n  SimpleChange,\r\n  SimpleChanges,\r\n  ViewEncapsulation\r\n} from '@angular/core';\r\nimport {DayCalendarService} from './day-calendar.service';\r\n\r\nimport {Dayjs, ManipulateType} from 'dayjs';\r\nimport {IDayCalendarConfig, IDayCalendarConfigInternal} from './day-calendar-config.model';\r\nimport {IDay} from './day.model';\r\nimport {\r\n  ControlValueAccessor,\r\n  UntypedFormControl,\r\n  NG_VALIDATORS,\r\n  NG_VALUE_ACCESSOR,\r\n  ValidationErrors,\r\n  Validator,\r\n  FormsModule\r\n} from '@angular/forms';\r\nimport {CalendarValue} from '../common/types/calendar-value';\r\nimport {UtilsService} from '../common/services/utils/utils.service';\r\nimport {IMonthCalendarConfig} from '../month-calendar/month-calendar-config';\r\nimport {IMonth} from '../month-calendar/month.model';\r\nimport {DateValidator} from '../common/types/validator.type';\r\nimport {INavEvent} from '../common/models/navigation-event.model';\r\nimport {dayjsRef} from '../common/dayjs/dayjs.ref';\r\nimport { MonthCalendarComponent } from '../month-calendar/month-calendar.component';\r\nimport { CommonModule } from '@angular/common';\r\nimport { CalendarNavComponent } from '../calendar-nav/calendar-nav.component';\r\n\r\n@Component({\r\n    selector: 'dp-day-calendar',\r\n    templateUrl: 'day-calendar.component.html',\r\n    styleUrls: ['day-calendar.component.less'],\r\n    imports: [MonthCalendarComponent, CommonModule, FormsModule, CalendarNavComponent],\r\n    encapsulation: ViewEncapsulation.None,\r\n    changeDetection: ChangeDetectionStrategy.OnPush,\r\n    providers: [\r\n        DayCalendarService,\r\n        {\r\n            provide: NG_VALUE_ACCESSOR,\r\n            useExisting: forwardRef(() => DayCalendarComponent),\r\n            multi: true\r\n        },\r\n        {\r\n            provide: NG_VALIDATORS,\r\n            useExisting: forwardRef(() => DayCalendarComponent),\r\n            multi: true\r\n        }\r\n    ],\r\n    standalone: true\r\n})\r\nexport class DayCalendarComponent implements OnInit, OnChanges, ControlValueAccessor, Validator {\r\n\r\n  @Input() config!: IDayCalendarConfig;\r\n  @Input() displayDate!: SingleCalendarValue;\r\n  @Input() minDate!: Dayjs;\r\n  @Input() maxDate!: Dayjs;\r\n  @HostBinding('class') @Input() theme!: string;\r\n  @Output() onSelect: EventEmitter<IDay> = new EventEmitter();\r\n  @Output() onMonthSelect: EventEmitter<IMonth> = new EventEmitter();\r\n  @Output() onNavHeaderBtnClick: EventEmitter<ECalendarMode> = new EventEmitter();\r\n  @Output() onGoToCurrent: EventEmitter<void> = new EventEmitter();\r\n  @Output() onLeftNav: EventEmitter<INavEvent> = new EventEmitter();\r\n  @Output() onRightNav: EventEmitter<INavEvent> = new EventEmitter();\r\n  CalendarMode = ECalendarMode;\r\n  isInited: boolean = false;\r\n  componentConfig!: IDayCalendarConfigInternal;\r\n  weeks!: IDay[][];\r\n  weekdays!: Dayjs[];\r\n  inputValue!: CalendarValue;\r\n  inputValueType!: ECalendarValue;\r\n  validateFn!: DateValidator;\r\n  currentCalendarMode: ECalendarMode = ECalendarMode.Day;\r\n  monthCalendarConfig!: IMonthCalendarConfig;\r\n  _shouldShowCurrent: boolean = true;\r\n  navLabel!: string;\r\n  showLeftNav!: boolean;\r\n  showRightNav!: boolean;\r\n  api = {\r\n    moveCalendarsBy: this.moveCalendarsBy.bind(this),\r\n    moveCalendarTo: this.moveCalendarTo.bind(this),\r\n    toggleCalendarMode: this.toggleCalendarMode.bind(this)\r\n  };\r\n\r\n  constructor(public readonly dayCalendarService: DayCalendarService,\r\n              public readonly utilsService: UtilsService,\r\n              public readonly cd: ChangeDetectorRef) {\r\n  }\r\n\r\n  _selected!: Dayjs[];\r\n\r\n  get selected(): Dayjs[] {\r\n    return this._selected;\r\n  }\r\n\r\n  set selected(selected: Dayjs[]) {\r\n    this._selected = selected;\r\n    this.onChangeCallback(this.processOnChangeCallback(selected));\r\n  }\r\n\r\n  _currentDateView!: Dayjs | null;\r\n\r\n  get currentDateView(): Dayjs {\r\n    return this._currentDateView || dayjsRef();\r\n  }\r\n\r\n  set currentDateView(current: Dayjs) {\r\n    this._currentDateView = dayjsRef(current.toDate());\r\n    this.weeks = this.dayCalendarService\r\n      .generateMonthArray(this.componentConfig, this._currentDateView, this.selected);\r\n    this.navLabel = this.dayCalendarService.getHeaderLabel(this.componentConfig, this._currentDateView);\r\n    this.showLeftNav = this.dayCalendarService.shouldShowLeft(this.componentConfig.min , this.currentDateView);\r\n    this.showRightNav = this.dayCalendarService.shouldShowRight(this.componentConfig.max , this.currentDateView);\r\n  }\r\n  ;\r\n\r\n  ngOnInit() {\r\n    this.isInited = true;\r\n    this.init();\r\n    this.initValidators();\r\n  }\r\n\r\n  init() {\r\n    this.componentConfig = this.dayCalendarService.getConfig(this.config);\r\n    this.selected = this.selected || [];\r\n    this.currentDateView = this.displayDate\r\n      ? this.utilsService.convertToDayjs(this.displayDate, this.componentConfig.format ?? '')\r\n      : this.utilsService\r\n        .getDefaultDisplayDate(\r\n          this.currentDateView,\r\n          this.selected,\r\n          this.componentConfig.allowMultiSelect ?? false,\r\n          this.componentConfig.min ?? dayjsRef()\r\n        );\r\n    this.weekdays = this.dayCalendarService\r\n      .generateWeekdays(this.componentConfig.firstDayOfWeek ?? 'su');\r\n    this.inputValueType = this.utilsService.getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\r\n    this.monthCalendarConfig = this.dayCalendarService.getMonthCalendarConfig(this.componentConfig);\r\n    this._shouldShowCurrent = this.shouldShowCurrent();\r\n  }\r\n\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n    if (this.isInited) {\r\n      const {minDate, maxDate, config} = changes;\r\n\r\n      this.handleConfigChange(config);\r\n      this.init();\r\n\r\n      if (minDate || maxDate) {\r\n        this.initValidators();\r\n      }\r\n    }\r\n  }\r\n\r\n  writeValue(value: CalendarValue): void {\r\n    this.inputValue = value;\r\n\r\n    if (value) {\r\n      this.selected = this.utilsService\r\n        .convertToDayjsArray(value, this.componentConfig);\r\n      this.inputValueType = this.utilsService\r\n        .getInputType(this.inputValue, this.componentConfig.allowMultiSelect ?? false);\r\n    } else {\r\n      this.selected = [];\r\n    }\r\n\r\n    this.weeks = this.dayCalendarService\r\n      .generateMonthArray(this.componentConfig, this.currentDateView, this.selected);\r\n\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  registerOnChange(fn: any): void {\r\n    this.onChangeCallback = fn;\r\n  }\r\n\r\n  onChangeCallback(_: any) {\r\n  }\r\n\r\n  registerOnTouched(fn: any): void {\r\n  }\r\n\r\n  validate(formControl: UntypedFormControl): ValidationErrors | any {\r\n    if (this.minDate || this.maxDate) {\r\n      return this.validateFn(formControl.value);\r\n    } else {\r\n      return () => null;\r\n    }\r\n  }\r\n\r\n  processOnChangeCallback(value: Dayjs[]): CalendarValue {\r\n    return this.utilsService.convertFromDayjsArray(\r\n      this.componentConfig.format ?? '',\r\n      value,\r\n      this.componentConfig.returnedValueType || this.inputValueType\r\n    );\r\n  }\r\n\r\n  initValidators() {\r\n    this.validateFn = this.utilsService.createValidator(\r\n      {minDate: this.minDate, maxDate: this.maxDate},\r\n      this.componentConfig.format ?? '',\r\n      'day'\r\n    );\r\n\r\n    this.onChangeCallback(this.processOnChangeCallback(this.selected));\r\n  }\r\n\r\n  dayClicked(day: IDay) {\r\n    if (day.selected && !this.componentConfig.unSelectOnClick) {\r\n      return;\r\n    }\r\n\r\n    this.selected = this.utilsService\r\n      .updateSelected(this.componentConfig.allowMultiSelect ?? false, this.selected, day);\r\n    this.weeks = this.dayCalendarService\r\n      .generateMonthArray(this.componentConfig, this.currentDateView, this.selected);\r\n    this.onSelect.emit(day);\r\n  }\r\n\r\n  getDayBtnText(day: IDay): string {\r\n    return this.dayCalendarService.getDayBtnText(this.componentConfig, day.date);\r\n  }\r\n\r\n  getDayBtnCssClass(day: IDay): { [klass: string]: boolean } {\r\n    const cssClasses: { [klass: string]: boolean } = {\r\n      'dp-selected': day.selected,\r\n      'dp-current-month': !!day.currentMonth,\r\n      'dp-prev-month': !!day.prevMonth,\r\n      'dp-next-month': !!day.nextMonth,\r\n      'dp-current-day': !!day.currentDay\r\n    };\r\n    const customCssClass: string = this.dayCalendarService.getDayBtnCssClass(this.componentConfig, day.date);\r\n    if (customCssClass) {\r\n      cssClasses[customCssClass] = true;\r\n    }\r\n\r\n    return cssClasses;\r\n  }\r\n\r\n  onLeftNavClick() {\r\n    const from = dayjsRef(this.currentDateView.toDate());\r\n    this.moveCalendarsBy(this.currentDateView, -1, 'month');\r\n    const to = dayjsRef(this.currentDateView.toDate());\r\n    this.onLeftNav.emit({from, to});\r\n  }\r\n\r\n  onRightNavClick() {\r\n    const from = dayjsRef(this.currentDateView.toDate());\r\n    this.moveCalendarsBy(this.currentDateView, 1, 'month');\r\n    const to = dayjsRef(this.currentDateView.toDate());\r\n    this.onRightNav.emit({from, to});\r\n  }\r\n\r\n  onMonthCalendarLeftClick(change: INavEvent) {\r\n    this.onLeftNav.emit(change);\r\n  }\r\n\r\n  onMonthCalendarRightClick(change: INavEvent) {\r\n    this.onRightNav.emit(change);\r\n  }\r\n\r\n  onMonthCalendarSecondaryLeftClick(change: INavEvent) {\r\n    this.onRightNav.emit(change);\r\n  }\r\n\r\n  onMonthCalendarSecondaryRightClick(change: INavEvent) {\r\n    this.onLeftNav.emit(change);\r\n  }\r\n\r\n  getWeekdayName(weekday: Dayjs): string {\r\n    if (this.componentConfig.weekDayFormatter) {\r\n      return this.componentConfig.weekDayFormatter(weekday.day());\r\n    }\r\n\r\n    return weekday.format(this.componentConfig.weekDayFormat);\r\n  }\r\n\r\n  toggleCalendarMode(mode: ECalendarMode) {\r\n    if (this.currentCalendarMode !== mode) {\r\n      this.currentCalendarMode = mode;\r\n      this.onNavHeaderBtnClick.emit(mode);\r\n    }\r\n\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  monthSelected(month: IMonth) {\r\n    this.currentDateView = dayjsRef(month.date.toDate());\r\n    this.currentCalendarMode = ECalendarMode.Day;\r\n    this.onMonthSelect.emit(month);\r\n  }\r\n\r\n  moveCalendarsBy(current: Dayjs, amount: number, granularity: ManipulateType = 'month') {\r\n    this.currentDateView = dayjsRef(current.toDate()).add(amount, granularity);\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  moveCalendarTo(to: SingleCalendarValue) {\r\n    if (to) {\r\n      this.currentDateView = this.utilsService.convertToDayjs(to, this.componentConfig.format ?? '');\r\n    }\r\n\r\n    this.cd.markForCheck();\r\n  }\r\n\r\n  shouldShowCurrent(): boolean {\r\n    return this.utilsService.shouldShowCurrent(\r\n      this.componentConfig.showGoToCurrent ?? false,\r\n      'day',\r\n      this.componentConfig.min ?? dayjsRef(),\r\n      this.componentConfig.max ?? dayjsRef()\r\n    );\r\n  }\r\n\r\n  goToCurrent() {\r\n    this.currentDateView = dayjsRef();\r\n    this.onGoToCurrent.emit();\r\n  }\r\n\r\n  handleConfigChange(config: SimpleChange): void {\r\n    if (config) {\r\n      const prevConf: IDayCalendarConfigInternal = this.dayCalendarService.getConfig(config.previousValue);\r\n      const currentConf: IDayCalendarConfigInternal = this.dayCalendarService.getConfig(config.currentValue);\r\n\r\n      if (this.utilsService.shouldResetCurrentView(prevConf, currentConf)) {\r\n        this._currentDateView = null;\r\n      }\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -13788,7 +13788,7 @@
                     }
                 }
             },
-            "templateData": "<div class=\"dp-month-calendar-container\" dir=\"ltr\">\n  <dp-calendar-nav\n      (onGoToCurrent)=\"goToCurrent()\"\n      (onLabelClick)=\"toggleCalendarMode()\"\n      (onLeftNav)=\"onLeftNavClick()\"\n      (onLeftSecondaryNav)=\"onLeftSecondaryNavClick()\"\n      (onRightNav)=\"onRightNavClick()\"\n      (onRightSecondaryNav)=\"onRightSecondaryNavClick()\"\n      [isLabelClickable]=\"componentConfig.isNavHeaderBtnClickable\"\n      [label]=\"navLabel\"\n      [showGoToCurrent]=\"shouldShowCurrent()\"\n      [showLeftNav]=\"showLeftNav\"\n      [showLeftSecondaryNav]=\"showSecondaryLeftNav\"\n      [showRightNav]=\"showRightNav\"\n      [showRightSecondaryNav]=\"showSecondaryRightNav\"\n      [theme]=\"theme\">\n  </dp-calendar-nav>\n\n  <div class=\"dp-calendar-wrapper\">\n    <div *ngFor=\"let monthRow of yearMonths\" class=\"dp-months-row\">\n      <button (click)=\"monthClicked(month)\"\n              *ngFor=\"let month of monthRow\"\n              [attr.data-date]=\"month.date.format(componentConfig.format)\"\n              [disabled]=\"month.disabled\"\n              [innerText]=\"month.text\"\n              [ngClass]=\"getMonthBtnCssClass(month)\"\n              class=\"dp-calendar-month\"\n              type=\"button\">\n      </button>\n    </div>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"dp-month-calendar-container\" dir=\"ltr\">\r\n  <dp-calendar-nav\r\n      (onGoToCurrent)=\"goToCurrent()\"\r\n      (onLabelClick)=\"toggleCalendarMode()\"\r\n      (onLeftNav)=\"onLeftNavClick()\"\r\n      (onLeftSecondaryNav)=\"onLeftSecondaryNavClick()\"\r\n      (onRightNav)=\"onRightNavClick()\"\r\n      (onRightSecondaryNav)=\"onRightSecondaryNavClick()\"\r\n      [isLabelClickable]=\"componentConfig.isNavHeaderBtnClickable\"\r\n      [label]=\"navLabel\"\r\n      [showGoToCurrent]=\"shouldShowCurrent()\"\r\n      [showLeftNav]=\"showLeftNav\"\r\n      [showLeftSecondaryNav]=\"showSecondaryLeftNav\"\r\n      [showRightNav]=\"showRightNav\"\r\n      [showRightSecondaryNav]=\"showSecondaryRightNav\"\r\n      [theme]=\"theme\">\r\n  </dp-calendar-nav>\r\n\r\n  <div class=\"dp-calendar-wrapper\">\r\n    <div *ngFor=\"let monthRow of yearMonths\" class=\"dp-months-row\">\r\n      <button (click)=\"monthClicked(month)\"\r\n              *ngFor=\"let month of monthRow\"\r\n              [attr.data-date]=\"month.date.format(componentConfig.format)\"\r\n              [disabled]=\"month.disabled\"\r\n              [innerText]=\"month.text\"\r\n              [ngClass]=\"getMonthBtnCssClass(month)\"\r\n              class=\"dp-calendar-month\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "PlaygroundComponent",
