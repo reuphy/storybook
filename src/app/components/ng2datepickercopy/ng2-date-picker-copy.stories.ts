@@ -59,7 +59,6 @@ export const Default = () => ({
 			max: '31-12-2025'
 		},
 		updateDisplayDate: function(date: any) {
-			// Ne met à jour que si la date est valide
 			if (date && date !== 'Invalid date' && date.length >= 10) {
 				this.displayDate = date;
 				console.log('Display date updated:', this.displayDate);
