@@ -293,330 +293,7 @@
         },
         {
             "name": "IConfig",
-            "id": "interface-IConfig-9f266edb94dcfc321d6a907b3b073fa1a6a6aed71ab5d0749c1a76b09e2f3fbb8d41f5179a31e6cff5d6297a79487a30f943aee74f368cad480f62e231b3dd67",
-            "file": "src/app/components/ng2datepickercopy/lib/date-picker/date-picker-config.model.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "import {TDrops, TOpens} from '../common/types/poistions.type';\r\nimport {IDayCalendarConfig, IDayCalendarConfigInternal} from '../day-calendar/day-calendar-config.model';\r\nimport {IMonthCalendarConfig, IMonthCalendarConfigInternal} from '../month-calendar/month-calendar-config';\r\nimport {ITimeSelectConfig, ITimeSelectConfigInternal} from '../time-select/time-select-config.model';\r\nimport {ElementRef} from '@angular/core';\r\n\r\nexport interface IConfig {\r\n  closeOnSelect?: boolean;\r\n  closeOnSelectDelay?: number;\r\n  openOnFocus?: boolean;\r\n  openOnClick?: boolean;\r\n  onOpenDelay?: number;\r\n  closeOnEnter?: boolean;\r\n  disableKeypress?: boolean;\r\n  inputElementContainer?: HTMLElement | string | ElementRef;\r\n  drops?: TDrops;\r\n  opens?: TOpens;\r\n  hideInputContainer?: boolean;\r\n  hideOnOutsideClick?: boolean;\r\n  numOfYearRows?: number;\r\n  numOfYearsPerPage?: number;\r\n}\r\n\r\nexport interface IDatePickerConfig extends IConfig,\r\n                                           IDayCalendarConfig,\r\n                                           IMonthCalendarConfig,\r\n                                           ITimeSelectConfig {\r\n\r\n\r\n}\r\n\r\nexport interface IDatePickerConfigInternal extends IConfig,\r\n                                                   IDayCalendarConfigInternal,\r\n                                                   IMonthCalendarConfigInternal,\r\n                                                   ITimeSelectConfigInternal {\r\n}\r\n",
-            "properties": [
-                {
-                    "name": "closeOnEnter",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 13
-                },
-                {
-                    "name": "closeOnSelect",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 8
-                },
-                {
-                    "name": "closeOnSelectDelay",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 9
-                },
-                {
-                    "name": "disableKeypress",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 14
-                },
-                {
-                    "name": "drops",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "TDrops",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 16
-                },
-                {
-                    "name": "hideInputContainer",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 18
-                },
-                {
-                    "name": "hideOnOutsideClick",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 19
-                },
-                {
-                    "name": "inputElementContainer",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "HTMLElement | string | ElementRef",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 15
-                },
-                {
-                    "name": "numOfYearRows",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 20
-                },
-                {
-                    "name": "numOfYearsPerPage",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 21
-                },
-                {
-                    "name": "onOpenDelay",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 12
-                },
-                {
-                    "name": "openOnClick",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 11
-                },
-                {
-                    "name": "openOnFocus",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 10
-                },
-                {
-                    "name": "opens",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "TOpens",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 17
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 171,
-            "methods": [],
-            "extends": []
-        },
-        {
-            "name": "IConfig",
-            "id": "interface-IConfig-a794e6826c2dd1a18e1ffbbf95cd717aa6d5dc84b9c2de83295b5b0bc40719546b69024344c2e5d4afc45d4042f7e193012d6c93644466363856cad4079d19d6-1",
-            "file": "src/app/components/ng2datepickercopy/lib/month-calendar/month-calendar-config.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\nexport interface IConfig {\n  isMonthDisabledCallback?: (date: Dayjs) => boolean;\n  allowMultiSelect?: boolean;\n  yearFormat?: string;\n  yearFormatter?: (month: Dayjs) => string;\n  format?: string;\n  isNavHeaderBtnClickable?: boolean;\n  monthBtnFormat?: string;\n  monthBtnFormatter?: (day: Dayjs) => string;\n  numOfMonthRows?: number;\n  monthBtnCssClassCallback?: (day: Dayjs) => string;\n  multipleYearsNavigateBy?: number;\n  showMultipleYearsNavigation?: boolean;\n  returnedValueType?: ECalendarValue;\n  showGoToCurrent?: boolean;\n  unSelectOnClick?: boolean;\n}\n\nexport interface IMonthCalendarConfig extends IConfig,\n                                              ICalendar {\n}\n\nexport interface IMonthCalendarConfigInternal extends IConfig,\n                                                      ICalendarInternal {\n}\n",
-            "properties": [
-                {
-                    "name": "allowMultiSelect",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 7
-                },
-                {
-                    "name": "format",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 10
-                },
-                {
-                    "name": "isMonthDisabledCallback",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 6
-                },
-                {
-                    "name": "isNavHeaderBtnClickable",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 11
-                },
-                {
-                    "name": "monthBtnCssClassCallback",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 15
-                },
-                {
-                    "name": "monthBtnFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 12
-                },
-                {
-                    "name": "monthBtnFormatter",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 13
-                },
-                {
-                    "name": "multipleYearsNavigateBy",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 16
-                },
-                {
-                    "name": "numOfMonthRows",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 14
-                },
-                {
-                    "name": "returnedValueType",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "ECalendarValue",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 18
-                },
-                {
-                    "name": "showGoToCurrent",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 19
-                },
-                {
-                    "name": "showMultipleYearsNavigation",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 17
-                },
-                {
-                    "name": "unSelectOnClick",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 20
-                },
-                {
-                    "name": "yearFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 8
-                },
-                {
-                    "name": "yearFormatter",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "function",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 9
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 171,
-            "methods": [],
-            "extends": [],
-            "isDuplicate": true,
-            "duplicateId": 1,
-            "duplicateName": "IConfig-1"
-        },
-        {
-            "name": "IConfig",
-            "id": "interface-IConfig-c7138ca5eb96f7a5a606bf3335d27e4f9c94806af0f7a10a7e9b17ca28721fb419631ac94f4fe51417b41ad83c7417fcb50b69f93a8790414821fb7baf37c9c5-2",
+            "id": "interface-IConfig-c7138ca5eb96f7a5a606bf3335d27e4f9c94806af0f7a10a7e9b17ca28721fb419631ac94f4fe51417b41ad83c7417fcb50b69f93a8790414821fb7baf37c9c5",
             "file": "src/app/components/ng2datepickercopy/lib/day-calendar/day-calendar-config.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
@@ -887,6 +564,329 @@
             "indexSignatures": [],
             "kind": 171,
             "methods": [],
+            "extends": []
+        },
+        {
+            "name": "IConfig",
+            "id": "interface-IConfig-9f266edb94dcfc321d6a907b3b073fa1a6a6aed71ab5d0749c1a76b09e2f3fbb8d41f5179a31e6cff5d6297a79487a30f943aee74f368cad480f62e231b3dd67-1",
+            "file": "src/app/components/ng2datepickercopy/lib/date-picker/date-picker-config.model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {TDrops, TOpens} from '../common/types/poistions.type';\r\nimport {IDayCalendarConfig, IDayCalendarConfigInternal} from '../day-calendar/day-calendar-config.model';\r\nimport {IMonthCalendarConfig, IMonthCalendarConfigInternal} from '../month-calendar/month-calendar-config';\r\nimport {ITimeSelectConfig, ITimeSelectConfigInternal} from '../time-select/time-select-config.model';\r\nimport {ElementRef} from '@angular/core';\r\n\r\nexport interface IConfig {\r\n  closeOnSelect?: boolean;\r\n  closeOnSelectDelay?: number;\r\n  openOnFocus?: boolean;\r\n  openOnClick?: boolean;\r\n  onOpenDelay?: number;\r\n  closeOnEnter?: boolean;\r\n  disableKeypress?: boolean;\r\n  inputElementContainer?: HTMLElement | string | ElementRef;\r\n  drops?: TDrops;\r\n  opens?: TOpens;\r\n  hideInputContainer?: boolean;\r\n  hideOnOutsideClick?: boolean;\r\n  numOfYearRows?: number;\r\n  numOfYearsPerPage?: number;\r\n}\r\n\r\nexport interface IDatePickerConfig extends IConfig,\r\n                                           IDayCalendarConfig,\r\n                                           IMonthCalendarConfig,\r\n                                           ITimeSelectConfig {\r\n\r\n\r\n}\r\n\r\nexport interface IDatePickerConfigInternal extends IConfig,\r\n                                                   IDayCalendarConfigInternal,\r\n                                                   IMonthCalendarConfigInternal,\r\n                                                   ITimeSelectConfigInternal {\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "closeOnEnter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "closeOnSelect",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "closeOnSelectDelay",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "disableKeypress",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "drops",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TDrops",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "hideInputContainer",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "hideOnOutsideClick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "inputElementContainer",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "HTMLElement | string | ElementRef",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "numOfYearRows",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "numOfYearsPerPage",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 21
+                },
+                {
+                    "name": "onOpenDelay",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "openOnClick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "openOnFocus",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "opens",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TOpens",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 17
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "IConfig-1"
+        },
+        {
+            "name": "IConfig",
+            "id": "interface-IConfig-a794e6826c2dd1a18e1ffbbf95cd717aa6d5dc84b9c2de83295b5b0bc40719546b69024344c2e5d4afc45d4042f7e193012d6c93644466363856cad4079d19d6-2",
+            "file": "src/app/components/ng2datepickercopy/lib/month-calendar/month-calendar-config.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\nexport interface IConfig {\n  isMonthDisabledCallback?: (date: Dayjs) => boolean;\n  allowMultiSelect?: boolean;\n  yearFormat?: string;\n  yearFormatter?: (month: Dayjs) => string;\n  format?: string;\n  isNavHeaderBtnClickable?: boolean;\n  monthBtnFormat?: string;\n  monthBtnFormatter?: (day: Dayjs) => string;\n  numOfMonthRows?: number;\n  monthBtnCssClassCallback?: (day: Dayjs) => string;\n  multipleYearsNavigateBy?: number;\n  showMultipleYearsNavigation?: boolean;\n  returnedValueType?: ECalendarValue;\n  showGoToCurrent?: boolean;\n  unSelectOnClick?: boolean;\n}\n\nexport interface IMonthCalendarConfig extends IConfig,\n                                              ICalendar {\n}\n\nexport interface IMonthCalendarConfigInternal extends IConfig,\n                                                      ICalendarInternal {\n}\n",
+            "properties": [
+                {
+                    "name": "allowMultiSelect",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "format",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "isMonthDisabledCallback",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "isNavHeaderBtnClickable",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "monthBtnCssClassCallback",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "monthBtnFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "monthBtnFormatter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "multipleYearsNavigateBy",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "numOfMonthRows",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "returnedValueType",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ECalendarValue",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "showGoToCurrent",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "showMultipleYearsNavigation",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "unSelectOnClick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "yearFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "yearFormatter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
             "extends": [],
             "isDuplicate": true,
             "duplicateId": 2,
@@ -894,7 +894,155 @@
         },
         {
             "name": "IConfig",
-            "id": "interface-IConfig-3d7fd022b7c7f5f3b1367c966a1083ac6d10cd7cb83d7cfbca19cc79bbdd62198faffd2371feef11613672ad3e01674d6cf2dd3cb8b2d63d79b2ca7ba19f2cbf-3",
+            "id": "interface-IConfig-ca5f55aa590a67435d6b2977e5f27f0257659638e89aea1ea023af91c23e7b1ab46eec0bcb4d4bada283291e19c13a43e97cda575edc1ab42f6c36022e769d72-3",
+            "file": "src/app/components/ng2datepickercopy/lib/time-select/time-select-config.model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\ninterface IConfig {\n  hours12Format?: string;\n  hours24Format?: string;\n  maxTime?: Dayjs;\n  meridiemFormat?: string;\n  minTime?: Dayjs;\n  minutesFormat?: string;\n  minutesInterval?: number;\n  secondsFormat?: string;\n  secondsInterval?: number;\n  showSeconds?: boolean;\n  showTwentyFourHours?: boolean;\n  timeSeparator?: string;\n  returnedValueType?: ECalendarValue;\n}\n\nexport interface ITimeSelectConfig extends IConfig, ICalendar {\n}\n\nexport interface ITimeSelectConfigInternal extends IConfig,\n                                                   ICalendarInternal {\n}\n",
+            "properties": [
+                {
+                    "name": "hours12Format",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "hours24Format",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "maxTime",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Dayjs",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "meridiemFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "minTime",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Dayjs",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "minutesFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "minutesInterval",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "returnedValueType",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ECalendarValue",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "secondsFormat",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "secondsInterval",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "showSeconds",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "showTwentyFourHours",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "timeSeparator",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 17
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 3,
+            "duplicateName": "IConfig-3"
+        },
+        {
+            "name": "IConfig",
+            "id": "interface-IConfig-3d7fd022b7c7f5f3b1367c966a1083ac6d10cd7cb83d7cfbca19cc79bbdd62198faffd2371feef11613672ad3e01674d6cf2dd3cb8b2d63d79b2ca7ba19f2cbf-4",
             "file": "src/app/components/ng2datepickercopy/lib/year-calendar/year-calendar-config.ts",
             "deprecated": false,
             "deprecationMessage": "",
@@ -1040,154 +1188,6 @@
                     "optional": true,
                     "description": "",
                     "line": 10
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 171,
-            "methods": [],
-            "extends": [],
-            "isDuplicate": true,
-            "duplicateId": 3,
-            "duplicateName": "IConfig-3"
-        },
-        {
-            "name": "IConfig",
-            "id": "interface-IConfig-ca5f55aa590a67435d6b2977e5f27f0257659638e89aea1ea023af91c23e7b1ab46eec0bcb4d4bada283291e19c13a43e97cda575edc1ab42f6c36022e769d72-4",
-            "file": "src/app/components/ng2datepickercopy/lib/time-select/time-select-config.model.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "import {Dayjs} from 'dayjs';\nimport {ICalendar, ICalendarInternal} from '../common/models/calendar.model';\nimport {ECalendarValue} from '../common/types/calendar-value-enum';\n\ninterface IConfig {\n  hours12Format?: string;\n  hours24Format?: string;\n  maxTime?: Dayjs;\n  meridiemFormat?: string;\n  minTime?: Dayjs;\n  minutesFormat?: string;\n  minutesInterval?: number;\n  secondsFormat?: string;\n  secondsInterval?: number;\n  showSeconds?: boolean;\n  showTwentyFourHours?: boolean;\n  timeSeparator?: string;\n  returnedValueType?: ECalendarValue;\n}\n\nexport interface ITimeSelectConfig extends IConfig, ICalendar {\n}\n\nexport interface ITimeSelectConfigInternal extends IConfig,\n                                                   ICalendarInternal {\n}\n",
-            "properties": [
-                {
-                    "name": "hours12Format",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 6
-                },
-                {
-                    "name": "hours24Format",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 7
-                },
-                {
-                    "name": "maxTime",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Dayjs",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 8
-                },
-                {
-                    "name": "meridiemFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 9
-                },
-                {
-                    "name": "minTime",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Dayjs",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 10
-                },
-                {
-                    "name": "minutesFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 11
-                },
-                {
-                    "name": "minutesInterval",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 12
-                },
-                {
-                    "name": "returnedValueType",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "ECalendarValue",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 18
-                },
-                {
-                    "name": "secondsFormat",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 13
-                },
-                {
-                    "name": "secondsInterval",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 14
-                },
-                {
-                    "name": "showSeconds",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 15
-                },
-                {
-                    "name": "showTwentyFourHours",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 16
-                },
-                {
-                    "name": "timeSeparator",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "",
-                    "line": 17
                 }
             ],
             "indexSignatures": [],
@@ -8256,7 +8256,7 @@
         },
         {
             "name": "CalendarNavComponent",
-            "id": "component-CalendarNavComponent-a5fd2c9715c86ea51bd761d551112fd7a7091f3bb123de09ff68695457e1cbe86d20dd9ff5391cd1cd8277ea0982f6d4f9f040d066f4a24f7e6776237d5a2fb1",
+            "id": "component-CalendarNavComponent-19550b7d3b2fe19807ec419d023346cc266bdf4270223a9526747a25052a50d3d80b4904abed7f24bab1c31e7809bb751dfa8e0192f7f41f7dfc407ec5b8d29d",
             "file": "src/app/components/ng2datepickercopy/lib/calendar-nav/calendar-nav.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -8282,7 +8282,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 24,
+                    "line": 27,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -8290,7 +8290,7 @@
                     "name": "label",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 22,
+                    "line": 25,
                     "type": "string",
                     "decorators": []
                 },
@@ -8299,7 +8299,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
+                    "line": 32,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -8308,7 +8308,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 30,
+                    "line": 33,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -8317,7 +8317,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 31,
+                    "line": 34,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -8326,7 +8326,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 32,
+                    "line": 35,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -8335,7 +8335,7 @@
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 33,
+                    "line": 36,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -8344,7 +8344,7 @@
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 25,
+                    "line": 28,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -8353,7 +8353,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 26,
+                    "line": 29,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -8362,7 +8362,7 @@
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 27,
+                    "line": 30,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -8371,7 +8371,16 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 28,
+                    "line": 31,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "showYearButton",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -8379,7 +8388,7 @@
                     "name": "theme",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 34,
+                    "line": 38,
                     "type": "string",
                     "decorators": []
                 },
@@ -8387,7 +8396,7 @@
                     "name": "yearLabel",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 23,
+                    "line": 26,
                     "type": "string",
                     "decorators": []
                 }
@@ -8398,7 +8407,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 42,
+                    "line": 46,
                     "type": "EventEmitter<>"
                 },
                 {
@@ -8406,7 +8415,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 41,
+                    "line": 45,
                     "type": "EventEmitter<>"
                 },
                 {
@@ -8414,7 +8423,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 40,
+                    "line": 44,
                     "type": "EventEmitter<>"
                 },
                 {
@@ -8422,7 +8431,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 36,
+                    "line": 40,
                     "type": "EventEmitter<>"
                 },
                 {
@@ -8430,7 +8439,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 37,
+                    "line": 41,
                     "type": "EventEmitter<>"
                 },
                 {
@@ -8438,7 +8447,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 38,
+                    "line": 42,
                     "type": "EventEmitter<>"
                 },
                 {
@@ -8446,7 +8455,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 39,
+                    "line": 43,
                     "type": "EventEmitter<>"
                 }
             ],
@@ -8458,7 +8467,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 64,
+                    "line": 70,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -8468,7 +8477,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 60,
+                    "line": 64,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -8478,7 +8487,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 44,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -8488,7 +8497,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 48,
+                    "line": 52,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -8498,7 +8507,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 52,
+                    "line": 56,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -8508,7 +8517,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 56,
+                    "line": 60,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -8527,7 +8536,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  EventEmitter,\r\n  HostBinding,\r\n  Input,\r\n  Output,\r\n  ViewEncapsulation\r\n} from '@angular/core';\r\n\r\n@Component({\r\n    selector: 'dp-calendar-nav',\r\n    templateUrl: './calendar-nav.component.html',\r\n    styleUrls: ['./calendar-nav.component.less'],\r\n    imports: [CommonModule],\r\n    encapsulation: ViewEncapsulation.None,\r\n    changeDetection: ChangeDetectionStrategy.OnPush,\r\n    standalone: true\r\n})\r\nexport class CalendarNavComponent {\r\n  @Input() label!: string;\r\n  @Input() yearLabel!: string;\r\n  @Input() isLabelClickable: boolean = false;\r\n  @Input() showLeftNav: boolean = true;\r\n  @Input() showLeftSecondaryNav: boolean = false;\r\n  @Input() showRightNav: boolean = true;\r\n  @Input() showRightSecondaryNav: boolean = false;\r\n  @Input() leftNavDisabled: boolean = false;\r\n  @Input() leftSecondaryNavDisabled: boolean = false;\r\n  @Input() rightNavDisabled: boolean = false;\r\n  @Input() rightSecondaryNavDisabled: boolean = false;\r\n  @Input() showGoToCurrent: boolean = true;\r\n  @HostBinding('class') @Input() theme!: string;\r\n\r\n  @Output() onLeftNav: EventEmitter<null> = new EventEmitter();\r\n  @Output() onLeftSecondaryNav: EventEmitter<null> = new EventEmitter();\r\n  @Output() onRightNav: EventEmitter<null> = new EventEmitter();\r\n  @Output() onRightSecondaryNav: EventEmitter<null> = new EventEmitter();\r\n  @Output() onLabelClick: EventEmitter<null> = new EventEmitter();\r\n  @Output() onGoToCurrent: EventEmitter<null> = new EventEmitter();\r\n  @Output() onChooseYearClick: EventEmitter<null> = new EventEmitter();\r\n\r\n  leftNavClicked() {\r\n    this.onLeftNav.emit();\r\n  }\r\n\r\n  leftSecondaryNavClicked() {\r\n    this.onLeftSecondaryNav.emit();\r\n  }\r\n\r\n  rightNavClicked() {\r\n    this.onRightNav.emit();\r\n  }\r\n\r\n  rightSecondaryNavClicked() {\r\n    this.onRightSecondaryNav.emit();\r\n  }\r\n\r\n  labelClicked() {\r\n    this.onLabelClick.emit();\r\n  }\r\n\r\n  chooseYearClicked() {\r\n    this.onChooseYearClick.emit();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport {\r\n  ChangeDetectionStrategy,\r\n  ChangeDetectorRef,\r\n  Component,\r\n  EventEmitter,\r\n  HostBinding,\r\n  Input,\r\n  Output,\r\n  ViewEncapsulation\r\n} from '@angular/core';\r\n\r\n@Component({\r\n    selector: 'dp-calendar-nav',\r\n    templateUrl: './calendar-nav.component.html',\r\n    styleUrls: ['./calendar-nav.component.less'],\r\n    imports: [CommonModule],\r\n    encapsulation: ViewEncapsulation.None,\r\n    changeDetection: ChangeDetectionStrategy.OnPush,\r\n    standalone: true\r\n})\r\nexport class CalendarNavComponent {\r\n  constructor(private cd: ChangeDetectorRef) {}\r\n\r\n  @Input() label!: string;\r\n  @Input() yearLabel!: string;\r\n  @Input() isLabelClickable: boolean = false;\r\n  @Input() showLeftNav: boolean = true;\r\n  @Input() showLeftSecondaryNav: boolean = false;\r\n  @Input() showRightNav: boolean = true;\r\n  @Input() showRightSecondaryNav: boolean = false;\r\n  @Input() leftNavDisabled: boolean = false;\r\n  @Input() leftSecondaryNavDisabled: boolean = false;\r\n  @Input() rightNavDisabled: boolean = false;\r\n  @Input() rightSecondaryNavDisabled: boolean = false;\r\n  @Input() showGoToCurrent: boolean = true;\r\n  @Input() showYearButton: boolean = true;\r\n  @HostBinding('class') @Input() theme!: string;\r\n\r\n  @Output() onLeftNav: EventEmitter<null> = new EventEmitter();\r\n  @Output() onLeftSecondaryNav: EventEmitter<null> = new EventEmitter();\r\n  @Output() onRightNav: EventEmitter<null> = new EventEmitter();\r\n  @Output() onRightSecondaryNav: EventEmitter<null> = new EventEmitter();\r\n  @Output() onLabelClick: EventEmitter<null> = new EventEmitter();\r\n  @Output() onGoToCurrent: EventEmitter<null> = new EventEmitter();\r\n  @Output() onChooseYearClick: EventEmitter<null> = new EventEmitter();\r\n\r\n  leftNavClicked() {\r\n    this.onLeftNav.emit();\r\n  }\r\n\r\n  leftSecondaryNavClicked() {\r\n    this.onLeftSecondaryNav.emit();\r\n  }\r\n\r\n  rightNavClicked() {\r\n    this.onRightNav.emit();\r\n  }\r\n\r\n  rightSecondaryNavClicked() {\r\n    this.onRightSecondaryNav.emit();\r\n  }\r\n\r\n  labelClicked() {\r\n    this.onLabelClick.emit();\r\n    this.showYearButton = false;\r\n    this.cd.markForCheck(); // Force la détection de changements\r\n  }\r\n\r\n  chooseYearClicked() {\r\n    this.onChooseYearClick.emit();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -8536,8 +8545,34 @@
                 }
             ],
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "cd",
+                        "type": "ChangeDetectorRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 22,
+                "jsdoctags": [
+                    {
+                        "name": "cd",
+                        "type": "ChangeDetectorRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
-            "templateData": "<div class=\"dp-calendar-nav-container\" dir=\"ltr\">\r\n  <div class=\"dp-nav-header\">\r\n    <span [attr.data-hidden]=\"isLabelClickable\"\r\n          [hidden]=\"isLabelClickable\"\r\n          [innerText]=\"label\">\r\n    </span>\r\n    <button (click)=\"labelClicked()\"\r\n            *ngIf=\"label\"\r\n            [attr.data-hidden]=\"!isLabelClickable\"\r\n            [hidden]=\"!isLabelClickable\"\r\n            [innerText]=\"label\"\r\n            class=\"dp-nav-header-btn\"\r\n            type=\"button\">\r\n    </button>\r\n    <!-- <button (click)=\"chooseYearClicked()\"\r\n            class=\"dp-nav-choose-year-btn\"\r\n            type=\"button\">\r\n       {{yearLabel ?? 'Year'}}\r\n    </button> -->\r\n  </div>\r\n\r\n  <div class=\"dp-nav-btns-container\">\r\n    <div class=\"dp-calendar-nav-container-left\">\r\n      <button (click)=\"leftSecondaryNavClicked()\"\r\n              *ngIf=\"showLeftSecondaryNav\"\r\n              [disabled]=\"leftSecondaryNavDisabled\"\r\n              class=\"dp-calendar-secondary-nav-left\"\r\n              type=\"button\">\r\n      </button>\r\n      <button (click)=\"leftNavClicked()\"\r\n              [attr.data-hidden]=\"!showLeftNav\"\r\n              [disabled]=\"leftNavDisabled\"\r\n              [hidden]=\"!showLeftNav\"\r\n              class=\"dp-calendar-nav-left\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n    <button (click)=\"onGoToCurrent.emit()\"\r\n            *ngIf=\"showGoToCurrent\"\r\n            class=\"dp-current-location-btn\"\r\n            type=\"button\">\r\n    </button>\r\n    <div class=\"dp-calendar-nav-container-right\">\r\n      <button (click)=\"rightNavClicked()\"\r\n              [attr.data-hidden]=\"!showRightNav\"\r\n              [disabled]=\"rightNavDisabled\"\r\n              [hidden]=\"!showRightNav\"\r\n              class=\"dp-calendar-nav-right\"\r\n              type=\"button\">\r\n      </button>\r\n      <button (click)=\"rightSecondaryNavClicked()\"\r\n              *ngIf=\"showRightSecondaryNav\"\r\n              [disabled]=\"rightSecondaryNavDisabled\"\r\n              class=\"dp-calendar-secondary-nav-right\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"dp-calendar-nav-container\" dir=\"ltr\">\r\n  <div class=\"dp-nav-header\">\r\n    <span [attr.data-hidden]=\"isLabelClickable\"\r\n          [hidden]=\"isLabelClickable\"\r\n          [innerText]=\"label\">\r\n    </span>\r\n    <button (click)=\"labelClicked();\"\r\n            *ngIf=\"label\"\r\n            [attr.data-hidden]=\"!isLabelClickable\"\r\n            [hidden]=\"!isLabelClickable\"\r\n            [innerText]=\"label\"\r\n            class=\"dp-nav-header-btn\"\r\n            type=\"button\">\r\n    </button>\r\n    <button (click)=\"chooseYearClicked()\"\r\n            class=\"dp-nav-choose-year-btn\"\r\n            *ngIf=\"showYearButton\"\r\n            type=\"button\">\r\n       {{yearLabel ?? 'Year'}}\r\n    </button>\r\n  </div>\r\n\r\n  <div class=\"dp-nav-btns-container\">\r\n    <div class=\"dp-calendar-nav-container-left\">\r\n      <button (click)=\"leftSecondaryNavClicked()\"\r\n              *ngIf=\"showLeftSecondaryNav\"\r\n              [disabled]=\"leftSecondaryNavDisabled\"\r\n              class=\"dp-calendar-secondary-nav-left\"\r\n              type=\"button\">\r\n      </button>\r\n      <button (click)=\"leftNavClicked()\"\r\n              [attr.data-hidden]=\"!showLeftNav\"\r\n              [disabled]=\"leftNavDisabled\"\r\n              [hidden]=\"!showLeftNav\"\r\n              class=\"dp-calendar-nav-left\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n    <button (click)=\"onGoToCurrent.emit()\"\r\n            *ngIf=\"showGoToCurrent\"\r\n            class=\"dp-current-location-btn\"\r\n            type=\"button\">\r\n    </button>\r\n    <div class=\"dp-calendar-nav-container-right\">\r\n      <button (click)=\"rightNavClicked()\"\r\n              [attr.data-hidden]=\"!showRightNav\"\r\n              [disabled]=\"rightNavDisabled\"\r\n              [hidden]=\"!showRightNav\"\r\n              class=\"dp-calendar-nav-right\"\r\n              type=\"button\">\r\n      </button>\r\n      <button (click)=\"rightSecondaryNavClicked()\"\r\n              *ngIf=\"showRightSecondaryNav\"\r\n              [disabled]=\"rightSecondaryNavDisabled\"\r\n              class=\"dp-calendar-secondary-nav-right\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "CardComponent",
@@ -12472,7 +12507,7 @@
                     }
                 }
             },
-            "templateData": "<div *ngIf=\"currentCalendarMode ===  CalendarMode.Day\" class=\"dp-day-calendar-container\" dir=\"ltr\">\r\n  <dp-calendar-nav\r\n      (onGoToCurrent)=\"goToCurrent()\"\r\n      (onLabelClick)=\"toggleCalendarMode(CalendarMode.Year)\"\r\n      (onChooseYearClick)=\"toggleCalendarMode(CalendarMode.Year)\"\r\n      (onLeftNav)=\"onLeftNavClick()\"\r\n      (onRightNav)=\"onRightNavClick()\"\r\n      [isLabelClickable]=\"componentConfig.enableMonthSelector\"\r\n      [label]=\"navLabel\"\r\n      [showGoToCurrent]=\"_shouldShowCurrent\"\r\n      [showLeftNav]=\"showLeftNav\"\r\n      [showRightNav]=\"showRightNav\"\r\n      [theme]=\"theme\">\r\n  </dp-calendar-nav>\r\n\r\n  <div [ngClass]=\"{'dp-hide-near-month': !componentConfig.showNearMonthDays}\"\r\n       class=\"dp-calendar-wrapper\">\r\n    <div class=\"dp-weekdays\">\r\n      <span *ngFor=\"let weekday of weekdays\"\r\n            [innerText]=\"getWeekdayName(weekday)\"\r\n            class=\"dp-calendar-weekday\">\r\n      </span>\r\n    </div>\r\n    <div *ngFor=\"let week of weeks\" class=\"dp-calendar-week\">\r\n      <span *ngIf=\"componentConfig.showWeekNumbers\"\r\n            [innerText]=\"week[0].date.isoWeek()\"\r\n            class=\"dp-week-number\">\r\n      </span>\r\n      <button (click)=\"dayClicked(day)\"\r\n              *ngFor=\"let day of week\"\r\n              [attr.data-date]=\"day.date.format(componentConfig.format)\"\r\n              [disabled]=\"day.disabled\"\r\n              [innerText]=\"getDayBtnText(day)\"\r\n              [ngClass]=\"getDayBtnCssClass(day)\"\r\n              class=\"dp-calendar-day\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<dp-month-calendar\r\n    (onLeftNav)=\"onMonthCalendarLeftClick($event)\"\r\n    (onLeftSecondaryNav)=\"onMonthCalendarSecondaryLeftClick($event)\"\r\n    (onNavHeaderBtnClick)=\"toggleCalendarMode(CalendarMode.Day)\"\r\n    (onRightNav)=\"onMonthCalendarRightClick($event)\"\r\n    (onRightSecondaryNav)=\"onMonthCalendarSecondaryRightClick($event)\"\r\n    (onSelect)=\"monthSelected($event)\"\r\n    *ngIf=\"currentCalendarMode ===  CalendarMode.Month\"\r\n    [config]=\"monthCalendarConfig\"\r\n    [displayDate]=\"_currentDateView\"\r\n    [ngModel]=\"_selected\"\r\n    [theme]=\"theme\">\r\n</dp-month-calendar>\r\n\r\n<dp-year-calendar\r\n    (onLeftNav)=\"onYearCalendarLeftClick($event)\"\r\n    (onLeftSecondaryNav)=\"onYearCalendarSecondaryLeftClick($event)\"\r\n    (chooseYearClicked)=\"toggleCalendarMode(CalendarMode.Day)\"\r\n    (onRightNav)=\"onYearCalendarRightClick($event)\"\r\n    (onRightSecondaryNav)=\"onYearCalendarSecondaryRightClick($event)\"\r\n    (onSelect)=\"yearSelected($event)\"\r\n    *ngIf=\"currentCalendarMode ===  CalendarMode.Year\"\r\n    [config]=\"yearCalendarConfig\"\r\n    [displayDate]=\"_currentDateView\"\r\n    [ngModel]=\"_selected\"\r\n    [theme]=\"theme\">\r\n</dp-year-calendar>"
+            "templateData": "<div *ngIf=\"currentCalendarMode ===  CalendarMode.Day\" class=\"dp-day-calendar-container\" dir=\"ltr\">\r\n  <dp-calendar-nav\r\n      (onGoToCurrent)=\"goToCurrent()\"\r\n      (onLabelClick)=\"toggleCalendarMode(CalendarMode.Month)\"\r\n      (onChooseYearClick)=\"toggleCalendarMode(CalendarMode.Year)\"\r\n      (onLeftNav)=\"onLeftNavClick()\"\r\n      (onRightNav)=\"onRightNavClick()\"\r\n      [isLabelClickable]=\"componentConfig.enableMonthSelector\"\r\n      [label]=\"navLabel\"\r\n      [showGoToCurrent]=\"_shouldShowCurrent\"\r\n      [showLeftNav]=\"showLeftNav\"\r\n      [showRightNav]=\"showRightNav\"\r\n      [theme]=\"theme\">\r\n  </dp-calendar-nav>\r\n\r\n  <div [ngClass]=\"{'dp-hide-near-month': !componentConfig.showNearMonthDays}\"\r\n       class=\"dp-calendar-wrapper\">\r\n    <div class=\"dp-weekdays\">\r\n      <span *ngFor=\"let weekday of weekdays\"\r\n            [innerText]=\"getWeekdayName(weekday)\"\r\n            class=\"dp-calendar-weekday\">\r\n      </span>\r\n    </div>\r\n    <div *ngFor=\"let week of weeks\" class=\"dp-calendar-week\">\r\n      <span *ngIf=\"componentConfig.showWeekNumbers\"\r\n            [innerText]=\"week[0].date.isoWeek()\"\r\n            class=\"dp-week-number\">\r\n      </span>\r\n      <button (click)=\"dayClicked(day)\"\r\n              *ngFor=\"let day of week\"\r\n              [attr.data-date]=\"day.date.format(componentConfig.format)\"\r\n              [disabled]=\"day.disabled\"\r\n              [innerText]=\"getDayBtnText(day)\"\r\n              [ngClass]=\"getDayBtnCssClass(day)\"\r\n              class=\"dp-calendar-day\"\r\n              type=\"button\">\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<dp-month-calendar\r\n    (onLeftNav)=\"onMonthCalendarLeftClick($event)\"\r\n    (onLeftSecondaryNav)=\"onMonthCalendarSecondaryLeftClick($event)\"\r\n    (onNavHeaderBtnClick)=\"toggleCalendarMode(CalendarMode.Day)\"\r\n    (onRightNav)=\"onMonthCalendarRightClick($event)\"\r\n    (onRightSecondaryNav)=\"onMonthCalendarSecondaryRightClick($event)\"\r\n    (onSelect)=\"monthSelected($event)\"\r\n    *ngIf=\"currentCalendarMode ===  CalendarMode.Month\"\r\n    [config]=\"monthCalendarConfig\"\r\n    [displayDate]=\"_currentDateView\"\r\n    [ngModel]=\"_selected\"\r\n    [theme]=\"theme\">\r\n</dp-month-calendar>\r\n\r\n<dp-year-calendar\r\n    (onLeftNav)=\"onYearCalendarLeftClick($event)\"\r\n    (onLeftSecondaryNav)=\"onYearCalendarSecondaryLeftClick($event)\"\r\n    (chooseYearClicked)=\"toggleCalendarMode(CalendarMode.Day)\"\r\n    (onRightNav)=\"onYearCalendarRightClick($event)\"\r\n    (onRightSecondaryNav)=\"onYearCalendarSecondaryRightClick($event)\"\r\n    (onSelect)=\"yearSelected($event)\"\r\n    *ngIf=\"currentCalendarMode ===  CalendarMode.Year\"\r\n    [config]=\"yearCalendarConfig\"\r\n    [displayDate]=\"_currentDateView\"\r\n    [ngModel]=\"_selected\"\r\n    [theme]=\"theme\">\r\n</dp-year-calendar>"
         },
         {
             "name": "DayTimeCalendarComponent",
@@ -14874,7 +14909,7 @@
                     }
                 }
             },
-            "templateData": "<div class=\"dp-month-calendar-container\" dir=\"ltr\">\n  <dp-calendar-nav\n      (onGoToCurrent)=\"goToCurrent()\"\n      (onLabelClick)=\"toggleCalendarMode()\"\n      (onLeftNav)=\"onLeftNavClick()\"\n      (onLeftSecondaryNav)=\"onLeftSecondaryNavClick()\"\n      (onRightNav)=\"onRightNavClick()\"\n      (onRightSecondaryNav)=\"onRightSecondaryNavClick()\"\n      [isLabelClickable]=\"componentConfig.isNavHeaderBtnClickable\"\n      [label]=\"navLabel\"\n      [showGoToCurrent]=\"shouldShowCurrent()\"\n      [showLeftNav]=\"showLeftNav\"\n      [showLeftSecondaryNav]=\"showSecondaryLeftNav\"\n      [showRightNav]=\"showRightNav\"\n      [showRightSecondaryNav]=\"showSecondaryRightNav\"\n      [theme]=\"theme\">\n  </dp-calendar-nav>\n\n  <div class=\"dp-calendar-wrapper\">\n    <div *ngFor=\"let monthRow of yearMonths\" class=\"dp-months-row\">\n      <button (click)=\"monthClicked(month)\"\n              *ngFor=\"let month of monthRow\"\n              [attr.data-date]=\"month.date.format(componentConfig.format)\"\n              [disabled]=\"month.disabled\"\n              [innerText]=\"month.text\"\n              [ngClass]=\"getMonthBtnCssClass(month)\"\n              class=\"dp-calendar-month\"\n              type=\"button\">\n      </button>\n    </div>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"dp-month-calendar-container\" dir=\"ltr\">\n  <dp-calendar-nav\n      (onGoToCurrent)=\"goToCurrent()\"\n      (onLabelClick)=\"toggleCalendarMode()\"\n      (onLeftNav)=\"onLeftNavClick()\"\n      (onLeftSecondaryNav)=\"onLeftSecondaryNavClick()\"\n      (onRightNav)=\"onRightNavClick()\"\n      (onRightSecondaryNav)=\"onRightSecondaryNavClick()\"\n      [isLabelClickable]=\"componentConfig.isNavHeaderBtnClickable\"\n      [label]=\"navLabel\"\n      [showYearButton]=\"false\"\n      [showGoToCurrent]=\"shouldShowCurrent()\"\n      [showLeftNav]=\"showLeftNav\"\n      [showLeftSecondaryNav]=\"showSecondaryLeftNav\"\n      [showRightNav]=\"showRightNav\"\n      [showRightSecondaryNav]=\"showSecondaryRightNav\"\n      [theme]=\"theme\">\n  </dp-calendar-nav>\n\n  <div class=\"dp-calendar-wrapper\">\n    <div *ngFor=\"let monthRow of yearMonths\" class=\"dp-months-row\">\n      <button (click)=\"monthClicked(month)\"\n              *ngFor=\"let month of monthRow\"\n              [attr.data-date]=\"month.date.format(componentConfig.format)\"\n              [disabled]=\"month.disabled\"\n              [innerText]=\"month.text\"\n              [ngClass]=\"getMonthBtnCssClass(month)\"\n              class=\"dp-calendar-month\"\n              type=\"button\">\n      </button>\n    </div>\n  </div>\n</div>\n"
         },
         {
             "name": "PlaygroundComponent",
@@ -18193,7 +18228,7 @@
                 "linktype": "component",
                 "name": "CalendarNavComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/27",
+                "coverageCount": "0/29",
                 "status": "low"
             },
             {

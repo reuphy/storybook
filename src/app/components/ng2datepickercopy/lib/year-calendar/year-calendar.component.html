@@ -2,11 +2,11 @@
   <dp-calendar-nav
       (onGoToCurrent)="goToCurrent()"
       (onLabelClick)="toggleCalendarMode()"
+      (onChooseYearClick)="toggleCalendarMode()"
       (onLeftNav)="onLeftNavClick()"
       (onRightNav)="onRightNavClick()"
       [isLabelClickable]="componentConfig.isNavHeaderBtnClickable"
-      [label]="''"
-      [yearLabel]="navLabel"
+      [label]="navLabel"
       [showGoToCurrent]="shouldShowCurrent()"
       [showLeftNav]="showLeftNav"
       [showRightNav]="showRightNav"
@@ -21,7 +21,8 @@
               [disabled]="year.disabled"
               [innerText]="year.text"
               [ngClass]="getYearBtnCssClass(year)"
-              class="dp-calendar-year"
+              style="width: unset;height: unset;"
+              class="dp-calendar-year dp-calendar-day"
               type="button">
       </button>
     </div>

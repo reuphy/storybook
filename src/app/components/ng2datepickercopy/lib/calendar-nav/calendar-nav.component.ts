@@ -64,10 +64,32 @@ export class CalendarNavComponent {
   labelClicked() {
     this.onLabelClick.emit();
     this.showYearButton = false;
-    this.cd.markForCheck(); // Force la détection de changements
+    this.cd.markForCheck();
   }
 
   chooseYearClicked() {
     this.onChooseYearClick.emit();
+  }
+
+  getYearFromLabel(): string {
+    if (!this.label) return '';
+    
+    try {
+      // Essaie de parser le label comme une date
+      const date = new Date(this.label);
+      
+      // Vérifie si c'est une date valide
+      if (!isNaN(date.getTime())) {
+        return date.getFullYear().toString();
+      }
+      
+      // Si ce n'est pas une date, essaie d'extraire l'année avec une regex
+      const yearMatch = this.label.match(/\b(19|20)\d{2}\b/);
+      return yearMatch ? yearMatch[0] : '';
+    } catch (error) {
+      // En cas d'erreur, essaie d'extraire l'année avec une regex
+      const yearMatch = this.label.match(/\b(19|20)\d{2}\b/);
+      return yearMatch ? yearMatch[0] : '';
+    }
   }
 }

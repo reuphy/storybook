@@ -1,9 +1,9 @@
 <div class="dp-calendar-nav-container" dir="ltr">
   <div class="dp-nav-header">
-    <span [attr.data-hidden]="isLabelClickable"
+    <!-- <span [attr.data-hidden]="isLabelClickable"
           [hidden]="isLabelClickable"
           [innerText]="label">
-    </span>
+    </span> -->
     <button (click)="labelClicked();"
             *ngIf="label"
             [attr.data-hidden]="!isLabelClickable"
@@ -13,10 +13,10 @@
             type="button">
     </button>
     <button (click)="chooseYearClicked()"
-            class="dp-nav-choose-year-btn"
+            class="dp-nav-header-btn"
             *ngIf="showYearButton"
             type="button">
-       {{yearLabel ?? 'Year'}}
+       {{getYearFromLabel() || label}}
     </button>
   </div>
 

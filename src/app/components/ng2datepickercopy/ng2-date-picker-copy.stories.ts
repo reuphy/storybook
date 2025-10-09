@@ -68,7 +68,7 @@ export const Default = () => ({
 			#dateDirective
 			[dpDayPicker]="config"
 			[displayDate]="displayDate"
-			theme="ibz-datepicker"
+			theme="dp-material dp-main"
 			id="picker"
 			(ngModelChange)="updateDisplayDate($event)"
 			[(ngModel)]="selectedDayTime"
