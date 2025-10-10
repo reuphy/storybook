@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { DatePickerComponent } from './lib/date-picker/date-picker.component';
 import { DatePickerDirective } from './lib/date-picker/date-picker.directive';
 import { YearCalendarComponent } from './lib/year-calendar/year-calendar.component';
-import { max, min } from 'rxjs';
 
 export default {
 	title: 'Components/DatePickerCopy',
@@ -55,8 +54,6 @@ export const Default = () => ({
 			hideOnOutsideClick: true,
 			numOfMonthRows: 3,
 			format: 'DD-MM-YYYY',
-			min: '01-01-2020',
-			max: '31-12-2025'
 		},
 		updateDisplayDate: function(date: any) {
 			if (date && date !== 'Invalid date' && date.length >= 10) {
@@ -79,37 +76,67 @@ export const Default = () => ({
 	`,
 });
 
-export const YearCalendar = () => ({
+export const WithTimePicker = () => ({
 	props: {
+		selectedDayTime: null,
+		displayDate: null,
 		config: {
+			firstDayOfWeek: 'su',
+			monthFormat: 'DD-MM-YYYY',
+			disableKeypress: false,
+			closeOnSelect: undefined,
+			closeOnSelectDelay: 100,
+			openOnFocus: true,
+			openOnClick: true,
+			onOpenDelay: 0,
+			closeOnEnter: true,
+			weekDayFormat: 'ddd',
+			showNearMonthDays: true,
+			showWeekNumbers: false,
+			enableMonthSelector: true,
 			yearFormat: 'YYYY',
-			yearBtnFormat: 'YYYY',
-			numOfYearsPerPage: 24,
-			numOfYearRows: 6,
-			format: 'YYYY',
 			showGoToCurrent: true,
-			allowMultiSelect: false,
+			dayBtnFormat: 'DD',
+			monthBtnFormat: 'MMM',
+			hours12Format: 'hh',
+			hours24Format: 'HH',
+			meridiemFormat: 'A',
+			minutesFormat: 'mm',
+			minutesInterval: 1,
+			secondsFormat: 'ss',
+			secondsInterval: 1,
+			showSeconds: true,
+			showTwentyFourHours: true,
+			timeSeparator: ':',
+			multipleYearsNavigateBy: 10,
+			showMultipleYearsNavigation: false,
+			hideInputContainer: false,
+			returnedValueType: 'string',
 			unSelectOnClick: true,
-			isNavHeaderBtnClickable: true,
+			hideOnOutsideClick: true,
+			numOfMonthRows: 3,
+			format: 'DD-MM-YYYY HH:mm:ss',
+
 		},
-		displayDate: undefined,
-		minDate: undefined,
-		maxDate: undefined,
-		theme: 'ibz-datepicker',
-		onSelect: (event: any) => {
-			console.log('Year selected:', event);
+		updateDisplayDate: function(date: any) {
+			if (date && date !== 'Invalid date' && date.length >= 10) {
+				this.displayDate = date;
+				console.log('Display date updated:', this.displayDate);
+			}
 		},
 	},
 	template: `
-		<dp-year-calendar
-			[config]="config"
+		<input
+			#dateDirective
+			[mode]="'daytime'"
+			[dpDayPicker]="config"
 			[displayDate]="displayDate"
-			[minDate]="minDate"
-			[maxDate]="maxDate"
-			[theme]="theme"
-			(onSelect)="onSelect($event)"
-		></dp-year-calendar>
+			theme="dp-material dp-main"
+			id="picker"
+			(ngModelChange)="updateDisplayDate($event)"
+			[(ngModel)]="selectedDayTime"
+		/>
+		<p>Date et heure sélectionnées : {{ selectedDayTime }}</p>
 	`,
 });
-
 
