@@ -204,6 +204,18 @@ export class TimeSelectComponent implements OnInit, OnChanges, ControlValueAcces
   this.emitChange();
   }
 
+  onWheel(event: WheelEvent, unit: TimeUnit): void {
+    event.preventDefault(); // Empêche le scroll de la page
+    
+    if (event.deltaY < 0) {
+      // Scroll vers le haut - augmente la valeur
+      this.increase(unit);
+    } else if (event.deltaY > 0) {
+      // Scroll vers le bas - diminue la valeur
+      this.decrease(unit);
+    }
+  }
+
   toggleMeridiem(): void {
   this.selected = this.timeSelectService?.toggleMeridiem?.(this.selected) ?? this.selected;
   this.emitChange();

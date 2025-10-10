@@ -6,6 +6,7 @@
             type="button">
     </button>
     <span [innerText]="hours"
+          (wheel)="onWheel($event, 'hour')"
           class="dp-time-select-display-hours">
     </span>
     <button (click)="decrease('hour')"
@@ -23,6 +24,7 @@
             class="dp-time-select-control-up"
             type="button"></button>
     <span [innerText]="minutes"
+          (wheel)="onWheel($event, 'minute')"
           class="dp-time-select-display-minutes">
     </span>
     <button (click)="decrease('minute')"
@@ -40,6 +42,7 @@
               class="dp-time-select-control-up"
               type="button"></button>
       <span [innerText]="seconds"
+            (wheel)="onWheel($event, 'second')"
             class="dp-time-select-display-seconds">
       </span>
       <button (click)="decrease('second')"
